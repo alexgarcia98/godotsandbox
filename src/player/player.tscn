@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://di4b3fet5cvsw"]
+[gd_scene load_steps=81 format=3 uid="uid://di4b3fet5cvsw"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/player/player.gd" id="1_ryxk6"]
 [ext_resource type="Texture2D" uid="uid://dodo65m06ibo2" path="res://src/player/art/gun_fire.png" id="2_4bkl8"]
@@ -74,6 +74,7 @@
 [ext_resource type="Script" uid="uid://o7jip3xldsrq" path="res://src/state_machine/states/wall_jump.gd" id="55_3uvft"]
 [ext_resource type="Script" uid="uid://b23q2dyajqi25" path="res://src/state_machine/states/thrown.gd" id="60_3fw2w"]
 [ext_resource type="Script" uid="uid://dv4hw4drf1pch" path="res://src/state_machine/states/throw.gd" id="60_8o3kr"]
+[ext_resource type="Script" uid="uid://bmc2ip0hujwtr" path="res://src/state_machine/states/interact.gd" id="71_ghj7r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bkl8"]
 atlas = ExtResource("2_4bkl8")
@@ -253,7 +254,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("34_35drp")
 }],
-"loop": true,
+"loop": false,
 "name": &"interact",
 "speed": 10.0
 }, {
@@ -432,6 +433,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7f80"]
 size = Vector2(13, 24)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fd7k5"]
+radius = 24.0
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_ryxk6")
@@ -448,10 +452,16 @@ animation = &"interact"
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_f7f80")
 
+[node name="object_collision" type="Area2D" parent="."]
+collision_mask = 36
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="object_collision"]
+shape = SubResource("CircleShape2D_fd7k5")
+
 [node name="movement_state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_hcrjv")]
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("dash_state", "fall_state", "jump_state", "move_state", "pivot_state", "single_pivot_state", "throw_state", "thrown_state", "frozen_state", "switch_state")]
+[node name="idle" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("dash_state", "fall_state", "jump_state", "move_state", "pivot_state", "single_pivot_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "switch_state")]
 script = ExtResource("7_yt4vg")
 dash_state = NodePath("../dash")
 fall_state = NodePath("../fall")
@@ -459,43 +469,52 @@ jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 pivot_state = NodePath("../pivot")
 single_pivot_state = NodePath("../single_pivot")
+interact_state = NodePath("../interact")
 throw_state = NodePath("../throw")
 thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
 switch_state = NodePath("../switch_main")
 animation_name = "idle"
 
-[node name="jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "frozen_state", "wall_cling_state")]
+[node name="jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "wall_cling_state")]
 script = ExtResource("8_mtgkv")
 fall_state = NodePath("../fall")
 jump_state = NodePath(".")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 airdash_state = NodePath("../airdash")
+interact_state = NodePath("../interact")
+throw_state = NodePath("../throw")
+thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
 wall_cling_state = NodePath("../wall_cling")
 animation_name = "jump"
 
-[node name="fall" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "move_state", "airdash_state", "frozen_state", "jump_state", "wall_cling_state")]
+[node name="fall" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "jump_state", "wall_cling_state")]
 script = ExtResource("9_niv3d")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 airdash_state = NodePath("../airdash")
+interact_state = NodePath("../interact")
+throw_state = NodePath("../throw")
+thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
 jump_state = NodePath("../jump")
 wall_cling_state = NodePath("../wall_cling")
 animation_name = "fall"
 
-[node name="move" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("dash_state", "fall_state", "idle_state", "jump_state", "airdash_state", "throw_state", "thrown_state", "frozen_state")]
+[node name="move" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("dash_state", "fall_state", "idle_state", "jump_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "switch_state")]
 script = ExtResource("10_01udx")
 dash_state = NodePath("../dash")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 airdash_state = NodePath("../airdash")
+interact_state = NodePath("../interact")
 throw_state = NodePath("../throw")
 thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
+switch_state = NodePath("../switch_main")
 animation_name = "move"
 
 [node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "jump_state")]
@@ -528,10 +547,12 @@ idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "ground_pivot"
 
-[node name="freeze" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
+[node name="freeze" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "move_state", "jump_state")]
 script = ExtResource("51_okvrv")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
+move_state = NodePath("../move")
+jump_state = NodePath("../jump")
 animation_name = "freeze"
 
 [node name="switch_main" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
@@ -546,13 +567,16 @@ idle_state = NodePath("../idle")
 wall_jump_state = NodePath("../wall_jump")
 animation_name = "wall_cling"
 
-[node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "frozen_state")]
+[node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state")]
 script = ExtResource("55_3uvft")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 airdash_state = NodePath("../airdash")
+interact_state = NodePath("../interact")
+throw_state = NodePath("../throw")
+thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
 animation_name = "jump"
 
@@ -568,6 +592,14 @@ script = ExtResource("60_8o3kr")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "throw_up"
+
+[node name="interact" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "jump_state", "move_state")]
+script = ExtResource("71_ghj7r")
+idle_state = NodePath("../idle")
+fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+move_state = NodePath("../move")
+animation_name = "interact"
 
 [node name="gun_state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_hcrjv")]
 starting_state = NodePath("idle")
@@ -589,3 +621,8 @@ animation_name = "smoke"
 
 [node name="player_move_component" type="Node" parent="."]
 script = ExtResource("11_ce5lr")
+
+[connection signal="area_entered" from="object_collision" to="." method="_on_object_collision_area_entered"]
+[connection signal="area_exited" from="object_collision" to="." method="_on_object_collision_area_exited"]
+[connection signal="body_entered" from="object_collision" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="object_collision" to="." method="_on_area_2d_body_exited"]

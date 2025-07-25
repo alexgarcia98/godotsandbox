@@ -44,7 +44,11 @@ func process_input(event: InputEvent) -> State:
 		elif horiz == 0:
 			return interact_state
 		else:
-			return throw_state
+			if parent.throwable:
+				if parent.is_main:
+					return throw_state
+				else:
+					return thrown_state
 	return null
 
 func process_physics(delta: float) -> State:

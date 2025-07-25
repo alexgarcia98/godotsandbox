@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://daiojeflxc1v8"]
+
+[ext_resource type="Texture2D" uid="uid://qx1tkhutd2f5" path="res://src/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects1.png" id="1_7rxkv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aqhm"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(320, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uymw4"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(288, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6v6s"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(256, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtwb3"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(224, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsw7t"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(192, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0crm"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(160, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txs56"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(320, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hk5d"]
+atlas = ExtResource("1_7rxkv")
+region = Rect2(160, 256, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfmi4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aqhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uymw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6v6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtwb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsw7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0crm")
+}],
+"loop": false,
+"name": &"activate_lever",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txs56")
+}],
+"loop": true,
+"name": &"lever_off",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hk5d")
+}],
+"loop": true,
+"name": &"lever_on",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rxkv"]
+size = Vector2(32, 64)
+
+[node name="green_lever" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jfmi4")
+animation = &"activate_lever"
+autoplay = "lever_off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7rxkv")

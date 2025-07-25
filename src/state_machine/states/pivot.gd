@@ -33,4 +33,4 @@ func process_physics(delta: float) -> State:
 	if animations.frame >= 9:
 		flipped = false
 		return idle_state
-	return pivot_state
+	return null

@@ -7,6 +7,9 @@ var movement_animations: AnimatedSprite2D = $movement_animations
 var gun_animations: AnimatedSprite2D = $gun_animations
 
 @onready
+var object_collision: Area2D = $object_collision
+
+@onready
 var movement_state_machine: Node = $movement_state_machine
 @onready
 var gun_state_machine: Node = $gun_state_machine
@@ -25,9 +28,13 @@ var max_airdash: int = 3
 @export
 var max_air_reverse: int = 3
 
+@export
+var throwable = false
+
 var jumps_remaining = max_jumps
 var airdash_remaining = max_airdash
 var air_reverse_remaining = max_air_reverse
+var interactables = []
 
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
@@ -44,3 +51,22 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	movement_state_machine.process_frame(delta)
 	gun_state_machine.process_frame(delta)
+	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("can throw")
+	throwable = true
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	print("cannot throw")
+	throwable = false
+
+func _on_object_collision_area_entered(area: Area2D) -> void:
+	# check if present
+	if not interactables.has(area):
+		interactables.append(area)
+	print(interactables)
+
+func _on_object_collision_area_exited(area: Area2D) -> void:
+	if interactables.has(area):
+		interactables.erase(area)
+	print(interactables)

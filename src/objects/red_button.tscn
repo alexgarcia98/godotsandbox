@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1o4p35ak4q1f"]
+
+[ext_resource type="Texture2D" uid="uid://cvbh1blhuqncm" path="res://src/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects6.png" id="1_i6hiq"]
+[ext_resource type="Script" uid="uid://cm3pxr8d71l7w" path="res://src/scripts/button.gd" id="1_vndke"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vndke"]
+atlas = ExtResource("1_i6hiq")
+region = Rect2(86, 274, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1blo"]
+atlas = ExtResource("1_i6hiq")
+region = Rect2(102, 274, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxgjw"]
+atlas = ExtResource("1_i6hiq")
+region = Rect2(118, 274, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ox1i"]
+atlas = ExtResource("1_i6hiq")
+region = Rect2(86, 274, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ymp"]
+atlas = ExtResource("1_i6hiq")
+region = Rect2(118, 274, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfmi4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vndke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1blo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxgjw")
+}],
+"loop": false,
+"name": &"activate_button",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ox1i")
+}],
+"loop": true,
+"name": &"button_off",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3ymp")
+}],
+"loop": true,
+"name": &"button_on",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6hiq"]
+size = Vector2(16, 16)
+
+[node name="red_button" type="Area2D"]
+collision_layer = 32
+script = ExtResource("1_vndke")
+
+[node name="animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jfmi4")
+animation = &"activate_button"
+autoplay = "button_off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i6hiq")

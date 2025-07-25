@@ -51,14 +51,13 @@ func process_input(event: InputEvent) -> State:
 			return frozen_state
 		else:
 			if horiz == 0 && vert == 0:
-				print(1)
 				return interact_state
-			if parent.is_main:
-				print(2)
-				return throw_state
-			else:
-				print(3)
-				return thrown_state
+			# check for closeness
+			if parent.throwable:
+				if parent.is_main:
+					return throw_state
+				else:
+					return thrown_state
 			
 		
 	return null

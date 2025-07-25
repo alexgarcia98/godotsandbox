@@ -5,6 +5,11 @@ var idle_state: State
 @export
 var fall_state: State
 
+@export
+var move_state: State
+@export
+var jump_state: State
+
 var is_frozen = false
 
 func enter() -> void:
@@ -39,5 +44,14 @@ func process_physics(delta: float) -> State:
 	if not parent.is_main && not is_frozen:
 		parent.velocity.y += gravity * delta
 		parent.move_and_slide()
-
+		
+		if parent.velocity.y < 0:
+			return jump_state
+	
+		if !parent.is_on_floor():
+			return fall_state
+			
+		if super.get_movement_input() != 0.0:
+			return move_state
+		return idle_state
 	return null
