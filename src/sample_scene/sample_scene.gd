@@ -1,5 +1,4 @@
 extends Node2D
-@onready var button: Button = $Button
 
 var current = null
 var max_levels = 2
@@ -20,7 +19,10 @@ func load_level(index):
 func _process(delta: float) -> void:
 	pass
 
-func _on_button_pressed() -> void:
+func _on_level_switch_pressed() -> void:
 	print("pressed")
 	current_index = (current_index + 1) % (max_levels + 1)
 	load_level(current_index)
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()

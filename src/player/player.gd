@@ -61,6 +61,10 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	throwable = false
 
 func _on_object_collision_area_entered(area: Area2D) -> void:
+	# handle any auto pickups
+	if area.get_collision_layer_value(7):
+		area.activate()
+		return
 	# check if present
 	if not interactables.has(area):
 		interactables.append(area)

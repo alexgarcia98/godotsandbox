@@ -24,16 +24,3 @@ func change_state() -> void:
 	else:
 		animations.play_backwards("opening")
 		closed = true
-		
-#
-#func _on_animated_sprite_2d_animation_finished() -> void:
-	#print(4)
-	#if animation_name == "opening":
-		#print(5)
-		#if opening:
-			#print(8)
-			#animation_name = "opened"
-		#else:
-			#print(9)
-			#animation_name = "closed"
-		#animations.play(animation_name)
