@@ -78,9 +78,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktrnu"]
-size = Vector2(22, 48)
+size = Vector2(21.3333, 48)
 
 [node name="green_door" type="Area2D"]
+scale = Vector2(1.5, 1)
+collision_layer = 2048
+collision_mask = 4
 script = ExtResource("1_2nhq0")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]

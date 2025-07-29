@@ -449,14 +449,14 @@ animation = &"fire"
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
 animation = &"wall_cling"
-frame_progress = 0.805689
+frame_progress = 0.877408
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_f7f80")
 
 [node name="object_collision" type="Area2D" parent="."]
-collision_mask = 284
+collision_mask = 1308
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="object_collision"]
 shape = SubResource("CircleShape2D_fd7k5")
