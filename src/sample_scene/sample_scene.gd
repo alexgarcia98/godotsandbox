@@ -10,7 +10,7 @@ func _ready() -> void:
 func load_level(index):
 	if current:
 		current.queue_free()
-	var new_level = load("src/scenes/level" + str(current_index) + ".tscn")
+	var new_level = load("src/levels/level" + str(current_index) + ".tscn")
 	current = new_level.instantiate()
 	add_child(current)
 	current_index = index

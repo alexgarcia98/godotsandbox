@@ -63,7 +63,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_txs56")
 }],
-"loop": true,
+"loop": false,
 "name": &"lever_off",
 "speed": 10.0
 }, {
@@ -71,7 +71,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5hk5d")
 }],
-"loop": true,
+"loop": false,
 "name": &"lever_on",
 "speed": 10.0
 }]
@@ -80,10 +80,13 @@ animations = [{
 size = Vector2(32, 64)
 
 [node name="green_lever" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 32
+collision_mask = 4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jfmi4")
-animation = &"activate_lever"
+animation = &"lever_on"
 autoplay = "lever_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

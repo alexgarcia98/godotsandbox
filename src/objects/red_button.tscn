@@ -43,7 +43,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0ox1i")
 }],
-"loop": true,
+"loop": false,
 "name": &"button_off",
 "speed": 10.0
 }, {
@@ -51,7 +51,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l3ymp")
 }],
-"loop": true,
+"loop": false,
 "name": &"button_on",
 "speed": 10.0
 }]
@@ -60,12 +60,13 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="red_button" type="Area2D"]
-collision_layer = 32
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_vndke")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jfmi4")
-animation = &"activate_button"
+animation = &"button_on"
 autoplay = "button_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -4,6 +4,8 @@ extends State
 var idle_state: State
 @export
 var wall_jump_state: State
+@export
+var fall_state: State
 
 func enter() -> void:
 	super()
@@ -17,6 +19,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+
+	
 	parent.velocity.y = 30
 	parent.velocity.x = 0
 	
@@ -24,6 +28,9 @@ func process_physics(delta: float) -> State:
 	animations.flip_h = norm.x < 0
 
 	parent.move_and_slide()
+	
+	if not parent.is_on_wall_only():
+		return fall_state
 	
 	if parent.is_on_floor():
 		return idle_state

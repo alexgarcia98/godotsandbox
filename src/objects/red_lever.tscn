@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccmmee0jm7eea"]
+[gd_scene load_steps=13 format=3 uid="uid://ccmmee0jm7eea"]
 
 [ext_resource type="Texture2D" uid="uid://cvbh1blhuqncm" path="res://src/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects6.png" id="1_epeyy"]
+[ext_resource type="Script" uid="uid://dw2m0btcnsf6e" path="res://src/scripts/lever.gd" id="1_usg0n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usg0n"]
 atlas = ExtResource("1_epeyy")
@@ -63,7 +64,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ajaqi")
 }],
-"loop": true,
+"loop": false,
 "name": &"lever_off",
 "speed": 10.0
 }, {
@@ -71,7 +72,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wmrll")
 }],
-"loop": true,
+"loop": false,
 "name": &"lever_on",
 "speed": 10.0
 }]
@@ -80,10 +81,14 @@ animations = [{
 size = Vector2(32, 64)
 
 [node name="red_lever" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_usg0n")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jfmi4")
-animation = &"activate_lever"
+animation = &"lever_on"
 autoplay = "lever_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

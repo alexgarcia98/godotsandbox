@@ -29,13 +29,18 @@ func enter() -> void:
 	parent.jumps_remaining = parent.max_jumps
 	parent.airdash_remaining = parent.max_airdash
 	parent.air_reverse_remaining = parent.max_air_reverse
+	#if parent.visible:
+		#parent.last_valid = parent.position
 
 func process_input(event: InputEvent) -> State:
 	if get_jump() and parent.is_on_floor():
+		parent.last_valid = parent.position
 		return jump_state
 	if get_movement_input() != 0.0:
+		parent.last_valid = parent.position
 		return move_state
 	if Input.is_action_just_pressed('dash'):
+		parent.last_valid = parent.position
 		return dash_state
 	if Input.is_action_just_pressed('pivot'):
 		return pivot_state

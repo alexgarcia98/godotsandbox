@@ -152,13 +152,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("9_0iufa")
+}, {
+"duration": 1.0,
 "texture": ExtResource("10_u3ern")
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_vhlnr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_0iufa")
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_rvvlk")
@@ -431,13 +431,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7f80"]
-size = Vector2(13, 24)
+size = Vector2(12, 31)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fd7k5"]
 radius = 24.0
 
-[node name="player" type="CharacterBody2D"]
-collision_layer = 4
+[node name="red_player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 257
+safe_margin = 0.1
 script = ExtResource("1_ryxk6")
 
 [node name="gun_animations" type="AnimatedSprite2D" parent="."]
@@ -446,14 +448,15 @@ animation = &"fire"
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
-animation = &"interact"
+animation = &"wall_cling"
+frame_progress = 0.805689
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 4)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_f7f80")
 
 [node name="object_collision" type="Area2D" parent="."]
-collision_mask = 100
+collision_mask = 284
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="object_collision"]
 shape = SubResource("CircleShape2D_fd7k5")
@@ -561,10 +564,11 @@ idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "main_switch"
 
-[node name="wall_cling" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state")]
+[node name="wall_cling" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state", "fall_state")]
 script = ExtResource("54_2rxss")
 idle_state = NodePath("../idle")
 wall_jump_state = NodePath("../wall_jump")
+fall_state = NodePath("../fall")
 animation_name = "wall_cling"
 
 [node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state")]

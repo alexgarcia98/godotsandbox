@@ -16,6 +16,8 @@ func enter() -> void:
 			object.activate()
 
 func process_input(event: InputEvent) -> State:
+	if Input.is_action_just_pressed('switch'):
+		parent.is_main = not parent.is_main
 	return null
 
 func process_physics(delta: float) -> State:

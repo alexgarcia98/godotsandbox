@@ -24,6 +24,8 @@ var switch_state: State
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
+			print("updating position 1")
+			parent.last_valid = parent.position
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:
@@ -45,12 +47,14 @@ func process_input(event: InputEvent) -> State:
 					return throw_state
 				else:
 					return thrown_state
-	
 	return null
 
 func process_physics(delta: float) -> State:
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
+			# set current position
+			print("updating position 3")
+			parent.last_valid = parent.position
 			return jump_state
 
 	parent.velocity.y += (gravity * delta)

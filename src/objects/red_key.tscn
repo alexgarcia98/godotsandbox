@@ -45,8 +45,8 @@ animations = [{
 size = Vector2(16, 34)
 
 [node name="red_key" type="Area2D"]
-collision_layer = 64
-collision_mask = 4
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_wnki3")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]

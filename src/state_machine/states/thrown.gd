@@ -30,6 +30,8 @@ func enter() -> void:
 		dir = 1
 	else:
 		dir = 0
+	if parent.is_on_floor():
+		parent.last_valid = parent.position
 	animations.play(animation_name)
 
 func process_input(event: InputEvent) -> State:

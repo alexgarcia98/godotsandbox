@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg5gp5goggaen"]
+[gd_scene load_steps=10 format=3 uid="uid://dg5gp5goggaen"]
 
 [ext_resource type="Texture2D" uid="uid://qx1tkhutd2f5" path="res://src/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects1.png" id="1_ea6vm"]
+[ext_resource type="Script" uid="uid://cm3pxr8d71l7w" path="res://src/scripts/button.gd" id="1_khc5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ea6vm"]
 atlas = ExtResource("1_ea6vm")
@@ -42,7 +43,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0l8rj")
 }],
-"loop": true,
+"loop": false,
 "name": &"button_off",
 "speed": 10.0
 }, {
@@ -50,7 +51,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jlknm")
 }],
-"loop": true,
+"loop": false,
 "name": &"button_on",
 "speed": 10.0
 }]
@@ -59,10 +60,13 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="green_button" type="Area2D"]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_khc5j")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jfmi4")
-animation = &"activate_button"
+animation = &"button_off"
 autoplay = "button_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
