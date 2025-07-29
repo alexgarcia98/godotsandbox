@@ -18,6 +18,8 @@ var throw_state: State
 var thrown_state: State
 @export
 var frozen_state: State
+@export
+var wall_cling_state: State
 
 @export
 var jump_force: float = 400
@@ -52,13 +54,19 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	print(parent.name + " collisions: " + str(parent.get_slide_collision_count()))
 	parent.velocity.y += gravity * delta
 	
 	if parent.velocity.y > 0:
+		if parent.is_on_wall_only():
+			return wall_cling_state
 		return fall_state
 	
 	var movement = move_speed * parent.get_wall_normal().x
 	
+	if parent.get_slide_collision_count() > 1:
+		return wall_cling_state
+		
 	if movement != 0:
 		animations.flip_h = movement < 0
 	parent.velocity.x = movement

@@ -4,6 +4,8 @@ extends 'res://src/state_machine/states/move.gd'
 
 @export
 var move_state: State
+@export
+var wall_cling_state: State
 
 @export
 var time_to_dash := 0.25
@@ -35,14 +37,13 @@ func process_physics(delta: float) -> State:
 	if dash_timer <= 0.0:
 		# Fall back on the default input implementation to
 		# determine where to go next
+		if parent.is_on_wall_only():
+			return wall_cling_state
 		if super.get_movement_input() != 0.0:
 			return move_state
 		return fall_state
 
 	var movement = get_movement_input() * move_speed
-	
-	if movement == 0:
-		return fall_state
 	
 	animations.flip_h = movement < 0
 	parent.velocity.x = movement

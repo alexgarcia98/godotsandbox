@@ -16,6 +16,8 @@ func process_input(event: InputEvent) -> State:
 		parent.is_main = not parent.is_main
 	if Input.is_action_just_pressed('jump'):
 		return wall_jump_state
+	if Input.is_action_just_pressed('dash'):
+		return fall_state
 	return null
 
 func process_physics(delta: float) -> State:

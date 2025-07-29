@@ -1,7 +1,6 @@
-[gd_scene load_steps=80 format=3 uid="uid://bgmq4knhxggl2"]
+[gd_scene load_steps=78 format=3 uid="uid://bgmq4knhxggl2"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/player/player.gd" id="1_nxtay"]
-[ext_resource type="Texture2D" uid="uid://dodo65m06ibo2" path="res://src/player/art/gun_fire.png" id="2_ry1vw"]
 [ext_resource type="Texture2D" uid="uid://dnkewktf1p72v" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 1/Clothes 2/Character1F_2_punch_1.png" id="3_0ciyq"]
 [ext_resource type="Texture2D" uid="uid://bxhnhc8gdfupa" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 1/Clothes 2/Character1F_2_punch_2.png" id="4_nxtay"]
 [ext_resource type="Texture2D" uid="uid://7sgw0wgq3tic" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 1/Clothes 2/Character1F_2_land_0.png" id="5_ry1vw"]
@@ -75,10 +74,6 @@
 [ext_resource type="Script" uid="uid://1llx6wo7g26u" path="res://src/player/gun_states/charging.gd" id="74_alpte"]
 [ext_resource type="Script" uid="uid://dgc26uc0vkbrm" path="res://src/player/player_move_component.gd" id="75_4qyag"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4bkl8"]
-atlas = ExtResource("2_ry1vw")
-region = Rect2(128, 40, 128, 29)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ge0c"]
 animations = [{
 "frames": [{
@@ -91,7 +86,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4bkl8")
+"texture": null
 }],
 "loop": true,
 "name": &"idle",
@@ -441,9 +436,15 @@ collision_mask = 513
 safe_margin = 0.1
 script = ExtResource("1_nxtay")
 
+[node name="indicator" type="Polygon2D" parent="."]
+position = Vector2(-5.1, -28)
+scale = Vector2(0.212143, 1)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(9.89899, -19, 38.1818, -19, 24, 4)
+
 [node name="gun_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3ge0c")
-animation = &"fire"
+animation = &"idle"
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
@@ -529,9 +530,10 @@ jump_state = NodePath("../jump")
 animation_name = "crouch"
 move_speed = 384.0
 
-[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "jump_state")]
+[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "wall_cling_state", "fall_state", "idle_state", "jump_state")]
 script = ExtResource("62_8nas5")
 move_state = NodePath("../move")
+wall_cling_state = NodePath("../wall_cling")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
@@ -571,7 +573,7 @@ wall_jump_state = NodePath("../wall_jump")
 fall_state = NodePath("../fall")
 animation_name = "wall_cling"
 
-[node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state")]
+[node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "wall_cling_state")]
 script = ExtResource("68_wfsgb")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
@@ -582,6 +584,7 @@ interact_state = NodePath("../interact")
 throw_state = NodePath("../throw")
 thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
+wall_cling_state = NodePath("../wall_cling")
 animation_name = "jump"
 
 [node name="thrown" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "move_state")]

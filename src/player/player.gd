@@ -6,6 +6,8 @@ var movement_animations: AnimatedSprite2D = $movement_animations
 @onready
 var gun_animations: AnimatedSprite2D = $gun_animations
 
+@onready var indicator: Polygon2D = $indicator
+
 @onready
 var object_collision: Area2D = $object_collision
 
@@ -40,9 +42,14 @@ var key_obtained = false
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
 	gun_state_machine.init(self, gun_animations, player_move_component)
-	set_z_index(6)
 	last_valid = position
 	Messages.connect("KeyObtained", on_key_obtained)
+	if is_main:
+		set_z_index(7)
+		indicator.visible = true
+	else:
+		set_z_index(6)
+		indicator.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible:
