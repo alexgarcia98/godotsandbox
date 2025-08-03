@@ -1,16 +1,16 @@
-[gd_scene load_steps=13 format=4 uid="uid://oalmfd4qu0a0"]
+[gd_scene load_steps=13 format=4 uid="uid://k8mcie3eiso3"]
 
-[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_itodi"]
-[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/objects/green_key.tscn" id="2_itodi"]
-[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/objects/red_key.tscn" id="3_lcio6"]
-[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/objects/green_door.tscn" id="4_qg7et"]
-[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/objects/red_door.tscn" id="5_aa3bd"]
-[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/player/redplayer.tscn" id="7_3fnwy"]
-[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/player/greenplayer.tscn" id="8_07y8r"]
-[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="8_gaj2a"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_h2s0e"]
+[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/objects/green_key.tscn" id="2_1iqke"]
+[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/objects/red_key.tscn" id="3_563ty"]
+[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/objects/green_door.tscn" id="4_hqf1q"]
+[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/objects/red_door.tscn" id="5_yelhk"]
+[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/player/redplayer.tscn" id="6_xfypo"]
+[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/player/greenplayer.tscn" id="7_q80s1"]
+[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="8_33j43"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
-texture = ExtResource("1_itodi")
+texture = ExtResource("1_h2s0e")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -179,7 +179,7 @@ physics_layer_3/collision_layer = 768
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6n5v"]
-texture = ExtResource("1_itodi")
+texture = ExtResource("1_h2s0e")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -323,22 +323,22 @@ collision_enabled = false
 
 [node name="objects" type="Node" parent="."]
 
-[node name="green_key" parent="objects" instance=ExtResource("2_itodi")]
-position = Vector2(128, -112)
+[node name="green_key" parent="objects" instance=ExtResource("2_1iqke")]
+position = Vector2(-72, -24)
 
-[node name="red_key" parent="objects" instance=ExtResource("3_lcio6")]
-position = Vector2(-104, 96)
+[node name="red_key" parent="objects" instance=ExtResource("3_563ty")]
+position = Vector2(-160, 48)
 
-[node name="green_door" parent="objects" instance=ExtResource("4_qg7et")]
+[node name="green_door" parent="objects" instance=ExtResource("4_hqf1q")]
 position = Vector2(432, 216)
 
-[node name="red_door" parent="objects" instance=ExtResource("5_aa3bd")]
+[node name="red_door" parent="objects" instance=ExtResource("5_yelhk")]
 position = Vector2(400, 216)
 
-[node name="red_player" parent="." instance=ExtResource("7_3fnwy")]
+[node name="red_player" parent="." instance=ExtResource("6_xfypo")]
 position = Vector2(-416, 224)
 
-[node name="green_player" parent="." instance=ExtResource("8_07y8r")]
+[node name="green_player" parent="." instance=ExtResource("7_q80s1")]
 position = Vector2(-440, 224)
 is_main = false
 
@@ -350,8 +350,8 @@ offset_left = -416.0
 offset_top = 128.0
 offset_right = -116.0
 offset_bottom = 192.0
-theme_override_fonts/font = ExtResource("8_gaj2a")
-text = "Still not enough height?"
+theme_override_fonts/font = ExtResource("8_33j43")
+text = "Need some extra height?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -360,19 +360,22 @@ offset_left = -96.0
 offset_top = 32.0
 offset_right = 294.0
 offset_bottom = 86.0
-theme_override_fonts/font = ExtResource("8_gaj2a")
-text = "Freeze a character to create
-a temporary platform"
+theme_override_fonts/font = ExtResource("8_33j43")
+text = "Hold forward, backwards, or up
+and press F to throw
+the secondary character"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 24.0
-offset_top = -184.0
-offset_right = 438.0
-offset_bottom = -111.0
-theme_override_fonts/font = ExtResource("8_gaj2a")
-text = "Landing on a frozen character
-will refresh jumps and airdashes"
+offset_left = 40.0
+offset_top = -152.0
+offset_right = 430.0
+offset_bottom = -79.0
+theme_override_fonts/font = ExtResource("8_33j43")
+text = "You can do this after jumping
+for some serious height! Just
+make sure your characters are
+close to each other"
 horizontal_alignment = 1
 vertical_alignment = 1

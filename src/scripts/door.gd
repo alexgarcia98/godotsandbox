@@ -6,6 +6,9 @@ var objects: Node = get_parent()
 @export
 var pairing = 0
 
+@export
+var flipped = false
+
 @onready
 var animations = $animations
 
@@ -15,6 +18,8 @@ var animation_name = 'closed'
 var closed = true
 
 func _ready() -> void:
+	if flipped:
+		animations.flip_h = true
 	animations.play(animation_name)
 
 func change_state() -> void:
