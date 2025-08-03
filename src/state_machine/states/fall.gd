@@ -22,6 +22,7 @@ var wall_cling_state: State
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('switch'):
 		parent.is_main = not parent.is_main
+		parent.indicator.visible = not parent.indicator.visible
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
 			return jump_state

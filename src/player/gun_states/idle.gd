@@ -17,8 +17,10 @@ func enter() -> void:
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('switch'):
+		print(parent.name + ": switching indicator")
 		indicator_index = (indicator_index + 1) % 2
 		animations.play(indicator[indicator_index])
+		print("playing " + indicator[indicator_index])
 	return null
 
 func process_frame(delta: float) -> State:

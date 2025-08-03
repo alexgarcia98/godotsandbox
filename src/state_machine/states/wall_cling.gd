@@ -14,6 +14,7 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('switch'):
 		parent.is_main = not parent.is_main
+		parent.indicator.visible = not parent.indicator.visible
 	if Input.is_action_just_pressed('jump'):
 		return wall_jump_state
 	if Input.is_action_just_pressed('move_down'):

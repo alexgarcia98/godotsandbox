@@ -29,15 +29,22 @@ func process_input(event: InputEvent) -> State:
 	else:
 		if Input.is_action_just_pressed('action') and parent.is_main:
 			if not parent.is_on_floor():
-				parent.collision_layer = 4
+				if parent.name == "green_player":
+					parent.collision_layer = 4
+				elif parent.name == "red_player":
+					parent.collision_layer = 2
 				is_frozen = false
 				return fall_state
 			else:
-				parent.collision_layer = 4
+				if parent.name == "green_player":
+					parent.collision_layer = 4
+				elif parent.name == "red_player":
+					parent.collision_layer = 2
 				is_frozen = false
 				return idle_state
 		elif Input.is_action_just_pressed('switch'):
 			parent.is_main = not parent.is_main
+			parent.indicator.visible = not parent.indicator.visible
 		return null
 
 func process_physics(delta: float) -> State:

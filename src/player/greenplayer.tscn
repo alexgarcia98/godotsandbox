@@ -444,7 +444,7 @@ polygon = PackedVector2Array(9.89899, -19, 38.1818, -19, 24, 4)
 
 [node name="gun_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3ge0c")
-animation = &"idle"
+animation = &"fire"
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
