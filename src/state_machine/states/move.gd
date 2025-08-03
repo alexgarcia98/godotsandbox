@@ -21,7 +21,19 @@ var frozen_state: State
 @export
 var switch_state: State
 
+func enter() -> void:
+	super()
+	parent.jumps_remaining = parent.max_jumps
+	parent.airdash_remaining = parent.max_airdash
+	parent.air_reverse_remaining = parent.max_air_reverse
+
 func process_input(event: InputEvent) -> State:
+	if Input.is_action_just_pressed('jump'):
+		if parent.jumps_remaining > 0:
+			# set current position
+			print("updating position 3")
+			parent.last_valid = parent.position
+			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
 			print("updating position 1")
@@ -50,13 +62,6 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if Input.is_action_just_pressed('jump'):
-		if parent.jumps_remaining > 0:
-			# set current position
-			print("updating position 3")
-			parent.last_valid = parent.position
-			return jump_state
-
 	parent.velocity.y += (gravity * delta)
 
 	var movement = get_movement_input() * move_speed

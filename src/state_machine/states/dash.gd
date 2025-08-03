@@ -36,8 +36,15 @@ func process_physics(delta: float) -> State:
 			return move_state
 		return idle_state
 	
-	# At this point, run 'process_physics' in the move script as written
-	return super(delta)
+	parent.velocity.y = 0
+
+	var movement = get_movement_input() * move_speed
+	
+	animations.flip_h = movement < 0
+	parent.velocity.x = movement
+	parent.move_and_slide()
+
+	return null
 
 # Override movement inputs
 func get_movement_input() -> float:

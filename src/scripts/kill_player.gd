@@ -9,6 +9,7 @@ var respawn_green
 
 func _on_body_entered(body):
 	body.visible = false
+	Messages.PlayerDied.emit(body)
 	print(body.name + " died")
 	if body.name == "red_player":
 		respawn_red = body

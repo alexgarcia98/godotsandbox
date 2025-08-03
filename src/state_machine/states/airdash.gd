@@ -3,8 +3,6 @@
 extends 'res://src/state_machine/states/move.gd'
 
 @export
-var move_state: State
-@export
 var wall_cling_state: State
 
 @export
@@ -14,9 +12,9 @@ var dash_timer := 0.0
 var direction := 1.0
 
 func enter() -> void:
-	super()
+	animations.play(animation_name)
 	parent.airdash_remaining -= 1
-	print("remaining:" + str(parent.airdash_remaining))
+	print(parent.name + " airdash remaining: " + str(parent.airdash_remaining))
 	dash_timer = time_to_dash
 
 	# Simple check for which direction to dash towards
@@ -39,8 +37,6 @@ func process_physics(delta: float) -> State:
 		# determine where to go next
 		if parent.is_on_wall_only():
 			return wall_cling_state
-		if super.get_movement_input() != 0.0:
-			return move_state
 		return fall_state
 
 	var movement = get_movement_input() * move_speed

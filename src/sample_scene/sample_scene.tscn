@@ -24,6 +24,16 @@ focus_mode = 0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "Level Switch"
 
+[node name="reset_level" type="Button" parent="UI"]
+z_index = 10
+offset_left = -480.0
+offset_top = -240.0
+offset_right = -296.0
+offset_bottom = -209.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("5_p6dmc")
+text = "Reset Level"
+
 [node name="exit" type="Button" parent="UI"]
 z_index = 10
 offset_left = 405.0
@@ -55,7 +65,7 @@ text = "No Red Key"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="UI"]
+[node name="speedrun_timer" type="Label" parent="UI"]
 z_index = 10
 offset_left = -67.0
 offset_top = -270.0
@@ -65,10 +75,21 @@ theme_override_fonts/font = ExtResource("4_407ex")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="deaths" type="Label" parent="UI"]
+z_index = 10
+offset_left = -280.0
+offset_top = -272.0
+offset_right = -146.0
+offset_bottom = -234.0
+theme_override_fonts/font = ExtResource("4_407ex")
+text = "Deaths: 0"
+vertical_alignment = 1
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [connection signal="pressed" from="UI/level_switch" to="." method="_on_level_switch_pressed"]
+[connection signal="pressed" from="UI/reset_level" to="." method="_on_reset_level_pressed"]
 [connection signal="pressed" from="UI/exit" to="." method="_on_exit_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

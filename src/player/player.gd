@@ -21,13 +21,13 @@ var player_move_component = $player_move_component
 var is_main: bool = true
 
 @export
-var max_jumps: int = 3
+var max_jumps: int = 2
 
 @export
-var max_airdash: int = 3
+var max_airdash: int = 1
 
 @export
-var max_air_reverse: int = 3
+var max_air_reverse: int = 1
 
 @export
 var throwable = false

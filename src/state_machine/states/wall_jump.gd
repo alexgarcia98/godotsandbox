@@ -54,7 +54,6 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	print(parent.name + " collisions: " + str(parent.get_slide_collision_count()))
 	parent.velocity.y += gravity * delta
 	
 	if parent.velocity.y > 0:

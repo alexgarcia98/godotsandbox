@@ -530,9 +530,8 @@ jump_state = NodePath("../jump")
 animation_name = "crouch"
 move_speed = 384.0
 
-[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "wall_cling_state", "fall_state", "idle_state", "jump_state")]
+[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("wall_cling_state", "fall_state", "idle_state", "jump_state")]
 script = ExtResource("62_8nas5")
-move_state = NodePath("../move")
 wall_cling_state = NodePath("../wall_cling")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
@@ -594,10 +593,11 @@ fall_state = NodePath("../fall")
 move_state = NodePath("../move")
 animation_name = "thrown"
 
-[node name="throw" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
+[node name="throw" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "move_state")]
 script = ExtResource("70_bamio")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
+move_state = NodePath("../move")
 animation_name = "throw_up"
 
 [node name="interact" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "jump_state", "move_state")]
