@@ -364,6 +364,6 @@ offset_bottom = 128.0
 theme_override_fonts/font = ExtResource("10_441dj")
 text = "Only the primary character can press buttons
 Characters only interact with objects matching their color
-Press R to switch characters"
+Press E or K to switch characters"
 horizontal_alignment = 1
 vertical_alignment = 1

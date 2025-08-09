@@ -11,6 +11,11 @@ var gun_animations: AnimatedSprite2D = $gun_animations
 @onready
 var object_collision: Area2D = $object_collision
 
+@onready var wall_left: RayCast2D = $wall_left
+@onready var air_left: RayCast2D = $air_left
+@onready var wall_right: RayCast2D = $wall_right
+@onready var air_right: RayCast2D = $air_right
+
 @onready
 var movement_state_machine: Node = $movement_state_machine
 @onready
@@ -19,7 +24,8 @@ var gun_state_machine: Node = $gun_state_machine
 var player_move_component = $player_move_component
 @export
 var is_main: bool = true
-
+@export
+var is_flipped: bool = false
 @export
 var max_jumps: int = 2
 

@@ -34,6 +34,7 @@ func process_input(event: InputEvent) -> State:
 		parent.indicator.visible = not parent.indicator.visible
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
+			parent.jumps_remaining -= 1
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.airdash_remaining > 0:

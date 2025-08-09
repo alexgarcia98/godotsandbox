@@ -362,7 +362,7 @@ offset_right = 294.0
 offset_bottom = 86.0
 theme_override_fonts/font = ExtResource("8_33j43")
 text = "Hold forward, backwards, or up
-and press F to throw
+and press F or J to throw
 the secondary character"
 horizontal_alignment = 1
 vertical_alignment = 1

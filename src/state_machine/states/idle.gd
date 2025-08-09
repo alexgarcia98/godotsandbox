@@ -24,6 +24,9 @@ var frozen_state: State
 var switch_state: State
 
 func enter() -> void:
+	if parent.is_flipped:
+		parent.is_flipped = false
+		animations.flip_h = true
 	super()
 	parent.velocity.x = 0
 	parent.jumps_remaining = parent.max_jumps
@@ -44,8 +47,8 @@ func process_input(event: InputEvent) -> State:
 		return dash_state
 	if Input.is_action_just_pressed('pivot'):
 		return pivot_state
-	if Input.is_action_just_pressed('debug_single_pivot'):
-		return single_pivot_state
+	#if Input.is_action_just_pressed('debug_single_pivot'):
+		#return single_pivot_state
 	if Input.is_action_just_pressed('switch'):
 		return switch_state
 	if Input.is_action_just_pressed('action'):

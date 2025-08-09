@@ -20,6 +20,8 @@ var thrown_state: State
 var frozen_state: State
 @export
 var wall_cling_state: State
+@export
+var air_pivot_state: State
 
 @export
 var jump_force: float = 400
@@ -27,7 +29,6 @@ var jump_force: float = 400
 func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
-	parent.jumps_remaining -= 1
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('switch'):
@@ -35,10 +36,14 @@ func process_input(event: InputEvent) -> State:
 		parent.indicator.visible = not parent.indicator.visible
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
+			parent.jumps_remaining -= 1
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.airdash_remaining > 0:
 			return airdash_state
+	if Input.is_action_just_pressed('pivot'):
+		if parent.air_reverse_remaining > 0:
+			return air_pivot_state
 	if Input.is_action_just_pressed('action'):
 		# check direction
 		var horiz = Input.get_axis('move_left', 'move_right')
@@ -47,7 +52,9 @@ func process_input(event: InputEvent) -> State:
 			return frozen_state
 		else:
 			if horiz == 0 && vert == 0:
-				return interact_state
+				if parent.is_main:
+					return interact_state
+				return null
 			# check for closeness
 			if parent.throwable:
 				if parent.is_main:
@@ -58,11 +65,12 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	var movement = get_movement_input() * move_speed
-
-	if parent.is_on_wall_only() and movement != 0:
-		return wall_cling_state
 	
 	parent.velocity.y += gravity * delta
+	
+	if parent.velocity.y > -200:
+		if parent.is_on_wall_only() and movement != 0:
+			return wall_cling_state
 	
 	if parent.velocity.y > 0:
 		return fall_state

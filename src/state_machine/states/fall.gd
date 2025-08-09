@@ -18,6 +18,8 @@ var frozen_state: State
 var jump_state: State
 @export
 var wall_cling_state: State
+@export
+var air_pivot_state: State
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('switch'):
@@ -25,10 +27,14 @@ func process_input(event: InputEvent) -> State:
 		parent.indicator.visible = not parent.indicator.visible
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
+			parent.jumps_remaining -= 1
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.airdash_remaining > 0:
 			return airdash_state
+	if Input.is_action_just_pressed('pivot'):
+		if parent.air_reverse_remaining > 0:
+			return air_pivot_state
 	if Input.is_action_just_pressed('action'):
 		# check direction
 		var horiz = Input.get_axis('move_left', 'move_right')

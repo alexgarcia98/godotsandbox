@@ -6,6 +6,8 @@ var idle_state: State
 var wall_jump_state: State
 @export
 var fall_state: State
+@export
+var ledge_state: State
 
 func enter() -> void:
 	super()
@@ -21,12 +23,25 @@ func process_input(event: InputEvent) -> State:
 		return fall_state
 	return null
 
-func process_physics(delta: float) -> State:
-	parent.velocity.y = 30
-	parent.velocity.x = 0
-	
+func process_physics(delta: float) -> State:	
 	var norm = parent.get_wall_normal()
 	animations.flip_h = norm.x < 0
+	
+	# check current y velocity
+	if parent.velocity.y <= 0:
+		if norm.x > 0:
+			if not parent.air_left.is_colliding():
+				#print(parent.name + ": wall_left: " + str(parent.wall_left.is_colliding()))
+				#print(parent.name + ": air_left: " + str(parent.air_left.is_colliding()))
+				return ledge_state
+		else:
+			if not parent.air_right.is_colliding():
+				#print(parent.name + ": wall_right: " + str(parent.wall_right.is_colliding()))
+				#print(parent.name + ": air_right: " + str(parent.air_right.is_colliding()))
+				return ledge_state
+
+	parent.velocity.y = 50
+	parent.velocity.x = 0
 
 	parent.move_and_slide()
 	

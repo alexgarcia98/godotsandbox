@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://di4b3fet5cvsw"]
+[gd_scene load_steps=85 format=3 uid="uid://di4b3fet5cvsw"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/player/player.gd" id="1_ryxk6"]
 [ext_resource type="Texture2D" uid="uid://in1gh3nmft7l" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_land_0.png" id="2_e7e1q"]
@@ -60,7 +60,11 @@
 [ext_resource type="Texture2D" uid="uid://c2g8cda12tfe7" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_pickup_ground_4.png" id="35_2rxss"]
 [ext_resource type="Texture2D" uid="uid://dakb650soks05" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_punch_5.png" id="35_ygxm1"]
 [ext_resource type="Texture2D" uid="uid://cibwumvgaeony" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_pickup_ground_5.png" id="36_3uvft"]
+[ext_resource type="Texture2D" uid="uid://oqvypi00ibyg" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_run_1.png" id="36_anb1d"]
+[ext_resource type="Texture2D" uid="uid://bcalcx02pu7c7" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_run_2.png" id="37_7813v"]
 [ext_resource type="Texture2D" uid="uid://dg1qusw853yd" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_pickup_ground_6.png" id="37_ymg6t"]
+[ext_resource type="Texture2D" uid="uid://bax5yq8q267a7" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_run_5.png" id="38_7l7ca"]
+[ext_resource type="Texture2D" uid="uid://c74pv2dpfv4lk" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_run_6.png" id="39_gb24a"]
 [ext_resource type="Script" uid="uid://dir2l702e3m2j" path="res://src/state_machine/states/pivot.gd" id="43_4bkl8"]
 [ext_resource type="Texture2D" uid="uid://bdbavc8pyrv6e" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_use_01.png" id="43_07fph"]
 [ext_resource type="Texture2D" uid="uid://5vfo1fpo10eu" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_use_02.png" id="44_8o3kr"]
@@ -73,7 +77,9 @@
 [ext_resource type="Script" uid="uid://o7jip3xldsrq" path="res://src/state_machine/states/wall_jump.gd" id="55_3uvft"]
 [ext_resource type="Script" uid="uid://b23q2dyajqi25" path="res://src/state_machine/states/thrown.gd" id="60_3fw2w"]
 [ext_resource type="Script" uid="uid://dv4hw4drf1pch" path="res://src/state_machine/states/throw.gd" id="60_8o3kr"]
+[ext_resource type="Script" uid="uid://27l4murebyv4" path="res://src/state_machine/states/ledge.gd" id="71_5so6h"]
 [ext_resource type="Script" uid="uid://bmc2ip0hujwtr" path="res://src/state_machine/states/interact.gd" id="71_ghj7r"]
+[ext_resource type="Script" uid="uid://bfcao6568ko8b" path="res://src/state_machine/states/air_pivot.gd" id="76_7813v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ge0c"]
 animations = [{
@@ -104,6 +110,11 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l17t8"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"air_pivot",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_phdu6")
@@ -262,6 +273,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_anb1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_7813v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_7l7ca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_gb24a")
+}],
+"loop": true,
+"name": &"ledge",
 "speed": 10.0
 }, {
 "frames": [{
@@ -436,6 +464,23 @@ collision_layer = 2
 collision_mask = 257
 safe_margin = 0.1
 script = ExtResource("1_ryxk6")
+max_jumps = 1
+
+[node name="wall_left" type="RayCast2D" parent="."]
+position = Vector2(0, 16)
+target_position = Vector2(-24, 0)
+
+[node name="air_left" type="RayCast2D" parent="."]
+position = Vector2(0, -32)
+target_position = Vector2(-24, 0)
+
+[node name="wall_right" type="RayCast2D" parent="."]
+position = Vector2(0, 16)
+target_position = Vector2(24, 0)
+
+[node name="air_right" type="RayCast2D" parent="."]
+position = Vector2(0, -32)
+target_position = Vector2(24, 0)
 
 [node name="indicator" type="Polygon2D" parent="."]
 position = Vector2(-5.1, -28)
@@ -449,8 +494,8 @@ animation = &"idle"
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
-animation = &"wall_cling"
-frame_progress = 0.877408
+animation = &"main_switch"
+frame_progress = 0.155914
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -480,7 +525,7 @@ frozen_state = NodePath("../freeze")
 switch_state = NodePath("../switch_main")
 animation_name = "idle"
 
-[node name="jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "wall_cling_state")]
+[node name="jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "wall_cling_state", "air_pivot_state")]
 script = ExtResource("8_mtgkv")
 fall_state = NodePath("../fall")
 jump_state = NodePath(".")
@@ -492,9 +537,10 @@ throw_state = NodePath("../throw")
 thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
 wall_cling_state = NodePath("../wall_cling")
+air_pivot_state = NodePath("../air_pivot")
 animation_name = "jump"
 
-[node name="fall" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "jump_state", "wall_cling_state")]
+[node name="fall" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "jump_state", "wall_cling_state", "air_pivot_state")]
 script = ExtResource("9_niv3d")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
@@ -505,6 +551,7 @@ thrown_state = NodePath("../thrown")
 frozen_state = NodePath("../freeze")
 jump_state = NodePath("../jump")
 wall_cling_state = NodePath("../wall_cling")
+air_pivot_state = NodePath("../air_pivot")
 animation_name = "fall"
 
 [node name="move" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("dash_state", "fall_state", "idle_state", "jump_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "switch_state")]
@@ -565,11 +612,12 @@ idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "main_switch"
 
-[node name="wall_cling" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state", "fall_state")]
+[node name="wall_cling" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state", "fall_state", "ledge_state")]
 script = ExtResource("54_2rxss")
 idle_state = NodePath("../idle")
 wall_jump_state = NodePath("../wall_jump")
 fall_state = NodePath("../fall")
+ledge_state = NodePath("../ledge")
 animation_name = "wall_cling"
 
 [node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "wall_cling_state")]
@@ -607,6 +655,19 @@ fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 animation_name = "interact"
+
+[node name="ledge" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state", "fall_state")]
+script = ExtResource("71_5so6h")
+idle_state = NodePath("../idle")
+wall_jump_state = NodePath("../jump")
+fall_state = NodePath("../fall")
+animation_name = "ledge"
+
+[node name="air_pivot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
+script = ExtResource("76_7813v")
+idle_state = NodePath("../idle")
+fall_state = NodePath("../fall")
+animation_name = "main_switch"
 
 [node name="gun_state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_hcrjv")]
 starting_state = NodePath("idle")

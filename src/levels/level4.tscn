@@ -362,8 +362,8 @@ offset_top = 64.0
 offset_right = -18.0
 offset_bottom = 128.0
 theme_override_fonts/font = ExtResource("8_ikb1q")
-text = "Buttons open gates!
-When nearby, press F with 
+text = "Buttons open gates! When
+nearby, press F or J with 
 no directions to activate it"
 horizontal_alignment = 1
 vertical_alignment = 1

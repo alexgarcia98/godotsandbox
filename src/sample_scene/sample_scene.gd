@@ -1,7 +1,7 @@
 extends Node2D
 
 var current = null
-var max_levels = 10
+var max_levels = 11
 @export
 var current_index = 1
 var red_opened = false

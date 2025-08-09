@@ -341,28 +341,41 @@ position = Vector2(-440, 224)
 [node name="green_player" parent="." instance=ExtResource("7_nq00x")]
 position = Vector2(440, 224)
 is_main = false
+is_flipped = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -432.0
-offset_top = 128.0
-offset_right = -58.0
-offset_bottom = 192.0
+offset_left = -424.0
+offset_top = 72.0
+offset_right = -50.0
+offset_bottom = 112.0
 theme_override_fonts/font = ExtResource("8_lbdig")
 text = "Want to control one at a time?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 32.0
+offset_left = -456.0
 offset_top = 136.0
-offset_right = 450.0
+offset_right = -38.0
 offset_bottom = 192.0
 theme_override_fonts/font = ExtResource("8_lbdig")
-text = "Hold S or Down Arrow and press F 
-to freeze and unfreeze 
+text = "Hold S or Down Arrow and press
+F or J to freeze and unfreeze 
 the primary character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 16.0
+offset_top = -120.0
+offset_right = 336.0
+offset_bottom = -64.0
+theme_override_fonts/font = ExtResource("8_lbdig")
+text = "Press Q or L to turn 
+around. You can do this 
+in the air once per jump."
 horizontal_alignment = 1
 vertical_alignment = 1

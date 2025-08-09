@@ -346,8 +346,8 @@ is_main = false
 zoom = Vector2(2, 2)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -376.0
-offset_right = -88.0
+offset_left = -368.0
+offset_right = -80.0
 offset_bottom = 64.0
 theme_override_fonts/font = ExtResource("8_ql4hq")
 text = "Move left and right
@@ -357,11 +357,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 48.0
-offset_right = 428.0
-offset_bottom = 38.0
+offset_left = -176.0
+offset_top = 104.0
+offset_right = 204.0
+offset_bottom = 142.0
 theme_override_fonts/font = ExtResource("8_ql4hq")
 text = "Collect keys with the matching
 character to unlock the door"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 112.0
+offset_right = 400.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("8_ql4hq")
+text = "You can jump one time
+while in the air too!"
 horizontal_alignment = 1
 vertical_alignment = 1
