@@ -316,6 +316,7 @@ tile_map_data = PackedByteArray("AADi/xAAAAAGAAEAAADj/xAAAAAGAAEAAADk/xAAAAAGAAE
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
 show_behind_parent = true
 tile_map_data = PackedByteArray("AAAYAPf/AAABAA8AAAAYAPj/AAABAA8AAAAYAPn/AAABAA8AAAAZAPf/AAABAA8AAAAZAPj/AAABAA8AAAAZAPn/AAABAA8AAAAaAPf/AAABAA8AAAAaAPj/AAABAA8AAAAaAPn/AAABAA8AAAAbAPf/AAABAA8AAAAbAPj/AAABAA8AAAAbAPn/AAABAA8AAAA=")
 tile_set = SubResource("TileSet_cfd6o")

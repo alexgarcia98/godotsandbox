@@ -52,21 +52,18 @@ func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('switch'):
 		return switch_state
 	if Input.is_action_just_pressed('action'):
-		# check direction
-		var horiz = Input.get_axis('move_left', 'move_right')
-		var vert = Input.get_axis('move_down', 'move_up')
-		if vert < 0:
+		if parent.is_main:
+			return interact_state
+	if Input.is_action_just_pressed("freeze"):
+		if parent.is_main:
 			return frozen_state
-		else:
-			if horiz == 0 && vert == 0:
-				return interact_state
-			# check for closeness
-			if parent.throwable:
-				if parent.is_main:
-					return throw_state
-				else:
-					return thrown_state
-			
+	if Input.is_action_just_pressed("throw"):
+		# check for closeness
+		if parent.throwable:
+			if parent.is_main:
+				return throw_state
+			else:
+				return thrown_state
 		
 	return null
 

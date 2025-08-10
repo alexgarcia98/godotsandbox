@@ -316,6 +316,7 @@ tile_map_data = PackedByteArray("AADi/xAAAAAGAAEAAADj/xAAAAAGAAEAAADk/xAAAAAGAAE
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
 show_behind_parent = true
 tile_map_data = PackedByteArray("AAD9//T/AAABAA8AAAD9//X/AAABAA8AAAD9//b/AAABAA8AAAD+//T/AAABAA8AAAD+//X/AAABAA8AAAD+//b/AAABAA8AAAABAPT/AAABAA8AAAABAPX/AAABAA8AAAABAPb/AAABAA8AAAACAPT/AAABAA8AAAACAPX/AAABAA8AAAACAPb/AAABAA8AAAA=")
 tile_set = SubResource("TileSet_cfd6o")
@@ -362,8 +363,7 @@ offset_top = 136.0
 offset_right = -38.0
 offset_bottom = 192.0
 theme_override_fonts/font = ExtResource("8_lbdig")
-text = "Hold S or Down Arrow and press
-F or J to freeze and unfreeze 
+text = "Press K to freeze and unfreeze 
 the primary character"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -374,7 +374,7 @@ offset_top = -120.0
 offset_right = 336.0
 offset_bottom = -64.0
 theme_override_fonts/font = ExtResource("8_lbdig")
-text = "Press Q or L to turn 
+text = "Press O to turn 
 around. You can do this 
 in the air once per jump."
 horizontal_alignment = 1

@@ -27,7 +27,7 @@ func process_input(event: InputEvent) -> State:
 		else:
 			return idle_state
 	else:
-		if Input.is_action_just_pressed('action') and parent.is_main:
+		if Input.is_action_just_pressed('freeze') and parent.is_main:
 			if not parent.is_on_floor():
 				if parent.name == "green_player":
 					parent.collision_layer = 4

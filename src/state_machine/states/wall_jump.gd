@@ -40,19 +40,18 @@ func process_input(event: InputEvent) -> State:
 		if parent.airdash_remaining > 0:
 			return airdash_state
 	if Input.is_action_just_pressed('action'):
-		# check direction
-		var horiz = Input.get_axis('move_left', 'move_right')
-		var vert = Input.get_axis('move_down', 'move_up')
-		if vert < 0:
-			return frozen_state
-		elif horiz == 0:
+		if parent.is_main:
 			return interact_state
-		else:
-			if parent.throwable:
-				if parent.is_main:
-					return throw_state
-				else:
-					return thrown_state
+	if Input.is_action_just_pressed("freeze"):
+		if parent.is_main:
+			return frozen_state
+	if Input.is_action_just_pressed("throw"):
+		# check for closeness
+		if parent.throwable:
+			if parent.is_main:
+				return throw_state
+			else:
+				return thrown_state
 	return null
 
 func process_physics(delta: float) -> State:

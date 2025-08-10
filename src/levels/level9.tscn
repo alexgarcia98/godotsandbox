@@ -316,6 +316,7 @@ tile_map_data = PackedByteArray("AADi/xAAAAAGAAEAAADj/xAAAAAGAAEAAADk/xAAAAAGAAE
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
 show_behind_parent = true
 tile_map_data = PackedByteArray("AAAYAAwAAAABAA8AAAAYAA0AAAABAA8AAAAYAA4AAAABAA8AAAAZAAwAAAABAA8AAAAZAA0AAAABAA8AAAAZAA4AAAABAA8AAAAaAAwAAAABAA8AAAAaAA0AAAABAA8AAAAaAA4AAAABAA8AAAAbAAwAAAABAA8AAAAbAA0AAAABAA8AAAAbAA4AAAABAA8AAAA=")
 tile_set = SubResource("TileSet_cfd6o")
@@ -356,14 +357,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -96.0
-offset_top = 32.0
-offset_right = 294.0
-offset_bottom = 86.0
+offset_left = -112.0
+offset_top = 40.0
+offset_right = 440.0
+offset_bottom = 94.0
 theme_override_fonts/font = ExtResource("8_33j43")
-text = "Hold forward, backwards, or up
-and press F or J to throw
-the secondary character"
+text = "Press L to throw the secondary character
+Change the direction of the throw by holding
+forward, backward, or up before pressing L"
 horizontal_alignment = 1
 vertical_alignment = 1
 
