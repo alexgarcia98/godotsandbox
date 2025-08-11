@@ -7,9 +7,42 @@
 
 [node name="sample_scene" type="Node2D"]
 script = ExtResource("1_407ex")
+action_items = Array[String](["move_left", "move_right", "move_up", "move_down", "jump", "dash", "pivot", "action", "throw", "freeze", "switch"])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="Help" type="Window" parent="."]
+title = "Controls"
+initial_position = 1
+size = Vector2i(325, 475)
+visible = false
+always_on_top = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Help"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SettingsGridContainer" type="GridContainer" parent="Help/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="Label" type="Label" parent="Help/MarginContainer/SettingsGridContainer"]
+layout_mode = 2
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Help/MarginContainer/SettingsGridContainer"]
+layout_mode = 2
+text = "Key"
+horizontal_alignment = 1
 
 [node name="UI" type="Node" parent="."]
 script = ExtResource("2_tjd5v")
@@ -56,12 +89,21 @@ text = "Reset Times"
 
 [node name="exit" type="Button" parent="UI"]
 z_index = 10
-offset_left = 405.0
+offset_left = 400.0
 offset_top = -270.0
 offset_right = 480.0
 offset_bottom = -239.0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "Exit"
+
+[node name="help" type="Button" parent="UI"]
+z_index = 10
+offset_left = 400.0
+offset_top = -240.0
+offset_right = 480.0
+offset_bottom = -209.0
+theme_override_fonts/font = ExtResource("5_p6dmc")
+text = "Help"
 
 [node name="green_key" type="RichTextLabel" parent="UI"]
 z_index = 10
@@ -132,9 +174,11 @@ vertical_alignment = 1
 wait_time = 2.0
 one_shot = true
 
+[connection signal="close_requested" from="Help" to="." method="_on_help_close_requested"]
 [connection signal="pressed" from="UI/level_switch" to="." method="_on_level_switch_pressed"]
 [connection signal="pressed" from="UI/level_switch2" to="." method="_on_level_switch_2_pressed"]
 [connection signal="pressed" from="UI/reset_level" to="." method="_on_reset_level_pressed"]
 [connection signal="pressed" from="UI/reset_scores" to="." method="_on_reset_scores_pressed"]
 [connection signal="pressed" from="UI/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/help" to="." method="_on_help_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
