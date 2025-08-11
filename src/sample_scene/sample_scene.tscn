@@ -14,7 +14,7 @@ action_items = Array[String](["move_left", "move_right", "move_up", "move_down",
 [node name="Help" type="Window" parent="."]
 title = "Controls"
 initial_position = 1
-size = Vector2i(325, 475)
+size = Vector2i(325, 425)
 visible = false
 always_on_top = true
 
