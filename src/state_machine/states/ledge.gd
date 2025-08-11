@@ -31,7 +31,8 @@ func process_physics(delta: float) -> State:
 		animations.flip_h = true
 	else:
 		animations.flip_h = false
-
+		
+	parent.velocity = gate_check(parent.velocity)
 	parent.move_and_slide()
 	
 	if not parent.is_on_wall_only():

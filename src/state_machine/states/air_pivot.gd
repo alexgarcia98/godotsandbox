@@ -24,6 +24,7 @@ func process_physics(delta: float) -> State:
 		animations.flip_h = not animations.flip_h
 		flipped = true
 	parent.velocity.y = 0
+	parent.velocity = gate_check(parent.velocity)
 	parent.move_and_slide()
 	
 	if animations.frame >= 5:
