@@ -461,7 +461,7 @@ radius = 24.0
 
 [node name="red_player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 257
+collision_mask = 4353
 safe_margin = 0.1
 script = ExtResource("1_ryxk6")
 max_jumps = 1
@@ -473,6 +473,42 @@ target_position = Vector2(-24, 0)
 [node name="air_left" type="RayCast2D" parent="."]
 position = Vector2(0, -32)
 target_position = Vector2(-24, 0)
+
+[node name="gate_up_1" type="RayCast2D" parent="."]
+position = Vector2(-6, -12)
+target_position = Vector2(0, -8)
+collision_mask = 4096
+
+[node name="gate_up_2" type="RayCast2D" parent="."]
+position = Vector2(6, -12)
+target_position = Vector2(0, -8)
+collision_mask = 4096
+
+[node name="gate_down_1" type="RayCast2D" parent="."]
+position = Vector2(-6, 13)
+target_position = Vector2(0, 8)
+collision_mask = 4096
+
+[node name="gate_down_2" type="RayCast2D" parent="."]
+position = Vector2(6, 13)
+target_position = Vector2(0, 8)
+collision_mask = 4096
+
+[node name="ceiling_up_1" type="RayCast2D" parent="."]
+position = Vector2(-6, -12)
+target_position = Vector2(0, -8)
+
+[node name="ceiling_up_2" type="RayCast2D" parent="."]
+position = Vector2(6, -12)
+target_position = Vector2(0, -8)
+
+[node name="floor_down_1" type="RayCast2D" parent="."]
+position = Vector2(-6, 13)
+target_position = Vector2(0, 8)
+
+[node name="floor_down_2" type="RayCast2D" parent="."]
+position = Vector2(6, 13)
+target_position = Vector2(0, 8)
 
 [node name="wall_right" type="RayCast2D" parent="."]
 position = Vector2(0, 16)

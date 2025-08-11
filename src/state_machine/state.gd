@@ -32,3 +32,32 @@ func get_movement_input() -> float:
 
 func get_jump() -> bool:
 	return move_component.wants_jump()
+	
+func gate_check(velocity: Vector2) -> Vector2:
+	var onFloor = parent.floor_down_1.is_colliding() or parent.floor_down_2.is_colliding()
+	var onCeiling = parent.ceiling_up_1.is_colliding() or parent.ceiling_up_2.is_colliding()
+	if parent.gate_up_1.is_colliding() and not parent.gate_up_2.is_colliding():
+		if onFloor:
+			velocity.x = 500
+			print("moving right")
+	if not parent.gate_up_1.is_colliding() and parent.gate_up_2.is_colliding():
+		if onFloor:
+			velocity.x = -500
+			print("moving left")
+	if parent.gate_up_1.is_colliding() and parent.gate_up_2.is_colliding():
+		if onFloor:
+			velocity.x = -500
+			print("moving left")
+	if parent.gate_down_1.is_colliding() and not parent.gate_down_2.is_colliding():
+		if onCeiling:
+			velocity.x = 500
+			print("moving right")
+	if not parent.gate_down_1.is_colliding() and parent.gate_down_2.is_colliding():
+		if onCeiling:
+			velocity.x = -500
+			print("moving left")
+	if parent.gate_down_1.is_colliding() and parent.gate_down_2.is_colliding():
+		if onCeiling:
+			velocity.x = -500
+			print("moving left")
+	return velocity

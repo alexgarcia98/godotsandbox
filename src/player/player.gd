@@ -15,6 +15,14 @@ var object_collision: Area2D = $object_collision
 @onready var air_left: RayCast2D = $air_left
 @onready var wall_right: RayCast2D = $wall_right
 @onready var air_right: RayCast2D = $air_right
+@onready var gate_up_1: RayCast2D = $gate_up_1
+@onready var gate_up_2: RayCast2D = $gate_up_2
+@onready var gate_down_1: RayCast2D = $gate_down_1
+@onready var gate_down_2: RayCast2D = $gate_down_2
+@onready var ceiling_up_1: RayCast2D = $ceiling_up_1
+@onready var ceiling_up_2: RayCast2D = $ceiling_up_2
+@onready var floor_down_1: RayCast2D = $floor_down_1
+@onready var floor_down_2: RayCast2D = $floor_down_2
 
 @onready
 var movement_state_machine: Node = $movement_state_machine
@@ -71,11 +79,9 @@ func _process(delta: float) -> void:
 	gun_state_machine.process_frame(delta)
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("can throw")
 	throwable = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	print("cannot throw")
 	throwable = false
 
 func _on_object_collision_area_entered(area: Area2D) -> void:

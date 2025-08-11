@@ -3,7 +3,7 @@ extends Node2D
 var current = null
 var max_levels = 11
 @export
-var current_index = 1
+var current_index = 4
 var red_opened = false
 var green_opened = false
 var level_deaths = 0
@@ -40,8 +40,8 @@ func _ready() -> void:
 			file = FileAccess.open(filepath, FileAccess.WRITE)
 			var times = {}
 			for i in range(max_levels + 1):
-				var name = "level" + str(i)
-				times[name] = 5999999
+				var level_name = "level" + str(i)
+				times[level_name] = 5999999
 			file.store_var(times)
 			file.close()
 			saved_times = times
@@ -67,8 +67,8 @@ func load_level(index):
 	buttons_valid = true
 	var ms = saved_times["level" + str(current_index)]
 	var sec = floor(ms / 1000)
-	var min = floor(sec / 60)
-	personal_best.text = "PB: %02d:%02d:%03d" % [min, (sec % 60), (ms % 1000)]
+	var minute = floor(sec / 60)
+	personal_best.text = "PB: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
 	level_start_time = Time.get_ticks_msec()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -77,8 +77,8 @@ func _process(delta: float) -> void:
 		current_time = Time.get_ticks_msec()
 		level_time_ms = current_time - level_start_time
 		var sec = floor(level_time_ms / 1000)
-		var min = floor(sec / 60)
-		speedrun_timer.text = "%02d:%02d:%03d" % [min, (sec % 60), (level_time_ms % 1000)]
+		var minute = floor(sec / 60)
+		speedrun_timer.text = "%02d:%02d:%03d" % [minute, (sec % 60), (level_time_ms % 1000)]
 	else:
 		# check if better time
 		if level_time_ms < saved_times["level" + str(current_index)]:
@@ -88,8 +88,8 @@ func _process(delta: float) -> void:
 			write_file.close()
 			var ms = saved_times["level" + str(current_index)]
 			var sec = floor(ms / 1000)
-			var min = floor(sec / 60)
-			personal_best.text = "PB: %02d:%02d:%03d" % [min, (sec % 60), (ms % 1000)]
+			var minute = floor(sec / 60)
+			personal_best.text = "PB: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
 
 func _on_level_switch_pressed() -> void:
 	if buttons_valid:
@@ -100,17 +100,17 @@ func _on_reset_level_pressed() -> void:
 	if buttons_valid:
 		load_level(current_index)
 	
-func on_door_opened(name) -> void:
+func on_door_opened(obj_name) -> void:
 	# check sender
-	if name == "red_door":
+	if obj_name == "red_door":
 		red_opened = true
-	elif name == "green_door":
+	elif obj_name == "green_door":
 		green_opened = true
 	if red_opened and green_opened:
 		buttons_valid = false
 		timer.start()
 
-func on_player_died(name) -> void:
+func on_player_died(player_name) -> void:
 	level_deaths += 1
 	level_start_time -= 5000
 	deaths.text = "Deaths: " + str(level_deaths)
@@ -127,15 +127,15 @@ func _on_reset_scores_pressed() -> void:
 	var file = FileAccess.open(filepath, FileAccess.WRITE)
 	var times = {}
 	for i in range(max_levels + 1):
-		var name = "level" + str(i)
-		times[name] = 5999999
+		var level_name = "level" + str(i)
+		times[level_name] = 5999999
 	file.store_var(times)
 	file.close()
 	saved_times = times
 	var ms = saved_times["level" + str(current_index)]
 	var sec = floor(ms / 1000)
-	var min = floor(sec / 60)
-	personal_best.text = "PB: %02d:%02d:%03d" % [min, (sec % 60), (ms % 1000)]
+	var minute = floor(sec / 60)
+	personal_best.text = "PB: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
 
 
 func _on_level_switch_2_pressed() -> void:

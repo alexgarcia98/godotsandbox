@@ -22,7 +22,6 @@ func enter() -> void:
 	thrown_timer = thrown_length
 	parent.velocity.y = -jump_force
 	var horiz = Input.get_axis('move_left', 'move_right')
-	var vert = Input.get_axis('move_down', 'move_up')
 	if horiz < 0:
 		animations.flip_h = true
 		dir = -1

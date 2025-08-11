@@ -6,8 +6,8 @@ extends Node
 func _ready():
 	Messages.connect("KeyObtained", on_key_obtained)
 	
-func on_key_obtained(name):
-	if name == "green_key":
+func on_key_obtained(obj_name):
+	if obj_name == "green_key":
 		green_key.text = "Green Key Obtained"
-	elif name == "red_key":
+	elif obj_name == "red_key":
 		red_key.text = "Red Key Obtained"

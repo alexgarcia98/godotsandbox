@@ -9,7 +9,6 @@ var move_state: State
 
 func enter() -> void:
 	var horiz = Input.get_axis('move_left', 'move_right')
-	var vert = Input.get_axis('move_down', 'move_up')
 	if horiz < 0:
 		animation_name = "throw_left"
 		animations.flip_h = true

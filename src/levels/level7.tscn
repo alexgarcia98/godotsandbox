@@ -1,16 +1,16 @@
-[gd_scene load_steps=13 format=4 uid="uid://bjtmtba0cs6hp"]
+[gd_scene load_steps=13 format=4 uid="uid://d0gfex0j1pw3u"]
 
-[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_e5dgv"]
-[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/objects/green_key.tscn" id="2_sg6bx"]
-[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/objects/red_key.tscn" id="3_p3fjc"]
-[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/objects/green_door.tscn" id="4_j7t6r"]
-[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/objects/red_door.tscn" id="5_c6r2c"]
-[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/player/redplayer.tscn" id="6_kiltu"]
-[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/player/greenplayer.tscn" id="7_nq00x"]
-[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="8_lbdig"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_q6ybu"]
+[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/objects/green_key.tscn" id="2_6i44b"]
+[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/objects/red_key.tscn" id="3_o77mg"]
+[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/objects/green_door.tscn" id="4_4qwww"]
+[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/objects/red_door.tscn" id="5_tixw4"]
+[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/player/redplayer.tscn" id="6_vk8h2"]
+[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/player/greenplayer.tscn" id="7_khydn"]
+[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="8_mwuwc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
-texture = ExtResource("1_e5dgv")
+texture = ExtResource("1_q6ybu")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -179,7 +179,7 @@ physics_layer_3/collision_layer = 768
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6n5v"]
-texture = ExtResource("1_e5dgv")
+texture = ExtResource("1_q6ybu")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -324,22 +324,22 @@ collision_enabled = false
 
 [node name="objects" type="Node" parent="."]
 
-[node name="green_key" parent="objects" instance=ExtResource("2_sg6bx")]
+[node name="green_key" parent="objects" instance=ExtResource("2_6i44b")]
 position = Vector2(256, 8)
 
-[node name="red_key" parent="objects" instance=ExtResource("3_p3fjc")]
+[node name="red_key" parent="objects" instance=ExtResource("3_o77mg")]
 position = Vector2(-256, 8)
 
-[node name="green_door" parent="objects" instance=ExtResource("4_j7t6r")]
+[node name="green_door" parent="objects" instance=ExtResource("4_4qwww")]
 position = Vector2(32, -168)
 
-[node name="red_door" parent="objects" instance=ExtResource("5_c6r2c")]
+[node name="red_door" parent="objects" instance=ExtResource("5_tixw4")]
 position = Vector2(-32, -168)
 
-[node name="red_player" parent="." instance=ExtResource("6_kiltu")]
+[node name="red_player" parent="." instance=ExtResource("6_vk8h2")]
 position = Vector2(-440, 224)
 
-[node name="green_player" parent="." instance=ExtResource("7_nq00x")]
+[node name="green_player" parent="." instance=ExtResource("7_khydn")]
 position = Vector2(440, 224)
 is_main = false
 is_flipped = true
@@ -352,7 +352,7 @@ offset_left = -424.0
 offset_top = 72.0
 offset_right = -50.0
 offset_bottom = 112.0
-theme_override_fonts/font = ExtResource("8_lbdig")
+theme_override_fonts/font = ExtResource("8_mwuwc")
 text = "Want to control one at a time?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -362,7 +362,7 @@ offset_left = -456.0
 offset_top = 136.0
 offset_right = -38.0
 offset_bottom = 192.0
-theme_override_fonts/font = ExtResource("8_lbdig")
+theme_override_fonts/font = ExtResource("8_mwuwc")
 text = "Press K to freeze and unfreeze 
 the primary character"
 horizontal_alignment = 1
@@ -373,7 +373,7 @@ offset_left = 16.0
 offset_top = -120.0
 offset_right = 336.0
 offset_bottom = -64.0
-theme_override_fonts/font = ExtResource("8_lbdig")
+theme_override_fonts/font = ExtResource("8_mwuwc")
 text = "Press O to turn 
 around. You can do this 
 in the air once per jump."

@@ -74,6 +74,7 @@ func process_physics(delta: float) -> State:
 	if movement != 0:
 		animations.flip_h = movement < 0
 	parent.velocity.x = movement
+	parent.velocity = gate_check(parent.velocity)
 	parent.move_and_slide()
 	
 	if parent.is_on_floor():

@@ -1,17 +1,17 @@
-[gd_scene load_steps=17 format=4 uid="uid://bjtmtba0cs6hp"]
+[gd_scene load_steps=17 format=4 uid="uid://w1j1xmykkwwm"]
 
-[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_nurj6"]
-[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/objects/green_key.tscn" id="2_fftv8"]
-[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/objects/red_key.tscn" id="3_qdxon"]
-[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/objects/green_door.tscn" id="4_jd5ss"]
-[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/objects/red_door.tscn" id="5_dr1c0"]
-[ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/objects/kill_player.tscn" id="6_fftv8"]
-[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/player/redplayer.tscn" id="6_xjneo"]
-[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/player/greenplayer.tscn" id="7_lvrir"]
-[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="8_1yq4s"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_hhsoh"]
+[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/objects/green_key.tscn" id="2_1a3u3"]
+[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/objects/red_key.tscn" id="3_c147i"]
+[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/objects/green_door.tscn" id="4_n0xfa"]
+[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/objects/red_door.tscn" id="5_dxams"]
+[ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/objects/kill_player.tscn" id="6_ptkbn"]
+[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/player/redplayer.tscn" id="7_ihbrq"]
+[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/player/greenplayer.tscn" id="8_bpylg"]
+[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="9_o4kfd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
-texture = ExtResource("1_nurj6")
+texture = ExtResource("1_hhsoh")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -180,7 +180,7 @@ physics_layer_3/collision_layer = 768
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6n5v"]
-texture = ExtResource("1_nurj6")
+texture = ExtResource("1_hhsoh")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -334,20 +334,20 @@ collision_enabled = false
 
 [node name="objects" type="Node" parent="."]
 
-[node name="green_key" parent="objects" instance=ExtResource("2_fftv8")]
+[node name="green_key" parent="objects" instance=ExtResource("2_1a3u3")]
 position = Vector2(-200, -160)
 
-[node name="red_key" parent="objects" instance=ExtResource("3_qdxon")]
+[node name="red_key" parent="objects" instance=ExtResource("3_c147i")]
 position = Vector2(-200, 64)
 
-[node name="green_door" parent="objects" instance=ExtResource("4_jd5ss")]
+[node name="green_door" parent="objects" instance=ExtResource("4_n0xfa")]
 position = Vector2(448, -88)
 
-[node name="red_door" parent="objects" instance=ExtResource("5_dr1c0")]
+[node name="red_door" parent="objects" instance=ExtResource("5_dxams")]
 position = Vector2(448, 136)
 flipped = true
 
-[node name="kill_green" parent="objects" instance=ExtResource("6_fftv8")]
+[node name="kill_green" parent="objects" instance=ExtResource("6_ptkbn")]
 position = Vector2(168, -48)
 collision_layer = 512
 collision_mask = 4
@@ -355,13 +355,13 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/kill_green"]
 shape = SubResource("RectangleShape2D_p3fjc")
 
-[node name="kill_red" parent="objects" instance=ExtResource("6_fftv8")]
+[node name="kill_red" parent="objects" instance=ExtResource("6_ptkbn")]
 position = Vector2(168, 176)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/kill_red"]
 shape = SubResource("RectangleShape2D_p3fjc")
 
-[node name="kill_green2" parent="objects" instance=ExtResource("6_fftv8")]
+[node name="kill_green2" parent="objects" instance=ExtResource("6_ptkbn")]
 position = Vector2(-184, 176)
 collision_layer = 512
 collision_mask = 4
@@ -369,16 +369,16 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/kill_green2"]
 shape = SubResource("RectangleShape2D_j7t6r")
 
-[node name="kill_red2" parent="objects" instance=ExtResource("6_fftv8")]
+[node name="kill_red2" parent="objects" instance=ExtResource("6_ptkbn")]
 position = Vector2(-184, -48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/kill_red2"]
 shape = SubResource("RectangleShape2D_c6r2c")
 
-[node name="red_player" parent="." instance=ExtResource("6_xjneo")]
+[node name="red_player" parent="." instance=ExtResource("7_ihbrq")]
 position = Vector2(-440, 224)
 
-[node name="green_player" parent="." instance=ExtResource("7_lvrir")]
+[node name="green_player" parent="." instance=ExtResource("8_bpylg")]
 position = Vector2(-440, 0)
 is_main = false
 
@@ -390,7 +390,7 @@ offset_left = -400.0
 offset_top = 96.0
 offset_right = 8.0
 offset_bottom = 128.0
-theme_override_fonts/font = ExtResource("8_1yq4s")
+theme_override_fonts/font = ExtResource("9_o4kfd")
 text = "Not all mushrooms are dangerous"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -400,7 +400,7 @@ offset_left = 16.0
 offset_top = -160.0
 offset_right = 436.0
 offset_bottom = -122.0
-theme_override_fonts/font = ExtResource("8_1yq4s")
+theme_override_fonts/font = ExtResource("9_o4kfd")
 text = "Avoid mushrooms that don't match
 your character's color"
 horizontal_alignment = 1
