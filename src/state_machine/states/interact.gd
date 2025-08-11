@@ -26,9 +26,6 @@ func process_physics(delta: float) -> State:
 		parent.velocity.y += gravity * delta
 		parent.velocity = gate_check(parent.velocity)
 		parent.move_and_slide()
-		
-		if parent.velocity.y < 0:
-			return jump_state
 	
 		if !parent.is_on_floor():
 			return fall_state

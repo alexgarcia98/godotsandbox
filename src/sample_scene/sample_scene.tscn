@@ -10,7 +10,6 @@ script = ExtResource("1_407ex")
 action_items = Array[String](["move_left", "move_right", "move_up", "move_down", "jump", "dash", "pivot", "action", "throw", "freeze", "switch"])
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
 [node name="Help" type="Window" parent="."]
 title = "Controls"
@@ -49,68 +48,68 @@ script = ExtResource("2_tjd5v")
 
 [node name="level_switch" type="Button" parent="UI"]
 z_index = 10
-offset_left = -336.0
-offset_top = -270.0
-offset_right = -296.0
-offset_bottom = -239.0
+offset_left = -320.0
+offset_top = -240.0
+offset_right = -280.0
+offset_bottom = -208.0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "->"
 
 [node name="level_switch2" type="Button" parent="UI"]
 z_index = 10
-offset_left = -480.0
-offset_top = -270.0
-offset_right = -440.0
-offset_bottom = -239.0
+offset_left = -464.0
+offset_top = -240.0
+offset_right = -424.0
+offset_bottom = -208.0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "<-"
 
 [node name="reset_level" type="Button" parent="UI"]
 z_index = 10
-offset_left = -480.0
-offset_top = -240.0
-offset_right = -296.0
-offset_bottom = -209.0
+offset_left = -464.0
+offset_top = -208.0
+offset_right = -280.0
+offset_bottom = -176.0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "Reset Level"
 
 [node name="reset_scores" type="Button" parent="UI"]
 z_index = 10
-offset_left = -296.0
-offset_top = -240.0
-offset_right = -112.0
-offset_bottom = -209.0
+offset_left = -280.0
+offset_top = -208.0
+offset_right = -96.0
+offset_bottom = -176.0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "Reset Times"
 
 [node name="exit" type="Button" parent="UI"]
 z_index = 10
-offset_left = 400.0
-offset_top = -270.0
-offset_right = 480.0
-offset_bottom = -239.0
+offset_left = 384.0
+offset_top = -240.0
+offset_right = 464.0
+offset_bottom = -208.0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "Exit"
 
 [node name="help" type="Button" parent="UI"]
 z_index = 10
-offset_left = 344.0
-offset_top = -240.0
-offset_right = 480.0
-offset_bottom = -209.0
+offset_left = 328.0
+offset_top = -208.0
+offset_right = 464.0
+offset_bottom = -177.0
 theme_override_fonts/font = ExtResource("5_p6dmc")
 text = "Controls"
 
 [node name="green_key" type="RichTextLabel" parent="UI"]
 z_index = 10
-offset_left = 83.0
-offset_top = -237.0
-offset_right = 339.0
-offset_bottom = -214.0
+offset_left = 72.0
+offset_top = -208.0
+offset_right = 328.0
+offset_bottom = -176.0
 theme_override_fonts/normal_font = ExtResource("4_407ex")
 text = "No Green Key"
 horizontal_alignment = 1
@@ -118,10 +117,10 @@ vertical_alignment = 1
 
 [node name="red_key" type="RichTextLabel" parent="UI"]
 z_index = 10
-offset_left = 97.0
-offset_top = -270.0
-offset_right = 326.0
-offset_bottom = -241.0
+offset_left = 88.0
+offset_top = -240.0
+offset_right = 312.0
+offset_bottom = -208.0
 theme_override_fonts/normal_font = ExtResource("4_407ex")
 text = "No Red Key"
 horizontal_alignment = 1
@@ -129,10 +128,10 @@ vertical_alignment = 1
 
 [node name="personal_best" type="Label" parent="UI"]
 z_index = 10
-offset_left = -82.0
-offset_top = -270.0
-offset_right = 82.0
-offset_bottom = -240.0
+offset_left = -88.0
+offset_top = -240.0
+offset_right = 88.0
+offset_bottom = -208.0
 theme_override_fonts/font = ExtResource("4_407ex")
 text = "PB: 55:55:555"
 horizontal_alignment = 1
@@ -141,9 +140,9 @@ vertical_alignment = 1
 [node name="speedrun_timer" type="Label" parent="UI"]
 z_index = 10
 offset_left = -64.0
-offset_top = -240.0
+offset_top = -208.0
 offset_right = 64.0
-offset_bottom = -208.0
+offset_bottom = -176.0
 theme_override_fonts/font = ExtResource("4_407ex")
 text = "00:00:000"
 horizontal_alignment = 1
@@ -152,19 +151,20 @@ vertical_alignment = 1
 [node name="deaths" type="Label" parent="UI"]
 z_index = 10
 offset_left = -280.0
-offset_top = -270.0
-offset_right = -146.0
-offset_bottom = -240.0
+offset_top = -240.0
+offset_right = -128.0
+offset_bottom = -208.0
 theme_override_fonts/font = ExtResource("4_407ex")
 text = "Deaths: 0"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="deaths2" type="Label" parent="UI"]
 z_index = 10
-offset_left = -440.0
-offset_top = -270.0
-offset_right = -336.0
-offset_bottom = -240.0
+offset_left = -424.0
+offset_top = -240.0
+offset_right = -320.0
+offset_bottom = -208.0
 theme_override_fonts/font = ExtResource("4_407ex")
 text = "Level"
 horizontal_alignment = 1

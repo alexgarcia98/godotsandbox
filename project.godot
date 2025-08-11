@@ -21,10 +21,11 @@ Messages="*res://src/scripts/messages.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=3
+window/size/viewport_width=928
+window/size/viewport_height=480
 window/subwindows/embed_subwindows=false
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [input]
 
