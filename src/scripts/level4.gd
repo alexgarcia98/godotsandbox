@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 @onready var label: Label = $Label
+@onready var label_2: Label = $Label2
 
 var actions = ["action"]
 var action_strings = {}

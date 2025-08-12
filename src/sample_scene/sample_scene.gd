@@ -1,7 +1,7 @@
 extends Node2D
 
 var current = null
-var max_levels = 11
+var max_levels = 12
 @export
 var current_index = 1
 var red_opened = false
@@ -11,8 +11,6 @@ var buttons_valid = true
 @export var action_items: Array[String]
 
 @onready var timer: Timer = $Timer
-@onready var green_key: RichTextLabel = $UI/green_key
-@onready var red_key: RichTextLabel = $UI/red_key
 @onready var speedrun_timer: Label = $UI/speedrun_timer
 @onready var deaths: Label = $UI/deaths
 @onready var personal_best: Label = $UI/personal_best
@@ -21,6 +19,11 @@ var buttons_valid = true
 @onready var settings_grid_container: GridContainer = $Help/MarginContainer/SettingsGridContainer
 @onready var help_button: Button = $UI/help
 @onready var ui: Control = $UI
+@onready var red_ammo: Label = $UI/red_ammo
+@onready var green_ammo: Label = $UI/green_ammo
+
+var red_ammo_count = 10
+var green_ammo_count = 10
 
 var level_start_time = 0
 var current_time = 0
@@ -54,6 +57,7 @@ func _ready() -> void:
 	Messages.connect("ButtonRemapped", on_button_remapped)
 	Messages.connect("EndGame", on_end_game)
 	Messages.connect("StartGame", on_start_game)
+	Messages.connect("ShotFired", on_shot_fired)
 	
 	# check if save data exists
 	var file = FileAccess.open(filepath, FileAccess.READ)
@@ -118,13 +122,20 @@ func load_level(index):
 	deaths.text = "Deaths: " + str(level_deaths)
 	red_opened = false
 	green_opened = false
-	green_key.text = "No Green Key"
-	red_key.text = "No Red Key"
 	buttons_valid = true
+	if not saved_times.has("level" + str(current_index)):
+		saved_times["level" + str(current_index)] = 5999999
+		var file = FileAccess.open(filepath, FileAccess.WRITE)
+		file.store_var(saved_times)
+		file.close()
 	var ms = saved_times["level" + str(current_index)]
 	var sec = floor(ms / 1000)
 	var minute = floor(sec / 60)
 	personal_best.text = "PB: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
+	red_ammo_count = current.get_node("red_player").ammo
+	green_ammo_count = current.get_node("green_player").ammo
+	red_ammo.text = "Red Ammo: %s" % red_ammo_count
+	green_ammo.text = "Green Ammo: %s" % green_ammo_count
 	level_start_time = Time.get_ticks_msec()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -239,3 +250,11 @@ func on_start_game():
 	
 func on_end_game():
 	get_tree().quit()
+
+func on_shot_fired(name):
+	if name == "red_player":
+		red_ammo_count -= 1
+		red_ammo.text = "Red Ammo: %s" % red_ammo_count
+	elif name == "green_player":
+		green_ammo_count -= 1
+		green_ammo.text = "Green Ammo: %s" % green_ammo_count

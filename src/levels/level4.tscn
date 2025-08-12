@@ -359,10 +359,10 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -360.0
-offset_top = 32.0
-offset_right = 10.0
-offset_bottom = 96.0
+offset_left = -424.0
+offset_top = 56.0
+offset_right = -54.0
+offset_bottom = 120.0
 theme_override_fonts/font = ExtResource("8_ikb1q")
 text = "Buttons open gates! When
 nearby, press J to activate it"

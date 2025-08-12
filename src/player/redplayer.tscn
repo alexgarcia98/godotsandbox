@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://di4b3fet5cvsw"]
+[gd_scene load_steps=83 format=3 uid="uid://di4b3fet5cvsw"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/player/player.gd" id="1_ryxk6"]
 [ext_resource type="Texture2D" uid="uid://in1gh3nmft7l" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_land_0.png" id="2_e7e1q"]
@@ -30,10 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cge8r2vefvjuj" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_pickup_wall_2.png" id="12_rvvlk"]
 [ext_resource type="Texture2D" uid="uid://du4cimy1fsxld" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_pickup_wall_3.png" id="13_7anmh"]
 [ext_resource type="Texture2D" uid="uid://cjdacx3trasye" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_jump_1.png" id="13_fpqwn"]
-[ext_resource type="Script" uid="uid://6pt4ld3ek85e" path="res://src/player/gun_states/idle.gd" id="13_qeppj"]
 [ext_resource type="Texture2D" uid="uid://6gml2cideqyn" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_walk_0.png" id="14_8iif5"]
-[ext_resource type="Script" uid="uid://bo2hr5ukvopsj" path="res://src/player/gun_states/firing.gd" id="14_18y56"]
-[ext_resource type="Script" uid="uid://1llx6wo7g26u" path="res://src/player/gun_states/charging.gd" id="15_a1uhk"]
 [ext_resource type="Texture2D" uid="uid://certmwmul3byy" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_walk_1.png" id="15_kpcs5"]
 [ext_resource type="Texture2D" uid="uid://cfe03n5e0lya6" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_walk_2.png" id="16_axsi3"]
 [ext_resource type="Texture2D" uid="uid://ttjifypmnvl2" path="res://src/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_walk_3.png" id="17_rhq4p"]
@@ -614,21 +611,18 @@ switch_state = NodePath("../switch_main")
 shoot_state = NodePath("../shoot")
 animation_name = "move"
 
-[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "jump_state")]
+[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state")]
 script = ExtResource("11_ei7e8")
 move_state = NodePath("../move")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
-jump_state = NodePath("../jump")
 animation_name = "crouch"
 move_speed = 384.0
 
-[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("wall_cling_state", "fall_state", "idle_state", "jump_state")]
+[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("wall_cling_state", "fall_state")]
 script = ExtResource("30_xmpm3")
 wall_cling_state = NodePath("../wall_cling")
 fall_state = NodePath("../fall")
-idle_state = NodePath("../idle")
-jump_state = NodePath("../jump")
 animation_name = "airdash"
 move_speed = 384.0
 
@@ -722,24 +716,6 @@ fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 animation_name = "throw_left"
-
-[node name="gun_state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_hcrjv")]
-starting_state = NodePath("idle")
-
-[node name="idle" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("firing_state")]
-script = ExtResource("13_qeppj")
-firing_state = NodePath("../firing")
-animation_name = "idle"
-
-[node name="firing" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("charging_state")]
-script = ExtResource("14_18y56")
-charging_state = NodePath("../charging")
-animation_name = "fire"
-
-[node name="charging" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("15_a1uhk")
-idle_state = NodePath("../idle")
-animation_name = "smoke"
 
 [node name="player_move_component" type="Node" parent="."]
 script = ExtResource("11_ce5lr")

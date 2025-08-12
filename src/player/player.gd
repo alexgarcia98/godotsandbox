@@ -26,10 +26,14 @@ var object_collision: Area2D = $object_collision
 
 @onready
 var movement_state_machine: Node = $movement_state_machine
-@onready
-var gun_state_machine: Node = $gun_state_machine
+#@onready
+#var gun_state_machine: Node = $gun_state_machine
 @onready
 var player_move_component = $player_move_component
+
+var level_parent: Node
+var green_player: Player
+
 @export
 var is_main: bool = true
 @export
@@ -44,6 +48,9 @@ var max_airdash: int = 1
 var max_air_reverse: int = 1
 
 @export
+var ammo: int = 10
+
+@export
 var throwable = false
 
 var jumps_remaining = max_jumps
@@ -55,9 +62,12 @@ var key_obtained = false
 
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
-	gun_state_machine.init(self, gun_animations, player_move_component)
+	#gun_state_machine.init(self, gun_animations, player_move_component)
 	last_valid = position
 	Messages.connect("KeyObtained", on_key_obtained)
+	if name == "red_player":
+		level_parent = get_parent()
+		green_player = level_parent.get_node("green_player")
 	if is_main:
 		set_z_index(7)
 		indicator.visible = true
@@ -68,15 +78,15 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if visible:
 		movement_state_machine.process_input(event)
-		gun_state_machine.process_input(event)
+		#gun_state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
 	movement_state_machine.process_physics(delta)
-	gun_state_machine.process_physics(delta)
+	#gun_state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
 	movement_state_machine.process_frame(delta)
-	gun_state_machine.process_frame(delta)
+	#gun_state_machine.process_frame(delta)
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	throwable = true

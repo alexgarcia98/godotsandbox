@@ -2,8 +2,9 @@ extends TileMapLayer
 
 @onready var label: Label = $Label
 @onready var label_2: Label = $Label2
+@onready var label_3: Label = $Label3
 
-var actions = ["shoot"]
+var actions = ["freeze", "pivot"]
 var action_strings = {}
 
 # Called when the node enters the scene tree for the first time.
@@ -19,6 +20,10 @@ func on_button_remapped(action, key):
 			action_strings[a] = event.as_text().substr(0, (event.as_text().length() - 11))
 		else:
 			action_strings[a] = event.as_text()
-	label_2.text = "You can also hit objects from afar!\nPress %s to shoot a projectile" % [
-		action_strings["shoot"]
+	label_2.text = "Press %s to freeze and unfreeze\nthe primary character" % [
+		action_strings["freeze"]
+	]
+	
+	label_3.text = "Press %s to turn\naround. You can do this\nin the air once per jump." % [
+		action_strings["pivot"]
 	]

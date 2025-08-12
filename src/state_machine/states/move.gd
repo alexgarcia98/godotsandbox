@@ -30,22 +30,27 @@ func enter() -> void:
 	parent.air_reverse_remaining = parent.max_air_reverse
 
 func process_input(event: InputEvent) -> State:
+	super(event)
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
 			# set current position
-			print("updating position 3")
 			parent.last_valid = parent.position
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
-			print("updating position 1")
 			parent.last_valid = parent.position
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:
 				return airdash_state
-	if Input.is_action_just_pressed('switch'):
-		return switch_state
+	#if Input.is_action_just_pressed('switch'):
+		#parent.is_main = not parent.is_main
+		#parent.indicator.visible = not parent.indicator.visible
+		#if parent.is_main:
+			#parent.set_z_index(7)
+		#else:
+			#parent.set_z_index(6)
+		#return null
 	if Input.is_action_just_pressed('action'):
 		if parent.is_main:
 			return interact_state
@@ -61,7 +66,8 @@ func process_input(event: InputEvent) -> State:
 				return thrown_state
 	if Input.is_action_just_pressed('shoot'):
 		if parent.is_main:
-			return shoot_state
+			if parent.ammo > 0:
+				return shoot_state
 	return null
 
 func process_physics(delta: float) -> State:

@@ -38,21 +38,26 @@ func enter() -> void:
 		#parent.last_valid = parent.position
 
 func process_input(event: InputEvent) -> State:
+	super(event)
+	parent.last_valid = parent.position
 	if get_jump() and parent.is_on_floor():
-		parent.last_valid = parent.position
 		return jump_state
 	if get_movement_input() != 0.0:
-		parent.last_valid = parent.position
 		return move_state
 	if Input.is_action_just_pressed('dash'):
-		parent.last_valid = parent.position
 		return dash_state
 	if Input.is_action_just_pressed('pivot'):
 		return pivot_state
 	#if Input.is_action_just_pressed('debug_single_pivot'):
 		#return single_pivot_state
-	if Input.is_action_just_pressed('switch'):
-		return switch_state
+	#if Input.is_action_just_pressed('switch'):
+		#parent.is_main = not parent.is_main
+		#parent.indicator.visible = not parent.indicator.visible
+		#if parent.is_main:
+			#parent.set_z_index(7)
+		#else:
+			#parent.set_z_index(6)
+		#return null
 	if Input.is_action_just_pressed('action'):
 		if parent.is_main:
 			return interact_state
@@ -68,7 +73,8 @@ func process_input(event: InputEvent) -> State:
 				return thrown_state
 	if Input.is_action_just_pressed('shoot'):
 		if parent.is_main:
-			return shoot_state
+			if parent.ammo > 0:
+				return shoot_state
 	return null
 
 func process_physics(delta: float) -> State:

@@ -21,6 +21,7 @@ func enter() -> void:
 		is_frozen = true
 
 func process_input(event: InputEvent) -> State:
+	super(event)
 	if not parent.is_main and not is_frozen:
 		if not parent.is_on_floor():
 			return fall_state
@@ -42,9 +43,13 @@ func process_input(event: InputEvent) -> State:
 					parent.collision_layer = 2
 				is_frozen = false
 				return idle_state
-		elif Input.is_action_just_pressed('switch'):
-			parent.is_main = not parent.is_main
-			parent.indicator.visible = not parent.indicator.visible
+		#elif Input.is_action_just_pressed('switch'):
+			#parent.is_main = not parent.is_main
+			#parent.indicator.visible = not parent.indicator.visible
+			#if parent.is_main:
+				#parent.set_z_index(7)
+			#else:
+				#parent.set_z_index(6)
 		return null
 
 func process_physics(delta: float) -> State:

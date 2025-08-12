@@ -30,12 +30,18 @@ func enter() -> void:
 		projectile.scale.x = 1
 		projectile.position.x += 16
 	objects1.add_child(projectile)
+	parent.ammo -= 1
+	Messages.ShotFired.emit(parent.name)
 
-func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('switch'):
-		parent.is_main = not parent.is_main
-		parent.indicator.visible = not parent.indicator.visible
-	return null
+#func process_input(event: InputEvent) -> State:
+	#if Input.is_action_just_pressed('switch'):
+		#parent.is_main = not parent.is_main
+		#parent.indicator.visible = not parent.indicator.visible
+		#if parent.is_main:
+			#parent.set_z_index(7)
+		#else:
+			#parent.set_z_index(6)
+	#return null
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += (gravity * delta)

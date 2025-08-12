@@ -1,9 +1,11 @@
 # You could also declare a class_name for the move state
 # so you don't have to reference the script directly
-extends 'res://src/state_machine/states/move.gd'
+extends State
 
 @export
 var wall_cling_state: State
+@export
+var fall_state: State
 
 @export
 var time_to_dash := 0.25
@@ -23,12 +25,9 @@ func enter() -> void:
 	else:
 		direction = 1
 
-# Just to be safe, disable any other inputs
-func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('switch'):
-		parent.is_main = not parent.is_main
-		parent.indicator.visible = not parent.indicator.visible
-	return null
+## Just to be safe, disable any other inputs
+#func process_input(event: InputEvent) -> State:
+	#return super(event)
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y = 0
