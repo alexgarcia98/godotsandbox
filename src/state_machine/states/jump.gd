@@ -22,6 +22,8 @@ var frozen_state: State
 var wall_cling_state: State
 @export
 var air_pivot_state: State
+@export
+var shoot_state: State
 
 @export
 var jump_force: float = 400
@@ -57,6 +59,9 @@ func process_input(event: InputEvent) -> State:
 				return throw_state
 			else:
 				return thrown_state
+	if Input.is_action_just_pressed('shoot'):
+		if parent.is_main:
+			return shoot_state
 	return null
 
 func process_physics(delta: float) -> State:

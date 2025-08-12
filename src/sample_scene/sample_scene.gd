@@ -20,6 +20,7 @@ var buttons_valid = true
 @onready var help: Window = $Help
 @onready var settings_grid_container: GridContainer = $Help/MarginContainer/SettingsGridContainer
 @onready var help_button: Button = $UI/help
+@onready var ui: Control = $UI
 
 var level_start_time = 0
 var current_time = 0
@@ -43,6 +44,7 @@ var button_dict = {
 	"throw": "Throw",
 	"freeze": "Freeze",
 	"switch": "Switch",
+	"shoot": "Shoot"
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -50,6 +52,8 @@ func _ready() -> void:
 	Messages.connect("DoorOpened", on_door_opened)
 	Messages.connect("PlayerDied", on_player_died)
 	Messages.connect("ButtonRemapped", on_button_remapped)
+	Messages.connect("EndGame", on_end_game)
+	Messages.connect("StartGame", on_start_game)
 	
 	# check if save data exists
 	var file = FileAccess.open(filepath, FileAccess.READ)
@@ -92,9 +96,18 @@ func _ready() -> void:
 			InputMap.action_add_event(action, event)
 			print("initializing remap of " + action + " to " + str(Messages.rebinds[action]))
 	create_action_remap_items()
-	load_level(current_index)
+	load_menu()
+	
+func load_menu():
+	if current:
+		current.queue_free()
+	var new_level = load("res://src/levels/mainmenu.tscn")
+	ui.visible = false
+	current = new_level.instantiate()
+	add_child(current)
 
 func load_level(index):
+	ui.visible = true
 	if current:
 		current.queue_free()
 	var new_level = load("src/levels/level" + str(current_index) + ".tscn")
@@ -163,7 +176,7 @@ func _on_timer_timeout():
 	load_level(current_index)
 
 func _on_exit_pressed() -> void:
-	get_tree().quit()
+	load_menu()
 
 func _on_reset_scores_pressed() -> void:
 	# create new save data
@@ -220,3 +233,9 @@ func on_button_remapped(action, key):
 	write_file.store_var(Messages.rebinds)
 	write_file.close()
 	print("storing remap of " + action + " to " + str(key))
+
+func on_start_game():
+	load_level(current_index)
+	
+func on_end_game():
+	get_tree().quit()

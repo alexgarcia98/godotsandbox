@@ -28,7 +28,7 @@ func process_physics(delta: float) -> State:
 	animations.flip_h = norm.x < 0
 	
 	# check current y velocity
-	if parent.velocity.y <= 0:
+	if parent.velocity.y <= 49:
 		if norm.x > 0:
 			if not parent.air_left.is_colliding():
 				#print(parent.name + ": wall_left: " + str(parent.wall_left.is_colliding()))

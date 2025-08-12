@@ -22,6 +22,8 @@ var thrown_state: State
 var frozen_state: State
 @export
 var switch_state: State
+@export
+var shoot_state: State
 
 func enter() -> void:
 	if parent.is_flipped:
@@ -64,7 +66,9 @@ func process_input(event: InputEvent) -> State:
 				return throw_state
 			else:
 				return thrown_state
-		
+	if Input.is_action_just_pressed('shoot'):
+		if parent.is_main:
+			return shoot_state
 	return null
 
 func process_physics(delta: float) -> State:

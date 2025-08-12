@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bloc4xje3p731"]
+
+[ext_resource type="Script" uid="uid://ceq1kqu0eymf6" path="res://src/scripts/projectile.gd" id="1_lk5mj"]
+
+[node name="red_shot" type="Polygon2D"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 32, -4, 48, 0, 32, 4)
+script = ExtResource("1_lk5mj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4105
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, 0, 32, -4, 48, 0, 32, 4)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

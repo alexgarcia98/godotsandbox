@@ -23,7 +23,7 @@ func update_key_text():
 func _toggled(button_pressed):
 	set_process_unhandled_input(button_pressed)
 	if button_pressed:
-		text = "... Awaiting Input ..."
+		text = "..."
 		release_focus()
 	else:
 		update_key_text()

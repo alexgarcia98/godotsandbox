@@ -7,14 +7,14 @@
 
 [node name="sample_scene" type="Node2D"]
 script = ExtResource("1_407ex")
-action_items = Array[String](["move_left", "move_right", "move_up", "move_down", "jump", "dash", "pivot", "action", "throw", "freeze", "switch"])
+action_items = Array[String](["move_left", "move_right", "move_up", "move_down", "jump", "dash", "pivot", "action", "throw", "freeze", "switch", "shoot"])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Help" type="Window" parent="."]
 title = "Controls"
 initial_position = 1
-size = Vector2i(325, 425)
+size = Vector2i(500, 350)
 visible = false
 always_on_top = true
 
@@ -31,7 +31,7 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-columns = 2
+columns = 4
 
 [node name="Label" type="Label" parent="Help/MarginContainer/SettingsGridContainer"]
 layout_mode = 2
@@ -43,11 +43,24 @@ layout_mode = 2
 text = "Key"
 horizontal_alignment = 1
 
-[node name="UI" type="Node" parent="."]
+[node name="Label3" type="Label" parent="Help/MarginContainer/SettingsGridContainer"]
+layout_mode = 2
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Help/MarginContainer/SettingsGridContainer"]
+layout_mode = 2
+text = "Key"
+horizontal_alignment = 1
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("2_tjd5v")
 
 [node name="level_switch" type="Button" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -320.0
 offset_top = -240.0
 offset_right = -280.0
@@ -58,6 +71,7 @@ text = "->"
 
 [node name="level_switch2" type="Button" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -464.0
 offset_top = -240.0
 offset_right = -424.0
@@ -68,6 +82,7 @@ text = "<-"
 
 [node name="reset_level" type="Button" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -464.0
 offset_top = -208.0
 offset_right = -280.0
@@ -78,6 +93,7 @@ text = "Reset Level"
 
 [node name="reset_scores" type="Button" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -280.0
 offset_top = -208.0
 offset_right = -96.0
@@ -88,15 +104,17 @@ text = "Reset Times"
 
 [node name="exit" type="Button" parent="UI"]
 z_index = 10
-offset_left = 384.0
+layout_mode = 2
+offset_left = 320.0
 offset_top = -240.0
 offset_right = 464.0
 offset_bottom = -208.0
 theme_override_fonts/font = ExtResource("5_p6dmc")
-text = "Exit"
+text = "Main Menu"
 
 [node name="help" type="Button" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = 328.0
 offset_top = -208.0
 offset_right = 464.0
@@ -106,6 +124,7 @@ text = "Controls"
 
 [node name="green_key" type="RichTextLabel" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = 72.0
 offset_top = -208.0
 offset_right = 328.0
@@ -117,6 +136,7 @@ vertical_alignment = 1
 
 [node name="red_key" type="RichTextLabel" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = 88.0
 offset_top = -240.0
 offset_right = 312.0
@@ -128,6 +148,7 @@ vertical_alignment = 1
 
 [node name="personal_best" type="Label" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -88.0
 offset_top = -240.0
 offset_right = 88.0
@@ -139,6 +160,7 @@ vertical_alignment = 1
 
 [node name="speedrun_timer" type="Label" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -64.0
 offset_top = -208.0
 offset_right = 64.0
@@ -150,6 +172,7 @@ vertical_alignment = 1
 
 [node name="deaths" type="Label" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -280.0
 offset_top = -240.0
 offset_right = -128.0
@@ -161,6 +184,7 @@ vertical_alignment = 1
 
 [node name="deaths2" type="Label" parent="UI"]
 z_index = 10
+layout_mode = 2
 offset_left = -424.0
 offset_top = -240.0
 offset_right = -320.0

@@ -20,6 +20,8 @@ var jump_state: State
 var wall_cling_state: State
 @export
 var air_pivot_state: State
+@export
+var shoot_state: State
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('switch'):
@@ -48,6 +50,9 @@ func process_input(event: InputEvent) -> State:
 				return throw_state
 			else:
 				return thrown_state
+	if Input.is_action_just_pressed('shoot'):
+		if parent.is_main:
+			return shoot_state
 	return null
 
 func process_physics(delta: float) -> State:
@@ -66,7 +71,6 @@ func process_physics(delta: float) -> State:
 	
 	if parent.is_on_floor():
 		if movement != 0:
-			print("not falling")
 			return move_state
 		return idle_state
 	return null
