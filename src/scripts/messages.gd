@@ -8,4 +8,14 @@ signal EndGame()
 signal StartGame()
 signal ShotFired(emitter)
 
+signal LevelEnded()
+signal LevelStarted(level)
+
+# UI Interactions
+signal PreviousLevel()
+signal NextLevel()
+signal Restart()
+signal ResetTimes()
+signal MainMenu()
+
 var rebinds = {}

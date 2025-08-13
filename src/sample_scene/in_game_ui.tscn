@@ -1,0 +1,499 @@
+[gd_scene load_steps=25 format=3 uid="uid://rmkkpnffs8le"]
+
+[ext_resource type="Texture2D" uid="uid://bff8f4ov4ldwh" path="res://src/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Sprite sheet for Basic Pack.png" id="1_dnaog"]
+[ext_resource type="Script" uid="uid://bh2phagjnjp8b" path="res://src/scripts/popup_menu_button_manager.gd" id="1_h76ic"]
+[ext_resource type="Script" uid="uid://dn5v7i145wd01" path="res://src/scripts/stat_display_container.gd" id="2_8xu6u"]
+[ext_resource type="Texture2D" uid="uid://dyca5imwfwmcr" path="res://src/Sprout Lands - UI Pack - Basic pack/custom sprites/modifided version of the sprite sheet.png" id="3_5yvih"]
+[ext_resource type="FontFile" uid="uid://iyko7vrordi8" path="res://src/toybox_font/ToyBox.ttf" id="3_h76ic"]
+[ext_resource type="Texture2D" uid="uid://vpl6nnvqxgjf" path="res://src/Sprout Lands - UI Pack - Basic pack/Sprite sheets/sampleimage.jpg" id="6_kvfq0"]
+[ext_resource type="Texture2D" uid="uid://c6o6b1nb8x41y" path="res://src/Sprout Lands - UI Pack - Basic pack/custom sprites/audio-off-icon.png" id="7_7bmyd"]
+[ext_resource type="Texture2D" uid="uid://b0q4ri132mo1d" path="res://src/Sprout Lands - UI Pack - Basic pack/custom sprites/audio-on-icon.png" id="8_lhpss"]
+[ext_resource type="Texture2D" uid="uid://btp5k3avs4lq0" path="res://src/Sprout Lands - UI Pack - Basic pack/custom sprites/brightness-off-icon.png" id="9_uocmm"]
+[ext_resource type="Texture2D" uid="uid://dllpchlqm025b" path="res://src/Sprout Lands - UI Pack - Basic pack/custom sprites/brightness-on-icon.png" id="10_14wqk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xo51j"]
+texture = ExtResource("1_dnaog")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(626, 294, 12, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dnaog"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(741, 198, 22, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_udns0"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(709, 196, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h76ic"]
+texture = ExtResource("3_5yvih")
+region_rect = Rect2(677, 102, 22, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xu6u"]
+texture = ExtResource("3_5yvih")
+region_rect = Rect2(645, 100, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0k0n7"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(869, 230, 22, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5yvih"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(837, 228, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvfq0"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(804, 197, 22, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fg50h"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(772, 195, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7bmyd"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(869, 134, 22, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lhpss"]
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(837, 132, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5g388"]
+texture = ExtResource("1_dnaog")
+texture_margin_left = 3.0
+texture_margin_top = 2.0
+texture_margin_right = 3.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(341, 6, 38, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22xxb"]
+texture = ExtResource("1_dnaog")
+expand_margin_left = 3.0
+expand_margin_top = 9.0
+expand_margin_right = 4.0
+expand_margin_bottom = 9.0
+region_rect = Rect2(341, 69, 7, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vns1p"]
+texture = ExtResource("1_dnaog")
+expand_margin_left = 3.0
+expand_margin_top = 9.0
+expand_margin_right = 4.0
+expand_margin_bottom = 9.0
+region_rect = Rect2(373, 69, 7, 18)
+
+[node name="inGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="popupMenu" type="MarginContainer" parent="." node_paths=PackedStringArray("menu_screen", "open_menu_screen", "help_menu_screen", "setting_menu_screen")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h76ic")
+menu_screen = NodePath("baseMenuScreenContainer")
+open_menu_screen = NodePath("baseMenuOpenButtonContainer")
+help_menu_screen = NodePath("helpMenuContainer")
+setting_menu_screen = NodePath("settingsMenuContainer")
+
+[node name="baseMenuScreenContainer" type="VBoxContainer" parent="popupMenu"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 30
+
+[node name="baseMenuScreen" type="MarginContainer" parent="popupMenu/baseMenuScreenContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="toggleMenuButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer"]
+custom_minimum_size = Vector2(50, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_xo51j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xo51j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xo51j")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer"]
+custom_minimum_size = Vector2(350, 160)
+layout_mode = 2
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(869, 6, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="buttonContainer" type="VBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="topButtonContainer" type="HBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="toggleHelpMenuButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_dnaog")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dnaog")
+theme_override_styles/normal = SubResource("StyleBoxTexture_udns0")
+
+[node name="pauseButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_h76ic")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h76ic")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8xu6u")
+
+[node name="bottomButtonContainer2" type="HBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="toggleSettingMenuButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/bottomButtonContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_0k0n7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0k0n7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5yvih")
+
+[node name="quitButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/bottomButtonContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_kvfq0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kvfq0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fg50h")
+
+[node name="statDisplayContainer" type="VBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("2_8xu6u")
+
+[node name="coinDisplay" type="Label" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/statDisplayContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.898039, 0.760784, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_h76ic")
+theme_override_font_sizes/font_size = 30
+text = "COINS:"
+
+[node name="scoreDisplay" type="Label" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/statDisplayContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.898039, 0.760784, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_h76ic")
+theme_override_font_sizes/font_size = 30
+text = "SCORE:"
+
+[node name="separator" type="Control" parent="popupMenu/baseMenuScreenContainer"]
+layout_mode = 2
+
+[node name="baseMenuOpenButtonContainer" type="VBoxContainer" parent="popupMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+
+[node name="toggleMenuButton" type="Button" parent="popupMenu/baseMenuOpenButtonContainer"]
+custom_minimum_size = Vector2(50, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_xo51j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xo51j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xo51j")
+
+[node name="separator" type="Control" parent="popupMenu/baseMenuOpenButtonContainer"]
+layout_mode = 2
+
+[node name="helpMenuContainer" type="MarginContainer" parent="popupMenu"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="popupMenu/helpMenuContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(869, 6, 22, 22)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="title" type="HBoxContainer" parent="popupMenu/helpMenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="Control" type="Control" parent="popupMenu/helpMenuContainer/title"]
+layout_mode = 2
+
+[node name="helpDisplay" type="Label" parent="popupMenu/helpMenuContainer/title"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.898039, 0.760784, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_h76ic")
+theme_override_font_sizes/font_size = 30
+text = "How to play"
+
+[node name="exitButton" type="VBoxContainer" parent="popupMenu/helpMenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="popupMenu/helpMenuContainer/exitButton"]
+layout_mode = 2
+theme_override_constants/margin_top = -11
+theme_override_constants/margin_right = -11
+
+[node name="toggleHelpMenuButton" type="Button" parent="popupMenu/helpMenuContainer/exitButton/MarginContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_7bmyd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7bmyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lhpss")
+
+[node name="MarginContainer" type="MarginContainer" parent="popupMenu/helpMenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/helpMenuContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="popupMenu/helpMenuContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/helpMenuContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+
+[node name="text1Display" type="Label" parent="popupMenu/helpMenuContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.898039, 0.760784, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_h76ic")
+theme_override_font_sizes/font_size = 15
+text = "My last role was 
+on a team that 
+was kind of like 
+a startup. I joined 
+the team about 6 
+months into the"
+
+[node name="text1Display2" type="Label" parent="popupMenu/helpMenuContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.898039, 0.760784, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_h76ic")
+theme_override_font_sizes/font_size = 15
+text = "project's life cycle, when the project was mostly just out of a proof-of-concept stage. We were working on scheduling software that was primarily written in C++. "
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="popupMenu/helpMenuContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("6_kvfq0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="settingsMenuContainer" type="MarginContainer" parent="popupMenu"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="popupMenu/settingsMenuContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_dnaog")
+region_rect = Rect2(869, 6, 22, 22)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="title" type="HBoxContainer" parent="popupMenu/settingsMenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="popupMenu/settingsMenuContainer/title"]
+layout_mode = 2
+
+[node name="helpDisplay" type="Label" parent="popupMenu/settingsMenuContainer/title"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.898039, 0.760784, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_h76ic")
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/settingsMenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Control" type="Control" parent="popupMenu/settingsMenuContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/settingsMenuContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="volumeBar" type="HBoxContainer" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/volumeBar"]
+layout_mode = 2
+theme_override_constants/separation = -13
+
+[node name="Control" type="Control" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/volumeBar/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/volumeBar/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("7_7bmyd")
+
+[node name="HScrollBar" type="HScrollBar" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/volumeBar"]
+custom_minimum_size = Vector2(150, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/scroll = SubResource("StyleBoxTexture_5g388")
+theme_override_styles/scroll_focus = SubResource("StyleBoxTexture_5g388")
+theme_override_styles/grabber = SubResource("StyleBoxTexture_22xxb")
+theme_override_styles/grabber_highlight = SubResource("StyleBoxTexture_vns1p")
+theme_override_styles/grabber_pressed = SubResource("StyleBoxTexture_vns1p")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/volumeBar"]
+layout_mode = 2
+theme_override_constants/separation = -13
+
+[node name="Control" type="Control" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/volumeBar/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/volumeBar/VBoxContainer2"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("8_lhpss")
+
+[node name="brightnessBar" type="HBoxContainer" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/brightnessBar"]
+layout_mode = 2
+theme_override_constants/separation = -13
+
+[node name="Control" type="Control" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/brightnessBar/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/brightnessBar/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("9_uocmm")
+
+[node name="HScrollBar" type="HScrollBar" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/brightnessBar"]
+custom_minimum_size = Vector2(150, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/scroll = SubResource("StyleBoxTexture_5g388")
+theme_override_styles/scroll_focus = SubResource("StyleBoxTexture_5g388")
+theme_override_styles/grabber = SubResource("StyleBoxTexture_22xxb")
+theme_override_styles/grabber_highlight = SubResource("StyleBoxTexture_vns1p")
+theme_override_styles/grabber_pressed = SubResource("StyleBoxTexture_vns1p")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/brightnessBar"]
+layout_mode = 2
+theme_override_constants/separation = -13
+
+[node name="Control" type="Control" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/brightnessBar/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="popupMenu/settingsMenuContainer/VBoxContainer/VBoxContainer/brightnessBar/VBoxContainer2"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("10_14wqk")
+
+[node name="exitButton" type="VBoxContainer" parent="popupMenu/settingsMenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="popupMenu/settingsMenuContainer/exitButton"]
+layout_mode = 2
+theme_override_constants/margin_top = -11
+theme_override_constants/margin_right = -11
+
+[node name="toggleSettingMenuButton" type="Button" parent="popupMenu/settingsMenuContainer/exitButton/MarginContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_7bmyd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7bmyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lhpss")
+
+[connection signal="pressed" from="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/toggleMenuButton" to="popupMenu" method="_on_toggle_menu_button_pressed"]
+[connection signal="pressed" from="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/toggleHelpMenuButton" to="popupMenu" method="_on_toggle_help_menu_button_pressed"]
+[connection signal="pressed" from="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/bottomButtonContainer2/toggleSettingMenuButton" to="popupMenu" method="_on_toggle_setting_menu_button_pressed"]
+[connection signal="pressed" from="popupMenu/baseMenuOpenButtonContainer/toggleMenuButton" to="popupMenu" method="_on_toggle_menu_button_pressed"]
+[connection signal="pressed" from="popupMenu/helpMenuContainer/exitButton/MarginContainer/toggleHelpMenuButton" to="popupMenu" method="_on_toggle_help_menu_button_pressed"]
+[connection signal="pressed" from="popupMenu/settingsMenuContainer/exitButton/MarginContainer/toggleSettingMenuButton" to="popupMenu" method="_on_toggle_setting_menu_button_pressed"]
