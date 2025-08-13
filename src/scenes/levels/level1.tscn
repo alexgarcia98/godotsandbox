@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://bjm0c468g63nf"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_g2h75"]
-[ext_resource type="Script" path="res://src/scripts/levels/level1.gd" id="2_juu1d"]
+[ext_resource type="Script" uid="uid://c2gnxgox7qik3" path="res://src/scripts/levels/level1.gd" id="2_juu1d"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_ou3gi"]
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="2_qficu"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_juu1d"]
@@ -349,25 +349,12 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -368.0
-offset_top = -32.0
-offset_right = -80.0
-offset_bottom = 32.0
+offset_left = -360.0
+offset_top = 64.0
+offset_right = -72.0
+offset_bottom = 96.0
 theme_override_fonts/font = ExtResource("8_ql4hq")
-text = "Move left and right
-with A/D or Arrow Keys
-Jump with SPACE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
-offset_left = -176.0
-offset_top = 72.0
-offset_right = 204.0
-offset_bottom = 110.0
-theme_override_fonts/font = ExtResource("8_ql4hq")
-text = "Collect keys with the matching
-character to unlock the door"
+text = "Jump with SPACE"
 horizontal_alignment = 1
 vertical_alignment = 1
 

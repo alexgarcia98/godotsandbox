@@ -1,12 +1,12 @@
 extends Node2D
 
-@export var current_index = 1
+@export var current_index = 0
 
 @onready var timer: Timer = $Timer
 @onready var ui: Control = $UI
 
 var current = null
-var max_levels = 12
+var max_levels = 13
 var red_opened = false
 var green_opened = false
 
