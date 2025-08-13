@@ -335,10 +335,11 @@ position = Vector2(-96, 176)
 position = Vector2(136, 176)
 
 [node name="green_door" parent="objects" instance=ExtResource("4_0acge")]
-position = Vector2(432, 184)
+position = Vector2(400, 184)
 
 [node name="red_door" parent="objects" instance=ExtResource("5_xdjht")]
-position = Vector2(400, 184)
+position = Vector2(432, 184)
+flipped = true
 
 [node name="red_gate" parent="objects" instance=ExtResource("6_wg18a")]
 position = Vector2(104, 184)

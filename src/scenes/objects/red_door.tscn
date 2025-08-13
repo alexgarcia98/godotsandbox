@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://d02ixobxwh2kb"]
 
-[ext_resource type="Script" uid="uid://dk3e262wmhwcp" path="res://src/scripts/door.gd" id="1_3en0g"]
-[ext_resource type="Texture2D" uid="uid://cvbh1blhuqncm" path="res://src/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects6.png" id="1_ktrnu"]
+[ext_resource type="Script" uid="uid://dk3e262wmhwcp" path="res://src/scripts/objects/door.gd" id="1_3en0g"]
+[ext_resource type="Texture2D" uid="uid://cvbh1blhuqncm" path="res://src/assets/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects6.png" id="1_ktrnu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3en0g"]
 atlas = ExtResource("1_ktrnu")

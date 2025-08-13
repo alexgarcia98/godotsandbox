@@ -12,7 +12,7 @@ var green_opened = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Messages.connect("DoorOpened", on_door_opened)
+	Messages.connect("DoorToggled", on_door_toggled)
 	Messages.connect("EndGame", on_end_game)
 	Messages.connect("StartGame", on_start_game)
 	Messages.connect("PreviousLevel", on_previous_level)
@@ -51,12 +51,12 @@ func on_next_level() -> void:
 func on_restart() -> void:
 	load_level(current_index)
 	
-func on_door_opened(obj_name) -> void:
+func on_door_toggled(player) -> void:
 	# check sender
-	if obj_name == "red_door":
-		red_opened = true
-	elif obj_name == "green_door":
-		green_opened = true
+	if player == "red_player":
+		red_opened = not red_opened
+	elif player == "green_player":
+		green_opened = not green_opened
 	if red_opened and green_opened:
 		Messages.LevelEnded.emit()
 		timer.start()

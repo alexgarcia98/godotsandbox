@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://l0q6n5r8pof8"]
 
-[ext_resource type="Script" uid="uid://dk3e262wmhwcp" path="res://src/scripts/door.gd" id="1_2nhq0"]
-[ext_resource type="Texture2D" uid="uid://qx1tkhutd2f5" path="res://src/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects1.png" id="1_ktrnu"]
+[ext_resource type="Script" uid="uid://dk3e262wmhwcp" path="res://src/scripts/objects/door.gd" id="1_2nhq0"]
+[ext_resource type="Texture2D" uid="uid://qx1tkhutd2f5" path="res://src/assets/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects1.png" id="1_ktrnu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2nhq0"]
 atlas = ExtResource("1_ktrnu")
@@ -91,7 +91,6 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_3iqsl")
 animation = &"opening"
 autoplay = "closed"
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ktrnu")

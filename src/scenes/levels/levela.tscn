@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://chmodx48mkwb3"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_g2h75"]
-[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/player/redplayer.tscn" id="2_qficu"]
+[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="2_qficu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_g2h75")

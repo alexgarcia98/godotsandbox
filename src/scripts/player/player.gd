@@ -57,8 +57,10 @@ var jumps_remaining = max_jumps
 var airdash_remaining = max_airdash
 var air_reverse_remaining = max_air_reverse
 var interactables = []
+var door = null
 var last_valid: Vector2 = Vector2(0,0)
 var key_obtained = false
+var door_opened = false
 
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
@@ -101,18 +103,22 @@ func _on_object_collision_area_entered(area: Area2D) -> void:
 		return
 	# handle doors
 	if area.get_collision_layer_value(11) or area.get_collision_layer_value(12):
+		door = area
 		if key_obtained:
-			key_obtained = false
-			area.change_state()
+			if not door_opened:
+				door_opened = true
+				area.change_state()
 	# check if present
 	if not interactables.has(area):
 		interactables.append(area)
-	print(interactables)
+	print("entered: " + str(area))
 
 func _on_object_collision_area_exited(area: Area2D) -> void:
 	if interactables.has(area):
 		interactables.erase(area)
-	print(interactables)
+	if area.get_collision_layer_value(11) or area.get_collision_layer_value(12):
+		door = null
+	print("exited: " + str(area))
 	
 func on_key_obtained(key_name):
 	if key_name == "green_key" and name == "green_player":

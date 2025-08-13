@@ -26,8 +26,6 @@ func change_state() -> void:
 	if closed:
 		animations.play("opening")
 		closed = false
-		# send signal
-		Messages.DoorOpened.emit(name)
 	else:
 		animations.play_backwards("opening")
 		closed = true

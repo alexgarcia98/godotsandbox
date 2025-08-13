@@ -22,6 +22,8 @@ var wall_cling_state: State
 var air_pivot_state: State
 @export
 var shoot_state: State
+@export
+var enter_door_state: State
 
 func process_input(event: InputEvent) -> State:
 	super(event)
@@ -59,6 +61,10 @@ func process_input(event: InputEvent) -> State:
 		if parent.is_main:
 			if parent.ammo > 0:
 				return shoot_state
+	if Input.is_action_just_pressed('move_up'):
+		# check for nearby door
+		if parent.door != null and parent.key_obtained:
+			return enter_door_state
 	return null
 
 func process_physics(delta: float) -> State:

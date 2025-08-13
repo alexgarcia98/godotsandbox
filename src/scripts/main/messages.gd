@@ -1,7 +1,7 @@
 extends Node
 
 signal KeyObtained(emitter)
-signal DoorOpened(emitter)
+signal DoorToggled(emitter)
 signal PlayerDied(emitter)
 signal ButtonRemapped(action, key)
 signal EndGame()
