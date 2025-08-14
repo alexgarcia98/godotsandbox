@@ -1,0 +1,328 @@
+[gd_scene load_steps=5 format=3 uid="uid://6ebxbmplor7m"]
+
+[ext_resource type="Script" uid="uid://c6njk4ropkst5" path="res://src/scripts/ui/worldselect.gd" id="1_c7q51"]
+[ext_resource type="FontFile" uid="uid://qo7snklcg7f2" path="res://src/assets/fonts/PixelOperator8-Bold.ttf" id="2_m8a0i"]
+[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="3_xgsnp"]
+[ext_resource type="Script" uid="uid://pd34f6c0fhp6" path="res://src/scripts/ui/world_select_button.gd" id="4_k67lg"]
+
+[node name="WorldSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7q51")
+
+[node name="WorldSelect" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(928, 480)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="WorldSelect"]
+layout_mode = 2
+color = Color(0, 0, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WorldSelect"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="WorldSelect/VBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="WorldSelect/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+color = Color(0.435294, 0.172549, 0.466667, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SelectWorld" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m8a0i")
+theme_override_font_sizes/font_size = 32
+text = "World Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 16
+text = "Return to Title"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="background" type="ColorRect" parent="WorldSelect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.0784314, 0.596078, 0.862745, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="World1" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World1" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World1"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "Getting 
+
+Started"
+autowrap_mode = 3
+script = ExtResource("4_k67lg")
+level = 1
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World2" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World2" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World2"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "Spo-cha"
+script = ExtResource("4_k67lg")
+level = 2
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World3" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World3" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World3"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 3
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World4" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World4" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World4"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 4
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="World1" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World5" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World1"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 5
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World2" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World6" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World2"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 6
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World3" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World7" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World3"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 7
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World4" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World8" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World4"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 8
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="World9" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World9" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World9"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 9
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World2" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World10" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World2"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 10
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World3" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World11" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World3"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 11
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[node name="World4" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="World12" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World4"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_xgsnp")
+theme_override_font_sizes/font_size = 24
+text = "WIP"
+script = ExtResource("4_k67lg")
+level = 12
+metadata/_custom_type_script = "uid://pd34f6c0fhp6"
+
+[connection signal="pressed" from="WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/Title" to="." method="_on_title_pressed"]

@@ -5,7 +5,6 @@ signal DoorToggled(emitter)
 signal PlayerDied(emitter)
 signal ButtonRemapped(action, key)
 signal EndGame()
-signal StartGame()
 signal ShotFired(emitter)
 
 signal LevelEnded()
@@ -17,5 +16,8 @@ signal NextLevel()
 signal Restart()
 signal ResetTimes()
 signal MainMenu()
+signal WorldSelect()
+signal LoadLevel()
+signal LoadWorld()
 
 var rebinds = {}

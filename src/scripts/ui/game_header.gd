@@ -159,13 +159,15 @@ func _process(delta: float) -> void:
 func _on_previous_level_pressed() -> void:
 	previous_level.release_focus()
 	if not (level_ended):
-		Messages.PreviousLevel.emit()
+		if current_index > 0:
+			Messages.PreviousLevel.emit()
 
 
 func _on_next_level_pressed() -> void:
 	next_level.release_focus()
 	if not (level_ended):
-		Messages.NextLevel.emit()
+		if current_index < main_scene.levels_unlocked:
+			Messages.NextLevel.emit()
 
 
 func _on_restart_pressed() -> void:
@@ -242,6 +244,14 @@ func on_level_started(index):
 	red_ammo.text = "Red Ammo: %s" % red_ammo_count
 	green_ammo.text = "Green Ammo: %s" % green_ammo_count
 	level_start_time = Time.get_ticks_msec()
+	if current_index == 0:
+		previous_level.disabled = true
+	else:
+		previous_level.disabled = false
+	if (current_index + 1) < main_scene.levels_unlocked:
+		next_level.disabled = false
+	else:
+		next_level.disabled = true
 	
 func on_level_ended():
 	level_ended = true

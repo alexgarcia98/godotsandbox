@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
-	Messages.emit_signal("StartGame")
+	Messages.emit_signal("WorldSelect")
 
 
 func _on_exit_pressed() -> void:
