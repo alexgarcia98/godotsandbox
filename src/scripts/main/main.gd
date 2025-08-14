@@ -14,6 +14,8 @@ var levels_unlocked: int = 1
 var filepath = "user://levels_unlocked.dat"
 
 var new_level
+var timer_running = false
+var reset_check = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -80,6 +82,7 @@ func on_next_level() -> void:
 
 func on_restart() -> void:
 	new_level = load("src/scenes/levels/level" + str(current_index) + ".tscn")
+	reset_check = true
 	load_level(current_index)
 	
 func on_door_toggled(player) -> void:
@@ -90,12 +93,15 @@ func on_door_toggled(player) -> void:
 		green_opened = not green_opened
 	if red_opened and green_opened:
 		Messages.LevelEnded.emit()
+		timer_running = true
+		reset_check = false
 		timer.start()
-		current_index = (current_index + 1) % (max_levels + 1)
-		new_level = load("src/scenes/levels/level" + str(current_index) + ".tscn")
 
 func _on_timer_timeout():
-	load_level(current_index)
+	if not reset_check:
+		current_index = (current_index + 1) % (max_levels + 1)
+		new_level = load("src/scenes/levels/level" + str(current_index) + ".tscn")
+		load_level(current_index)
 
 func on_previous_level() -> void:
 	current_index = (current_index - 1) % (max_levels + 1)

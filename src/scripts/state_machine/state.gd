@@ -19,6 +19,9 @@ func exit() -> void:
 	pass
 
 func process_input(event: InputEvent) -> State:
+	if Input.is_action_just_pressed('restart'):
+		if parent.name == "red_player":
+			Messages.Restart.emit()
 	if Input.is_action_just_pressed('switch'):
 		if parent.name == "red_player":
 			parent.is_main = not parent.is_main

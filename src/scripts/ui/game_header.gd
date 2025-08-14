@@ -172,8 +172,7 @@ func _on_next_level_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	restart.release_focus()
-	if not (level_ended):
-		Messages.Restart.emit()
+	Messages.Restart.emit()
 
 
 func _on_reset_times_pressed() -> void:
