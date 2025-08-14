@@ -6,7 +6,7 @@ extends Node2D
 @onready var ui: Control = $UI
 
 var current = null
-var max_levels = 13
+var max_levels = 23
 var red_opened = false
 var green_opened = false
 
@@ -99,8 +99,11 @@ func on_door_toggled(player) -> void:
 
 func _on_timer_timeout():
 	if not reset_check:
+		print("current index: " + str(current_index))
+		print("max levels: " + str(max_levels))
 		current_index = (current_index + 1) % (max_levels + 1)
 		new_level = load("src/scenes/levels/level" + str(current_index) + ".tscn")
+		print("loading level "  + str(current_index))
 		load_level(current_index)
 
 func on_previous_level() -> void:
@@ -127,6 +130,7 @@ func on_load_level(index):
 	add_child(current)
 	red_opened = false
 	green_opened = false
+	current_index = index
 	Messages.LevelStarted.emit(index)
 	
 func on_load_world(index):

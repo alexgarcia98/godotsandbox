@@ -29,6 +29,7 @@ func enter() -> void:
 	else:
 		projectile.scale.x = 1
 		projectile.position.x += 16
+	projectile.position.y -= 4
 	objects1.add_child(projectile)
 	parent.ammo -= 1
 	Messages.ShotFired.emit(parent.name)

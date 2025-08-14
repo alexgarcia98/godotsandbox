@@ -49,7 +49,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qske5")
 theme_override_font_sizes/font_size = 32
-text = "WIP"
+text = "Spo-cha"
 horizontal_alignment = 1
 vertical_alignment = 1
 
