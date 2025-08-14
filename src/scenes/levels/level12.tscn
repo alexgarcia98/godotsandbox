@@ -1,17 +1,17 @@
-[gd_scene load_steps=15 format=4 uid="uid://fm08i2lmti10"]
+[gd_scene load_steps=15 format=4 uid="uid://cpcj1pvw5hlls"]
 
-[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_38bt8"]
-[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_umfhc"]
-[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_a2t45"]
-[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="4_ydu0s"]
-[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/scenes/objects/red_door.tscn" id="5_s23to"]
-[ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="6_7sw03"]
-[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="6_xmfhg"]
-[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="7_4f0yh"]
-[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="9_asgl7"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_ophwr"]
+[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_k8yle"]
+[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_6s4x4"]
+[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="4_gmxkp"]
+[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/scenes/objects/red_door.tscn" id="5_dlnve"]
+[ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="6_xp0eb"]
+[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="7_is0s6"]
+[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="8_tvcfm"]
+[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="9_huojb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
-texture = ExtResource("1_38bt8")
+texture = ExtResource("1_ophwr")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -180,7 +180,7 @@ physics_layer_3/collision_layer = 768
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6n5v"]
-texture = ExtResource("1_38bt8")
+texture = ExtResource("1_ophwr")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -334,21 +334,21 @@ collision_enabled = false
 
 [node name="objects" type="Node" parent="."]
 
-[node name="green_key" parent="objects" instance=ExtResource("2_umfhc")]
+[node name="green_key" parent="objects" instance=ExtResource("2_k8yle")]
 position = Vector2(-232, 144)
 
-[node name="red_key" parent="objects" instance=ExtResource("3_a2t45")]
+[node name="red_key" parent="objects" instance=ExtResource("3_6s4x4")]
 position = Vector2(104, 144)
 
-[node name="green_door" parent="objects" instance=ExtResource("4_ydu0s")]
+[node name="green_door" parent="objects" instance=ExtResource("4_gmxkp")]
 position = Vector2(320, 88)
 flipped = true
 
-[node name="red_door" parent="objects" instance=ExtResource("5_s23to")]
+[node name="red_door" parent="objects" instance=ExtResource("5_dlnve")]
 position = Vector2(368, 72)
 flipped = true
 
-[node name="kill_both" parent="objects" instance=ExtResource("6_7sw03")]
+[node name="kill_both" parent="objects" instance=ExtResource("6_xp0eb")]
 position = Vector2(-120, 120)
 collision_layer = 768
 collision_mask = 6
@@ -357,10 +357,10 @@ collision_mask = 6
 position = Vector2(56, 72)
 shape = SubResource("RectangleShape2D_gfcy3")
 
-[node name="red_player" parent="." instance=ExtResource("6_xmfhg")]
+[node name="red_player" parent="." instance=ExtResource("7_is0s6")]
 position = Vector2(-400, 160)
 
-[node name="green_player" parent="." instance=ExtResource("7_4f0yh")]
+[node name="green_player" parent="." instance=ExtResource("8_tvcfm")]
 position = Vector2(-424, 160)
 is_main = false
 
@@ -371,7 +371,7 @@ offset_left = -224.0
 offset_top = 144.0
 offset_right = 96.0
 offset_bottom = 177.0
-theme_override_fonts/font = ExtResource("9_asgl7")
+theme_override_fonts/font = ExtResource("9_huojb")
 text = "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8"
 horizontal_alignment = 1
 vertical_alignment = 1

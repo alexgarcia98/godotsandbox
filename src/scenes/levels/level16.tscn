@@ -1,16 +1,16 @@
-[gd_scene load_steps=14 format=4 uid="uid://28oiepr6ql81"]
+[gd_scene load_steps=14 format=4 uid="uid://b0w1bsvj2sa6r"]
 
-[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_j5d0m"]
-[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_ygq1b"]
-[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_mkiiy"]
-[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="4_tducg"]
-[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/scenes/objects/red_door.tscn" id="5_3q0e2"]
-[ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="6_nsc8g"]
-[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="7_t3sge"]
-[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="8_d23ce"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_82ubu"]
+[ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="2_m8osw"]
+[ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="3_wfhfo"]
+[ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="4_dok4x"]
+[ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="5_mvad1"]
+[ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/scenes/objects/red_door.tscn" id="6_duly2"]
+[ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="7_b62qp"]
+[ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="8_ai17g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
-texture = ExtResource("1_j5d0m")
+texture = ExtResource("1_82ubu")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -215,7 +215,7 @@ physics_layer_3/collision_layer = 768
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6n5v"]
-texture = ExtResource("1_j5d0m")
+texture = ExtResource("1_82ubu")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -369,7 +369,7 @@ collision_enabled = false
 
 [node name="objects" type="Node" parent="."]
 
-[node name="kill_both2" parent="objects" instance=ExtResource("6_nsc8g")]
+[node name="kill_both2" parent="objects" instance=ExtResource("2_m8osw")]
 position = Vector2(-40, 56)
 collision_layer = 768
 collision_mask = 6
@@ -378,7 +378,7 @@ collision_mask = 6
 position = Vector2(0, -80)
 shape = SubResource("RectangleShape2D_0tyfu")
 
-[node name="kill_both" parent="objects" instance=ExtResource("6_nsc8g")]
+[node name="kill_both" parent="objects" instance=ExtResource("2_m8osw")]
 position = Vector2(-120, 120)
 collision_layer = 768
 collision_mask = 6
@@ -387,23 +387,23 @@ collision_mask = 6
 position = Vector2(0, -76)
 shape = SubResource("RectangleShape2D_0tyfu")
 
-[node name="green_key" parent="objects" instance=ExtResource("2_ygq1b")]
+[node name="green_key" parent="objects" instance=ExtResource("3_wfhfo")]
 position = Vector2(-48, 160)
 
-[node name="red_key" parent="objects" instance=ExtResource("3_mkiiy")]
+[node name="red_key" parent="objects" instance=ExtResource("4_dok4x")]
 position = Vector2(-160, 40)
 
-[node name="green_door" parent="objects" instance=ExtResource("4_tducg")]
+[node name="green_door" parent="objects" instance=ExtResource("5_mvad1")]
 position = Vector2(368, 72)
 flipped = true
 
-[node name="red_door" parent="objects" instance=ExtResource("5_3q0e2")]
+[node name="red_door" parent="objects" instance=ExtResource("6_duly2")]
 position = Vector2(-432, 200)
 
-[node name="red_player" parent="." instance=ExtResource("7_t3sge")]
+[node name="red_player" parent="." instance=ExtResource("7_b62qp")]
 position = Vector2(-368, 208)
 
-[node name="green_player" parent="." instance=ExtResource("8_d23ce")]
+[node name="green_player" parent="." instance=ExtResource("8_ai17g")]
 position = Vector2(-392, 208)
 is_main = false
 
