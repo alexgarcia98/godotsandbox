@@ -82,6 +82,7 @@ func _ready() -> void:
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
 	Messages.connect("ButtonRemapped", on_button_remapped)
+	Messages.connect("ResetTimes", on_reset_times)
 	main_scene = get_parent()
 	max_levels = main_scene.max_levels
 	
@@ -174,24 +175,17 @@ func _on_restart_pressed() -> void:
 	restart.release_focus()
 	Messages.Restart.emit()
 
-
 func _on_reset_times_pressed() -> void:
 	reset_times.release_focus()
 	if not (level_ended):
-		# create new save data
-		var file = FileAccess.open(filepath, FileAccess.WRITE)
-		var times = {}
-		for i in range(max_levels + 1):
-			var level_name = "level" + str(i)
-			times[level_name] = 5999999
-		file.store_var(times)
-		file.close()
-		saved_times = times
+		saved_times["level" + str(current_index)] = 5999999
+		write_file = FileAccess.open(filepath, FileAccess.WRITE)
+		write_file.store_var(saved_times)
+		write_file.close()
 		var ms = saved_times["level" + str(current_index)]
 		var sec = floor(ms / 1000)
 		var minute = floor(sec / 60)
 		personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
-
 
 func _on_main_menu_pressed() -> void:
 	main_menu.release_focus()
@@ -275,3 +269,18 @@ func on_button_remapped(action, key):
 	write_file.store_var(Messages.rebinds)
 	write_file.close()
 	print("storing remap of " + action + " to " + str(key))
+
+func on_reset_times() -> void:
+	# create new save data
+	var file = FileAccess.open(filepath, FileAccess.WRITE)
+	var times = {}
+	for i in range(max_levels + 1):
+		var level_name = "level" + str(i)
+		times[level_name] = 5999999
+	file.store_var(times)
+	file.close()
+	saved_times = times
+	var ms = saved_times["level" + str(current_index)]
+	var sec = floor(ms / 1000)
+	var minute = floor(sec / 60)
+	personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]

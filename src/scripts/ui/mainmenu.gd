@@ -1,7 +1,8 @@
 extends TileMapLayer
 
-@onready var play: Button = $Play
-@onready var exit: Button = $Exit
+@onready var play: Button = $UI/MarginContainer/HBoxContainer/Play
+@onready var reset_times: Button = $UI/MarginContainer/HBoxContainer/ResetTimes
+@onready var exit: Button = $UI/MarginContainer/HBoxContainer/Exit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,3 +20,7 @@ func _on_play_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	Messages.emit_signal("EndGame")
+
+
+func _on_reset_times_pressed() -> void:
+	Messages.emit_signal("ResetTimes")

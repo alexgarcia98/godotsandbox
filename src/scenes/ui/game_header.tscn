@@ -127,7 +127,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
-text = "Reset Times"
+text = "Clear Best"
 
 [node name="Times" type="VBoxContainer" parent="FullUIContainer/UIMargins/Elements"]
 layout_mode = 2
