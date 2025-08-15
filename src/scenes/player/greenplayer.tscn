@@ -726,11 +726,12 @@ jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 animation_name = "interact"
 
-[node name="ledge" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state", "fall_state")]
+[node name="ledge" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state", "fall_state", "wall_cling_state")]
 script = ExtResource("70_0ciyq")
 idle_state = NodePath("../idle")
 wall_jump_state = NodePath("../wall_jump")
 fall_state = NodePath("../fall")
+wall_cling_state = NodePath("../wall_cling")
 animation_name = "ledge"
 
 [node name="air_pivot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]

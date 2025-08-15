@@ -6,6 +6,8 @@ var idle_state: State
 var wall_jump_state: State
 @export
 var fall_state: State
+@export
+var wall_cling_state: State
 
 func enter() -> void:
 	super()
@@ -36,6 +38,25 @@ func process_physics(delta: float) -> State:
 		animations.flip_h = true
 	else:
 		animations.flip_h = false
+
+	var has_ceiling = parent.ceiling_up_1.is_colliding() or parent.ceiling_up_2.is_colliding() or parent.gate_up_1.is_colliding() or parent.gate_up_2.is_colliding()
+	if norm.x > 0:
+		if parent.air_left.is_colliding():
+			print("1")
+			parent.velocity.y = 50
+			parent.velocity.x = 0
+			parent.velocity = gate_check(parent.velocity)
+			parent.move_and_slide()
+			return wall_cling_state
+	else:
+		if parent.air_right.is_colliding():
+			print("2")
+			parent.velocity.y = 50
+			parent.velocity.x = 0
+			parent.velocity = gate_check(parent.velocity)
+			parent.move_and_slide()
+			return wall_cling_state
+		
 		
 	parent.velocity = gate_check(parent.velocity)
 	parent.move_and_slide()

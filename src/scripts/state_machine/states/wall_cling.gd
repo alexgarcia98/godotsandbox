@@ -34,15 +34,13 @@ func process_physics(delta: float) -> State:
 	
 	# check current y velocity
 	if parent.velocity.y <= 49:
+		print("velocity: " + str(parent.velocity.y))
+		var has_ceiling = parent.ceiling_up_1.is_colliding() or parent.ceiling_up_2.is_colliding() or parent.gate_up_1.is_colliding() or parent.gate_up_2.is_colliding()
 		if norm.x > 0:
-			if not parent.air_left.is_colliding():
-				#print(parent.name + ": wall_left: " + str(parent.wall_left.is_colliding()))
-				#print(parent.name + ": air_left: " + str(parent.air_left.is_colliding()))
+			if not parent.air_left.is_colliding() and not has_ceiling:
 				return ledge_state
 		else:
-			if not parent.air_right.is_colliding():
-				#print(parent.name + ": wall_right: " + str(parent.wall_right.is_colliding()))
-				#print(parent.name + ": air_right: " + str(parent.air_right.is_colliding()))
+			if not parent.air_right.is_colliding() and not has_ceiling:
 				return ledge_state
 
 	parent.velocity.y = 50
