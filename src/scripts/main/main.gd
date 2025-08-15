@@ -6,7 +6,7 @@ extends Node2D
 @onready var ui: Control = $UI
 
 var current = null
-var max_levels = 23
+var max_levels
 var red_opened = false
 var green_opened = false
 
@@ -15,50 +15,7 @@ var filepath = "user://levels_unlocked.dat"
 
 var new_level
 var timer_running = false
-var reset_check = false
-
-var worldNames = [
-	"Tutorial",
-	"Spo-cha",
-	"WIP",
-	"WIP",
-	"WIP",
-	"WIP",
-	"WIP",
-	"WIP",
-	"WIP",
-	"WIP",
-	"WIP",
-	"WIP"
-]
-
-var levelNames = [
-	"Move",
-	"Jump",
-	"Dash",
-	"Walls",
-	"Buttons",
-	"Switch",
-	"Levers",
-	"Shooting",
-	"Freeze",
-	"Danger",
-	"Throwing",
-	"Frozen Platform",
-	"Long Jump",
-	"High Jump",
-	"Hurdles",
-	"Shotput",
-	"Pole Vault",
-	"100 Meter Dash",
-	"Archery",
-	"Basketball",
-	"Baseball",
-	"Golf",
-	"Football",
-	"Soccer"
-]
-	
+var reset_check = false	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,6 +28,10 @@ func _ready() -> void:
 	Messages.connect("WorldSelect", on_world_select)
 	Messages.connect("LoadLevel", on_load_level)
 	Messages.connect("LoadWorld", on_load_world)
+	Messages.connect("UnlockLevels", on_unlock_levels)
+	Messages.connect("LockLevels", on_lock_levels)
+	
+	max_levels = Messages.max_levels
 	
 	var file = FileAccess.open(filepath, FileAccess.READ)
 	if file == null:
@@ -183,6 +144,18 @@ func on_load_world(index):
 	new_level = load("src/scenes/levelSelect/levels" + str(index) + ".tscn")
 	current = new_level.instantiate()
 	add_child(current)
+	
+func on_unlock_levels():
+	levels_unlocked = max_levels + 1
+	var write_file = FileAccess.open(filepath, FileAccess.WRITE)
+	write_file.store_var(levels_unlocked)
+	write_file.close()
+
+func on_lock_levels():
+	levels_unlocked = 1
+	var write_file = FileAccess.open(filepath, FileAccess.WRITE)
+	write_file.store_var(levels_unlocked)
+	write_file.close()
 	
 func on_end_game():
 	get_tree().quit()

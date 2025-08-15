@@ -1,0 +1,53 @@
+extends MarginContainer
+
+class_name LevelRecordContainer
+@export
+var level_number: int
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	size_flags_horizontal = Control.SIZE_FILL
+	size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var box : HBoxContainer = HBoxContainer.new()
+	var sep : VSeparator = VSeparator.new()
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.size_flags_horizontal = Control.SIZE_FILL
+	box.size_flags_vertical = Control.SIZE_FILL
+	var left : Label = Label.new()
+	var font = preload("res://src/assets/fonts/PixelOperator8.ttf")
+	left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	left.size_flags_vertical = Control.SIZE_FILL
+	left.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	left.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	left.add_theme_font_override("font", font)
+	left.add_theme_font_size_override("font_size", 16)
+	var right : Label = Label.new()
+	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	right.size_flags_vertical = Control.SIZE_FILL
+	right.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	right.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	right.add_theme_font_override("font", font)
+	right.add_theme_font_size_override("font_size", 16)
+	var worldName = Messages.worldNames[level_number / 12]
+	var levelName
+	if level_number < Messages.levelNames.size():
+		levelName = Messages.levelNames[level_number]
+	else:
+		levelName = str((level_number % 12) + 1)
+	left.text = "\n%s: %s\n" % [worldName, levelName]
+	
+	var ms = Messages.saved_times[level_number]
+	if ms == 5999999:
+		right.text = "\nNo Time Set\n"
+	else:
+		var sec = floor(ms / 1000)
+		var minute = floor(sec / 60)
+		right.text = "\n%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
+	box.add_child(left)
+	box.add_child(sep)
+	box.add_child(right)
+	add_child(box)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

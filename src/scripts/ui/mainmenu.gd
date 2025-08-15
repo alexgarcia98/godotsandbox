@@ -1,26 +1,123 @@
 extends TileMapLayer
 
 @onready var play: Button = $UI/MarginContainer/HBoxContainer/Play
-@onready var reset_times: Button = $UI/MarginContainer/HBoxContainer/ResetTimes
 @onready var exit: Button = $UI/MarginContainer/HBoxContainer/Exit
+@onready var records: Button = $UI/MarginContainer/HBoxContainer/Records
+@onready var debug: Button = $UI/MarginContainer/HBoxContainer/Debug
+@onready var dimmer: ColorRect = $Dimmer
+@onready var debug_window: Window = $DebugWindow
+@onready var records_window: Window = $RecordsWindow
+@onready var help_text: Label = $DebugWindow/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
+@onready var reset_records: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/ResetRecords
+@onready var lock_levels: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/LockLevels
+@onready var reset_controls: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls
+@onready var unlock_levels: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/UnlockLevels
+@onready var level_records: VBoxContainer = $RecordsWindow/MarginContainer/VBoxContainer/PanelContainer2/ScrollContainer/LevelRecords
+@onready var total_high_score: Label = $RecordsWindow/MarginContainer/VBoxContainer/PanelContainer/TotalHighScore
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	dimmer.visible = false
+	dimmer.self_modulate.a = 0.5
+	debug_window.visible = false
+	records_window.visible = false
+	help_text.text = ""
+	populate_records()
 
+func populate_records():
+	var mainScene = get_parent()
+	for i in range(mainScene.max_levels + 1):
+		var level_record : LevelRecordContainer = LevelRecordContainer.new()
+		level_record.level_number = i
+		level_records.add_child(level_record)
+		var sep : HSeparator = HSeparator.new()
+		level_records.add_child(sep)
+	var total_time : int = 0
+	var all_cleared : bool = true
+	for level in Messages.saved_times:
+		if level == 5999999:
+			all_cleared = false
+			break
+		total_time += level
+	if all_cleared:
+		var sec = floor(total_time / 1000)
+		var minute = floor(sec / 60)
+		var hour = floor(minute / 60)
+		total_high_score.text = "\nTotal High Score: %02d:%02d:%02d.%03d\n" % [
+			hour, (minute % 60), (sec % 60), (total_time % 1000)
+		]
+	else:
+		total_high_score.text = "\nClear all available levels to obtain a total high score!\n"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_play_pressed() -> void:
 	Messages.emit_signal("WorldSelect")
-
 
 func _on_exit_pressed() -> void:
 	Messages.emit_signal("EndGame")
 
-
 func _on_reset_times_pressed() -> void:
 	Messages.emit_signal("ResetTimes")
+
+func _on_records_pressed() -> void:
+	dimmer.visible = true
+	records_window.visible = true
+
+func _on_debug_pressed() -> void:
+	dimmer.visible = true
+	debug_window.visible = true
+
+func _on_debug_window_close_requested() -> void:
+	dimmer.visible = false
+	debug_window.visible = false
+	
+func _on_records_window_close_requested() -> void:
+	dimmer.visible = false
+	records_window.visible = false
+
+func _on_unlock_levels_pressed() -> void:
+	Messages.emit_signal("UnlockLevels")
+	help_text.text = "All levels are now available to play"
+	unlock_levels.release_focus()
+
+func _on_reset_records_pressed() -> void:
+	Messages.emit_signal("ResetTimes")
+	help_text.text = "All best times have been cleared"
+	reset_records.release_focus()
+	
+func _on_reset_controls_pressed() -> void:
+	Messages.emit_signal("ResetControls")
+	help_text.text = "Controls set to default control scheme"
+	reset_controls.release_focus()
+
+func _on_lock_levels_pressed() -> void:
+	Messages.emit_signal("LockLevels")
+	help_text.text = "Level unlocks have been reset"
+	lock_levels.release_focus()
+
+func _on_unlock_levels_mouse_entered() -> void:
+	help_text.text = "Make all levels available to play"
+
+func _on_unlock_levels_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_reset_records_mouse_entered() -> void:
+	help_text.text = "Clear best times for ALL levels"
+
+func _on_reset_records_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_lock_levels_mouse_entered() -> void:
+	help_text.text = "Return level unlocks to first level only\n(level records are preserved)"
+
+func _on_lock_levels_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_reset_controls_mouse_entered() -> void:
+	help_text.text = "Revert controls to default control scheme"
+
+func _on_reset_controls_mouse_exited() -> void:
+	help_text.text = ""

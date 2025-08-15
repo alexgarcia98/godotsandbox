@@ -71,10 +71,8 @@ func process_input(event: InputEvent) -> State:
 			if parent.ammo > 0:
 				return shoot_state
 	if Input.is_action_just_pressed('move_up'):
-		print(parent.name + ": door present: " + str(parent.door != null) + ", key obtained: " + str(parent.key_obtained))
 		# check for nearby door
 		if parent.door != null and parent.key_obtained:
-			print(parent.name + ": entering enter door state")
 			return enter_door_state
 	return null
 

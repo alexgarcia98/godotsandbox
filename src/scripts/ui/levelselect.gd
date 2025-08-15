@@ -48,11 +48,11 @@ func _ready() -> void:
 			levelList[i].disabled = true
 			
 	for level in levelList:
-		if level.level < mainNode.levelNames.size():
-			level.text = mainNode.levelNames[level.level]
+		if level.level < Messages.levelNames.size():
+			level.text = Messages.levelNames[level.level]
 	
 	var worldIndex = level_1.level / 12
-	select_level.text = mainNode.worldNames[worldIndex]
+	select_level.text = Messages.worldNames[worldIndex]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

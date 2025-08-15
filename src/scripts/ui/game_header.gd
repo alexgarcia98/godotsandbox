@@ -51,23 +51,22 @@ var max_levels
 
 var filepath = "user://save_data.dat"
 var filepath2 = "user://controls.dat"
-var saved_times = {}
 var write_file
 
-var action_items = [
-	"move_left", 
-	"move_right",
-	"move_up",
-	"move_down",
-	"jump",
-	"dash",
-	"action",
-	"freeze",
-	"throw",
-	"shoot",
-	"switch",
-	"pivot"
-]
+var action_items_dict = {
+	"move_left": 65, 
+	"move_right": 68,
+	"move_up": 87,
+	"move_down": 83,
+	"jump": 32,
+	"dash": 4194325,
+	"action": 74,
+	"freeze": 75,
+	"throw": 76,
+	"shoot": 85,
+	"switch": 73,
+	"pivot": 79
+}
 
 var button_dict = {
 	"move_left": "Left", 
@@ -84,6 +83,8 @@ var button_dict = {
 	"shoot": "Shoot"
 }
 
+var action_dict = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Messages.connect("PlayerDied", on_player_died)
@@ -92,12 +93,13 @@ func _ready() -> void:
 	Messages.connect("LevelEnded", on_level_ended)
 	Messages.connect("ButtonRemapped", on_button_remapped)
 	Messages.connect("ResetTimes", on_reset_times)
+	Messages.connect("ResetControls", on_reset_controls)
 	main_scene = get_parent()
 	max_levels = main_scene.max_levels
 	
 	help_text.text = ""
 	
-	var action_dict = {
+	action_dict = {
 		"move_left": move_left, 
 		"move_right": move_right,
 		"move_up": move_up,
@@ -112,25 +114,6 @@ func _ready() -> void:
 		"shoot": shoot
 	}
 	
-	# check if save data exists
-	var file = FileAccess.open(filepath, FileAccess.READ)
-	if file == null:
-		var err = FileAccess.get_open_error()
-		if err == ERR_FILE_NOT_FOUND:
-			# create new save data
-			file = FileAccess.open(filepath, FileAccess.WRITE)
-			var times = {}
-			for i in range(max_levels + 1):
-				var levelName = "level" + str(i)
-				times[levelName] = 5999999
-			file.store_var(times)
-			file.close()
-			saved_times = times
-	else:
-		# load saved times
-		saved_times = file.get_var()
-		file.close()
-		
 	# check if input remaps exist
 	var file2 = FileAccess.open(filepath2, FileAccess.READ)
 	if file2 == null:
@@ -138,7 +121,7 @@ func _ready() -> void:
 		if err == ERR_FILE_NOT_FOUND:
 			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
 			var control_scheme = {}
-			for a in action_items:
+			for a in action_items_dict.keys():
 				control_scheme[a] = InputMap.action_get_events(a)[0].physical_keycode
 			file2.store_var(control_scheme)
 			file2.close()
@@ -164,7 +147,7 @@ func _process(delta: float) -> void:
 		level_time_ms = current_time - level_start_time
 		var sec = floor(level_time_ms / 1000)
 		var minute = floor(sec / 60)
-		level_time.text = "%02d:%02d:%03d" % [minute, (sec % 60), (level_time_ms % 1000)]
+		level_time.text = "%02d:%02d.%03d" % [minute, (sec % 60), (level_time_ms % 1000)]
 
 # button press handlers
 
@@ -187,14 +170,17 @@ func _on_restart_pressed() -> void:
 func _on_reset_times_pressed() -> void:
 	reset_times.release_focus()
 	if not (level_ended):
-		saved_times["level" + str(current_index)] = 5999999
+		Messages.saved_times[current_index] = 5999999
 		write_file = FileAccess.open(filepath, FileAccess.WRITE)
-		write_file.store_var(saved_times)
+		write_file.store_var(Messages.saved_times)
 		write_file.close()
-		var ms = saved_times["level" + str(current_index)]
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
+		var ms = Messages.saved_times[current_index]
+		if ms == 5999999:
+			personal_best.text = "Best: No Time Set"
+		else:
+			var sec = floor(ms / 1000)
+			var minute = floor(sec / 60)
+			personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 
 func _on_controls_pressed() -> void:
 	help.show()
@@ -283,24 +269,22 @@ func on_level_started(index):
 	current_index = index
 	level_deaths = 0
 	deaths.text = "Deaths: " + str(level_deaths)
-	var worldName = main_scene.worldNames[current_index / 12]
+	var worldName = Messages.worldNames[current_index / 12]
 	var levelName
-	if current_index < main_scene.levelNames.size():
-		levelName = main_scene.levelNames[current_index]
+	if current_index < Messages.levelNames.size():
+		levelName = Messages.levelNames[current_index]
 	else:
 		levelName = str((current_index % 12) + 1)
 		
 	level_name.text = "%s: %s" % [worldName, levelName]
 	
-	if not saved_times.has("level" + str(current_index)):
-		saved_times["level" + str(current_index)] = 5999999
-		var file = FileAccess.open(filepath, FileAccess.WRITE)
-		file.store_var(saved_times)
-		file.close()
-	var ms = saved_times["level" + str(current_index)]
-	var sec = floor(ms / 1000)
-	var minute = floor(sec / 60)
-	personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
+	var ms = Messages.saved_times[current_index]
+	if ms == 5999999:
+		personal_best.text = "Best: No Time Set"
+	else:
+		var sec = floor(ms / 1000)
+		var minute = floor(sec / 60)
+		personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 	red_ammo_count = main_scene.current.get_node("red_player").ammo
 	green_ammo_count = main_scene.current.get_node("green_player").ammo
 	red_ammo.text = "Red Ammo: %s" % red_ammo_count
@@ -321,16 +305,16 @@ func on_level_ended():
 	level_time_ms = current_time - level_start_time
 	var sec = floor(level_time_ms / 1000)
 	var minute = floor(sec / 60)
-	level_time.text = "%02d:%02d:%03d" % [minute, (sec % 60), (level_time_ms % 1000)]
-	if level_time_ms < saved_times["level" + str(current_index)]:
-		saved_times["level" + str(current_index)] = level_time_ms
+	level_time.text = "%02d:%02d.%03d" % [minute, (sec % 60), (level_time_ms % 1000)]
+	if level_time_ms < Messages.saved_times[current_index]:
+		Messages.saved_times[current_index] = level_time_ms
 		write_file = FileAccess.open(filepath, FileAccess.WRITE)
-		write_file.store_var(saved_times)
+		write_file.store_var(Messages.saved_times)
 		write_file.close()
-		var ms = saved_times["level" + str(current_index)]
+		var ms = Messages.saved_times[current_index]
 		sec = floor(ms / 1000)
 		minute = floor(sec / 60)
-		personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
+		personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 
 func on_button_remapped(a, key):
 	Messages.rebinds[a] = key
@@ -342,14 +326,36 @@ func on_button_remapped(a, key):
 func on_reset_times() -> void:
 	# create new save data
 	var file = FileAccess.open(filepath, FileAccess.WRITE)
-	var times = {}
+	var times = []
 	for i in range(max_levels + 1):
-		var level_key = "level" + str(i)
-		times[level_key] = 5999999
+		times[i] = 5999999
 	file.store_var(times)
 	file.close()
-	saved_times = times
-	var ms = saved_times["level" + str(current_index)]
-	var sec = floor(ms / 1000)
-	var minute = floor(sec / 60)
-	personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
+	Messages.saved_times = times
+	var ms = Messages.saved_times[current_index]
+	if ms == 5999999:
+		personal_best.text = "Best: No Time Set"
+	else:
+		var sec = floor(ms / 1000)
+		var minute = floor(sec / 60)
+		personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+
+func on_reset_controls():
+	var file2 = FileAccess.open(filepath2, FileAccess.WRITE)
+	var control_scheme = {}
+	var event
+	for a in action_items_dict.keys():
+		control_scheme[a] = action_items_dict[a]
+		event = InputEventKey.new()
+		event.physical_keycode = action_items_dict[a]
+		InputMap.action_erase_events(a)
+		InputMap.action_add_event(a, event)
+		print("initializing remap of " + a + " to " + str(Messages.rebinds[a]))
+		var key_name = event.as_text()
+		if key_name.ends_with(" (Physical)"):
+			key_name = "%s" % key_name.substr(0, (key_name.length() - 11))
+		action_dict[a].text = key_name
+	
+	file2.store_var(control_scheme)
+	file2.close()
+	Messages.rebinds = control_scheme
