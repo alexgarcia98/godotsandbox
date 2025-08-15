@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://bgmq4knhxggl2"]
+[gd_scene load_steps=93 format=3 uid="uid://bgmq4knhxggl2"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/scripts/player/player.gd" id="1_nxtay"]
 [ext_resource type="Texture2D" uid="uid://dnkewktf1p72v" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 1/Clothes 2/Character1F_2_punch_1.png" id="3_0ciyq"]
@@ -89,33 +89,6 @@
 [ext_resource type="Script" uid="uid://bfcao6568ko8b" path="res://src/scripts/state_machine/states/air_pivot.gd" id="75_uf2y3"]
 [ext_resource type="Script" uid="uid://bscu0dpmu1432" path="res://src/scripts/state_machine/states/shoot.gd" id="76_ookyx"]
 [ext_resource type="Script" uid="uid://d3qmncoha0v24" path="res://src/scripts/state_machine/states/enter_door.gd" id="77_370xr"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_3ge0c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"fire",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": null
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": null
-}],
-"loop": true,
-"name": &"smoke",
-"speed": 10.0
-}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l17t8"]
 animations = [{
@@ -581,10 +554,6 @@ position = Vector2(-5.1, -28)
 scale = Vector2(0.212143, 1)
 color = Color(0, 1, 0, 1)
 polygon = PackedVector2Array(9.89899, -19, 38.1818, -19, 24, 4)
-
-[node name="gun_animations" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_3ge0c")
-animation = &"fire"
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")

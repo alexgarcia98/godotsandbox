@@ -39,7 +39,9 @@ func _ready() -> void:
 	
 	for i in range(worldCount, worldList.size()):
 		worldList[i].disabled = true
-
+		
+	for i in range(worldList.size()):
+		worldList[i].text = mainNode.worldNames[i]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

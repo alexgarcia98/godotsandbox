@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_5mybw"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="2_4b7du"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_c8fom"]
-[ext_resource type="Script" path="res://src/scripts/levels/level2.gd" id="2_k2dq7"]
+[ext_resource type="Script" uid="uid://dxcipnhcxuh7q" path="res://src/scripts/levels/level2.gd" id="2_k2dq7"]
 [ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/scenes/objects/red_door.tscn" id="3_hxkay"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_ovyr1"]
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="5_ljrd0"]

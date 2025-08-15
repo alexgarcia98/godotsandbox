@@ -17,6 +17,49 @@ var new_level
 var timer_running = false
 var reset_check = false
 
+var worldNames = [
+	"Tutorial",
+	"Spo-cha",
+	"WIP",
+	"WIP",
+	"WIP",
+	"WIP",
+	"WIP",
+	"WIP",
+	"WIP",
+	"WIP",
+	"WIP",
+	"WIP"
+]
+
+var levelNames = [
+	"Move",
+	"Jump",
+	"Dash",
+	"Walls",
+	"Buttons",
+	"Switch",
+	"Levers",
+	"Shooting",
+	"Freeze",
+	"Danger",
+	"Throwing",
+	"Frozen Platform",
+	"Long Jump",
+	"High Jump",
+	"Hurdles",
+	"Shotput",
+	"Pole Vault",
+	"100 Meter Dash",
+	"Archery",
+	"Basketball",
+	"Baseball",
+	"Golf",
+	"Football",
+	"Soccer"
+]
+	
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Messages.connect("DoorToggled", on_door_toggled)
@@ -49,7 +92,7 @@ func _ready() -> void:
 func on_main_menu():
 	if current:
 		current.queue_free()
-	var new_level = load("res://src/scenes/levels/mainmenu.tscn")
+	new_level = load("res://src/scenes/levels/mainmenu.tscn")
 	ui.visible = false
 	current = new_level.instantiate()
 	add_child(current)
@@ -116,7 +159,7 @@ func on_previous_level() -> void:
 func on_world_select():
 	if current:
 		current.queue_free()
-	var new_level = load("res://src/scenes/levelSelect/worldselect.tscn")
+	new_level = load("res://src/scenes/levelSelect/worldselect.tscn")
 	ui.visible = false
 	current = new_level.instantiate()
 	add_child(current)

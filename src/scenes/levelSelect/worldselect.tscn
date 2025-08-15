@@ -98,9 +98,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_xgsnp")
 theme_override_font_sizes/font_size = 24
-text = "Getting 
-
-Started"
+text = "Tutorials"
 autowrap_mode = 3
 script = ExtResource("4_k67lg")
 level = 1

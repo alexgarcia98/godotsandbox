@@ -3,8 +3,6 @@ extends CharacterBody2D
 
 @onready
 var movement_animations: AnimatedSprite2D = $movement_animations
-@onready
-var gun_animations: AnimatedSprite2D = $gun_animations
 
 @onready var indicator: Polygon2D = $indicator
 
@@ -26,8 +24,7 @@ var object_collision: Area2D = $object_collision
 
 @onready
 var movement_state_machine: Node = $movement_state_machine
-#@onready
-#var gun_state_machine: Node = $gun_state_machine
+
 @onready
 var player_move_component = $player_move_component
 

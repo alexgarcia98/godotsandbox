@@ -1,17 +1,26 @@
 extends Control
 
-@onready var previous_level: Button = $FullUIContainer/UIMargins/Elements/Left/HBoxContainer/Levels/LevelNavigator/PreviousLevel
-@onready var next_level: Button = $FullUIContainer/UIMargins/Elements/Left/HBoxContainer/Levels/LevelNavigator/NextLevel
-@onready var restart: Button = $FullUIContainer/UIMargins/Elements/Left/HBoxContainer/Levels/Restart
-@onready var deaths: Label = $"FullUIContainer/UIMargins/Elements/Left/HBoxContainer/Deaths+Reset/Deaths"
-@onready var reset_times: Button = $"FullUIContainer/UIMargins/Elements/Left/HBoxContainer/Deaths+Reset/ResetTimes"
 @onready var personal_best: Label = $FullUIContainer/UIMargins/Elements/Times/PersonalBest
 @onready var level_time: Label = $FullUIContainer/UIMargins/Elements/Times/LevelTime
+@onready var previous_level: Button = $FullUIContainer/UIMargins/Elements/Left/VBoxContainer/HBoxContainer/Levels/LevelNavigator/PreviousLevel
+@onready var next_level: Button = $FullUIContainer/UIMargins/Elements/Left/VBoxContainer/HBoxContainer/Levels/LevelNavigator/NextLevel
+@onready var deaths: Label = $FullUIContainer/UIMargins/Elements/Left/VBoxContainer/HBoxContainer/Deaths/Deaths
 @onready var red_ammo: Label = $FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Ammo/RedAmmo
 @onready var green_ammo: Label = $FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Ammo/GreenAmmo
-@onready var main_menu: Button = $FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Menu/MainMenu
-@onready var controls: Button = $FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Menu/Controls
+@onready var settings: Button = $FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Menu/Settings
+@onready var restart: Button = $FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Menu/Restart
+@onready var level_name: Label = $FullUIContainer/UIMargins/Elements/Left/VBoxContainer/Panel/LevelName
+
 @onready var help: Window = $Help
+@onready var settingsWindow: Window = $Settings
+
+# settings menu
+@onready var help_text: Label = $Settings/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
+@onready var stage_select: Button = $Settings/MarginContainer/VBoxContainer/Navigation/StageSelect
+@onready var title: Button = $Settings/MarginContainer/VBoxContainer/Navigation/Title
+@onready var exit: Button = $Settings/MarginContainer/VBoxContainer/Navigation/Exit
+@onready var reset_times: Button = $Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes
+@onready var controls: Button = $Settings/MarginContainer/VBoxContainer/HBoxContainer/Controls
 
 # button remaps
 @onready var move_left: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/move_left
@@ -66,7 +75,7 @@ var button_dict = {
 	"move_up": "Up",
 	"move_down": "Down",
 	"jump": "Jump",
-	"dash": "Dash/Airdash",
+	"dash": "Dash",
 	"pivot": "Pivot",
 	"action": "Interact",
 	"throw": "Throw",
@@ -85,6 +94,8 @@ func _ready() -> void:
 	Messages.connect("ResetTimes", on_reset_times)
 	main_scene = get_parent()
 	max_levels = main_scene.max_levels
+	
+	help_text.text = ""
 	
 	var action_dict = {
 		"move_left": move_left, 
@@ -110,8 +121,8 @@ func _ready() -> void:
 			file = FileAccess.open(filepath, FileAccess.WRITE)
 			var times = {}
 			for i in range(max_levels + 1):
-				var level_name = "level" + str(i)
-				times[level_name] = 5999999
+				var levelName = "level" + str(i)
+				times[levelName] = 5999999
 			file.store_var(times)
 			file.close()
 			saved_times = times
@@ -126,25 +137,25 @@ func _ready() -> void:
 		var err = FileAccess.get_open_error()
 		if err == ERR_FILE_NOT_FOUND:
 			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
-			var controls = {}
-			for action in action_items:
-				controls[action] = InputMap.action_get_events(action)[0].physical_keycode
-			file2.store_var(controls)
+			var control_scheme = {}
+			for a in action_items:
+				control_scheme[a] = InputMap.action_get_events(a)[0].physical_keycode
+			file2.store_var(control_scheme)
 			file2.close()
-			Messages.rebinds = controls
+			Messages.rebinds = control_scheme
 	else:
 		Messages.rebinds = file2.get_var()
 		file2.close()
-		for action in Messages.rebinds.keys():
+		for a in Messages.rebinds.keys():
 			var event = InputEventKey.new()
-			event.physical_keycode = Messages.rebinds[action]
-			InputMap.action_erase_events(action)
-			InputMap.action_add_event(action, event)
-			print("initializing remap of " + action + " to " + str(Messages.rebinds[action]))
+			event.physical_keycode = Messages.rebinds[a]
+			InputMap.action_erase_events(a)
+			InputMap.action_add_event(a, event)
+			print("initializing remap of " + a + " to " + str(Messages.rebinds[a]))
 			var key_name = event.as_text()
 			if key_name.ends_with(" (Physical)"):
 				key_name = "%s" % key_name.substr(0, (key_name.length() - 11))
-			action_dict[action].text = key_name
+			action_dict[a].text = key_name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -163,13 +174,11 @@ func _on_previous_level_pressed() -> void:
 		if current_index > 0:
 			Messages.PreviousLevel.emit()
 
-
 func _on_next_level_pressed() -> void:
 	next_level.release_focus()
 	if not (level_ended):
 		if current_index < main_scene.levels_unlocked:
 			Messages.NextLevel.emit()
-
 
 func _on_restart_pressed() -> void:
 	restart.release_focus()
@@ -187,17 +196,69 @@ func _on_reset_times_pressed() -> void:
 		var minute = floor(sec / 60)
 		personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
 
-func _on_main_menu_pressed() -> void:
-	main_menu.release_focus()
-	Messages.MainMenu.emit()
-
-
 func _on_controls_pressed() -> void:
 	help.show()
+	settingsWindow.hide()
 
 func _on_help_close_requested() -> void:
 	help.hide()
+	settingsWindow.show()
 	controls.release_focus()
+
+func _on_settings_pressed() -> void:
+	settingsWindow.show()
+	help_text.text = ""
+
+func _on_settings_close_requested() -> void:
+	settingsWindow.hide()
+	settings.release_focus()
+
+func _on_stage_select_pressed() -> void:
+	help.hide()
+	settingsWindow.hide()
+	Messages.emit_signal("WorldSelect")
+
+func _on_title_pressed() -> void:
+	help.hide()
+	settingsWindow.hide()
+	Messages.emit_signal("MainMenu")
+
+func _on_exit_pressed() -> void:
+	help.hide()
+	settingsWindow.hide()
+	Messages.emit_signal("EndGame")
+
+# help text
+
+func _on_exit_mouse_entered() -> void:
+	help_text.text = "Exit the game"
+
+func _on_exit_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_title_mouse_entered() -> void:
+	help_text.text = "Return to Title"
+
+func _on_title_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_stage_select_mouse_entered() -> void:
+	help_text.text = "Return to Stage Select"
+
+func _on_stage_select_mouse_exited() -> void:
+	help_text.text = ""
+	
+func _on_reset_times_mouse_entered() -> void:
+	help_text.text = "Clear best time from the current level"
+
+func _on_reset_times_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_controls_mouse_entered() -> void:
+	help_text.text = "View and remap controls"
+
+func _on_controls_mouse_exited() -> void:
+	help_text.text = ""
 
 # incoming signal handlers
 
@@ -206,11 +267,11 @@ func on_player_died(player_name) -> void:
 	level_start_time -= 5000
 	deaths.text = "Deaths: " + str(level_deaths)
 
-func on_shot_fired(name):
-	if name == "red_player":
+func on_shot_fired(player_name):
+	if player_name == "red_player":
 		red_ammo_count -= 1
 		red_ammo.text = "Red Ammo: %s" % red_ammo_count
-	elif name == "green_player":
+	elif player_name == "green_player":
 		green_ammo_count -= 1
 		green_ammo.text = "Green Ammo: %s" % green_ammo_count
 
@@ -219,10 +280,18 @@ func on_level_started(index):
 	level_time_ms = 0
 	level_ended = false
 	level_time.text = "00:00:000"
-	
 	current_index = index
 	level_deaths = 0
 	deaths.text = "Deaths: " + str(level_deaths)
+	var worldName = main_scene.worldNames[current_index / 12]
+	var levelName
+	if current_index < main_scene.levelNames.size():
+		levelName = main_scene.levelNames[current_index]
+	else:
+		levelName = str((current_index % 12) + 1)
+		
+	level_name.text = "%s: %s" % [worldName, levelName]
+	
 	if not saved_times.has("level" + str(current_index)):
 		saved_times["level" + str(current_index)] = 5999999
 		var file = FileAccess.open(filepath, FileAccess.WRITE)
@@ -263,20 +332,20 @@ func on_level_ended():
 		minute = floor(sec / 60)
 		personal_best.text = "Best: %02d:%02d:%03d" % [minute, (sec % 60), (ms % 1000)]
 
-func on_button_remapped(action, key):
-	Messages.rebinds[action] = key
+func on_button_remapped(a, key):
+	Messages.rebinds[a] = key
 	write_file = FileAccess.open(filepath2, FileAccess.WRITE)
 	write_file.store_var(Messages.rebinds)
 	write_file.close()
-	print("storing remap of " + action + " to " + str(key))
+	print("storing remap of " + a + " to " + str(key))
 
 func on_reset_times() -> void:
 	# create new save data
 	var file = FileAccess.open(filepath, FileAccess.WRITE)
 	var times = {}
 	for i in range(max_levels + 1):
-		var level_name = "level" + str(i)
-		times[level_name] = 5999999
+		var level_key = "level" + str(i)
+		times[level_key] = 5999999
 	file.store_var(times)
 	file.close()
 	saved_times = times

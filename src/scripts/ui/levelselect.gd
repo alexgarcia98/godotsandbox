@@ -1,8 +1,8 @@
 extends Control
 
-
 @onready var title: Button = $WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/Title
 @onready var back: Button = $WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/Back
+@onready var select_level: Label = $WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/SelectLevel
 
 @onready var level_1: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level1/Level1
 @onready var level_2: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2/Level2
@@ -46,7 +46,13 @@ func _ready() -> void:
 		var start = levelCount % 12
 		for i in range(start, levelList.size()):
 			levelList[i].disabled = true
-
+			
+	for level in levelList:
+		if level.level < mainNode.levelNames.size():
+			level.text = mainNode.levelNames[level.level]
+	
+	var worldIndex = level_1.level / 12
+	select_level.text = mainNode.worldNames[worldIndex]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

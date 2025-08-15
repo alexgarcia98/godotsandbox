@@ -1,7 +1,6 @@
 extends TileMapLayer
 
 @onready var label: Label = $Label
-@onready var label_2: Label = $Label2
 
 var actions = ["action"]
 var action_strings = {}
@@ -11,7 +10,7 @@ func _ready() -> void:
 	Messages.connect("ButtonRemapped", on_button_remapped)
 	on_button_remapped("", "")
 
-func on_button_remapped(action, key):
+func on_button_remapped(_action, _key):
 	for a in actions:
 		var event = InputEventKey.new()
 		event.physical_keycode = Messages.rebinds[a]

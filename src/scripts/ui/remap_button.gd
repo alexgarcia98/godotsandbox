@@ -14,9 +14,9 @@ func _ready() -> void:
 	update_key_text()
 
 func update_key_text():
-	var key = InputMap.action_get_events(action)[0].as_text()
-	if key.ends_with(" (Physical)"):
-		text = "%s" % key.substr(0, (key.length() - 11))
+	var key_text = InputMap.action_get_events(action)[0].as_text()
+	if key_text.ends_with(" (Physical)"):
+		text = "%s" % key_text.substr(0, (key_text.length() - 11))
 	else:
 		text = "%s" % InputMap.action_get_events(action)[0].as_text()
 	

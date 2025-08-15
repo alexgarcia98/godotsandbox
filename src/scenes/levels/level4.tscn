@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=4 uid="uid://cgmod26ryyejn"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_q8n1u"]
-[ext_resource type="Script" path="res://src/scripts/levels/level4.gd" id="2_1nn37"]
+[ext_resource type="Script" uid="uid://bwhq2o8o5c3ym" path="res://src/scripts/levels/level4.gd" id="2_1nn37"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_q8n1u"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_ikb1q"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="4_6wpsn"]
