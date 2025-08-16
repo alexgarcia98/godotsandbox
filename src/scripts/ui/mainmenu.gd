@@ -26,11 +26,16 @@ func _ready() -> void:
 
 func populate_records():
 	var mainScene = get_parent()
-	for i in range(mainScene.max_levels + 1):
+	var children = level_records.get_children()
+	for child in children:
+		child.queue_free()
+	var sep : HSeparator = HSeparator.new()
+	level_records.add_child(sep)
+	for i in range(mainScene.levels_unlocked):
 		var level_record : LevelRecordContainer = LevelRecordContainer.new()
 		level_record.level_number = i
 		level_records.add_child(level_record)
-		var sep : HSeparator = HSeparator.new()
+		sep = HSeparator.new()
 		level_records.add_child(sep)
 	var total_time : int = 0
 	var all_cleared : bool = true
@@ -81,6 +86,7 @@ func _on_records_window_close_requested() -> void:
 func _on_unlock_levels_pressed() -> void:
 	Messages.emit_signal("UnlockLevels")
 	help_text.text = "All levels are now available to play"
+	populate_records()
 	unlock_levels.release_focus()
 
 func _on_reset_records_pressed() -> void:
@@ -96,6 +102,7 @@ func _on_reset_controls_pressed() -> void:
 func _on_lock_levels_pressed() -> void:
 	Messages.emit_signal("LockLevels")
 	help_text.text = "Level unlocks have been reset"
+	populate_records()
 	lock_levels.release_focus()
 
 func _on_unlock_levels_mouse_entered() -> void:
