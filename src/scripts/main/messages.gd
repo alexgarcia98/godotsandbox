@@ -9,6 +9,7 @@ signal ShotFired(emitter)
 
 signal LevelEnded()
 signal LevelStarted(level)
+signal BeginLevel(level)
 
 # UI Interactions
 signal PreviousLevel()

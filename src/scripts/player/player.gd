@@ -59,11 +59,16 @@ var last_valid: Vector2 = Vector2(0,0)
 var key_obtained = false
 var door_opened = false
 
+var can_move = false
+
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
 	#gun_state_machine.init(self, gun_animations, player_move_component)
 	last_valid = position
 	Messages.connect("KeyObtained", on_key_obtained)
+	Messages.connect("BeginLevel", on_begin_level)
+	Messages.connect("LevelStarted", on_level_started)
+	Messages.connect("LevelEnded", on_level_ended)
 	if name == "red_player":
 		level_parent = get_parent()
 		green_player = level_parent.get_node("green_player")
@@ -75,7 +80,7 @@ func _ready() -> void:
 		indicator.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if visible:
+	if visible and can_move:
 		movement_state_machine.process_input(event)
 		#gun_state_machine.process_input(event)
 
@@ -122,3 +127,12 @@ func on_key_obtained(key_name):
 		key_obtained = true
 	elif key_name == "red_key" and name == "red_player":
 		key_obtained = true
+
+func on_begin_level(_index):
+	can_move = true
+
+func on_level_started(_index):
+	can_move = false
+	
+func on_level_ended():
+	can_move = false

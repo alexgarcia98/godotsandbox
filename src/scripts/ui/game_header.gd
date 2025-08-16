@@ -45,7 +45,7 @@ var level_start_time = 0
 var current_time = 0
 var level_time_ms = 0
 var level_deaths = 0
-var level_ended: bool = false
+var level_ended: bool = true
 var current_index = 0
 var max_levels
 
@@ -94,8 +94,9 @@ func _ready() -> void:
 	Messages.connect("ButtonRemapped", on_button_remapped)
 	Messages.connect("ResetTimes", on_reset_times)
 	Messages.connect("ResetControls", on_reset_controls)
+	Messages.connect("BeginLevel", on_begin_level)
 	main_scene = get_parent()
-	max_levels = main_scene.max_levels
+	max_levels = Messages.max_levels
 	
 	help_text.text = ""
 	
@@ -261,10 +262,14 @@ func on_shot_fired(player_name):
 		green_ammo_count -= 1
 		green_ammo.text = "Green Ammo: %s" % green_ammo_count
 
+func on_begin_level(index):
+	level_ended = false
+	level_start_time = Time.get_ticks_msec()
+
 func on_level_started(index):
+	level_ended = true
 	current_time = 0
 	level_time_ms = 0
-	level_ended = false
 	level_time.text = "00:00:000"
 	current_index = index
 	level_deaths = 0
@@ -289,7 +294,6 @@ func on_level_started(index):
 	green_ammo_count = main_scene.current.get_node("green_player").ammo
 	red_ammo.text = "Red Ammo: %s" % red_ammo_count
 	green_ammo.text = "Green Ammo: %s" % green_ammo_count
-	level_start_time = Time.get_ticks_msec()
 	if current_index == 0:
 		previous_level.disabled = true
 	else:

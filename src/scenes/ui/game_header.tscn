@@ -160,7 +160,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
-text = "Best: 55:55:555"
+text = "Best: 55:55.555"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -169,7 +169,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
-text = "00:00:000"
+text = "00:00.000"
 horizontal_alignment = 1
 vertical_alignment = 1
 

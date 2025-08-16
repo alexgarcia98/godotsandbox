@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://enlgjks5pxns"]
+[gd_scene load_steps=7 format=3 uid="uid://enlgjks5pxns"]
 
 [ext_resource type="Script" uid="uid://02it17unsbqy" path="res://src/scripts/main/main.gd" id="1_407ex"]
+[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="3_45uaa"]
 [ext_resource type="PackedScene" uid="uid://db50rk53od7nn" path="res://src/scenes/ui/game_header.tscn" id="5_407ex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vw57g"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45uaa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fub2y"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="sample_scene" type="Node2D"]
 script = ExtResource("1_407ex")
@@ -16,4 +41,321 @@ offset_bottom = -240.0
 wait_time = 2.0
 one_shot = true
 
+[node name="Dimmer" type="ColorRect" parent="."]
+visible = false
+z_index = 11
+custom_minimum_size = Vector2(928, 480)
+offset_left = -464.0
+offset_top = -240.0
+offset_right = 464.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[node name="LevelStart" type="Control" parent="."]
+visible = false
+z_index = 12
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelStart"]
+custom_minimum_size = Vector2(768, 320)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="LevelStart/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vw57g")
+
+[node name="ColorRect" type="ColorRect" parent="LevelStart/MarginContainer/Panel"]
+layout_mode = 2
+color = Color(0.435294, 0.172549, 0.466667, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelStart/MarginContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="LevelStart/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vw57g")
+
+[node name="LevelName" type="Label" parent="LevelStart/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 24
+text = "World Name: Level Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel2" type="PanelContainer" parent="LevelStart/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_45uaa")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelStart/MarginContainer/VBoxContainer/Panel2"]
+layout_mode = 2
+
+[node name="Rank" type="Label" parent="LevelStart/MarginContainer/VBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Best Rank: S"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Time" type="Label" parent="LevelStart/MarginContainer/VBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Best Time: XX:XX.XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel3" type="PanelContainer" parent="LevelStart/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fub2y")
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelStart/MarginContainer/VBoxContainer/Panel3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="StartLevel" type="Button" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Start Level"
+
+[node name="MarginContainer2" type="MarginContainer" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="LevelSelect" type="Button" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Level Select"
+
+[node name="LevelEnd" type="Control" parent="."]
+z_index = 12
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelEnd"]
+custom_minimum_size = Vector2(768, 320)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="LevelEnd/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vw57g")
+
+[node name="ColorRect" type="ColorRect" parent="LevelEnd/MarginContainer/Panel"]
+layout_mode = 2
+color = Color(0.435294, 0.172549, 0.466667, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelEnd/MarginContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="LevelEnd/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vw57g")
+
+[node name="LevelCleared" type="Label" parent="LevelEnd/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 24
+text = "Level Cleared!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel2" type="PanelContainer" parent="LevelEnd/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_45uaa")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ClearRank" type="Label" parent="LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Clear Rank: WIP"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BestRank" type="Label" parent="LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Best Rank: WIP"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ClearTime" type="Label" parent="LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Clear Time: XX:XX.XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BestTime" type="Label" parent="LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Best Time: XX:XX.XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel3" type="PanelContainer" parent="LevelEnd/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fub2y")
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NextLevel" type="Button" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Next Level"
+
+[node name="MarginContainer3" type="MarginContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RestartLevel" type="Button" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Restart Level"
+
+[node name="MarginContainer2" type="MarginContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="LevelSelect" type="Button" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "Level Select"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/StartLevel" to="." method="_on_start_level_pressed"]
+[connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer3/RestartLevel" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2/LevelSelect" to="." method="_on_level_select_pressed"]
