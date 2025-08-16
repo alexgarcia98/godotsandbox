@@ -52,7 +52,6 @@ offset_bottom = 240.0
 color = Color(0, 0, 0, 1)
 
 [node name="LevelStart" type="Control" parent="."]
-visible = false
 z_index = 12
 layout_mode = 3
 anchors_preset = 15
@@ -180,6 +179,7 @@ theme_override_font_sizes/font_size = 16
 text = "Level Select"
 
 [node name="LevelEnd" type="Control" parent="."]
+visible = false
 z_index = 12
 layout_mode = 3
 anchors_preset = 15

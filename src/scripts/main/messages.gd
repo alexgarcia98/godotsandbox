@@ -46,31 +46,16 @@ var worldNames = [
 ]
 
 var levelNames = [
-	"Move",
-	"Jump",
-	"Dash",
-	"Walls",
-	"Buttons",
-	"Switch",
-	"Levers",
-	"Shooting",
-	"Freeze",
-	"Danger",
-	"Throwing",
-	"Frozen Platform",
-	"Long Jump",
-	"High Jump",
-	"Hurdles",
-	"Shotput",
-	"Pole Vault",
-	"100 Meter Dash",
-	"Archery",
-	"Basketball",
-	"Baseball",
-	"Golf",
-	"Football",
-	"Soccer"
+	"Move", "Jump", "Dash", "Walls", "Buttons", "Switch", "Levers", "Shooting", "Freeze", "Danger", "Throwing", "Frozen Platform",
+	"Long Jump", "High Jump", "Hurdles", "Shotput", "Pole Vault", "100 Meter Dash", "Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer"
 ]
+
+var ranks = [
+	[10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], 
+	[10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], [10, 20, 30, 60, 120], 
+]
+
+var rank_assn = ["S", "A", "B", "C", "D", "F", "No Rank Achieved"]
 
 func _ready() -> void:
 	# check if save data exists

@@ -21,6 +21,7 @@ func _ready() -> void:
 	left.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	left.add_theme_font_override("font", font)
 	left.add_theme_font_size_override("font_size", 16)
+	
 	var right : Label = Label.new()
 	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	right.size_flags_vertical = Control.SIZE_FILL
@@ -28,6 +29,15 @@ func _ready() -> void:
 	right.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	right.add_theme_font_override("font", font)
 	right.add_theme_font_size_override("font_size", 16)
+	
+	var rank : Label = Label.new()
+	rank.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rank.size_flags_vertical = Control.SIZE_FILL
+	rank.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	rank.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	rank.add_theme_font_override("font", font)
+	rank.add_theme_font_size_override("font_size", 16)
+	
 	var worldName = Messages.worldNames[level_number / 12]
 	var levelName
 	if level_number < Messages.levelNames.size():
@@ -43,9 +53,28 @@ func _ready() -> void:
 		var sec = floor(ms / 1000)
 		var minute = floor(sec / 60)
 		right.text = "\n%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
+	
+	rank.text = "F"
+	for i in range(Messages.ranks[level_number].size()):
+		if ms < (Messages.ranks[level_number][i] * 1000):
+			rank.text = Messages.rank_assn[i]
+			break
+	
+	if ms == 5999999:
+		rank.text = "None"
+	
+	var boxRight : HBoxContainer = HBoxContainer.new()
+	boxRight.alignment = BoxContainer.ALIGNMENT_CENTER
+	boxRight.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	boxRight.size_flags_vertical = Control.SIZE_FILL
+	var sep2 : VSeparator = VSeparator.new()
+	boxRight.add_child(right)
+	boxRight.add_child(sep2)
+	boxRight.add_child(rank)
+	
 	box.add_child(left)
 	box.add_child(sep)
-	box.add_child(right)
+	box.add_child(boxRight)
 	add_child(box)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

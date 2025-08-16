@@ -182,6 +182,7 @@ func _on_reset_times_pressed() -> void:
 			var sec = floor(ms / 1000)
 			var minute = floor(sec / 60)
 			personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+		Messages.ResetLevelTime.emit(current_index)
 
 func _on_controls_pressed() -> void:
 	help.show()
