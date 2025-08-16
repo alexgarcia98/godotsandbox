@@ -399,6 +399,7 @@ text = "EXIT
 title = "Debug"
 initial_position = 1
 size = Vector2i(848, 400)
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="DebugWindow"]
 custom_minimum_size = Vector2(928, 480)
@@ -472,6 +473,7 @@ auto_translate_mode = 1
 title = "Records"
 initial_position = 1
 size = Vector2i(848, 400)
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="RecordsWindow"]
 custom_minimum_size = Vector2(928, 480)

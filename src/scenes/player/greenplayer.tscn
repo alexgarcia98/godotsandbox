@@ -499,7 +499,7 @@ target_position = Vector2(-24, 0)
 collision_mask = 4097
 
 [node name="air_left" type="RayCast2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -24)
 target_position = Vector2(-24, 0)
 collision_mask = 4097
 
@@ -545,7 +545,7 @@ target_position = Vector2(24, 0)
 collision_mask = 4097
 
 [node name="air_right" type="RayCast2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -24)
 target_position = Vector2(24, 0)
 collision_mask = 4097
 

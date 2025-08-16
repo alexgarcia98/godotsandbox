@@ -263,6 +263,16 @@ func on_shot_fired(player_name):
 		green_ammo.text = "Green Ammo: %s" % green_ammo_count
 
 func on_begin_level(index):
+	current_time = 0
+	level_time_ms = 0
+	level_time.text = "00:00:000"
+	current_index = index
+	level_deaths = 0
+	deaths.text = "Deaths: " + str(level_deaths)
+	red_ammo_count = main_scene.current.get_node("red_player").ammo
+	green_ammo_count = main_scene.current.get_node("green_player").ammo
+	red_ammo.text = "Red Ammo: %s" % red_ammo_count
+	green_ammo.text = "Green Ammo: %s" % green_ammo_count
 	level_ended = false
 	level_start_time = Time.get_ticks_msec()
 

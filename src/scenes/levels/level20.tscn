@@ -382,7 +382,6 @@ shape = SubResource("RectangleShape2D_o7j33")
 
 [node name="red_player" parent="." instance=ExtResource("7_frgwx")]
 position = Vector2(8, 48)
-is_flipped = true
 
 [node name="green_player" parent="." instance=ExtResource("8_514uq")]
 position = Vector2(416, -128)
