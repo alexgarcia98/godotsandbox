@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ddyis14o655ur"
+path="res://.godot/imported/Loose_2.wav-742a4332a1e8df6a6342574a1640cc3f.sample"
+
+[deps]
+
+source_file="res://src/assets/HALFTONE SFX Pack LITE/Gameplay/2. Loose/Loose_2.wav"
+dest_files=["res://.godot/imported/Loose_2.wav-742a4332a1e8df6a6342574a1640cc3f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

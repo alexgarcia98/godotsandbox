@@ -24,6 +24,9 @@ func enter() -> void:
 		direction = -1
 	else:
 		direction = 1
+		
+	parent.sfx.stream = Messages.dash_sound
+	parent.sfx.play()
 
 ## Just to be safe, disable any other inputs
 #func process_input(event: InputEvent) -> State:

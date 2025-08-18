@@ -33,6 +33,8 @@ func enter() -> void:
 	objects1.add_child(projectile)
 	parent.ammo -= 1
 	Messages.ShotFired.emit(parent.name)
+	parent.sfx.stream = Messages.shoot_sound
+	parent.sfx.play()
 
 #func process_input(event: InputEvent) -> State:
 	#if Input.is_action_just_pressed('switch'):

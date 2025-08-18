@@ -28,6 +28,9 @@ var movement_state_machine: Node = $movement_state_machine
 @onready
 var player_move_component = $player_move_component
 
+@onready var sfx: AudioStreamPlayer2D = $sfx
+
+
 var level_parent: Node
 var green_player: Player
 

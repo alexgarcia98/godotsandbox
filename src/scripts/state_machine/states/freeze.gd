@@ -19,6 +19,8 @@ func enter() -> void:
 		parent.velocity.y = 0
 		parent.collision_layer = 1
 		is_frozen = true
+		parent.sfx.stream = Messages.freeze_sound
+		parent.sfx.play()
 
 func process_input(event: InputEvent) -> State:
 	super(event)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbsvscsy0qxai"]
+[gd_scene load_steps=9 format=3 uid="uid://cbsvscsy0qxai"]
 
-[ext_resource type="Script" path="res://src/scripts/objects/key.gd" id="1_wnki3"]
+[ext_resource type="Script" uid="uid://bk4e1b1blbjds" path="res://src/scripts/objects/key.gd" id="1_wnki3"]
 [ext_resource type="Texture2D" uid="uid://cvbh1blhuqncm" path="res://src/assets/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects6.png" id="2_wnki3"]
+[ext_resource type="AudioStream" uid="uid://50w0esh724dr" path="res://src/assets/HALFTONE SFX Pack LITE/Gameplay/5. Collectibles/Collectibles_1.wav" id="3_4rkvg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5jx6"]
 atlas = ExtResource("2_wnki3")
@@ -61,4 +62,9 @@ frame_progress = 1.0
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ea6vm")
 
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4rkvg")
+bus = &"SFX"
+
 [connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
+[connection signal="finished" from="PickupSound" to="." method="_on_pickup_sound_finished"]

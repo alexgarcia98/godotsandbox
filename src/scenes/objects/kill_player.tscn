@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cu1bot57hk8kt"]
 
-[ext_resource type="Script" path="res://src/scripts/objects/kill_player.gd" id="1_ujlg0"]
+[ext_resource type="Script" uid="uid://di2vumn55c2ij" path="res://src/scripts/objects/kill_player.gd" id="1_ujlg0"]
 
 [node name="kill_player" type="Area2D"]
 collision_layer = 256

@@ -27,6 +27,8 @@ var jump_force: float = 400
 func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
+	parent.sfx.stream = Messages.jump_sound
+	parent.sfx.play()
 
 func process_input(event: InputEvent) -> State:
 	super(event)

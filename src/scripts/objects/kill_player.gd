@@ -11,6 +11,8 @@ func _on_body_entered(body):
 	body.visible = false
 	Messages.PlayerDied.emit(body)
 	print(body.name + " died")
+	body.sfx.stream = Messages.die_sound
+	body.sfx.play()
 	if body.name == "red_player":
 		respawn_red = body
 		red_timer.start()

@@ -563,9 +563,7 @@ polygon = PackedVector2Array(9.89899, -19, 38.1818, -19, 24, 4)
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
-animation = &"enter_door"
-frame = 11
-frame_progress = 0.685191
+animation = &"interact"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -762,6 +760,9 @@ animation_name = "enter_door"
 
 [node name="player_move_component" type="Node" parent="."]
 script = ExtResource("11_ce5lr")
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+bus = &"Movement"
 
 [connection signal="area_entered" from="object_collision" to="." method="_on_object_collision_area_entered"]
 [connection signal="area_exited" from="object_collision" to="." method="_on_object_collision_area_exited"]

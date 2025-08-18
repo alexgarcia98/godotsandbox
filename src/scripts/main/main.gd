@@ -16,6 +16,7 @@ extends Node2D
 @onready var clear_rank: Label = $LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer/VBoxContainer/ClearRank
 @onready var best_rank: Label = $LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer/VBoxContainer/BestRank
 @onready var rank_start: Label = $LevelStart/MarginContainer/VBoxContainer/Panel2/HBoxContainer/Rank
+@onready var sfx: AudioStreamPlayer2D = $sfx
 
 var current = null
 var red_opened = false
@@ -180,6 +181,8 @@ func on_door_toggled(player) -> void:
 		Messages.LevelEnded.emit()
 		timer_running = true
 		reset_check = false
+		sfx.stream = Messages.clear_sound
+		sfx.play()
 		timer.start()
 
 func _on_timer_timeout():
