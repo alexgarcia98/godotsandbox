@@ -49,5 +49,7 @@ func _process(delta: float) -> void:
 
 
 func _on_title_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	title.release_focus()
 	Messages.MainMenu.emit()

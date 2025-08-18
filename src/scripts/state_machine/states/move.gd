@@ -36,11 +36,13 @@ func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
 			# set current position
-			parent.last_valid = parent.position
+			if parent.visible:
+				parent.last_valid = parent.position
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
-			parent.last_valid = parent.position
+			if parent.visible:
+				parent.last_valid = parent.position
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:

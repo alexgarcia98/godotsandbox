@@ -70,8 +70,11 @@ func process_input(event: InputEvent) -> State:
 func process_physics(delta: float) -> State:
 	var movement = get_movement_input() * move_speed
 
-	if parent.is_on_wall_only() and movement != 0:
-		return wall_cling_state
+	var norm = parent.get_wall_normal()
+
+	if parent.is_on_wall_only():
+		if norm.x * movement < 0:
+			return wall_cling_state
 	
 	parent.velocity.y += gravity * delta
 	

@@ -11,6 +11,9 @@ var pairing = 0
 @onready
 var animations = $animations
 
+func _ready() -> void:
+	pickup_sound.stream = Messages.pickup_sound
+
 func activate() -> void:
 	collision_shape_2d.set_deferred("disabled", true)
 	visible = false

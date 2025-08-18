@@ -12,6 +12,8 @@ func enter() -> void:
 	super()
 	parent.velocity.x = 0
 	parent.air_reverse_remaining -= 1
+	parent.sfx.stream = Messages.pivot_sound
+	parent.sfx.play()
 
 #func process_input(event: InputEvent) -> State:
 	#if Input.is_action_just_pressed('switch'):

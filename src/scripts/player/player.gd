@@ -8,6 +8,7 @@ var movement_animations: AnimatedSprite2D = $movement_animations
 
 @onready
 var object_collision: Area2D = $object_collision
+@onready var collision_shape_2d: CollisionShape2D = $object_collision/CollisionShape2D
 
 @onready var wall_left: RayCast2D = $wall_left
 @onready var air_left: RayCast2D = $air_left

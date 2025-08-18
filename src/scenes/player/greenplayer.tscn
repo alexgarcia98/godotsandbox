@@ -185,12 +185,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_lwyti")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_lwyti")
-}, {
-"duration": 1.0,
 "texture": ExtResource("11_bvqno")
 }, {
 "duration": 1.0,
@@ -207,12 +201,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_bvqno")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_lwyti")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_lwyti")
 }],
 "loop": true,
 "name": &"ground_pivot",
@@ -557,9 +545,8 @@ polygon = PackedVector2Array(9.89899, -19, 38.1818, -19, 24, 4)
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
-animation = &"enter_door"
+animation = &"ground_pivot"
 autoplay = "idle"
-frame = 1
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -641,11 +628,12 @@ shoot_state = NodePath("../shoot")
 enter_door_state = NodePath("../enter_door")
 animation_name = "move"
 
-[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state")]
+[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "enter_door_state")]
 script = ExtResource("61_v2jc2")
 move_state = NodePath("../move")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
+enter_door_state = NodePath("../enter_door")
 animation_name = "crouch"
 move_speed = 384.0
 

@@ -355,7 +355,9 @@ theme_override_font_sizes/font_size = 16
 text = "Level Select"
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
-bus = &"UI"
+bus = &"SFX"
+
+[node name="sfx_ui" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/StartLevel" to="." method="_on_start_level_pressed"]

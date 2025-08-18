@@ -846,7 +846,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
-text = "Exit"
+text = "Exit Game"
 
 [connection signal="pressed" from="FullUIContainer/UIMargins/Elements/Left/VBoxContainer/HBoxContainer/Levels/LevelNavigator/PreviousLevel" to="." method="_on_previous_level_pressed"]
 [connection signal="pressed" from="FullUIContainer/UIMargins/Elements/Left/VBoxContainer/HBoxContainer/Levels/LevelNavigator/NextLevel" to="." method="_on_next_level_pressed"]

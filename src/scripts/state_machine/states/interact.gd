@@ -44,7 +44,6 @@ func process_physics(delta: float) -> State:
 		if animations.frame == 10 and not sounded:
 			parent.sfx.stream = Messages.interact_sound
 			parent.sfx.play()
-			print("playing sound")
 			sounded = true
 		if animations.frame >= 11:
 			if !parent.is_on_floor():

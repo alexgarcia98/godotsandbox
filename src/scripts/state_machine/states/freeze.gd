@@ -37,6 +37,8 @@ func process_input(event: InputEvent) -> State:
 				elif parent.name == "red_player":
 					parent.collision_layer = 2
 				is_frozen = false
+				parent.sfx.stream = Messages.thaw_sound
+				parent.sfx.play()
 				return fall_state
 			else:
 				if parent.name == "green_player":
@@ -44,6 +46,8 @@ func process_input(event: InputEvent) -> State:
 				elif parent.name == "red_player":
 					parent.collision_layer = 2
 				is_frozen = false
+				parent.sfx.stream = Messages.thaw_sound
+				parent.sfx.play()
 				return idle_state
 		#elif Input.is_action_just_pressed('switch'):
 			#parent.is_main = not parent.is_main

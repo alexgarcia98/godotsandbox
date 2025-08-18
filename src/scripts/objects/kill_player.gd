@@ -9,6 +9,7 @@ var respawn_green
 
 func _on_body_entered(body):
 	body.visible = false
+	body.collision_shape_2d.set_deferred("disabled", true)
 	Messages.PlayerDied.emit(body)
 	print(body.name + " died")
 	body.sfx.stream = Messages.die_sound
@@ -23,9 +24,11 @@ func _on_body_entered(body):
 func _on_red_timer_timeout() -> void:
 	respawn_red.position = respawn_red.last_valid
 	respawn_red.visible = true
+	respawn_red.collision_shape_2d.set_deferred("disabled", false)
 	print(respawn_red.name + " revived")
 
 func _on_green_timer_timeout() -> void:
 	respawn_green.position = respawn_green.last_valid
 	respawn_green.visible = true
+	respawn_green.collision_shape_2d.set_deferred("disabled", false)
 	print(respawn_green.name + " revived")

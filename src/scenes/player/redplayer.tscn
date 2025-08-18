@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://di4b3fet5cvsw"]
+[gd_scene load_steps=93 format=3 uid="uid://di4b3fet5cvsw"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/scripts/player/player.gd" id="1_ryxk6"]
 [ext_resource type="Texture2D" uid="uid://in1gh3nmft7l" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_land_0.png" id="2_e7e1q"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dxdin4otmho76" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_idle_4.png" id="8_4ptlo"]
 [ext_resource type="Texture2D" uid="uid://chdj0m0457tv6" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_use_10.png" id="8_bgxyk"]
 [ext_resource type="Script" uid="uid://cqf5mxqq4tamh" path="res://src/scripts/state_machine/states/jump.gd" id="8_mtgkv"]
-[ext_resource type="Texture2D" uid="uid://bbsrf4pf33k21" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_pickup_ground_7.png" id="9_0iufa"]
 [ext_resource type="Texture2D" uid="uid://dtu32iui6jnoy" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_idle_5.png" id="9_evlgt"]
 [ext_resource type="Script" uid="uid://cwgxgp3um8snh" path="res://src/scripts/state_machine/states/fall.gd" id="9_niv3d"]
 [ext_resource type="Script" uid="uid://bhoe44nnogu2e" path="res://src/scripts/state_machine/states/move.gd" id="10_01udx"]
@@ -191,12 +190,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_0iufa")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_u3ern")
-}, {
-"duration": 1.0,
 "texture": ExtResource("11_vhlnr")
 }, {
 "duration": 1.0,
@@ -213,12 +206,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_vhlnr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_u3ern")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_0iufa")
 }],
 "loop": true,
 "name": &"ground_pivot",
@@ -563,7 +550,7 @@ polygon = PackedVector2Array(9.89899, -19, 38.1818, -19, 24, 4)
 
 [node name="movement_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l17t8")
-animation = &"interact"
+animation = &"ground_pivot"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -645,11 +632,12 @@ shoot_state = NodePath("../shoot")
 enter_door_state = NodePath("../enter_door")
 animation_name = "move"
 
-[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state")]
+[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "enter_door_state")]
 script = ExtResource("11_ei7e8")
 move_state = NodePath("../move")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
+enter_door_state = NodePath("../enter_door")
 animation_name = "crouch"
 move_speed = 384.0
 

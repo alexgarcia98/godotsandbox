@@ -41,7 +41,8 @@ func enter() -> void:
 
 func process_input(event: InputEvent) -> State:
 	super(event)
-	parent.last_valid = parent.position
+	if parent.visible:
+		parent.last_valid = parent.position
 	if get_jump() and parent.is_on_floor():
 		return jump_state
 	if get_movement_input() != 0.0:

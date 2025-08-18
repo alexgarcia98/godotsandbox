@@ -153,18 +153,24 @@ func _process(delta: float) -> void:
 # button press handlers
 
 func _on_previous_level_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
 	previous_level.release_focus()
 	if not (level_ended):
 		if current_index > 0:
 			Messages.PreviousLevel.emit()
 
 func _on_next_level_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
 	next_level.release_focus()
 	if not (level_ended):
 		if current_index < main_scene.levels_unlocked:
 			Messages.NextLevel.emit()
 
 func _on_restart_pressed() -> void:
+	Messages.audio.stream = Messages.progress_button_sound
+	Messages.audio.play()
 	restart.release_focus()
 	Messages.Restart.emit()
 
@@ -185,33 +191,47 @@ func _on_reset_times_pressed() -> void:
 		Messages.ResetLevelTime.emit(current_index)
 
 func _on_controls_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
 	help.show()
 	settingsWindow.hide()
 
 func _on_help_close_requested() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	help.hide()
 	settingsWindow.show()
 	controls.release_focus()
 
 func _on_settings_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
 	settingsWindow.show()
 	help_text.text = ""
 
 func _on_settings_close_requested() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	settingsWindow.hide()
 	settings.release_focus()
 
 func _on_stage_select_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	help.hide()
 	settingsWindow.hide()
 	Messages.emit_signal("WorldSelect")
 
 func _on_title_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	help.hide()
 	settingsWindow.hide()
 	Messages.emit_signal("MainMenu")
 
 func _on_exit_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	help.hide()
 	settingsWindow.hide()
 	Messages.emit_signal("EndGame")
@@ -225,13 +245,13 @@ func _on_exit_mouse_exited() -> void:
 	help_text.text = ""
 
 func _on_title_mouse_entered() -> void:
-	help_text.text = "Return to Title"
+	help_text.text = "Return to the Title Screen"
 
 func _on_title_mouse_exited() -> void:
 	help_text.text = ""
 
 func _on_stage_select_mouse_entered() -> void:
-	help_text.text = "Return to Stage Select"
+	help_text.text = "Return to the Stage Select screen"
 
 func _on_stage_select_mouse_exited() -> void:
 	help_text.text = ""

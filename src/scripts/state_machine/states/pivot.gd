@@ -13,6 +13,8 @@ var flipped = false
 
 func enter() -> void:
 	super()
+	parent.sfx.stream = Messages.pivot_sound
+	parent.sfx.play()
 	parent.velocity.x = 0
 
 #func process_input(event: InputEvent) -> State:
@@ -26,7 +28,7 @@ func enter() -> void:
 	#return null
 
 func process_physics(delta: float) -> State:
-	if animations.frame > 4 and not flipped:
+	if animations.frame > 2 and not flipped:
 		animations.flip_h = not animations.flip_h
 		flipped = true
 	parent.velocity.y += gravity * delta
@@ -36,7 +38,7 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return fall_state
 	
-	if animations.frame >= 9:
+	if animations.frame >= 5:
 		flipped = false
 		return idle_state
 	return null

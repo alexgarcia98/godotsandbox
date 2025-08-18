@@ -17,6 +17,7 @@ extends Node2D
 @onready var best_rank: Label = $LevelEnd/MarginContainer/VBoxContainer/Panel2/HBoxContainer/VBoxContainer/BestRank
 @onready var rank_start: Label = $LevelStart/MarginContainer/VBoxContainer/Panel2/HBoxContainer/Rank
 @onready var sfx: AudioStreamPlayer2D = $sfx
+@onready var sfx_ui: AudioStreamPlayer2D = $sfx_ui
 
 var current = null
 var red_opened = false
@@ -132,6 +133,8 @@ func _on_start_level_pressed() -> void:
 	dimmer.visible = false
 	level_start.visible = false
 	level_end.visible = false
+	Messages.audio.stream = Messages.progress_button_sound
+	Messages.audio.play()
 	Messages.BeginLevel.emit(current_index)
 
 func on_next_level() -> void:
@@ -316,15 +319,21 @@ func on_end_game():
 	get_tree().quit()
 
 func _on_level_select_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	on_world_select()
 
 func _on_next_level_pressed() -> void:
+	Messages.audio.stream = Messages.progress_button_sound
+	Messages.audio.play()
 	level_end.visible = false
 	current_index = (current_index + 1) % (Messages.max_levels + 1)
 	new_level = load("src/scenes/levels/level" + str(current_index) + ".tscn")
 	load_level(current_index)
 
 func _on_restart_level_pressed() -> void:
+	Messages.audio.stream = Messages.progress_button_sound
+	Messages.audio.play()
 	dimmer.visible = false
 	level_end.visible = false
 	on_restart()

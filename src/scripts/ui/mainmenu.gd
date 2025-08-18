@@ -59,47 +59,67 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_play_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
 	Messages.emit_signal("WorldSelect")
 
 func _on_exit_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	Messages.emit_signal("EndGame")
 
 func _on_reset_times_pressed() -> void:
 	Messages.emit_signal("ResetTimes")
 
 func _on_records_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
 	dimmer.visible = true
 	records_window.visible = true
 
 func _on_debug_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
 	dimmer.visible = true
 	debug_window.visible = true
 
 func _on_debug_window_close_requested() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	dimmer.visible = false
 	debug_window.visible = false
 	
 func _on_records_window_close_requested() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
 	dimmer.visible = false
 	records_window.visible = false
 
 func _on_unlock_levels_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
 	Messages.emit_signal("UnlockLevels")
 	help_text.text = "All levels are now available to play"
 	populate_records()
 	unlock_levels.release_focus()
 
 func _on_reset_records_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
 	Messages.emit_signal("ResetTimes")
 	help_text.text = "All best times have been cleared"
 	reset_records.release_focus()
 	
 func _on_reset_controls_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
 	Messages.emit_signal("ResetControls")
 	help_text.text = "Controls set to default control scheme"
 	reset_controls.release_focus()
 
 func _on_lock_levels_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
 	Messages.emit_signal("LockLevels")
 	help_text.text = "Level unlocks have been reset"
 	populate_records()
