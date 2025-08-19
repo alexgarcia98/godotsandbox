@@ -47,7 +47,7 @@ var worldNames = [
 
 var levelNames = [
 	"Move", "Jump", "Dash", "Walls", "Buttons", "Switch", "Levers", "Shooting", "Freeze", "Danger", "Throwing", "Frozen Platform",
-	"Long Jump", "High Jump", "Hurdles", "Shotput", "Pole Vault", "100 Meter Dash", "Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer"
+	"Long Jump", "High Jump", "Hurdles", "Shotput", "Pole Vault", "Bakushin", "Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer"
 ]
 
 var ranks = [
