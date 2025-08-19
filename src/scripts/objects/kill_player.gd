@@ -7,6 +7,9 @@ var pairing = 0
 var respawn_red
 var respawn_green
 
+func activate() -> void:
+	pass
+
 func _on_body_entered(body):
 	body.visible = false
 	body.collision_shape_2d.set_deferred("disabled", true)

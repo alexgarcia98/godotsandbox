@@ -13,7 +13,8 @@ extends TileMapLayer
 @onready var reset_controls: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls
 @onready var unlock_levels: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/UnlockLevels
 @onready var level_records: VBoxContainer = $RecordsWindow/MarginContainer/VBoxContainer/PanelContainer2/ScrollContainer/LevelRecords
-@onready var total_high_score: Label = $RecordsWindow/MarginContainer/VBoxContainer/PanelContainer/TotalHighScore
+@onready var total_high_score: Label = $RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/TotalHighScore
+@onready var export: Button = $RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/Export
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -147,3 +148,71 @@ func _on_reset_controls_mouse_entered() -> void:
 
 func _on_reset_controls_mouse_exited() -> void:
 	help_text.text = ""
+
+func _on_export_pressed() -> void:
+	export.release_focus()
+	# generate text
+	var mainScene = get_parent()
+	var record_text = ""
+	var all_cleared = true
+	var total_time = 0
+	for level in Messages.saved_times:
+		if level == 5999999:
+			all_cleared = false
+			break
+		total_time += level
+	if all_cleared:
+		var sec = floor(total_time / 1000)
+		var minute = floor(sec / 60)
+		var hour = floor(minute / 60)
+		record_text += "Total High Score: %02d:%02d:%02d.%03d\n\n" % [
+			hour, (minute % 60), (sec % 60), (total_time % 1000)
+		]
+	else:
+		record_text += "Clear all available levels to obtain a total high score!\n\n"
+	
+	for j in range((mainScene.levels_unlocked / 12)):
+		var world_number = j
+		var worldName = Messages.worldNames[world_number]
+		record_text += "%s: " % [worldName]
+		
+		var start_range = world_number * 12
+		var end_range = min(((world_number + 1) * 12), Messages.saved_times.size())
+		var ms = 0
+		var cleared = true
+		var rank_threshold = 0
+		for i in range(start_range, end_range):
+			if Messages.saved_times[i] == 5999999:
+				cleared = false
+				break
+			else:
+				ms += Messages.saved_times[i]
+				rank_threshold += Messages.ranks[i]
+		
+		var rank = "F"
+		for i in range(Messages.rank_changes.size()):
+			if ms < (rank_threshold * Messages.rank_changes[i] * 1000):
+				rank = Messages.rank_assn[i]
+				break
+		
+		if cleared:
+			var sec = floor(ms / 1000)
+			var minute = floor(sec / 60)
+			record_text += "%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
+		else:
+			record_text += "Clear all levels in %s to obtain a world high score!\n" % worldName
+		
+	record_text += "\n"
+	
+	for i in range(Messages.saved_times.size()):
+		record_text += Messages.levelNames[i]
+		if Messages.saved_times[i] == 5999999:
+			record_text += ": No Time Set\n"
+		else:
+			var sec = floor(Messages.saved_times[i] / 1000)
+			var minute = floor(sec / 60)
+			record_text += ": %02d:%02d.%03d\n" % [
+				(minute % 60), (sec % 60), (Messages.saved_times[i] % 1000)
+			]
+	
+	DisplayServer.clipboard_set(record_text)
