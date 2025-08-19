@@ -14,7 +14,7 @@ var expand_world_button_2 : Button
 func _ready() -> void:
 	var font = preload("res://src/assets/fonts/PixelOperator8.ttf")
 	var irange
-	if ((world_number * 12) <= levels_unlocked):
+	if (((world_number + 1) * 12) <= levels_unlocked):
 		irange = 12
 	else:
 		irange = levels_unlocked % 12

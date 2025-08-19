@@ -26,7 +26,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 23
+var max_levels = 25
 var filepath = "user://save_data.dat"
 var saved_times = []
 
@@ -51,6 +51,7 @@ var levelNames = [
 ]
 
 var ranks = [
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
 ]

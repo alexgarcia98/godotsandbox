@@ -46,13 +46,20 @@ func _ready() -> void:
 		levelName = str((level_number % 12) + 1)
 	left.text = "\n%s: %s\n" % [worldName, levelName]
 	
-	var ms = Messages.saved_times[level_number]
-	if ms == 5999999:
+	
+	var ms
+	if Messages.saved_times.size() <= level_number:
+		ms = 5999999
+		Messages.saved_times.append(5999999)
 		right.text = "\nNo Time Set\n"
 	else:
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		right.text = "\n%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
+		ms = Messages.saved_times[level_number]
+		if ms == 5999999:
+			right.text = "\nNo Time Set\n"
+		else:
+			var sec = floor(ms / 1000)
+			var minute = floor(sec / 60)
+			right.text = "\n%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
 	
 	rank.text = "F"
 	for i in range(Messages.rank_changes.size()):

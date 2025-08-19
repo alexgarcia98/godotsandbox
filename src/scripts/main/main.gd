@@ -103,13 +103,19 @@ func load_level(index):
 	else:
 		levelName = str((current_index % 12) + 1)
 	level_name.text = "%s: %s" % [worldName, levelName]
-	var ms = Messages.saved_times[current_index]
-	if ms == 5999999:
+	var ms
+	if Messages.saved_times.size() <= current_index:
+		ms = 5999999
+		Messages.saved_times.append(5999999)
 		best_time.text = "Best Time: No Time Set"
 	else:
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		best_time.text = "Best Time: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+		ms = Messages.saved_times[current_index]
+		if ms == 5999999:
+			best_time.text = "Best Time: No Time Set"
+		else:
+			var sec = floor(ms / 1000)
+			var minute = floor(sec / 60)
+			best_time.text = "Best Time: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 	level_start.visible = true
 	old_clear = ms
 	
@@ -153,13 +159,19 @@ func on_restart() -> void:
 	red_opened = false
 	green_opened = false
 	
-	var ms = Messages.saved_times[current_index]
-	if ms == 5999999:
+	var ms
+	if Messages.saved_times.size() <= current_index:
+		ms = 5999999
+		Messages.saved_times.append(5999999)
 		best_time.text = "Best Time: No Time Set"
 	else:
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		best_time.text = "Best Time: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+		ms = Messages.saved_times[current_index]
+		if ms == 5999999:
+			best_time.text = "Best Time: No Time Set"
+		else:
+			var sec = floor(ms / 1000)
+			var minute = floor(sec / 60)
+			best_time.text = "Best Time: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 	old_clear = ms
 	old_rank = "F"
 	for i in range(Messages.rank_changes.size()):
@@ -267,13 +279,20 @@ func on_load_level(index):
 	else:
 		levelName = str((current_index % 12) + 1)
 	level_name.text = "%s: %s" % [worldName, levelName]
-	var ms = Messages.saved_times[current_index]
-	if ms == 5999999:
+	
+	var ms
+	if Messages.saved_times.size() <= current_index:
+		ms = 5999999
+		Messages.saved_times.append(5999999)
 		best_time.text = "Best Time: No Time Set"
 	else:
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		best_time.text = "Best Time: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+		ms = Messages.saved_times[current_index]
+		if ms == 5999999:
+			best_time.text = "Best Time: No Time Set"
+		else:
+			var sec = floor(ms / 1000)
+			var minute = floor(sec / 60)
+			best_time.text = "Best Time: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 	level_start.visible = true
 	old_clear = ms
 	old_rank = "F"

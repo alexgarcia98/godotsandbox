@@ -42,7 +42,7 @@ func _ready() -> void:
 	left.text = "\nWorld: %s\n" % [worldName]
 	
 	var start_range = world_number * 12
-	var end_range = min(((world_number + 1) * 12), Messages.saved_times.size())
+	var end_range = min(((world_number + 1) * 12), Messages.max_levels)
 	var ms = 0
 	var cleared = true
 	var rank_threshold = 0
