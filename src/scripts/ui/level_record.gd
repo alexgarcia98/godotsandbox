@@ -7,7 +7,7 @@ var level_number: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	size_flags_horizontal = Control.SIZE_FILL
-	size_flags_vertical = Control.SIZE_EXPAND_FILL
+	size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	var box : HBoxContainer = HBoxContainer.new()
 	var sep : VSeparator = VSeparator.new()
 	box.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -55,8 +55,8 @@ func _ready() -> void:
 		right.text = "\n%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
 	
 	rank.text = "F"
-	for i in range(Messages.ranks[level_number].size()):
-		if ms < (Messages.ranks[level_number][i] * 1000):
+	for i in range(Messages.rank_changes.size()):
+		if ms < (Messages.ranks[level_number] * Messages.rank_changes[i] * 1000):
 			rank.text = Messages.rank_assn[i]
 			break
 	

@@ -31,12 +31,11 @@ func populate_records():
 		child.queue_free()
 	var sep : HSeparator = HSeparator.new()
 	level_records.add_child(sep)
-	for i in range(mainScene.levels_unlocked):
-		var level_record : LevelRecordContainer = LevelRecordContainer.new()
-		level_record.level_number = i
-		level_records.add_child(level_record)
-		sep = HSeparator.new()
-		level_records.add_child(sep)
+	for j in range((mainScene.levels_unlocked / 12)):
+		var expand_record : ExpandRecordContainer = ExpandRecordContainer.new()
+		expand_record.levels_unlocked = mainScene.levels_unlocked
+		expand_record.world_number = j
+		level_records.add_child(expand_record)
 	var total_time : int = 0
 	var all_cleared : bool = true
 	for level in Messages.saved_times:

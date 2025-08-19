@@ -114,8 +114,8 @@ func load_level(index):
 	old_clear = ms
 	
 	old_rank = "F"
-	for i in range(Messages.ranks[current_index].size()):
-		if ms < (Messages.ranks[current_index][i] * 1000):
+	for i in range(Messages.rank_changes.size()):
+		if ms < (Messages.ranks[current_index] * Messages.rank_changes[i] * 1000):
 			old_rank = Messages.rank_assn[i]
 			break
 	if ms == 5999999:
@@ -162,8 +162,8 @@ func on_restart() -> void:
 		best_time.text = "Best Time: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 	old_clear = ms
 	old_rank = "F"
-	for i in range(Messages.ranks[current_index].size()):
-		if ms < (Messages.ranks[current_index][i] * 1000):
+	for i in range(Messages.rank_changes.size()):
+		if ms < (Messages.ranks[current_index] * Messages.rank_changes[i] * 1000):
 			old_rank = Messages.rank_assn[i]
 			break
 	if ms == 5999999:
@@ -215,8 +215,8 @@ func _on_timer_timeout():
 			best_time_end.text = "Best Time: %02d:%02d.%03d" % [old_minute, (old_sec % 60), (old_ms % 1000)]
 		# find new rank
 		var new_rank = "F"
-		for i in range(Messages.ranks[current_index].size()):
-			if ui.level_time_ms < (Messages.ranks[current_index][i] * 1000):
+		for i in range(Messages.rank_changes.size()):
+			if ui.level_time_ms < (Messages.ranks[current_index] * Messages.rank_changes[i] * 1000):
 				new_rank = Messages.rank_assn[i]
 				break
 		var old_rank_ind = Messages.rank_assn.find(old_rank)
@@ -277,8 +277,8 @@ func on_load_level(index):
 	level_start.visible = true
 	old_clear = ms
 	old_rank = "F"
-	for i in range(Messages.ranks[current_index].size()):
-		if ms < (Messages.ranks[current_index][i] * 1000):
+	for i in range(Messages.rank_changes.size()):
+		if ms < (Messages.ranks[current_index] * Messages.rank_changes[i] * 1000):
 			old_rank = Messages.rank_assn[i]
 			break
 	if ms == 5999999:
