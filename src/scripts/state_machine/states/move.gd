@@ -38,11 +38,13 @@ func process_input(event: InputEvent) -> State:
 			# set current position
 			if parent.visible:
 				parent.last_valid = parent.position
+				parent.last_facing = animations.flip_h
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
 			if parent.visible:
 				parent.last_valid = parent.position
+				parent.last_facing = animations.flip_h
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:

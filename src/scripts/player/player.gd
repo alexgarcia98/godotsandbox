@@ -60,8 +60,10 @@ var air_reverse_remaining = max_air_reverse
 var interactables = []
 var door = null
 var last_valid: Vector2 = Vector2(0,0)
+var last_facing = true
 var key_obtained = false
 var door_opened = false
+var flip_toggled = false
 
 var can_move = false
 
@@ -69,6 +71,7 @@ func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
 	#gun_state_machine.init(self, gun_animations, player_move_component)
 	last_valid = position
+	last_facing = is_flipped
 	Messages.connect("KeyObtained", on_key_obtained)
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("LevelStarted", on_level_started)

@@ -17,6 +17,9 @@ var animation_name = 'closed'
 
 var closed = true
 
+func activate() -> void:
+	pass
+
 func _ready() -> void:
 	if flipped:
 		animations.flip_h = true

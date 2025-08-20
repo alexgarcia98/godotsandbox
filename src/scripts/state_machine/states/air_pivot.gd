@@ -6,24 +6,29 @@ var idle_state: State
 @export
 var fall_state: State
 
+@export
+var airdash_state: State
+
 var flipped = false
 
 func enter() -> void:
 	super()
+	flipped = false
 	parent.velocity.x = 0
 	parent.air_reverse_remaining -= 1
 	parent.sfx.stream = Messages.pivot_sound
 	parent.sfx.play()
 
-#func process_input(event: InputEvent) -> State:
-	#if Input.is_action_just_pressed('switch'):
-		#parent.is_main = not parent.is_main
-		#parent.indicator.visible = not parent.indicator.visible
-		#if parent.is_main:
-			#parent.set_z_index(7)
-		#else:
-			#parent.set_z_index(6)
-	#return null
+func process_input(event: InputEvent) -> State:
+	super(event)
+	if Input.is_action_just_pressed('dash'):
+		if animations.frame > 2 and flipped:
+			if parent.airdash_remaining > 0:
+				return airdash_state
+		elif animations.frame >= 5:
+			if parent.airdash_remaining > 0:
+				return airdash_state
+	return null
 
 func process_physics(delta: float) -> State:
 	if animations.frame > 2 and not flipped:

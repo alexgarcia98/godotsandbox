@@ -32,16 +32,15 @@ func populate_records():
 		child.queue_free()
 	var sep : HSeparator = HSeparator.new()
 	level_records.add_child(sep)
-	print(mainScene.levels_unlocked)
-	for j in range(((mainScene.levels_unlocked - 1) / 12) + 1):
-		print("j: " + str(j))
+	var max_level = min((mainScene.levels_unlocked - 1), Messages.max_levels)
+	for j in range((max_level / 12) + 1):
 		var expand_record : ExpandRecordContainer = ExpandRecordContainer.new()
 		expand_record.levels_unlocked = mainScene.levels_unlocked
 		expand_record.world_number = j
 		level_records.add_child(expand_record)
 	var total_time : int = 0
 	var all_cleared : bool = true
-	for i in range(Messages.max_levels):
+	for i in range(Messages.max_levels + 1):
 		var level = Messages.saved_times[i]
 		if level == 5999999:
 			all_cleared = false
@@ -159,7 +158,10 @@ func _on_export_pressed() -> void:
 	var record_text = ""
 	var all_cleared = true
 	var total_time = 0
-	for level in Messages.saved_times:
+	for i in range(Messages.saved_times.size() + 1):
+		if i > Messages.max_levels:
+			break
+		var level = Messages.saved_times[i]
 		if level == 5999999:
 			all_cleared = false
 			break
@@ -207,7 +209,9 @@ func _on_export_pressed() -> void:
 		
 	record_text += "\n"
 	
-	for i in range(Messages.saved_times.size()):
+	for i in range(Messages.saved_times.size() + 1):
+		if i > Messages.max_levels:
+			break
 		record_text += Messages.levelNames[i]
 		if Messages.saved_times[i] == 5999999:
 			record_text += ": No Time Set\n"

@@ -28,9 +28,13 @@ var shoot_state: State
 var enter_door_state: State
 
 func enter() -> void:
-	if parent.is_flipped:
-		parent.is_flipped = false
-		animations.flip_h = true
+	if not parent.flip_toggled:
+		parent.flip_toggled = true
+		if parent.is_flipped:
+			parent.is_flipped = false
+			animations.flip_h = true
+		else:
+			animations.flip_h = false
 	super()
 	parent.velocity.x = 0
 	parent.jumps_remaining = parent.max_jumps
@@ -43,6 +47,7 @@ func process_input(event: InputEvent) -> State:
 	super(event)
 	if parent.visible:
 		parent.last_valid = parent.position
+		parent.last_facing = animations.flip_h
 	if get_jump() and parent.is_on_floor():
 		return jump_state
 	if get_movement_input() != 0.0:

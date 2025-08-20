@@ -3,6 +3,7 @@ extends Node
 signal KeyObtained(emitter)
 signal DoorToggled(emitter)
 signal PlayerDied(emitter)
+signal PlayerRevived(emitter)
 signal ButtonRemapped(action, key)
 signal EndGame()
 signal ShotFired(emitter)
@@ -26,14 +27,14 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 25
+var max_levels = 35
 var filepath = "user://save_data.dat"
 var saved_times = []
 
 var worldNames = [
 	"Tutorial",
 	"Spo-cha",
-	"WIP",
+	"Kaizo",
 	"WIP",
 	"WIP",
 	"WIP",
@@ -47,10 +48,20 @@ var worldNames = [
 
 var levelNames = [
 	"Move", "Jump", "Dash", "Walls", "Buttons", "Switch", "Levers", "Shooting", "Freeze", "Danger", "Throwing", "Frozen Platform",
-	"Long Jump", "High Jump", "Hurdles", "Shotput", "Pole Vault", "100 Meter Dash", "Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer"
+	"Long Jump", "High Jump", "Hurdles", "Shotput", "Pole Vault", "100 Meter Dash", "Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer",
+	"One-Way Street", "Two-Way Street", "Double Dash", "Waves", "Tight Squeeze", "Trees", "Simon the Digger", "The Big One", "Good Luck", "Popo and Nana", "U-Turn", "Exam-D"
 ]
 
 var ranks = [
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+	10, 10, 10, 10, 10, 10, 10, 10, 20, 10, 10, 10,
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 60,
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 	10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10

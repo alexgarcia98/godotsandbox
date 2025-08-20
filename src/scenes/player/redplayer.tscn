@@ -488,12 +488,12 @@ max_jumps = 1
 
 [node name="wall_left" type="RayCast2D" parent="."]
 position = Vector2(0, 16)
-target_position = Vector2(-24, 0)
+target_position = Vector2(-16, 0)
 collision_mask = 4097
 
 [node name="air_left" type="RayCast2D" parent="."]
 position = Vector2(0, -24)
-target_position = Vector2(-24, 0)
+target_position = Vector2(-16, 0)
 collision_mask = 4097
 
 [node name="gate_up_1" type="RayCast2D" parent="."]
@@ -534,12 +534,12 @@ target_position = Vector2(0, 8)
 
 [node name="wall_right" type="RayCast2D" parent="."]
 position = Vector2(0, 16)
-target_position = Vector2(24, 0)
+target_position = Vector2(16, 0)
 collision_mask = 4097
 
 [node name="air_right" type="RayCast2D" parent="."]
 position = Vector2(0, -24)
-target_position = Vector2(24, 0)
+target_position = Vector2(16, 0)
 collision_mask = 4097
 
 [node name="indicator" type="Polygon2D" parent="."]
@@ -648,10 +648,11 @@ fall_state = NodePath("../fall")
 animation_name = "airdash"
 move_speed = 384.0
 
-[node name="pivot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
+[node name="pivot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "dash_state")]
 script = ExtResource("43_4bkl8")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
+dash_state = NodePath("../dash")
 animation_name = "ground_pivot"
 
 [node name="single_pivot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
@@ -726,10 +727,11 @@ fall_state = NodePath("../fall")
 wall_cling_state = NodePath("../wall_cling")
 animation_name = "ledge"
 
-[node name="air_pivot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
+[node name="air_pivot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "airdash_state")]
 script = ExtResource("76_7813v")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
+airdash_state = NodePath("../airdash")
 animation_name = "main_switch"
 
 [node name="shoot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "jump_state", "move_state")]

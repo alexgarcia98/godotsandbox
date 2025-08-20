@@ -42,17 +42,22 @@ func _ready() -> void:
 	left.text = "\nWorld: %s\n" % [worldName]
 	
 	var start_range = world_number * 12
-	var end_range = min(((world_number + 1) * 12), Messages.max_levels)
+	var end_range = min(((world_number + 1) * 12), (Messages.max_levels + 1))
 	var ms = 0
 	var cleared = true
 	var rank_threshold = 0
 	for i in range(start_range, end_range):
-		if Messages.saved_times[i] == 5999999:
+		if Messages.saved_times.size() <= i:
+			Messages.saved_times.append(5999999)
 			cleared = false
 			break
 		else:
-			ms += Messages.saved_times[i]
-			rank_threshold += Messages.ranks[i]
+			if Messages.saved_times[i] == 5999999:
+				cleared = false
+				break
+			else:
+				ms += Messages.saved_times[i]
+				rank_threshold += Messages.ranks[i]
 	
 	rank.text = "F"
 	for i in range(Messages.rank_changes.size()):
