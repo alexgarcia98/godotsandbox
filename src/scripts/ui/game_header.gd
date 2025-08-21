@@ -347,10 +347,8 @@ func on_level_ended():
 	current_time = Time.get_ticks_msec()
 	level_time_ms = current_time - level_start_time
 	level_time.text = Messages.get_readable_time(level_time_ms)
-	print("game_header: entering update level time")
 	Messages.update_level_time(current_index, level_time_ms)
 	var best_time = Messages.get_readable_stored_level_time(current_index)
-	print("game_header: best time: %s" % best_time)
 	personal_best.text = "Best: " + best_time
 
 func on_button_remapped(a, key):

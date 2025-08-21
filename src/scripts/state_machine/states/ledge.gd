@@ -3,7 +3,7 @@ extends State
 @export
 var idle_state: State
 @export
-var wall_jump_state: State
+var jump_state: State
 @export
 var fall_state: State
 @export
@@ -23,7 +23,7 @@ func process_input(event: InputEvent) -> State:
 		#else:
 			#parent.set_z_index(6)
 	if Input.is_action_just_pressed('jump'):
-		return wall_jump_state
+		return jump_state
 	if Input.is_action_just_pressed('move_down'):
 		return fall_state
 	return null

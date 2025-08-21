@@ -477,7 +477,7 @@ radius = 24.0
 [node name="green_player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4609
-safe_margin = 0.1
+safe_margin = 0.125
 script = ExtResource("1_nxtay")
 max_jumps = 1
 
@@ -715,10 +715,10 @@ jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 animation_name = "interact"
 
-[node name="ledge" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "wall_jump_state", "fall_state", "wall_cling_state")]
+[node name="ledge" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "wall_cling_state")]
 script = ExtResource("70_0ciyq")
 idle_state = NodePath("../idle")
-wall_jump_state = NodePath("../wall_jump")
+jump_state = NodePath("../jump")
 fall_state = NodePath("../fall")
 wall_cling_state = NodePath("../wall_cling")
 animation_name = "ledge"
