@@ -11,7 +11,7 @@ func activate() -> void:
 	pass
 
 func _on_body_entered(body):
-	if body.visible:
+	if body.visible and body.can_move:
 		body.visible = false
 		body.collision_shape_2d.set_deferred("disabled", true)
 		Messages.PlayerDied.emit(body)

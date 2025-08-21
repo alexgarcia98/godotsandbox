@@ -90,11 +90,12 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	parent.velocity.y += gravity * delta
-	parent.velocity.x = 0
-	parent.velocity = gate_check(parent.velocity)
-	parent.move_and_slide()
-	
-	if !parent.is_on_floor():
-		return fall_state
+	if parent.can_move:
+		parent.velocity.y += gravity * delta
+		parent.velocity.x = 0
+		parent.velocity = gate_check(parent.velocity)
+		parent.move_and_slide()
+		
+		if !parent.is_on_floor():
+			return fall_state
 	return null

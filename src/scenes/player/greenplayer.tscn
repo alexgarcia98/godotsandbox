@@ -477,7 +477,7 @@ radius = 24.0
 [node name="green_player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4609
-safe_margin = 0.125
+safe_margin = 0.1
 script = ExtResource("1_nxtay")
 max_jumps = 1
 
