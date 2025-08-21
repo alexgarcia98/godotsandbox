@@ -20,7 +20,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 	# init button visibility
 	var mainNode = get_parent()
-	var worldCount = (mainNode.levels_unlocked / 12) + 1
+	var worldCount = (Messages.max_levels / 12) + 1
 	
 	var worldList = [
 		world_1, 

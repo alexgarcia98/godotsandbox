@@ -22,7 +22,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 	# init button visibility
 	var mainNode = get_parent()
-	var levelCount = mainNode.levels_unlocked
+	var levelCount = min(mainNode.levels_unlocked, Messages.max_levels + 1)
 	
 	var levelList = [
 		level_1, 
