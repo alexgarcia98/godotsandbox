@@ -47,9 +47,10 @@ func _ready() -> void:
 		for i in range(start, levelList.size()):
 			levelList[i].disabled = true
 			
-	for level in levelList:
-		if level.level < Messages.levelNames.size():
-			level.text = Messages.levelNames[level.level]
+	for i in range(max_level - 13, max_level):
+		var level = levelList[i % 12]
+		var worldName = Messages.worldNames[i / 12]
+		level.text = Messages.worldLevels[worldName][i % 12]
 	
 	var worldIndex = level_1.level / 12
 	select_level.text = Messages.worldNames[worldIndex]

@@ -37,39 +37,11 @@ func _ready() -> void:
 	rank.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	rank.add_theme_font_override("font", font)
 	rank.add_theme_font_size_override("font_size", 16)
-	
-	var worldName = Messages.worldNames[level_number / 12]
-	var levelName
-	if level_number < Messages.levelNames.size():
-		levelName = Messages.levelNames[level_number]
-	else:
-		levelName = str((level_number % 12) + 1)
-	left.text = "\n%s: %s\n" % [worldName, levelName]
-	
-	
-	var ms
-	if Messages.saved_times.size() <= level_number:
-		ms = 5999999
-		Messages.saved_times.append(5999999)
-		right.text = "\nNo Time Set\n"
-	else:
-		ms = Messages.saved_times[level_number]
-		if ms == 5999999:
-			right.text = "\nNo Time Set\n"
-		else:
-			var sec = floor(ms / 1000)
-			var minute = floor(sec / 60)
-			right.text = "\n%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
-	
-	rank.text = "F"
-	for i in range(Messages.rank_changes.size()):
-		if ms < (Messages.ranks[level_number] * Messages.rank_changes[i] * 1000):
-			rank.text = Messages.rank_assn[i]
-			break
-	
-	if ms == 5999999:
-		rank.text = "None"
-	
+
+	left.text = "\n" + Messages.get_world_level_name(level_number) + "\n"
+	right.text = "\n" + Messages.get_readable_stored_level_time(level_number) + "\n"
+	rank.text = Messages.get_stored_rank(level_number)
+		
 	var boxRight : HBoxContainer = HBoxContainer.new()
 	boxRight.alignment = BoxContainer.ALIGNMENT_CENTER
 	boxRight.size_flags_horizontal = Control.SIZE_EXPAND_FILL

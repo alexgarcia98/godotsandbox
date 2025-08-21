@@ -47,17 +47,13 @@ func _ready() -> void:
 	var cleared = true
 	var rank_threshold = 0
 	for i in range(start_range, end_range):
-		if Messages.saved_times.size() <= i:
-			Messages.saved_times.append(5999999)
+		var level_time = Messages.get_stored_level_time(i)
+		if level_time == 5999999:
 			cleared = false
 			break
 		else:
-			if Messages.saved_times[i] == 5999999:
-				cleared = false
-				break
-			else:
-				ms += Messages.saved_times[i]
-				rank_threshold += Messages.ranks[i]
+			ms += level_time
+			rank_threshold += Messages.get_rank_threshold(i)
 	
 	rank.text = "F"
 	for i in range(Messages.rank_changes.size()):
@@ -66,9 +62,7 @@ func _ready() -> void:
 			break
 	
 	if cleared:
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		right.text = "\n%02d:%02d.%03d\n" % [minute, (sec % 60), (ms % 1000)]
+		right.text = "\n" + Messages.get_readable_time(ms) + "\n"
 	else:
 		right.text = "\nClear all levels in %s to obtain a world high score!\n" % worldName
 		right.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

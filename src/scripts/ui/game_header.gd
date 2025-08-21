@@ -53,7 +53,6 @@ var level_ended: bool = true
 var current_index = 0
 var max_levels
 
-var filepath = "user://save_data.dat"
 var filepath2 = "user://controls.dat"
 var filepath3 = "user://volume.dat"
 var write_file
@@ -98,7 +97,6 @@ func _ready() -> void:
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
 	Messages.connect("ButtonRemapped", on_button_remapped)
-	Messages.connect("ResetTimes", on_reset_times)
 	Messages.connect("ResetControls", on_reset_controls)
 	Messages.connect("BeginLevel", on_begin_level)
 	main_scene = get_parent()
@@ -174,9 +172,7 @@ func _process(delta: float) -> void:
 	if not (level_ended):
 		current_time = Time.get_ticks_msec()
 		level_time_ms = current_time - level_start_time
-		var sec = floor(level_time_ms / 1000)
-		var minute = floor(sec / 60)
-		level_time.text = "%02d:%02d.%03d" % [minute, (sec % 60), (level_time_ms % 1000)]
+		level_time.text = Messages.get_readable_time(level_time_ms)
 
 # button press handlers
 
@@ -205,17 +201,8 @@ func _on_restart_pressed() -> void:
 func _on_reset_times_pressed() -> void:
 	reset_times.release_focus()
 	if not (level_ended):
-		Messages.saved_times[current_index] = 5999999
-		write_file = FileAccess.open(filepath, FileAccess.WRITE)
-		write_file.store_var(Messages.saved_times)
-		write_file.close()
-		var ms = Messages.saved_times[current_index]
-		if ms == 5999999:
-			personal_best.text = "Best: No Time Set"
-		else:
-			var sec = floor(ms / 1000)
-			var minute = floor(sec / 60)
-			personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+		Messages.reset_level_time(current_index)
+		personal_best.text = "Best: " + Messages.get_readable_stored_level_time(current_index)
 		Messages.ResetLevelTime.emit(current_index)
 
 func _on_controls_pressed() -> void:
@@ -321,7 +308,7 @@ func on_shot_fired(player_name):
 func on_begin_level(index):
 	current_time = 0
 	level_time_ms = 0
-	level_time.text = "00:00:000"
+	level_time.text = "00:00.000"
 	current_index = index
 	level_deaths = 0
 	deaths.text = "Deaths: " + str(level_deaths)
@@ -336,26 +323,12 @@ func on_level_started(index):
 	level_ended = true
 	current_time = 0
 	level_time_ms = 0
-	level_time.text = "00:00:000"
+	level_time.text = "00:00.000"
 	current_index = index
 	level_deaths = 0
 	deaths.text = "Deaths: " + str(level_deaths)
-	var worldName = Messages.worldNames[current_index / 12]
-	var levelName
-	if current_index < Messages.levelNames.size():
-		levelName = Messages.levelNames[current_index]
-	else:
-		levelName = str((current_index % 12) + 1)
-		
-	level_name.text = "%s: %s" % [worldName, levelName]
-	
-	var ms = Messages.saved_times[current_index]
-	if ms == 5999999:
-		personal_best.text = "Best: No Time Set"
-	else:
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+	level_name.text = Messages.get_world_level_name(current_index)
+	personal_best.text = "Best: " + Messages.get_readable_stored_level_time(current_index)
 	red_ammo_count = main_scene.current.get_node("red_player").ammo
 	green_ammo_count = main_scene.current.get_node("green_player").ammo
 	red_ammo.text = "Red Ammo: %s" % red_ammo_count
@@ -373,18 +346,12 @@ func on_level_ended():
 	level_ended = true
 	current_time = Time.get_ticks_msec()
 	level_time_ms = current_time - level_start_time
-	var sec = floor(level_time_ms / 1000)
-	var minute = floor(sec / 60)
-	level_time.text = "%02d:%02d.%03d" % [minute, (sec % 60), (level_time_ms % 1000)]
-	if level_time_ms < Messages.saved_times[current_index]:
-		Messages.saved_times[current_index] = level_time_ms
-		write_file = FileAccess.open(filepath, FileAccess.WRITE)
-		write_file.store_var(Messages.saved_times)
-		write_file.close()
-		var ms = Messages.saved_times[current_index]
-		sec = floor(ms / 1000)
-		minute = floor(sec / 60)
-		personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
+	level_time.text = Messages.get_readable_time(level_time_ms)
+	print("game_header: entering update level time")
+	Messages.update_level_time(current_index, level_time_ms)
+	var best_time = Messages.get_readable_stored_level_time(current_index)
+	print("game_header: best time: %s" % best_time)
+	personal_best.text = "Best: " + best_time
 
 func on_button_remapped(a, key):
 	Messages.rebinds[a] = key
@@ -392,23 +359,6 @@ func on_button_remapped(a, key):
 	write_file.store_var(Messages.rebinds)
 	write_file.close()
 	print("storing remap of " + a + " to " + str(key))
-
-func on_reset_times() -> void:
-	# create new save data
-	var file = FileAccess.open(filepath, FileAccess.WRITE)
-	var times = []
-	for i in range(max_levels + 1):
-		times[i] = 5999999
-	file.store_var(times)
-	file.close()
-	Messages.saved_times = times
-	var ms = Messages.saved_times[current_index]
-	if ms == 5999999:
-		personal_best.text = "Best: No Time Set"
-	else:
-		var sec = floor(ms / 1000)
-		var minute = floor(sec / 60)
-		personal_best.text = "Best: %02d:%02d.%03d" % [minute, (sec % 60), (ms % 1000)]
 
 func on_reset_controls():
 	var file2 = FileAccess.open(filepath2, FileAccess.WRITE)
