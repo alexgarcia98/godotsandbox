@@ -70,15 +70,16 @@ func process_physics(delta: float) -> State:
 		return fall_state
 	
 	var movement = move_speed * parent.get_wall_normal().x
-	
-	if parent.get_slide_collision_count() > 1:
-		return wall_cling_state
 		
 	if movement != 0:
 		animations.flip_h = movement < 0
 	parent.velocity.x = movement
 	parent.velocity = gate_check(parent.velocity)
 	parent.move_and_slide()
+	
+	if parent.get_slide_collision_count() > 1:
+		print("collisions: %s" % parent.get_slide_collision_count())
+		return wall_cling_state
 	
 	if parent.is_on_floor():
 		if movement != 0:

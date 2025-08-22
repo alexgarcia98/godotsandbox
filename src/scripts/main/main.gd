@@ -219,8 +219,9 @@ func on_load_world(index):
 	level_end.visible = false
 	if current:
 		current.queue_free()
-	var new_level = load("src/scenes/levelSelect/levels" + str(index) + ".tscn")
+	var new_level = load("src/scenes/levelSelect/levelselect.tscn")
 	current = new_level.instantiate()
+	current.world_level = index
 	add_child(current)
 	
 func on_unlock_levels():

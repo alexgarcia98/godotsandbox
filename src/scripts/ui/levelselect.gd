@@ -17,6 +17,8 @@ extends Control
 @onready var level_11: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/Level11
 @onready var level_12: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12/Level12
 
+@export var world_level: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -38,6 +40,9 @@ func _ready() -> void:
 		level_11,
 		level_12
 	]
+	
+	for i in range(levelList.size()):
+		levelList[i].level = (world_level * 12) + i
 	
 	var max_level = level_12.level + 1
 	print("max_level: " + str(max_level))

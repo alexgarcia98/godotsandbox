@@ -21,6 +21,7 @@ func _ready() -> void:
 	left.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	left.add_theme_font_override("font", font)
 	left.add_theme_font_size_override("font_size", 16)
+	left.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	
 	var right : Label = Label.new()
 	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -38,7 +39,7 @@ func _ready() -> void:
 	rank.add_theme_font_override("font", font)
 	rank.add_theme_font_size_override("font_size", 16)
 
-	left.text = "\n" + Messages.get_world_level_name(level_number) + "\n"
+	left.text = Messages.get_world_level_name(level_number)
 	right.text = "\n" + Messages.get_readable_stored_level_time(level_number) + "\n"
 	rank.text = Messages.get_stored_rank(level_number)
 		

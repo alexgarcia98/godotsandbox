@@ -93,6 +93,7 @@ theme_override_font_sizes/font_size = 16
 text = "World Name: Level Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="FullUIContainer/UIMargins/Elements/Left/VBoxContainer"]
 layout_mode = 2

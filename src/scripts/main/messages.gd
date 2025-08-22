@@ -27,22 +27,22 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 47
+var max_levels = 59
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
 
 # ordered list for worlds
 var worldNames = [
-	"Tutorial",
+	"Getting Started",
 	"Mirror",
+	"The Movement",
 	"Spo-cha",
-	"Kaizo",
-	"WIP2",
-	"WIP3",
-	"WIP4",
-	"WIP5",
-	"WIP6",
+	"Thread the Needle",
+	"Around the World",
+	"Shooting Practice",
+	"Helping Hand",
+	"Classic Games",
 	"WIP7",
 	"WIP8",
 	"WIP9"
@@ -58,10 +58,10 @@ var levelInfo = {
 	"Archery": [18, 10], "Basketball": [19, 10], "Baseball": [20, 20], "Golf": [21, 10], "Football": [22, 10], "Soccer": [23, 10],
 	"One-Way Street": [24, 5], "Two-Way Street": [25, 5], "Double Dash": [26, 10], "Waves": [27, 15], "Tight Squeeze": [28, 12], "Trees": [29, 15], 
 	"Simon the Digger": [30, 30], "The Big One": [31, 15], "Good Luck": [32, 15], "Popo and Nana": [33, 15], "Parting Shot": [34, 20], "Exam-E": [35, 40],
-	"Meats": [36, 2], "In the Middle": [37, 5], "Elevator": [38, 5], "Big Elevator": [39, 8], "Twin Peaks": [40, 5], "Summit": [41, 5], 
+	"Meats": [36, 2], "In the Middle": [37, 5], "Small Jumps": [38, 5], "Big Jumps": [39, 8], "Twin Peaks": [40, 5], "Summit": [41, 5], 
 	"Airkick Turn": [42, 10], "Drop Chute": [43, 10], "U-Turn": [44, 20], "Escalator": [45, 5], "Big Dogs": [46, 10], "Exam-D": [47, 25],
-	"13": [48, 10], "14": [49, 10], "15": [50, 10], "16": [51, 10], "17": [52, 10], "18": [53, 10], 
-	"19": [54, 10], "20": [55, 10], "21": [56, 10], "22": [57, 10], "23": [58, 10], "24": [59, 10],
+	"Uber": [48, 8], "Elevator": [49, 8], "Timed Doors": [50, 5], "My Back!": [51, 4], "Split Ascent": [52, 10], "Floaters": [53, 12], 
+	"Not Flappy Bird": [54, 8], "Quick Gap": [55, 12], "The Walls Are Moving!": [56, 10], "Chaos": [57, 10], "The Wave": [58, 4], "Enjoy the Ride": [59, 30],
 	"25": [60, 10], "26": [61, 10], "27": [62, 10], "28": [63, 10], "29": [64, 10], "30": [65, 10], 
 	"31": [66, 10], "32": [67, 10], "33": [68, 10], "34": [69, 10], "35": [70, 10], "36": [71, 10],
 	"37": [72, 10], "38": [73, 10], "39": [74, 10], "40": [75, 10], "41": [76, 10], "42": [77, 10], 
@@ -80,23 +80,23 @@ var levelInfo = {
 
 # lists are ordered for level select
 var worldLevels = {
-	"Tutorial": ["Move", "Jump", "Dash", "Walls", "Buttons", "Switch", 
+	"Getting Started": ["Move", "Jump", "Dash", "Walls", "Buttons", "Switch", 
 		"Levers", "Shooting", "Freeze", "Danger", "Throwing", "Frozen Platform"],
 	"Spo-cha": ["Long Jump", "High Jump", "Hurdles", "Shotput", "Pole Vault", "100 Meter Dash", 
 		"Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer"],
-	"Kaizo": ["One-Way Street", "Two-Way Street", "Double Dash", "Waves", "Simon the Digger", "The Big One", 
+	"Thread the Needle": ["One-Way Street", "Two-Way Street", "Double Dash", "Waves", "Simon the Digger", "The Big One", 
 		"Tight Squeeze", "Trees", "Popo and Nana", "Parting Shot", "Good Luck", "Exam-E"],
-	"Mirror": ["Meats", "In the Middle", "Elevator", "Big Elevator", "Twin Peaks", "Summit", 
+	"Mirror": ["Meats", "In the Middle", "Small Jumps", "Big Jumps", "Twin Peaks", "Summit", 
 		"Drop Chute", "Airkick Turn", "Escalator", "U-Turn", "Big Dogs", "Exam-D"],
-	"WIP2": ["13", "14", "15", "16", "17", "18", 
-		"19", "20", "21", "22", "23", "24"],
-	"WIP3": ["25", "26", "27", "28", "29", "30", 
+	"The Movement": ["Uber", "Elevator", "Timed Doors", "My Back!", "Split Ascent", "Floaters", 
+		"Not Flappy Bird", "Quick Gap", "The Walls Are Moving!", "Chaos", "The Wave", "Enjoy the Ride"],
+	"Around the World": ["25", "26", "27", "28", "29", "30", 
 		"31", "32", "33", "34", "35", "36"],
-	"WIP4": ["37", "38", "39", "40", "41", "42", 
+	"Shooting Practice": ["37", "38", "39", "40", "41", "42", 
 		"43", "44", "45", "46", "47", "48"],
-	"WIP5": ["49", "50", "51", "52", "53", "54", 
+	"Helping Hand": ["49", "50", "51", "52", "53", "54", 
 		"55", "56", "57", "58", "59", "60"],
-	"WIP6": ["61", "62", "63", "64", "65", "66", 
+	"Classic Games": ["61", "62", "63", "64", "65", "66", 
 		"67", "68", "69", "70", "71", "72"],
 	"WIP7": ["73", "74", "75", "76", "77", "78", 
 		"79", "80", "81", "82", "83", "84"],

@@ -328,6 +328,10 @@ func on_level_started(index):
 	level_deaths = 0
 	deaths.text = "Deaths: " + str(level_deaths)
 	level_name.text = Messages.get_world_level_name(current_index)
+	if level_name.text.length() > 25:
+		level_name.add_theme_font_size_override("font_size", 8)
+	else:
+		level_name.add_theme_font_size_override("font_size", 16)
 	personal_best.text = "Best: " + Messages.get_readable_stored_level_time(current_index)
 	red_ammo_count = main_scene.current.get_node("red_player").ammo
 	green_ammo_count = main_scene.current.get_node("green_player").ammo

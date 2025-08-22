@@ -21,6 +21,7 @@ func _ready() -> void:
 	left.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	left.add_theme_font_override("font", font)
 	left.add_theme_font_size_override("font_size", 16)
+	left.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	
 	var right : Label = Label.new()
 	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
