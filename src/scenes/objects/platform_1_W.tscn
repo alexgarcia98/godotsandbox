@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0hov6202wccg"]
+
+[ext_resource type="Script" uid="uid://cejvvo50kfsek" path="res://src/scripts/objects/platform.gd" id="1_5xww0"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_g3thc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wift6"]
+size = Vector2(16, 16)
+
+[node name="Platform_1_W" type="AnimatableBody2D"]
+collision_layer = 4096
+script = ExtResource("1_5xww0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_g3thc")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wift6")

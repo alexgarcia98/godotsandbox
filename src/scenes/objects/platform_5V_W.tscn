@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://buhhkuuq7j7de"]
+
+[ext_resource type="Script" uid="uid://cejvvo50kfsek" path="res://src/scripts/objects/platform.gd" id="1_mpupc"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_h5ne6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wift6"]
+size = Vector2(16, 80)
+
+[node name="Platform_5V_W" type="AnimatableBody2D"]
+collision_layer = 4096
+script = ExtResource("1_mpupc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_h5ne6")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("2_h5ne6")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("2_h5ne6")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("2_h5ne6")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_h5ne6")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wift6")

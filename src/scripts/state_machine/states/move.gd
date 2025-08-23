@@ -84,15 +84,23 @@ func process_physics(delta: float) -> State:
 	parent.velocity.y += (gravity * delta)
 
 	var movement = get_movement_input() * move_speed
+	var advancement = get_advancement_input() * move_speed
 	
 	if movement == 0:
-		return idle_state
-	
-	animations.flip_h = movement < 0
-	parent.velocity.x = movement
-	parent.velocity = gate_check(parent.velocity)
-	parent.move_and_slide()
-	
-	if !parent.is_on_floor():
-		return fall_state
+		if advancement == 0:
+			return idle_state
+		else:
+			parent.velocity.x = advancement
+			if animations.flip_h:
+				parent.velocity.x *= -1
+			parent.velocity = gate_check(parent.velocity)
+			parent.move_and_slide()
+	else:
+		animations.flip_h = movement < 0
+		parent.velocity.x = movement
+		parent.velocity = gate_check(parent.velocity)
+		parent.move_and_slide()
+		
+		if !parent.is_on_floor():
+			return fall_state
 	return null

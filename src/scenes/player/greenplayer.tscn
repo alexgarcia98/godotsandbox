@@ -481,6 +481,24 @@ safe_margin = 0.1
 script = ExtResource("1_nxtay")
 max_jumps = 1
 
+[node name="air_left2" type="RayCast2D" parent="."]
+position = Vector2(0, -15)
+target_position = Vector2(-16, 0)
+collision_mask = 4097
+
+[node name="air_right2" type="RayCast2D" parent="."]
+position = Vector2(0, -15)
+target_position = Vector2(16, 0)
+collision_mask = 4097
+
+[node name="air_left3" type="RayCast2D" parent="."]
+target_position = Vector2(-16, 0)
+collision_mask = 4097
+
+[node name="air_right3" type="RayCast2D" parent="."]
+target_position = Vector2(16, 0)
+collision_mask = 4097
+
 [node name="wall_left" type="RayCast2D" parent="."]
 position = Vector2(0, 16)
 target_position = Vector2(-16, 0)
@@ -526,6 +544,14 @@ target_position = Vector2(0, 8)
 [node name="floor_down_2" type="RayCast2D" parent="."]
 position = Vector2(6, 13)
 target_position = Vector2(0, 8)
+
+[node name="floor_down_3" type="RayCast2D" parent="."]
+position = Vector2(-6, 13)
+target_position = Vector2(0, 19)
+
+[node name="floor_down_4" type="RayCast2D" parent="."]
+position = Vector2(6, 13)
+target_position = Vector2(0, 19)
 
 [node name="wall_right" type="RayCast2D" parent="."]
 position = Vector2(0, 16)

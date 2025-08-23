@@ -9,9 +9,26 @@ var fall_state: State
 @export
 var wall_cling_state: State
 
+var head_exposed = false
+
 func enter() -> void:
 	super()
 	parent.airdash_remaining = parent.max_airdash
+	var norm = parent.get_wall_normal()
+	if norm.x > 0:
+		if parent.air_left_2.is_colliding():
+			head_exposed = false
+			print("x12")
+		else:
+			head_exposed = true
+			print("x2")
+	else:
+		if parent.air_right_2.is_colliding():
+			head_exposed = false
+			print("x32")
+		else:
+			head_exposed = true
+			print("x4")
 
 func process_input(event: InputEvent) -> State:
 	super(event)
@@ -42,22 +59,44 @@ func process_physics(delta: float) -> State:
 		animations.flip_h = false
 
 	var has_ceiling = parent.ceiling_up_1.is_colliding() or parent.ceiling_up_2.is_colliding() or parent.gate_up_1.is_colliding() or parent.gate_up_2.is_colliding()
+	var has_floor = parent.floor_down_3.is_colliding() or parent.floor_down_4.is_colliding()
 	if norm.x > 0:
-		if parent.air_left.is_colliding():
-			print("1")
-			parent.velocity.y = 50
-			parent.velocity.x = 0
-			parent.velocity = gate_check(parent.velocity)
-			parent.move_and_slide()
-			return wall_cling_state
+		if head_exposed:
+			if parent.air_left_2.is_colliding():
+				print("1")
+				parent.velocity.y = 0
+				parent.move_and_slide()
+				return wall_cling_state
+				if (not parent.wall_left.is_colliding()) and (not parent.air_left_3.is_colliding()):
+					parent.velocity.y = 49
+					print("x14")
+				else:
+					print("x7")
+		else:
+			if not parent.air_left_2.is_colliding():
+				print("x5")
+				head_exposed = true
+			else:
+				print("x8")
 	else:
-		if parent.air_right.is_colliding():
-			print("2")
-			parent.velocity.y = 50
-			parent.velocity.x = 0
-			parent.velocity = gate_check(parent.velocity)
-			parent.move_and_slide()
-			return wall_cling_state
+		if head_exposed:
+			if parent.air_right_2.is_colliding():
+				print("2")
+				parent.velocity.y = 0
+				parent.move_and_slide()
+				return wall_cling_state
+			else:
+				if (not parent.wall_right.is_colliding()) and (not parent.air_right_3.is_colliding()):
+					parent.velocity.y = 49
+					print("x13")
+				else:
+					print("x9")
+		else:
+			if not parent.air_right_2.is_colliding():
+				print("x6")
+				head_exposed = true
+			else:
+				print("x10")
 		
 		
 	parent.velocity = gate_check(parent.velocity)
@@ -65,6 +104,16 @@ func process_physics(delta: float) -> State:
 	
 	if not parent.is_on_wall_only():
 		parent.velocity.y = 0
+		if (not has_floor) and has_ceiling:
+			parent.velocity.x = parent.velocity.x / 2
+			#if norm.x > 0:
+				#parent.velocity.x = -250
+			#else:
+				#parent.velocity.x = 250
+			parent.move_and_slide()
+			print("x51")
+		else:
+			print("x50")
 		return fall_state
 	
 	if parent.is_on_floor():

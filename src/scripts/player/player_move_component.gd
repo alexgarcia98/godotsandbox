@@ -6,6 +6,9 @@ extends Node
 func get_movement_direction() -> float:
 	return Input.get_axis('move_left', 'move_right')
 
+func get_advancement_direction() -> float:
+	return Input.get_axis('move_down', 'move_up')
+
 # Return a boolean indicating if the character wants to jump
 func wants_jump() -> bool:
 	return Input.is_action_just_pressed('jump')

@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://2r7iolxvuo1x"]
+
+[ext_resource type="Script" uid="uid://mbywssq1b6yt" path="res://src/scripts/objects/enemy_projectile.gd" id="1_rl34b"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_wxdb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wift6"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suuvl"]
+size = Vector2(16, 16)
+
+[node name="Platform_1_M" type="AnimatableBody2D"]
+collision_layer = 768
+collision_mask = 6
+script = ExtResource("1_rl34b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_wxdb3")
+region_enabled = true
+region_rect = Rect2(128, 112, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_wxdb3")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 768
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wift6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_suuvl")
+
+[node name="red_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="green_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="red_timer" to="." method="_on_red_timer_timeout"]
+[connection signal="timeout" from="green_timer" to="." method="_on_green_timer_timeout"]

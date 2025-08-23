@@ -69,23 +69,32 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	var movement = get_movement_input() * move_speed
+	var advancement = get_advancement_input() * move_speed
+	if animations.flip_h:
+		advancement *= -1
 
 	var norm = parent.get_wall_normal()
 
 	if parent.is_on_wall_only():
 		if norm.x * movement < 0:
 			return wall_cling_state
+		if norm.x * advancement < 0:
+			return wall_cling_state
 	
 	parent.velocity.y += gravity * delta
 	
 	if movement != 0:
 		animations.flip_h = movement < 0
-	parent.velocity.x = movement
-	parent.velocity = gate_check(parent.velocity)
-	parent.move_and_slide()
+		parent.velocity.x = movement
+		parent.velocity = gate_check(parent.velocity)
+		parent.move_and_slide()
+	else:
+		parent.velocity.x = advancement
+		parent.velocity = gate_check(parent.velocity)
+		parent.move_and_slide()
 	
 	if parent.is_on_floor():
-		if movement != 0:
+		if movement != 0 or advancement != 0:
 			return move_state
 		return idle_state
 	return null

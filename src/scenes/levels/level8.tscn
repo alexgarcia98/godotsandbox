@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://d0gfex0j1pw3u"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_fftv8"]
-[ext_resource type="Script" path="res://src/scripts/levels/level8.gd" id="2_qdxon"]
+[ext_resource type="Script" uid="uid://cs4k6oroxmv3m" path="res://src/scripts/levels/level8.gd" id="2_qdxon"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="3_jd5ss"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="4_dr1c0"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="5_xjneo"]
@@ -350,12 +350,14 @@ is_flipped = true
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -424.0
-offset_top = 48.0
-offset_right = -40.0
-offset_bottom = 80.0
+offset_left = 40.0
+offset_top = 104.0
+offset_right = 424.0
+offset_bottom = 136.0
 theme_override_fonts/font = ExtResource("9_odkwf")
-text = "Want to control one at a time?"
+text = "If your characters are facing
+different ways, this will
+maintain their direction"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -365,8 +367,8 @@ offset_top = 104.0
 offset_right = -22.0
 offset_bottom = 152.0
 theme_override_fonts/font = ExtResource("9_odkwf")
-text = "Press K to freeze and unfreeze 
-the primary character"
+text = "Press W and S to move
+forwards and backwards"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -47,6 +47,8 @@ func process_physics(delta: float) -> State:
 			return fall_state
 		if super.get_movement_input() != 0.0:
 			return move_state
+		if super.get_advancement_input() != 0.0:
+			return move_state
 		return idle_state
 	
 	parent.velocity.y = 0

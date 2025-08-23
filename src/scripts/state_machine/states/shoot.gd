@@ -58,12 +58,16 @@ func process_physics(delta: float) -> State:
 			
 		if super.get_movement_input() != 0.0:
 			return move_state
+		if super.get_advancement_input() != 0.0:
+			return move_state
 		return idle_state
 	else:
 		if animations.frame >= 5:
 			if !parent.is_on_floor():
 				return fall_state
 			if super.get_movement_input() != 0.0:
+				return move_state
+			if super.get_advancement_input() != 0.0:
 				return move_state
 			return idle_state
 	return null

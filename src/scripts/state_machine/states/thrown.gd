@@ -48,10 +48,12 @@ func process_physics(delta: float) -> State:
 	if thrown_timer <= 0.0:
 		# Fall back on the default input implementation to
 		# determine where to go next
-		if super.get_movement_input() != 0.0:
-			return move_state
 		if !parent.is_on_floor():
 			return fall_state
+		if super.get_movement_input() != 0.0:
+			return move_state
+		if super.get_advancement_input() != 0.0:
+			return move_state
 		return idle_state
 	
 	parent.velocity.y += (gravity * delta)
