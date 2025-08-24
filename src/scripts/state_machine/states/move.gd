@@ -36,14 +36,14 @@ func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
 			# set current position
-			if parent.visible:
+			if parent.visible and parent.respawn_valid:
 				if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
 					parent.last_valid = parent.position
 					parent.last_facing = animations.flip_h
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
-			if parent.visible:
+			if parent.visible and parent.respawn_valid:
 				if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
 					parent.last_valid = parent.position
 					parent.last_facing = animations.flip_h

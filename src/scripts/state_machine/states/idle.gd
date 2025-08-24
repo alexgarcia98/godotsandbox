@@ -45,7 +45,7 @@ func enter() -> void:
 
 func process_input(event: InputEvent) -> State:
 	super(event)
-	if parent.visible:
+	if parent.visible and parent.respawn_valid:
 		if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
 			parent.last_valid = parent.position
 			parent.last_facing = animations.flip_h

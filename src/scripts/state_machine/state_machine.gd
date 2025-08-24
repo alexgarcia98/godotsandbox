@@ -5,14 +5,17 @@ var starting_state: State
 
 var current_state: State
 var player_character
+var move_comp
 
 @onready var idle: Node = $idle
+@onready var move: Node = $move
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
 func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component) -> void:
 	Messages.connect("PlayerRevived", on_player_revived)
 	player_character = parent
+	move_comp = move_component
 	for child in get_children():
 		child.parent = parent
 		child.animations = animations
@@ -49,4 +52,9 @@ func process_frame(delta: float) -> void:
 
 func on_player_revived(player_name):
 	if player_name == player_character.name:
-		change_state(idle)
+		if move_comp.get_movement_direction() != 0.0:
+			change_state(move)
+		elif move_comp.get_advancement_direction() != 0.0:
+			change_state(move)
+		else:
+			change_state(idle)
