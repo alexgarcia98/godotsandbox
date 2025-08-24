@@ -7,10 +7,10 @@ var idle_state: State
 var fall_state: State
 
 @export
-var pivot_state: State
+var dash_state: State
 
 @export
-var dash_state: State
+var jump_state: State
 
 var flipped = false
 
@@ -28,6 +28,11 @@ func process_input(event: InputEvent) -> State:
 			return dash_state
 		elif animations.frame >= 5:
 			return dash_state
+	if Input.is_action_just_pressed('jump'):
+		if animations.frame > 2 and flipped:
+			return jump_state
+		elif animations.frame >= 5:
+			return jump_state
 	return null
 
 func process_physics(delta: float) -> State:

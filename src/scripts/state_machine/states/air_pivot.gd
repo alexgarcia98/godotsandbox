@@ -9,6 +9,9 @@ var fall_state: State
 @export
 var airdash_state: State
 
+@export
+var jump_state: State
+
 var flipped = false
 
 func enter() -> void:
@@ -28,6 +31,14 @@ func process_input(event: InputEvent) -> State:
 		elif animations.frame >= 5:
 			if parent.airdash_remaining > 0:
 				return airdash_state
+	if Input.is_action_just_pressed('jump'):
+		if parent.jumps_remaining > 0:
+			if animations.frame > 2 and flipped:
+				parent.jumps_remaining -= 1
+				return jump_state
+			elif animations.frame >= 5:
+				parent.jumps_remaining -= 1
+				return jump_state
 	return null
 
 func process_physics(delta: float) -> State:

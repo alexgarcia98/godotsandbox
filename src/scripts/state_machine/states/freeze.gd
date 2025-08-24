@@ -17,7 +17,7 @@ func enter() -> void:
 		super()
 		parent.velocity.x = 0
 		parent.velocity.y = 0
-		parent.collision_layer = 1
+		parent.collision_layer = 4096
 		is_frozen = true
 		parent.sfx.stream = Messages.freeze_sound
 		parent.sfx.play()

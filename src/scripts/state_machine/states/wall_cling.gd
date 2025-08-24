@@ -31,7 +31,7 @@ func process_input(event: InputEvent) -> State:
 		return fall_state
 	return null
 
-func process_physics(delta: float) -> State:	
+func process_physics(delta: float) -> State:
 	var norm = parent.get_wall_normal()
 	animations.flip_h = norm.x < 0
 	

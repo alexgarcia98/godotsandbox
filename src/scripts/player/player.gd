@@ -67,6 +67,7 @@ var interactables = []
 var door = null
 var last_valid: Vector2 = Vector2(0,0)
 var last_facing = true
+var respawn_valid = true
 var key_obtained = false
 var door_opened = false
 var flip_toggled = false
@@ -106,10 +107,22 @@ func _process(delta: float) -> void:
 	#gun_state_machine.process_frame(delta)
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	throwable = true
+	print("%s entered" % body)
+	if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
+		if is_main:
+			print("%s can throw" % name)
+		else:
+			print("%s can be thrown" % name)
+		throwable = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	throwable = false
+	print("%s exited" % body)
+	if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
+		if is_main:
+			print("%s cannot throw" % name)
+		else:
+			print("%s cannot be thrown" % name)
+		throwable = false
 
 func _on_object_collision_area_entered(area: Area2D) -> void:
 	# handle any auto pickups
@@ -126,13 +139,15 @@ func _on_object_collision_area_entered(area: Area2D) -> void:
 	# check if present
 	if not interactables.has(area):
 		interactables.append(area)
+	if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
+		respawn_valid = false
 	print("entered: " + str(area))
 
 func _on_object_collision_area_exited(area: Area2D) -> void:
 	if interactables.has(area):
 		interactables.erase(area)
-	if area.get_collision_layer_value(11) or area.get_collision_layer_value(12):
-		door = null
+	if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
+		respawn_valid = true
 	print("exited: " + str(area))
 	
 func on_key_obtained(key_name):

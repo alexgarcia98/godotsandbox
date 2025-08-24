@@ -46,8 +46,9 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	super(event)
 	if parent.visible:
-		parent.last_valid = parent.position
-		parent.last_facing = animations.flip_h
+		if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
+			parent.last_valid = parent.position
+			parent.last_facing = animations.flip_h
 	if Input.is_action_just_pressed('move_up'):
 		# check for nearby door
 		if parent.door != null and parent.key_obtained:
