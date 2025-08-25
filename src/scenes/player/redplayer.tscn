@@ -486,6 +486,30 @@ safe_margin = 0.1
 script = ExtResource("1_ryxk6")
 max_jumps = 1
 
+[node name="floor" type="RayCast2D" parent="."]
+position = Vector2(5, 15)
+target_position = Vector2(-10, 0)
+collision_mask = 4097
+hit_from_inside = true
+
+[node name="ceiling" type="RayCast2D" parent="."]
+position = Vector2(5, -14)
+target_position = Vector2(-10, 0)
+collision_mask = 4097
+hit_from_inside = true
+
+[node name="left" type="RayCast2D" parent="."]
+position = Vector2(-5, -14)
+target_position = Vector2(0, 29)
+collision_mask = 4097
+hit_from_inside = true
+
+[node name="right" type="RayCast2D" parent="."]
+position = Vector2(5, -14)
+target_position = Vector2(0, 29)
+collision_mask = 4097
+hit_from_inside = true
+
 [node name="wall_left" type="RayCast2D" parent="."]
 position = Vector2(0, 16)
 target_position = Vector2(-16, 0)

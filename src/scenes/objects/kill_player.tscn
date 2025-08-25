@@ -15,6 +15,17 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="red_timer2" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[node name="green_timer2" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="red_timer" to="." method="_on_red_timer_timeout"]
 [connection signal="timeout" from="green_timer" to="." method="_on_green_timer_timeout"]
+[connection signal="timeout" from="red_timer2" to="." method="_on_red_timer_2_timeout"]
+[connection signal="timeout" from="green_timer2" to="." method="_on_green_timer_2_timeout"]

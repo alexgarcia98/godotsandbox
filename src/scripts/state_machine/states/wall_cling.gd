@@ -32,6 +32,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	var norm = parent.get_wall_normal()
 	animations.flip_h = norm.x < 0
 	

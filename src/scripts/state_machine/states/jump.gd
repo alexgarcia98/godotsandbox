@@ -79,6 +79,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	var movement = get_movement_input() * move_speed
 	var advancement = get_advancement_input() * move_speed
 	

@@ -47,6 +47,7 @@ func enter() -> void:
 	#return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	parent.velocity.y += (gravity * delta)
 	var movement = get_movement_input() * move_speed
 	parent.velocity.x = movement

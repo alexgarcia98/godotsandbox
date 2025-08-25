@@ -27,6 +27,7 @@ func enter() -> void:
 	#return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	if not parent.is_main:
 		return idle_state
 	if animations.frame > 4 and not flipped:

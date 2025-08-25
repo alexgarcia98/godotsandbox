@@ -42,6 +42,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	if animations.frame > 2 and not flipped:
 		animations.flip_h = not animations.flip_h
 		flipped = true

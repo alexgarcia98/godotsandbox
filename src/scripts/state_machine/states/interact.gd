@@ -29,6 +29,7 @@ func enter() -> void:
 	#return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	if not parent.is_main:
 		parent.velocity.y += gravity * delta
 		parent.velocity = gate_check(parent.velocity)

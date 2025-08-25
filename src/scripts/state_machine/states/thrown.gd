@@ -44,6 +44,7 @@ func enter() -> void:
 	#return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	thrown_timer -= delta
 	if thrown_timer <= 0.0:
 		# Fall back on the default input implementation to

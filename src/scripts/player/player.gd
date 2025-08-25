@@ -30,6 +30,10 @@ var object_collision: Area2D = $object_collision
 @onready var floor_down_2: RayCast2D = $floor_down_2
 @onready var floor_down_5: RayCast2D = $floor_down_5
 @onready var floor_down_6: RayCast2D = $floor_down_6
+@onready var floor: RayCast2D = $floor
+@onready var ceiling: RayCast2D = $ceiling
+@onready var left: RayCast2D = $left
+@onready var right: RayCast2D = $right
 
 @onready
 var movement_state_machine: Node = $movement_state_machine
@@ -73,9 +77,15 @@ var respawn_valid = true
 var key_obtained = false
 var door_opened = false
 var flip_toggled = false
+var can_die = true
 
 var danger_list = []
 var tile_list = []
+
+var floor_stuck_count = 0
+var ceiling_stuck_count = 0
+var left_stuck_count = 0
+var right_stuck_count = 0
 
 var can_move = false
 
@@ -84,10 +94,16 @@ func _ready() -> void:
 	#gun_state_machine.init(self, gun_animations, player_move_component)
 	last_valid = position
 	last_facing = is_flipped
+	can_die = true
+	floor_stuck_count = 0
+	ceiling_stuck_count = 0
+	left_stuck_count = 0
+	right_stuck_count = 0
 	Messages.connect("KeyObtained", on_key_obtained)
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
+	Messages.connect("PlayerVulnerable", on_player_vulnerable)
 	if name == "red_player":
 		level_parent = get_parent()
 		green_player = level_parent.get_node("green_player")
@@ -112,21 +128,21 @@ func _process(delta: float) -> void:
 	#gun_state_machine.process_frame(delta)
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("%s entered" % body)
+	#print("%s entered" % body)
 	if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
-		if is_main:
-			print("%s can throw" % name)
-		else:
-			print("%s can be thrown" % name)
+		#if is_main:
+			#print("%s can throw" % name)
+		#else:
+			#print("%s can be thrown" % name)
 		throwable = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	print("%s exited" % body)
+	#print("%s exited" % body)
 	if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
-		if is_main:
-			print("%s cannot throw" % name)
-		else:
-			print("%s cannot be thrown" % name)
+		#if is_main:
+			#print("%s cannot throw" % name)
+		#else:
+			#print("%s cannot be thrown" % name)
 		throwable = false
 
 func _on_object_collision_area_entered(area: Area2D) -> void:
@@ -177,3 +193,7 @@ func on_level_started(_index):
 	
 func on_level_ended():
 	can_move = false
+
+func on_player_vulnerable(player_name):
+	if player_name == name:
+		can_die = true

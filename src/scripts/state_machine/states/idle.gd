@@ -48,11 +48,14 @@ func process_input(event: InputEvent) -> State:
 		return null
 	super(event)
 	if parent.visible:
-		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
-			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-				parent.last_valid = parent.position
-				parent.last_facing = animations.flip_h
-				print("%s: setting respawn x1" % parent.name)
+		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()): # check for mushrooms
+			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()): # check for temporary platforms
+				if (not parent.floor.is_colliding()): # check for being inside real floor
+					parent.last_valid = parent.position
+					parent.last_facing = animations.flip_h
+					print("%s: setting respawn at %s x1" % [parent.name, parent.last_valid])
+				else:
+					print("%s: inside real floor, no respawn set x7" % parent.name)
 		else:
 			print("%s: mushroom detected, no respawn set x4" % parent.name)
 	if Input.is_action_just_pressed('move_up'):
@@ -100,6 +103,7 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	if parent.can_move:
+		check_stuck()
 		parent.velocity.y += gravity * delta
 		parent.velocity.x = 0
 		parent.velocity = gate_check(parent.velocity)

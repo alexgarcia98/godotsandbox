@@ -32,6 +32,7 @@ func enter() -> void:
 	#return super(event)
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	parent.velocity.y = 0
 	dash_timer -= delta
 	if dash_timer <= 0.0:

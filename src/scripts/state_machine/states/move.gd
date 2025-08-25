@@ -41,9 +41,12 @@ func process_input(event: InputEvent) -> State:
 			if parent.visible:
 				if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
 					if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-						parent.last_valid = parent.position
-						parent.last_facing = animations.flip_h
-						print("%s: setting respawn x2" % parent.name)
+						if (not parent.floor.is_colliding()): # check for being inside real floor
+							parent.last_valid = parent.position
+							parent.last_facing = animations.flip_h
+							print("%s: setting respawn at %s x2" % [parent.name, parent.last_valid])
+						else:
+							print("%s: inside real floor, no respawn set x8" % parent.name)
 				else:
 					print("%s: mushroom detected, no respawn set x5" % parent.name)
 			return jump_state
@@ -52,9 +55,12 @@ func process_input(event: InputEvent) -> State:
 			if parent.visible:
 				if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
 					if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-						parent.last_valid = parent.position
-						parent.last_facing = animations.flip_h
-						print("%s: setting respawn x3" % parent.name)
+						if (not parent.floor.is_colliding()): # check for being inside real floor
+							parent.last_valid = parent.position
+							parent.last_facing = animations.flip_h
+							print("%s: setting respawn at %s x3" % [parent.name, parent.last_valid])
+						else:
+							print("%s: inside real floor, no respawn set x9" % parent.name)
 				else:
 					print("%s: mushroom detected, no respawn set x6" % parent.name)
 			return dash_state
@@ -93,6 +99,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	parent.velocity.y += (gravity * delta)
 
 	var movement = get_movement_input() * move_speed

@@ -18,17 +18,17 @@ func enter() -> void:
 	if norm.x > 0:
 		if parent.air_left_2.is_colliding():
 			head_exposed = false
-			print("%s: x12" % parent.name)
+			#print("%s: x12" % parent.name)
 		else:
 			head_exposed = true
-			print("%s: x2" % parent.name)
+			#print("%s: x2" % parent.name)
 	else:
 		if parent.air_right_2.is_colliding():
 			head_exposed = false
-			print("%s: x32" % parent.name)
+			#print("%s: x32" % parent.name)
 		else:
 			head_exposed = true
-			print("%s: x4" % parent.name)
+			#print("%s: x4" % parent.name)
 
 func process_input(event: InputEvent) -> State:
 	super(event)
@@ -48,6 +48,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	parent.velocity.y = -150
 	parent.velocity.x = 500
 	
@@ -63,41 +64,41 @@ func process_physics(delta: float) -> State:
 	if norm.x > 0:
 		if head_exposed:
 			if parent.air_left_2.is_colliding():
-				print("%s: 1" % parent.name)
+				#print("%s: 1" % parent.name)
 				parent.velocity.y = 0
 				parent.move_and_slide()
 				return wall_cling_state
 			else:
 				if (not parent.wall_left.is_colliding()) and (not parent.air_left_3.is_colliding()):
 					parent.velocity.y = 49
-					print("%s: x14" % parent.name)
-				else:
-					print("%s: x7" % parent.name)
+					#print("%s: x14" % parent.name)
+				#else:
+					#print("%s: x7" % parent.name)
 		else:
 			if not parent.air_left_2.is_colliding():
-				print("%s: x5" % parent.name)
+				#print("%s: x5" % parent.name)
 				head_exposed = true
-			else:
-				print("%s: x8" % parent.name)
+			#else:
+				#print("%s: x8" % parent.name)
 	else:
 		if head_exposed:
 			if parent.air_right_2.is_colliding():
-				print("2" % parent.name)
+				#print("2" % parent.name)
 				parent.velocity.y = 0
 				parent.move_and_slide()
 				return wall_cling_state
 			else:
 				if (not parent.wall_right.is_colliding()) and (not parent.air_right_3.is_colliding()):
 					parent.velocity.y = 49
-					print("%s: x13" % parent.name)
-				else:
-					print("%s: x9" % parent.name)
+					#print("%s: x13" % parent.name)
+				#else:
+					#print("%s: x9" % parent.name)
 		else:
 			if not parent.air_right_2.is_colliding():
-				print("%s: x6" % parent.name)
+				#print("%s: x6" % parent.name)
 				head_exposed = true
-			else:
-				print("%s: x10" % parent.name)
+			#else:
+				#print("%s: x10" % parent.name)
 		
 		
 	parent.velocity = gate_check(parent.velocity)
@@ -112,9 +113,9 @@ func process_physics(delta: float) -> State:
 			#else:
 				#parent.velocity.x = 250
 			parent.move_and_slide()
-			print("%s: x51" % parent.name)
-		else:
-			print("%s: x50" % parent.name)
+			#print("%s: x51" % parent.name)
+		#else:
+			#print("%s: x50" % parent.name)
 		return fall_state
 	
 	if parent.is_on_floor():

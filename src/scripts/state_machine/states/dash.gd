@@ -39,6 +39,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	dash_timer -= delta
 	if dash_timer <= 0.0:
 		# Fall back on the default input implementation to

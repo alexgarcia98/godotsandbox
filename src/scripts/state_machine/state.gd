@@ -59,25 +59,63 @@ func gate_check(velocity: Vector2) -> Vector2:
 	if parent.gate_up_1.is_colliding() and not parent.gate_up_2.is_colliding():
 		if onFloor:
 			velocity.x = 500
-			print("moving right")
+			#print("moving right")
 	if not parent.gate_up_1.is_colliding() and parent.gate_up_2.is_colliding():
 		if onFloor:
 			velocity.x = -500
-			print("moving left")
+			#print("moving left")
 	if parent.gate_up_1.is_colliding() and parent.gate_up_2.is_colliding():
 		if onFloor:
 			velocity.x = -500
-			print("moving left")
+			#print("moving left")
 	if parent.gate_down_1.is_colliding() and not parent.gate_down_2.is_colliding():
 		if onCeiling:
 			velocity.x = 500
-			print("moving right")
+			#print("moving right")
 	if not parent.gate_down_1.is_colliding() and parent.gate_down_2.is_colliding():
 		if onCeiling:
 			velocity.x = -500
-			print("moving left")
+			#print("moving left")
 	if parent.gate_down_1.is_colliding() and parent.gate_down_2.is_colliding():
 		if onCeiling:
 			velocity.x = -500
-			print("moving left")
+			#print("moving left")
 	return velocity
+
+func check_stuck():
+	if parent.floor.is_colliding():
+		parent.floor_stuck_count += 1
+	else:
+		parent.floor_stuck_count = 0
+	if parent.ceiling.is_colliding():
+		parent.ceiling_stuck_count += 1
+	else:
+		parent.ceiling_stuck_count = 0
+	if parent.left.is_colliding():
+		parent.left_stuck_count += 1
+	else:
+		parent.left_stuck_count = 0
+	if parent.right.is_colliding():
+		parent.right_stuck_count += 1
+	else:
+		parent.right_stuck_count = 0
+	if parent.ceiling_stuck_count == 60:
+		parent.ceiling_stuck_count = 0
+		parent.position = parent.last_valid
+		print("%s: respawning" % parent.name)
+		return
+	if parent.floor_stuck_count == 60:
+		parent.floor_stuck_count = 0
+		parent.position = parent.last_valid
+		print("%s: respawning" % parent.name)
+		return
+	if parent.left_stuck_count == 60:
+		parent.left_stuck_count = 0
+		parent.position = parent.last_valid
+		print("%s: respawning" % parent.name)
+		return
+	if parent.right_stuck_count == 60:
+		parent.right_stuck_count = 0
+		parent.position = parent.last_valid
+		print("%s: respawning" % parent.name)
+		return

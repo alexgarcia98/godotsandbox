@@ -62,6 +62,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	parent.velocity.y += gravity * delta
 	
 	if parent.velocity.y > 0:
