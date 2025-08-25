@@ -43,6 +43,7 @@ func process_physics(delta: float) -> void:
 func process_input(event: InputEvent) -> void:
 	var new_state = current_state.process_input(event)
 	if new_state:
+		print("changing state to %s" % new_state)
 		change_state(new_state)
 
 func process_frame(delta: float) -> void:

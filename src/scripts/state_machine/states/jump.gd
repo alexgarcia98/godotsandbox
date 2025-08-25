@@ -35,6 +35,8 @@ func enter() -> void:
 	parent.velocity.y = -jump_force
 	parent.sfx.stream = Messages.jump_sound
 	parent.sfx.play()
+	parent.last_position = parent.position
+	parent.stuck_count = 0
 
 func process_input(event: InputEvent) -> State:
 	super(event)
@@ -79,6 +81,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	var movement = get_movement_input() * move_speed
 	var advancement = get_advancement_input() * move_speed
 	
@@ -103,11 +106,9 @@ func process_physics(delta: float) -> State:
 		animations.flip_h = movement < 0
 		parent.velocity.x = movement
 		parent.velocity = gate_check(parent.velocity)
-		parent.move_and_slide()
 	else:
 		parent.velocity.x = advancement
 		parent.velocity = gate_check(parent.velocity)
-		parent.move_and_slide()
 		
 	if parent.is_on_floor():
 		if movement != 0 or advancement != 0:

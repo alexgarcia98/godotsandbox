@@ -13,6 +13,8 @@ var head_exposed = false
 
 func enter() -> void:
 	super()
+	parent.last_position = parent.position
+	parent.stuck_count = 0
 	parent.airdash_remaining = parent.max_airdash
 	var norm = parent.get_wall_normal()
 	if norm.x > 0:
@@ -48,6 +50,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	check_stuck()
 	parent.velocity.y = -150
 	parent.velocity.x = 500
 	
@@ -101,7 +104,6 @@ func process_physics(delta: float) -> State:
 		
 		
 	parent.velocity = gate_check(parent.velocity)
-	parent.move_and_slide()
 	
 	if not parent.is_on_wall_only():
 		parent.velocity.y = 0

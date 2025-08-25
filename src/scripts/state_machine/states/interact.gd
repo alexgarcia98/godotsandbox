@@ -32,7 +32,6 @@ func process_physics(delta: float) -> State:
 	if not parent.is_main:
 		parent.velocity.y += gravity * delta
 		parent.velocity = gate_check(parent.velocity)
-		parent.move_and_slide()
 	
 		if !parent.is_on_floor():
 			return fall_state

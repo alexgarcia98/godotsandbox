@@ -52,7 +52,20 @@ func get_advancement_input() -> float:
 
 func get_jump() -> bool:
 	return move_component.wants_jump()
-	
+
+func check_stuck():
+	if parent.last_position == parent.position:
+		parent.stuck_count += 1
+		print("%s stuck: %s" % [parent.name, parent.stuck_count])
+	else:
+		parent.last_position = parent.position
+		parent.stuck_count = 0
+	if parent.stuck_count == 5:
+		# player is stuck
+		parent.stuck_count = 0
+		parent.position = parent.last_valid
+		parent.last_position = parent.last_valid
+
 func gate_check(velocity: Vector2) -> Vector2:
 	var onFloor = parent.floor_down_1.is_colliding() or parent.floor_down_2.is_colliding()
 	var onCeiling = parent.ceiling_up_1.is_colliding() or parent.ceiling_up_2.is_colliding()
@@ -80,4 +93,7 @@ func gate_check(velocity: Vector2) -> Vector2:
 		if onCeiling:
 			velocity.x = -500
 			print("moving left")
+		
+	parent.move_and_slide()
+
 	return velocity

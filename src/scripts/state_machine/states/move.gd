@@ -30,6 +30,8 @@ func enter() -> void:
 	parent.jumps_remaining = parent.max_jumps
 	parent.airdash_remaining = parent.max_airdash
 	parent.air_reverse_remaining = parent.max_air_reverse
+	parent.last_position = parent.position
+	parent.stuck_count = 0
 
 func process_input(event: InputEvent) -> State:
 	super(event)
@@ -38,15 +40,43 @@ func process_input(event: InputEvent) -> State:
 			# set current position
 			if parent.visible and parent.respawn_valid:
 				if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-					parent.last_valid = parent.position
-					parent.last_facing = animations.flip_h
+					var tilemap = parent.get_parent()
+					var x = tilemap.local_to_map(parent.position)
+					# get data at player feet
+					var tile = tilemap.get_cell_tile_data(x)
+					print("x12: %s: tile at position %s: %s" % [parent.name, x, tile])
+					if tile:
+						print("%s: changing color" % parent.name)
+						tile.modulate = Color.RED
+						# player is stuck
+					else:
+						var y = tilemap.map_to_local(x)
+						#y.x -= 8
+						#y.y += 7.9
+						parent.last_valid = y 
+						parent.last_facing = animations.flip_h
+						print("x2: %s: setting position at %s" % [parent.name, y])
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
 			if parent.visible and parent.respawn_valid:
 				if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-					parent.last_valid = parent.position
-					parent.last_facing = animations.flip_h
+					var tilemap = parent.get_parent()
+					var x = tilemap.local_to_map(parent.position)
+					# get data at player feet
+					var tile = tilemap.get_cell_tile_data(x)
+					print("x13: %s: tile at position %s: %s" % [parent.name, x, tile])
+					if tile:
+						print("%s: changing color" % parent.name)
+						tile.modulate = Color.RED
+						# player is stuck
+					else:
+						var y = tilemap.map_to_local(x)
+						#y.x -= 8
+						#y.y += 7.9
+						parent.last_valid = y 
+						parent.last_facing = animations.flip_h
+						print("x3: %s: setting position at %s" % [parent.name, y])
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:
@@ -83,6 +113,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	print("x4: in move physics: %s: wall: %s" % [parent.name, parent.is_on_wall()])
 	parent.velocity.y += (gravity * delta)
 
 	var movement = get_movement_input() * move_speed
@@ -96,12 +127,10 @@ func process_physics(delta: float) -> State:
 			if animations.flip_h:
 				parent.velocity.x *= -1
 			parent.velocity = gate_check(parent.velocity)
-			parent.move_and_slide()
 	else:
 		animations.flip_h = movement < 0
 		parent.velocity.x = movement
 		parent.velocity = gate_check(parent.velocity)
-		parent.move_and_slide()
 		
 		if !parent.is_on_floor():
 			return fall_state

@@ -51,7 +51,6 @@ func process_physics(delta: float) -> State:
 	var movement = get_movement_input() * move_speed
 	parent.velocity.x = movement
 	parent.velocity = gate_check(parent.velocity)
-	parent.move_and_slide()
 	if not parent.is_main:
 		if !parent.is_on_floor():
 			return fall_state

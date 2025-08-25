@@ -75,7 +75,6 @@ func process_physics(delta: float) -> State:
 		animations.flip_h = movement < 0
 	parent.velocity.x = movement
 	parent.velocity = gate_check(parent.velocity)
-	parent.move_and_slide()
 	
 	if parent.get_slide_collision_count() > 1:
 		print("collisions: %s" % parent.get_slide_collision_count())

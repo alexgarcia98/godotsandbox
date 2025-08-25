@@ -27,6 +27,8 @@ var shoot_state: State
 @export
 var enter_door_state: State
 
+var start_idle: Vector2 = Vector2(0,0)
+
 func enter() -> void:
 	if not parent.flip_toggled:
 		parent.flip_toggled = true
@@ -40,15 +42,31 @@ func enter() -> void:
 	parent.jumps_remaining = parent.max_jumps
 	parent.airdash_remaining = parent.max_airdash
 	parent.air_reverse_remaining = parent.max_air_reverse
-	#if parent.visible:
-		#parent.last_valid = parent.position
+	start_idle = parent.position
+	print("x0: %s: setting start_idle at %s" % [parent.name, parent.position])
 
 func process_input(event: InputEvent) -> State:
 	super(event)
 	if parent.visible and parent.respawn_valid:
 		if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-			parent.last_valid = parent.position
-			parent.last_facing = animations.flip_h
+			if parent.position == start_idle:
+				var tilemap = parent.get_parent()
+				var x = tilemap.local_to_map(parent.position)
+				# get data at player feet
+				var tile = tilemap.get_cell_tile_data(x)
+				print("x11: %s: tile at position %s: %s" % [parent.name, x, tile])
+				if tile:
+					print("%s: changing color" % parent.name)
+					tile.modulate = Color.RED
+					# player is stuck
+				else:
+					print("%s: start idle: %s, position: %s" % [parent.name, start_idle, parent.position])
+					var y = tilemap.map_to_local(x)
+					#y.x -= 8
+					#y.y += 7.9
+					parent.last_valid = y 
+					parent.last_facing = animations.flip_h
+					print("x1: %s: setting position at %s" % [parent.name, y])
 	if Input.is_action_just_pressed('move_up'):
 		# check for nearby door
 		if parent.door != null and parent.key_obtained:
@@ -97,7 +115,6 @@ func process_physics(delta: float) -> State:
 		parent.velocity.y += gravity * delta
 		parent.velocity.x = 0
 		parent.velocity = gate_check(parent.velocity)
-		parent.move_and_slide()
 		
 		if !parent.is_on_floor():
 			return fall_state

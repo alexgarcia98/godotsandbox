@@ -34,7 +34,6 @@ func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	parent.velocity.x = 0
 	parent.velocity = gate_check(parent.velocity)
-	parent.move_and_slide()
 	
 	if animations.frame >= 5:
 		if !parent.is_on_floor():

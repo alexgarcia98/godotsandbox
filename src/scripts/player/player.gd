@@ -71,6 +71,9 @@ var respawn_valid = true
 var key_obtained = false
 var door_opened = false
 var flip_toggled = false
+var should_move = false
+var last_position: Vector2 = Vector2(0,0)
+var stuck_count = 0
 
 var can_move = false
 
@@ -79,6 +82,8 @@ func _ready() -> void:
 	#gun_state_machine.init(self, gun_animations, player_move_component)
 	last_valid = position
 	last_facing = is_flipped
+	last_position = position
+	stuck_count = 0
 	Messages.connect("KeyObtained", on_key_obtained)
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("LevelStarted", on_level_started)

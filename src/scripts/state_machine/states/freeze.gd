@@ -62,7 +62,6 @@ func process_physics(delta: float) -> State:
 	if not parent.is_main && not is_frozen:
 		parent.velocity.y += gravity * delta
 		parent.velocity = gate_check(parent.velocity)
-		parent.move_and_slide()
 		
 		if parent.velocity.y < 0:
 			if parent.jumps_remaining > 0:
