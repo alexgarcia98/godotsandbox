@@ -32,21 +32,31 @@ func enter() -> void:
 	parent.air_reverse_remaining = parent.max_air_reverse
 
 func process_input(event: InputEvent) -> State:
+	if event is InputEventMouseMotion:
+		return null
 	super(event)
 	if Input.is_action_just_pressed('jump'):
 		if parent.jumps_remaining > 0:
 			# set current position
-			if parent.visible and parent.respawn_valid:
-				if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-					parent.last_valid = parent.position
-					parent.last_facing = animations.flip_h
+			if parent.visible:
+				if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
+					if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
+						parent.last_valid = parent.position
+						parent.last_facing = animations.flip_h
+						print("%s: setting respawn x2" % parent.name)
+				else:
+					print("%s: mushroom detected, no respawn set x5" % parent.name)
 			return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
-			if parent.visible and parent.respawn_valid:
-				if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-					parent.last_valid = parent.position
-					parent.last_facing = animations.flip_h
+			if parent.visible:
+				if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
+					if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
+						parent.last_valid = parent.position
+						parent.last_facing = animations.flip_h
+						print("%s: setting respawn x3" % parent.name)
+				else:
+					print("%s: mushroom detected, no respawn set x6" % parent.name)
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:

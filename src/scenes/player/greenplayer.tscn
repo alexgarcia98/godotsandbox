@@ -553,6 +553,18 @@ target_position = Vector2(0, 19)
 position = Vector2(6, 13)
 target_position = Vector2(0, 19)
 
+[node name="floor_down_5" type="RayCast2D" parent="."]
+position = Vector2(-6, 0)
+target_position = Vector2(0, 17)
+collision_mask = 768
+collide_with_areas = true
+
+[node name="floor_down_6" type="RayCast2D" parent="."]
+position = Vector2(6, 0)
+target_position = Vector2(0, 17)
+collision_mask = 768
+collide_with_areas = true
+
 [node name="wall_right" type="RayCast2D" parent="."]
 position = Vector2(0, 16)
 target_position = Vector2(16, 0)

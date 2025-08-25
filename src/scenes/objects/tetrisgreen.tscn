@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb04goekhpve"]
+
+[ext_resource type="Script" uid="uid://cejvvo50kfsek" path="res://src/scripts/objects/platform.gd" id="1_kms4m"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_7o6hc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wift6"]
+size = Vector2(32, 16)
+
+[node name="TetrisGreen" type="AnimatableBody2D"]
+collision_layer = 4096
+script = ExtResource("1_kms4m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -8)
+texture = ExtResource("2_7o6hc")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("2_7o6hc")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_7o6hc")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-16, 8)
+texture = ExtResource("2_7o6hc")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 8)
+shape = SubResource("RectangleShape2D_wift6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(8, -8)
+shape = SubResource("RectangleShape2D_wift6")

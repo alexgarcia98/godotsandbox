@@ -28,6 +28,8 @@ var object_collision: Area2D = $object_collision
 @onready var ceiling_up_2: RayCast2D = $ceiling_up_2
 @onready var floor_down_1: RayCast2D = $floor_down_1
 @onready var floor_down_2: RayCast2D = $floor_down_2
+@onready var floor_down_5: RayCast2D = $floor_down_5
+@onready var floor_down_6: RayCast2D = $floor_down_6
 
 @onready
 var movement_state_machine: Node = $movement_state_machine
@@ -71,6 +73,9 @@ var respawn_valid = true
 var key_obtained = false
 var door_opened = false
 var flip_toggled = false
+
+var danger_list = []
+var tile_list = []
 
 var can_move = false
 
@@ -139,15 +144,23 @@ func _on_object_collision_area_entered(area: Area2D) -> void:
 	# check if present
 	if not interactables.has(area):
 		interactables.append(area)
-	if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
-		respawn_valid = false
+	#if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
+		#respawn_valid = false
+		#print("respawn invalid")
+		#if not danger_list.has(area):
+			#danger_list.append(area)
+		#print("danger list on entrance: " + str(danger_list))
 	print("entered: " + str(area))
 
 func _on_object_collision_area_exited(area: Area2D) -> void:
 	if interactables.has(area):
 		interactables.erase(area)
-	if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
-		respawn_valid = true
+	#if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
+		#respawn_valid = true
+		#print("respawn valid")
+		#if danger_list.has(area):
+			#danger_list.erase(area)
+		#print("danger list on exit: " + str(danger_list))
 	print("exited: " + str(area))
 	
 func on_key_obtained(key_name):

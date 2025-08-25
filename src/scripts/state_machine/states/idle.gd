@@ -44,11 +44,17 @@ func enter() -> void:
 		#parent.last_valid = parent.position
 
 func process_input(event: InputEvent) -> State:
+	if event is InputEventMouseMotion:
+		return null
 	super(event)
-	if parent.visible and parent.respawn_valid:
-		if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-			parent.last_valid = parent.position
-			parent.last_facing = animations.flip_h
+	if parent.visible:
+		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
+			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
+				parent.last_valid = parent.position
+				parent.last_facing = animations.flip_h
+				print("%s: setting respawn x1" % parent.name)
+		else:
+			print("%s: mushroom detected, no respawn set x4" % parent.name)
 	if Input.is_action_just_pressed('move_up'):
 		# check for nearby door
 		if parent.door != null and parent.key_obtained:
