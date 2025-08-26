@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://daiojeflxc1v8"]
+[gd_scene load_steps=13 format=3 uid="uid://daiojeflxc1v8"]
 
-[ext_resource type="Texture2D" uid="uid://qx1tkhutd2f5" path="res://src/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects1.png" id="1_7rxkv"]
+[ext_resource type="Script" path="res://src/scripts/objects/lever.gd" id="1_0h36c"]
+[ext_resource type="Texture2D" uid="uid://qx1tkhutd2f5" path="res://src/assets/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects1.png" id="1_7rxkv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4aqhm"]
 atlas = ExtResource("1_7rxkv")
@@ -83,6 +84,7 @@ size = Vector2(32, 64)
 scale = Vector2(0.5, 0.5)
 collision_layer = 32
 collision_mask = 4
+script = ExtResource("1_0h36c")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jfmi4")

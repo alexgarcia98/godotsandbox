@@ -152,14 +152,24 @@ func _on_object_collision_area_entered(area: Area2D) -> void:
 		return
 	# handle doors
 	if area.get_collision_layer_value(11) or area.get_collision_layer_value(12):
-		door = area
-		if key_obtained:
-			if not door_opened:
-				door_opened = true
-				area.change_state()
-	# check if present
-	if not interactables.has(area):
-		interactables.append(area)
+		if area.name == "red_door" and name == "red_player":
+			door = area
+			if key_obtained:
+				if not door_opened:
+					door_opened = true
+					area.change_state()
+			# check if present
+			if not interactables.has(area):
+				interactables.append(area)
+		if area.name == "green_door" and name == "green_player":
+			door = area
+			if key_obtained:
+				if not door_opened:
+					door_opened = true
+					area.change_state()
+			# check if present
+			if not interactables.has(area):
+				interactables.append(area)
 	#if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
 		#respawn_valid = false
 		#print("respawn invalid")
@@ -171,12 +181,11 @@ func _on_object_collision_area_entered(area: Area2D) -> void:
 func _on_object_collision_area_exited(area: Area2D) -> void:
 	if interactables.has(area):
 		interactables.erase(area)
-	#if area.get_collision_layer_value(9) or area.get_collision_layer_value(10):
-		#respawn_valid = true
-		#print("respawn valid")
-		#if danger_list.has(area):
-			#danger_list.erase(area)
-		#print("danger list on exit: " + str(danger_list))
+	if area.get_collision_layer_value(11) or area.get_collision_layer_value(12):
+		if area.name == "red_door" and name == "red_player":
+			door = null
+		if area.name == "green_door" and name == "green_player":
+			door = null
 	print("exited: " + str(area))
 	
 func on_key_obtained(key_name):
