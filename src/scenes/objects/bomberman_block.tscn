@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://j3g86qokai87"]
+
+[ext_resource type="Script" uid="uid://cdsekmone7s8c" path="res://src/scripts/objects/bomberman_block.gd" id="1_xjp8s"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_iqeh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wift6"]
+size = Vector2(32, 32)
+
+[node name="BonbermanBlock" type="AnimatableBody2D"]
+collision_layer = 4096
+script = ExtResource("1_xjp8s")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(48, 208, 16, 16)
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(8, -8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(48, 208, 16, 16)
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(48, 208, 16, 16)
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(48, 208, 16, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(128, 16, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(128, 16, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(128, 16, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(8, -8)
+texture = ExtResource("2_iqeh1")
+region_enabled = true
+region_rect = Rect2(128, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wift6")
