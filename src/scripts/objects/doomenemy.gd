@@ -1,25 +1,10 @@
 extends AnimatableBody2D
 
-var pairing = 0
 @onready var red_timer: Timer = $red_timer
 @onready var green_timer: Timer = $green_timer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var respawn_red
 var respawn_green
-
-func activate() -> void:
-	pass
-
-func _ready() -> void:
-	Messages.connect("BeginLevel", on_begin_level)
-
-func on_begin_level(_current_index):
-	print("signal received in %s" % name)
-	animation_player.play("move")
-
-func play_animation(animation_name):
-	animation_player.play(animation_name)
 
 func _on_red_timer_timeout() -> void:
 	respawn_red.position = respawn_red.last_valid

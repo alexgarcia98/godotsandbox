@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bldigd0fet0ir"]
+
+[sub_resource type="Gradient" id="Gradient_kaxdx"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vop48"]
+gradient = SubResource("Gradient_kaxdx")
+
+[node name="cover4" type="AnimatableBody2D"]
+collision_layer = 4096
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 48)
+scale = Vector2(20, 6)
+texture = SubResource("GradientTexture2D_vop48")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)

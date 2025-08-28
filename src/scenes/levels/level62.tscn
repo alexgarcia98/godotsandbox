@@ -457,9 +457,11 @@ pairing = 3
 
 [node name="red_player" parent="." instance=ExtResource("6_umc0q")]
 position = Vector2(24, 208)
+is_flipped = true
 
 [node name="green_player" parent="." instance=ExtResource("7_pp6bd")]
 position = Vector2(8, 208)
 is_main = false
+is_flipped = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

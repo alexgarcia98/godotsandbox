@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtxkl868k06jk"]
+
+[ext_resource type="Script" uid="uid://cejvvo50kfsek" path="res://src/scripts/objects/platform.gd" id="1_ceoa5"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_datyq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wift6"]
+size = Vector2(192, 16)
+
+[node name="Platform_1_W" type="AnimatableBody2D"]
+collision_layer = 4096
+script = ExtResource("1_ceoa5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(88, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(184, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(8, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(168, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(24, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(152, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(40, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(136, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+position = Vector2(56, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+position = Vector2(120, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+position = Vector2(72, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+position = Vector2(104, -8)
+texture = ExtResource("2_datyq")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(96, -8)
+shape = SubResource("RectangleShape2D_wift6")

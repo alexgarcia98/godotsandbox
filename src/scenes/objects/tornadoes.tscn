@@ -1,0 +1,863 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfuqvtg6daw12"]
+
+[ext_resource type="Script" uid="uid://ddskiww13menp" path="res://src/scripts/objects/tornadoes.gd" id="1_084td"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_084td"]
+[ext_resource type="Script" uid="uid://dobo3bv6tffjf" path="res://src/scripts/objects/tornado.gd" id="2_m0dwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyiqa"]
+size = Vector2(8, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ah7q"]
+size = Vector2(16, 32)
+
+[sub_resource type="Animation" id="Animation_m0dwv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tornado1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tornado2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tornado3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tornado4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -24)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tornado5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -24)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tornado6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -24)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tornado1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Tornado2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Tornado3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Tornado4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Tornado5:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Tornado6:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3ah7q"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tornado1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tornado2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tornado3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tornado4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tornado5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tornado6:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tornado1:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Tornado2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Tornado3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Tornado4:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Tornado5:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Tornado6:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+
+[sub_resource type="Animation" id="Animation_084td"]
+resource_name = "shoot"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tornado1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -24), Vector2(-200, -32), Vector2(-200, -32), Vector2(-632, -32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tornado2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -24), Vector2(-104, -88), Vector2(-104, -88), Vector2(-536, -88)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tornado3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -24), Vector2(-8, -104), Vector2(-8, -104), Vector2(-440, -104)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tornado4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -24), Vector2(-24, -168), Vector2(-24, -168), Vector2(-456, -168)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tornado5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -24), Vector2(-232, -152), Vector2(-232, -152), Vector2(-664, -152)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tornado6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -24), Vector2(-168, -232), Vector2(-168, -232), Vector2(-600, -232)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tornado1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Tornado2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Tornado3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Tornado4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Tornado5:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Tornado6:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_exrj5"]
+resource_name = "stopped"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tornado1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tornado2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tornado3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tornado4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tornado5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tornado6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 104)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tornado1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Tornado2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Tornado3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Tornado4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Tornado5:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Tornado6:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ah7q"]
+_data = {
+&"RESET": SubResource("Animation_m0dwv"),
+&"move": SubResource("Animation_3ah7q"),
+&"shoot": SubResource("Animation_084td"),
+&"stopped": SubResource("Animation_exrj5")
+}
+
+[node name="Tornadoes" type="Node2D"]
+script = ExtResource("1_084td")
+
+[node name="Tornado1" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(-8, -24)
+collision_layer = 768
+collision_mask = 6
+script = ExtResource("2_m0dwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tornado1"]
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 161, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tornado1"]
+position = Vector2(0, 16)
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 167, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado1"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_gyiqa")
+
+[node name="Area2D" type="Area2D" parent="Tornado1"]
+position = Vector2(-40, -8)
+collision_layer = 768
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado1/Area2D"]
+position = Vector2(40, 16)
+shape = SubResource("RectangleShape2D_3ah7q")
+
+[node name="red_timer" type="Timer" parent="Tornado1"]
+wait_time = 0.5
+one_shot = true
+
+[node name="green_timer" type="Timer" parent="Tornado1"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Tornado2" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(-8, -24)
+collision_layer = 768
+collision_mask = 6
+script = ExtResource("2_m0dwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tornado2"]
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 161, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tornado2"]
+position = Vector2(0, 16)
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 167, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado2"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_gyiqa")
+
+[node name="Area2D" type="Area2D" parent="Tornado2"]
+position = Vector2(-40, -8)
+collision_layer = 768
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado2/Area2D"]
+position = Vector2(40, 16)
+shape = SubResource("RectangleShape2D_3ah7q")
+
+[node name="red_timer" type="Timer" parent="Tornado2"]
+wait_time = 0.5
+one_shot = true
+
+[node name="green_timer" type="Timer" parent="Tornado2"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Tornado3" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(-8, -24)
+collision_layer = 768
+collision_mask = 6
+script = ExtResource("2_m0dwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tornado3"]
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 161, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tornado3"]
+position = Vector2(0, 16)
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 167, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado3"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_gyiqa")
+
+[node name="Area2D" type="Area2D" parent="Tornado3"]
+position = Vector2(-40, -8)
+collision_layer = 768
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado3/Area2D"]
+position = Vector2(40, 16)
+shape = SubResource("RectangleShape2D_3ah7q")
+
+[node name="red_timer" type="Timer" parent="Tornado3"]
+wait_time = 0.5
+one_shot = true
+
+[node name="green_timer" type="Timer" parent="Tornado3"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Tornado4" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(-8, -24)
+collision_layer = 768
+collision_mask = 6
+script = ExtResource("2_m0dwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tornado4"]
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 161, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tornado4"]
+position = Vector2(0, 16)
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 167, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado4"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_gyiqa")
+
+[node name="Area2D" type="Area2D" parent="Tornado4"]
+position = Vector2(-40, -8)
+collision_layer = 768
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado4/Area2D"]
+position = Vector2(40, 16)
+shape = SubResource("RectangleShape2D_3ah7q")
+
+[node name="red_timer" type="Timer" parent="Tornado4"]
+wait_time = 0.5
+one_shot = true
+
+[node name="green_timer" type="Timer" parent="Tornado4"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Tornado5" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(-8, -24)
+collision_layer = 768
+collision_mask = 6
+script = ExtResource("2_m0dwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tornado5"]
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 161, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tornado5"]
+position = Vector2(0, 16)
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 167, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado5"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_gyiqa")
+
+[node name="Area2D" type="Area2D" parent="Tornado5"]
+position = Vector2(-40, -8)
+collision_layer = 768
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado5/Area2D"]
+position = Vector2(40, 16)
+shape = SubResource("RectangleShape2D_3ah7q")
+
+[node name="red_timer" type="Timer" parent="Tornado5"]
+wait_time = 0.5
+one_shot = true
+
+[node name="green_timer" type="Timer" parent="Tornado5"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Tornado6" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(-8, -24)
+collision_layer = 768
+collision_mask = 6
+script = ExtResource("2_m0dwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tornado6"]
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 161, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tornado6"]
+position = Vector2(0, 16)
+rotation = 1.5708
+texture = ExtResource("2_084td")
+region_enabled = true
+region_rect = Rect2(0, 167, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado6"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_gyiqa")
+
+[node name="Area2D" type="Area2D" parent="Tornado6"]
+position = Vector2(-40, -8)
+collision_layer = 768
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado6/Area2D"]
+position = Vector2(40, 16)
+shape = SubResource("RectangleShape2D_3ah7q")
+
+[node name="red_timer" type="Timer" parent="Tornado6"]
+wait_time = 0.5
+one_shot = true
+
+[node name="green_timer" type="Timer" parent="Tornado6"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3ah7q")
+}

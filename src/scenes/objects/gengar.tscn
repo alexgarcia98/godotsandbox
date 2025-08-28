@@ -1,0 +1,174 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci2dve8ol1ntw"]
+
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_3lllr"]
+
+[sub_resource type="Gradient" id="Gradient_sovjp"]
+offsets = PackedFloat32Array(0.714286)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3lllr"]
+gradient = SubResource("Gradient_sovjp")
+
+[node name="Gengar" type="AnimatableBody2D"]
+collision_layer = 4096
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-24, -24)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(8, -24)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(24, -8)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+scale = Vector2(3, 1)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(24, 8)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D21" type="Sprite2D" parent="."]
+position = Vector2(32, 56)
+scale = Vector2(2, 1)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D22" type="Sprite2D" parent="."]
+position = Vector2(-8, 56)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D23" type="Sprite2D" parent="."]
+position = Vector2(-40, 32)
+scale = Vector2(1, 2)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D24" type="Sprite2D" parent="."]
+position = Vector2(-56, -8)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D20" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("2_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-40, -72)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D16" type="Sprite2D" parent="."]
+position = Vector2(-32, 56)
+scale = Vector2(2, 1)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D17" type="Sprite2D" parent="."]
+position = Vector2(-16, 32)
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D15" type="Sprite2D" parent="."]
+position = Vector2(-56, 8)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
+scale = Vector2(3, 1)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(40, -72)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D25" type="Sprite2D" parent="."]
+position = Vector2(24, -24)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D13" type="Sprite2D" parent="."]
+position = Vector2(56, 48)
+scale = Vector2(1, 2)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D14" type="Sprite2D" parent="."]
+position = Vector2(56, 8)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D19" type="Sprite2D" parent="."]
+position = Vector2(24, 24)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D18" type="Sprite2D" parent="."]
+position = Vector2(16, 40)
+scale = Vector2(2, 1)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+position = Vector2(40, 0)
+scale = Vector2(1, 6)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+position = Vector2(-8, -24)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(-40, -16)
+scale = Vector2(1, 4)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(4, 2)
+texture = SubResource("GradientTexture2D_3lllr")
+region_enabled = true
+region_rect = Rect2(48, 240, 16, 16)

@@ -28,7 +28,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 59
+var max_levels = 71
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -39,8 +39,8 @@ var worldNames = [
 	"Mirror",
 	"The Movement",
 	"Spo-cha",
-	"Thread the Needle",
 	"Retro Games",
+	"Thread the Needle",
 	"Around the World",
 	"Shooting Practice",
 	"Helping Hand",
@@ -58,13 +58,13 @@ var levelInfo = {
 	"Long Jump": [12, 8], "High Jump": [13, 8], "Hurdles": [14, 12], "Shotput": [15, 10], "Pole Vault": [16, 12], "100 Meter Dash": [17, 10], 
 	"Archery": [18, 10], "Basketball": [19, 10], "Baseball": [20, 20], "Golf": [21, 10], "Football": [22, 10], "Soccer": [23, 10],
 	"One-Way Street": [24, 5], "Two-Way Street": [25, 5], "Double Dash": [26, 10], "Waves": [27, 15], "Tight Squeeze": [28, 12], "Trees": [29, 15], 
-	"Simon the Digger": [30, 30], "The Big One": [31, 15], "Good Luck": [32, 15], "Popo and Nana": [33, 15], "Parting Shot": [34, 20], "Exam-E": [35, 40],
+	"Simon the Digger": [30, 30], "The Big One": [31, 15], "Good Luck": [32, 15], "Popo and Nana": [33, 15], "Parting Shot": [34, 20], "Exam-E": [35, 30],
 	"Meats": [36, 2], "In the Middle": [37, 5], "Small Jumps": [38, 5], "Big Jumps": [39, 8], "Twin Peaks": [40, 5], "Summit": [41, 5], 
 	"Airkick Turn": [42, 10], "Drop Chute": [43, 10], "U-Turn": [44, 20], "Escalator": [45, 5], "Big Dogs": [46, 10], "Exam-D": [47, 25],
 	"Uber": [48, 8], "Elevator": [49, 8], "Timed Doors": [50, 5], "My Back!": [51, 4], "Split Ascent": [52, 10], "Floaters": [53, 12], 
 	"Not Flappy Bird": [54, 8], "Quick Gap": [55, 12], "The Walls Are Moving!": [56, 10], "Chaos": [57, 10], "The Wave": [58, 4], "Enjoy the Ride": [59, 30],
-	"Pong": [60, 10], "Space Invaders": [61, 10], "Pac-Man": [62, 10], "Donkey Kong": [63, 10], "Bomberman": [64, 10], "Tetris": [65, 10], 
-	"Super Mario Bros.": [66, 10], "Mega Man": [67, 10], "Street Fighter 2": [68, 10], "Sonic the Hedgehog": [69, 10], "Doom": [70, 10], "Pokemon Red": [71, 10],
+	"Pong": [60, 17], "Space Invaders": [61, 6], "Pac-Man": [62, 20], "Donkey Kong": [63, 25], "Bomberman": [64, 25], "Tetris": [65, 15], 
+	"Super Mario Bros.": [66, 20], "Mega Man 2": [67, 10], "Street Fighter 2": [68, 20], "Sonic the Hedgehog 2": [69, 5], "Doom": [70, 30], "Pokemon Red": [71, 10],
 	"37": [72, 10], "38": [73, 10], "39": [74, 10], "40": [75, 10], "41": [76, 10], "42": [77, 10], 
 	"43": [78, 10], "44": [79, 10], "45": [80, 10], "46": [81, 10], "47": [82, 10], "48": [83, 10],
 	"49": [84, 10], "50": [85, 10], "51": [86, 10], "52": [87, 10], "53": [88, 10], "54": [89, 10], 
@@ -92,7 +92,7 @@ var worldLevels = {
 	"The Movement": ["Uber", "Elevator", "Timed Doors", "My Back!", "Split Ascent", "Floaters", 
 		"Not Flappy Bird", "Quick Gap", "The Walls Are Moving!", "Chaos", "The Wave", "Enjoy the Ride"],
 	"Retro Games": ["Pong", "Space Invaders", "Pac-Man", "Donkey Kong", "Bomberman", "Tetris", 
-		"Super Mario Bros.", "Mega Man", "Street Fighter 2", "Sonic the Hedgehog", "Doom", "Pokemon Red"],
+		"Super Mario Bros.", "Mega Man 2", "Street Fighter 2", "Sonic the Hedgehog 2", "Doom", "Pokemon Red"],
 	"Shooting Practice": ["37", "38", "39", "40", "41", "42", 
 		"43", "44", "45", "46", "47", "48"],
 	"Helping Hand": ["49", "50", "51", "52", "53", "54", 
@@ -127,6 +127,7 @@ const stage_select_pressed_sound = preload("res://src/assets/HALFTONE SFX Pack L
 const progress_button_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/5. Collectibles/Collectibles_2.wav")
 const return_button_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/UI/1. Buttons/Button_12.wav")
 const high_button_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/UI/1. Buttons/Button_4.wav")
+const ring_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/5. Collectibles/Collectibles_5.wav")
 
 
 var audio: AudioStreamPlayer2D
