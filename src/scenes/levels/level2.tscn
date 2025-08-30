@@ -369,9 +369,8 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -432.0
+offset_left = -448.0
 offset_top = -32.0
-offset_right = -104.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("8_84a2j")
 text = "Mushrooms are dangerous!
@@ -380,9 +379,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -208.0
+offset_left = -448.0
 offset_top = 32.0
-offset_right = 208.0
+offset_right = 448.0
 offset_bottom = 72.0
 theme_override_fonts/font = ExtResource("8_84a2j")
 text = "Gap too large?
@@ -391,12 +390,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 64.0
 offset_top = -32.0
-offset_right = 432.0
+offset_right = 448.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("8_84a2j")
-text = "Press SHIFT on the ground
-for a grounded dash"
+text = "Press SHIFT
+on the ground for a grounded dash"
 horizontal_alignment = 1
 vertical_alignment = 1

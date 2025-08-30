@@ -1295,8 +1295,8 @@ _data = {
 &"move": SubResource("Animation_7af53")
 }
 
-[sub_resource type="Animation" id="Animation_erb7d"]
-resource_name = "move"
+[sub_resource type="Animation" id="Animation_0eylp"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1310,8 +1310,8 @@ tracks/0/keys = {
 "values": [Vector2(-80, 240)]
 }
 
-[sub_resource type="Animation" id="Animation_0eylp"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_erb7d"]
+resource_name = "move"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

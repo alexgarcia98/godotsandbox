@@ -28,8 +28,8 @@ func enter() -> void:
 	parent.sfx.play()
 
 ## Just to be safe, disable any other inputs
-#func process_input(event: InputEvent) -> State:
-	#return super(event)
+func process_input(event: InputEvent) -> State:
+	return super(event)
 
 func process_physics(delta: float) -> State:
 	check_stuck()

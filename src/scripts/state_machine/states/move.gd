@@ -36,51 +36,26 @@ func process_input(event: InputEvent) -> State:
 		return null
 	super(event)
 	if Input.is_action_just_pressed('jump'):
-		if parent.jumps_remaining > 0:
-			# set current position
-			if parent.visible:
-				if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
-					if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-						if (not parent.floor.is_colliding()): # check for being inside real floor
-							parent.last_valid = parent.position
-							parent.last_facing = animations.flip_h
-							print("%s: setting respawn at %s x2" % [parent.name, parent.last_valid])
-						else:
-							print("%s: inside real floor, no respawn set x8" % parent.name)
-				else:
-					print("%s: mushroom detected, no respawn set x5" % parent.name)
-			return jump_state
+		if parent.jump_released:
+			if parent.jumps_remaining > 0:
+				set_respawn("move1")
+				parent.jump_released = false
+				return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
-			if parent.visible:
-				if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
-					if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-						if (not parent.floor.is_colliding()): # check for being inside real floor
-							parent.last_valid = parent.position
-							parent.last_facing = animations.flip_h
-							print("%s: setting respawn at %s x3" % [parent.name, parent.last_valid])
-						else:
-							print("%s: inside real floor, no respawn set x9" % parent.name)
-				else:
-					print("%s: mushroom detected, no respawn set x6" % parent.name)
+			set_respawn("move2")
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:
 				return airdash_state
-	#if Input.is_action_just_pressed('switch'):
-		#parent.is_main = not parent.is_main
-		#parent.indicator.visible = not parent.indicator.visible
-		#if parent.is_main:
-			#parent.set_z_index(7)
-		#else:
-			#parent.set_z_index(6)
-		#return null
 	if Input.is_action_just_pressed('action'):
 		if parent.is_main:
 			return interact_state
 	if Input.is_action_just_pressed("freeze"):
-		if parent.is_main:
-			return frozen_state
+		if parent.freeze_released:
+			if parent.is_main:
+				parent.freeze_released = false
+				return frozen_state
 	if Input.is_action_just_pressed("throw"):
 		# check for closeness
 		if parent.throwable:
@@ -123,3 +98,16 @@ func process_physics(delta: float) -> State:
 		if !parent.is_on_floor():
 			return fall_state
 	return null
+
+func set_respawn(location):
+	if parent.visible:
+		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
+			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
+				if (not parent.floor.is_colliding()): # check for being inside real floor
+					parent.last_valid = parent.position
+					parent.last_facing = animations.flip_h
+					print("%s: setting respawn at %s %s" % [parent.name, parent.last_valid, location])
+				else:
+					print("%s: inside real floor, no respawn set %s" % [parent.name, location])
+		else:
+			print("%s: mushroom detected, no respawn set %s" % [parent.name, location])

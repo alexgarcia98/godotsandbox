@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=4 uid="uid://8fy85kfvxe8a"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_370wc"]
-[ext_resource type="Script" path="res://src/scripts/levels/level6.gd" id="2_0acge"]
+[ext_resource type="Script" uid="uid://xpye7wvvydkh" path="res://src/scripts/levels/level6.gd" id="2_0acge"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_wdvky"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_wg18a"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="4_0acge"]
@@ -375,10 +375,10 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -384.0
-offset_top = 32.0
-offset_right = 22.0
-offset_bottom = 96.0
+offset_left = -448.0
+offset_top = 56.0
+offset_right = 448.0
+offset_bottom = 120.0
 theme_override_fonts/font = ExtResource("8_20men")
 text = "Levers toggle all gates! When
 nearby, press J to activate them"

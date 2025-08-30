@@ -81,6 +81,9 @@ var can_die = true
 
 var danger_list = []
 var tile_list = []
+var jump_released = true
+var freeze_released = true
+var switch_released = true
 
 var floor_stuck_count = 0
 var ceiling_stuck_count = 0
@@ -95,6 +98,9 @@ func _ready() -> void:
 	last_valid = position
 	last_facing = is_flipped
 	can_die = true
+	jump_released = true
+	freeze_released = true
+	switch_released = true
 	floor_stuck_count = 0
 	ceiling_stuck_count = 0
 	left_stuck_count = 0
@@ -128,22 +134,28 @@ func _process(delta: float) -> void:
 	#gun_state_machine.process_frame(delta)
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	#print("%s entered" % body)
-	if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
-		#if is_main:
-			#print("%s can throw" % name)
-		#else:
-			#print("%s can be thrown" % name)
-		throwable = true
+	print("%s entered" % body)
+	if body is TileMapLayer:
+		pass
+	else:
+		if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
+			#if is_main:
+				#print("%s can throw" % name)
+			#else:
+				#print("%s can be thrown" % name)
+			throwable = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	#print("%s exited" % body)
-	if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
-		#if is_main:
-			#print("%s cannot throw" % name)
-		#else:
-			#print("%s cannot be thrown" % name)
-		throwable = false
+	print("%s exited" % body)
+	if body is TileMapLayer:
+		pass
+	else:
+		if body.get_collision_layer_value(2) or body.get_collision_layer_value(3):
+			#if is_main:
+				#print("%s cannot throw" % name)
+			#else:
+				#print("%s cannot be thrown" % name)
+			throwable = false
 
 func _on_object_collision_area_entered(area: Area2D) -> void:
 	# handle any auto pickups

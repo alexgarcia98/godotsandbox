@@ -327,10 +327,10 @@ collision_enabled = false
 [node name="objects" type="Node" parent="."]
 
 [node name="green_key" parent="objects" instance=ExtResource("2_xvqfx")]
-position = Vector2(32, 168)
+position = Vector2(136, 168)
 
 [node name="red_key" parent="objects" instance=ExtResource("3_807pm")]
-position = Vector2(-240, 168)
+position = Vector2(-136, 168)
 
 [node name="green_door" parent="objects" instance=ExtResource("3_y12cv")]
 position = Vector2(400, 184)
@@ -349,10 +349,10 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -432.0
-offset_top = -32.0
-offset_right = -144.0
-offset_bottom = 32.0
+offset_left = -448.0
+offset_top = -136.0
+offset_right = 448.0
+offset_bottom = -88.0
 theme_override_fonts/font = ExtResource("9_rhxqj")
 text = "Move left and right
 with A/D"
@@ -360,10 +360,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -296.0
-offset_top = 104.0
-offset_right = 88.0
-offset_bottom = 142.0
+offset_left = -448.0
+offset_top = 64.0
+offset_right = 448.0
+offset_bottom = 102.0
 theme_override_fonts/font = ExtResource("9_rhxqj")
 text = "Collect keys with the matching
 character to unlock the door"
@@ -372,10 +372,10 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Label3" type="Label" parent="."]
-offset_left = -104.0
-offset_top = -32.0
-offset_right = 434.0
-offset_bottom = 32.0
+offset_left = -448.0
+offset_top = -48.0
+offset_right = 448.0
+offset_bottom = 16.0
 theme_override_fonts/font = ExtResource("9_rhxqj")
 text = "Press W near a matching door to enter
 Press S to exit if already inside

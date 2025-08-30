@@ -5,9 +5,12 @@ signal DoorToggled(emitter)
 signal PlayerDied(emitter)
 signal PlayerRevived(emitter)
 signal PlayerVulnerable(emitter)
-signal ButtonRemapped(action, key)
+signal KeyboardRemapped(action, key)
+signal JoypadButtonRemapped(action, button)
+signal JoypadAxisRemapped(action, button, value)
 signal EndGame()
 signal ShotFired(emitter)
+signal TargetHit()
 
 signal LevelEnded()
 signal LevelStarted(level)
@@ -28,10 +31,23 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 71
+var max_levels = 143
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
+
+var control_names = {
+	"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value -1.00": "Left Stick Left",
+	"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value 1.00": "Left Stick Right",
+	"Joypad Motion on Axis 1 (Left Stick Y-Axis, Joystick 0 Y-Axis) with Value -1.00": "Left Stick Up",
+	"Joypad Motion on Axis 1 (Left Stick Y-Axis, Joystick 0 Y-Axis) with Value 1.00": "Left Stick Down",
+	"Joypad Motion on Axis 2 (Right Stick X-Axis, Joystick 1 X-Axis) with Value -1.00": "Right Stick Left",
+	"Joypad Motion on Axis 2 (Right Stick X-Axis, Joystick 1 X-Axis) with Value 1.00": "Right Stick Right",
+	"Joypad Motion on Axis 3 (Right Stick Y-Axis, Joystick 1 Y-Axis) with Value -1.00": "Right Stick Up",
+	"Joypad Motion on Axis 3 (Right Stick Y-Axis, Joystick 1 Y-Axis) with Value 1.00": "Right Stick Down",
+	"Joypad Motion on Axis 4 (Joystick 2 X-Axis, Left Trigger, Sony L2, Xbox LT) with Value 1.00": "Left Trigger",
+	"Joypad Motion on Axis 5 (Joystick 2 Y-Axis, Right Trigger, Sony R2, Xbox RT) with Value 1.00": "Right Trigger"
+}
 
 # ordered list for worlds
 var worldNames = [
@@ -41,8 +57,8 @@ var worldNames = [
 	"Spo-cha",
 	"Retro Games",
 	"Thread the Needle",
-	"Around the World",
 	"Shooting Practice",
+	"Around the World",
 	"Helping Hand",
 	"WIP7",
 	"WIP8",
@@ -251,3 +267,20 @@ func reset_all_level_times():
 	file.store_var(times)
 	file.close()
 	saved_times = times
+
+func get_event_text(event):
+	var text_event = event.as_text()
+	if text_event.ends_with(" (Physical)"):
+		text_event = text_event.substr(0, (text_event.length() - 11))
+	elif event is InputEventJoypadButton:
+		var ind1 = text_event.find("(")
+		var ind2 = text_event.find(")")
+		var ind3 = text_event.find(",")
+		if ind3 == -1:
+			text_event = text_event.substr(ind1 + 1, (ind2 - ind1) - 1)
+		else:
+			text_event = text_event.substr(ind1 + 1, (ind3 - ind1) - 1)
+	elif event is InputEventJoypadMotion:
+		if control_names.has(text_event):
+			text_event = control_names[text_event]
+	return text_event

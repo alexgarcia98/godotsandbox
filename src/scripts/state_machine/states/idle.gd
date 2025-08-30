@@ -44,50 +44,38 @@ func enter() -> void:
 		#parent.last_valid = parent.position
 
 func process_input(event: InputEvent) -> State:
+	super(event)
 	if event is InputEventMouseMotion:
 		return null
-	super(event)
-	if parent.visible:
-		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()): # check for mushrooms
-			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()): # check for temporary platforms
-				if (not parent.floor.is_colliding()): # check for being inside real floor
-					parent.last_valid = parent.position
-					parent.last_facing = animations.flip_h
-					print("%s: setting respawn at %s x1" % [parent.name, parent.last_valid])
-				else:
-					print("%s: inside real floor, no respawn set x7" % parent.name)
-		else:
-			print("%s: mushroom detected, no respawn set x4" % parent.name)
+	if event is InputEventJoypadMotion:
+		if event.axis_value < 0.2 and event.axis_value > -0.2:
+			return null
+	set_respawn("idle")
 	if Input.is_action_just_pressed('move_up'):
 		# check for nearby door
 		if parent.door != null and parent.key_obtained:
 			return enter_door_state
-	if get_jump() and parent.is_on_floor():
-		return jump_state
 	if get_movement_input() != 0.0:
 		return move_state
 	if get_advancement_input() != 0.0:
 		return move_state
+	if Input.is_action_just_pressed('jump'): 
+		if parent.jump_released:
+			if parent.is_on_floor():
+				parent.jump_released = false
+				return jump_state
 	if Input.is_action_just_pressed('dash'):
 		return dash_state
 	if Input.is_action_just_pressed('pivot'):
 		return pivot_state
-	#if Input.is_action_just_pressed('debug_single_pivot'):
-		#return single_pivot_state
-	#if Input.is_action_just_pressed('switch'):
-		#parent.is_main = not parent.is_main
-		#parent.indicator.visible = not parent.indicator.visible
-		#if parent.is_main:
-			#parent.set_z_index(7)
-		#else:
-			#parent.set_z_index(6)
-		#return null
 	if Input.is_action_just_pressed('action'):
 		if parent.is_main:
 			return interact_state
 	if Input.is_action_just_pressed("freeze"):
-		if parent.is_main:
-			return frozen_state
+		if parent.freeze_released:
+			if parent.is_main:
+				parent.freeze_released = false
+				return frozen_state
 	if Input.is_action_just_pressed("throw"):
 		# check for closeness
 		if parent.throwable:
@@ -112,3 +100,16 @@ func process_physics(delta: float) -> State:
 		if !parent.is_on_floor():
 			return fall_state
 	return null
+
+func set_respawn(location):
+	if parent.visible:
+		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()): # check for mushrooms
+			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()): # check for temporary platforms
+				if (not parent.floor.is_colliding()): # check for being inside real floor
+					parent.last_valid = parent.position
+					parent.last_facing = animations.flip_h
+					print("%s: setting respawn at %s %s" % [parent.name, parent.last_valid, location])
+				else:
+					print("%s: inside real floor, no respawn set %s" % [parent.name, location])
+		else:
+			print("%s: mushroom detected, no respawn set %s" % [parent.name, location])

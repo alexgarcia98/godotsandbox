@@ -362,24 +362,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -440.0
-offset_top = 104.0
-offset_right = -22.0
-offset_bottom = 152.0
+offset_left = -448.0
+offset_top = 96.0
+offset_right = -16.0
+offset_bottom = 184.0
 theme_override_fonts/font = ExtResource("9_odkwf")
-text = "Press W and S to move
-forwards and backwards"
+text = "Press W
+to move forwards
+and S
+to move backwards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
 offset_left = 16.0
-offset_top = -88.0
-offset_right = 336.0
-offset_bottom = -32.0
+offset_top = 16.0
+offset_right = 448.0
+offset_bottom = 80.0
 theme_override_fonts/font = ExtResource("9_odkwf")
-text = "Press O to turn 
-around. You can do this 
-in the air once per jump."
+text = "Press O 
+to turn around. You can do
+this in the air once per jump."
 horizontal_alignment = 1
 vertical_alignment = 1

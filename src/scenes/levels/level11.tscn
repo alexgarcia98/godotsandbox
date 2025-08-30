@@ -349,9 +349,9 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -416.0
+offset_left = -448.0
 offset_top = 96.0
-offset_right = -116.0
+offset_right = 448.0
 offset_bottom = 160.0
 theme_override_fonts/font = ExtResource("8_ckk8k")
 text = "Still not enough height? Press K

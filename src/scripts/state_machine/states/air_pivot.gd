@@ -32,13 +32,16 @@ func process_input(event: InputEvent) -> State:
 			if parent.airdash_remaining > 0:
 				return airdash_state
 	if Input.is_action_just_pressed('jump'):
-		if parent.jumps_remaining > 0:
-			if animations.frame > 2 and flipped:
-				parent.jumps_remaining -= 1
-				return jump_state
-			elif animations.frame >= 5:
-				parent.jumps_remaining -= 1
-				return jump_state
+		if parent.jump_released:
+			if parent.jumps_remaining > 0:
+				if animations.frame > 2 and flipped:
+					parent.jumps_remaining -= 1
+					parent.jump_released = false
+					return jump_state
+				elif animations.frame >= 5:
+					parent.jumps_remaining -= 1
+					parent.jump_released = false
+					return jump_state
 	return null
 
 func process_physics(delta: float) -> State:

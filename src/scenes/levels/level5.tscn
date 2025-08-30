@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=4 uid="uid://wkfiybs1lh4h"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_ynbao"]
-[ext_resource type="Script" path="res://src/scripts/levels/level5.gd" id="2_kchfs"]
+[ext_resource type="Script" uid="uid://brg7lsn7gn51y" path="res://src/scripts/levels/level5.gd" id="2_kchfs"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_m37tw"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_kchfs"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="4_fhu77"]
@@ -360,10 +360,10 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -432.0
-offset_top = 32.0
-offset_right = 308.0
-offset_bottom = 96.0
+offset_left = -448.0
+offset_top = 48.0
+offset_right = 448.0
+offset_bottom = 112.0
 theme_override_fonts/font = ExtResource("10_441dj")
 text = "Only the primary character can press buttons!
 Characters only interact with objects matching their color

@@ -23,19 +23,30 @@ func process_input(event: InputEvent) -> State:
 		if parent.name == "red_player":
 			Messages.Restart.emit()
 	if Input.is_action_just_pressed('switch'):
-		if parent.name == "red_player":
-			parent.is_main = not parent.is_main
-			parent.green_player.is_main = not parent.green_player.is_main
-			parent.indicator.visible = not parent.indicator.visible
-			parent.green_player.indicator.visible = not parent.green_player.indicator.visible
-			if parent.is_main:
-				parent.set_z_index(7)
-			else:
-				parent.set_z_index(6)
-			if parent.green_player.is_main:
-				parent.green_player.set_z_index(7)
-			else:
-				parent.green_player.set_z_index(6)
+		if parent.switch_released:
+			parent.switch_released = false
+			if parent.name == "red_player":
+				parent.is_main = not parent.is_main
+				parent.green_player.is_main = not parent.green_player.is_main
+				parent.indicator.visible = not parent.indicator.visible
+				parent.green_player.indicator.visible = not parent.green_player.indicator.visible
+				if parent.is_main:
+					parent.set_z_index(7)
+				else:
+					parent.set_z_index(6)
+				if parent.green_player.is_main:
+					parent.green_player.set_z_index(7)
+				else:
+					parent.green_player.set_z_index(6)
+	if Input.is_action_just_released("jump"):
+		print("jump released")
+		parent.jump_released = true
+	if Input.is_action_just_released("freeze"):
+		print("freeze released")
+		parent.freeze_released = true
+	if Input.is_action_just_released("switch"):
+		print("switch released")
+		parent.switch_released = true
 	return null
 
 func process_frame(delta: float) -> State:

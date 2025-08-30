@@ -32,6 +32,7 @@ func enter() -> void:
 
 ## Just to be safe, disable any other inputs
 func process_input(event: InputEvent) -> State:
+	super(event)
 	if Input.is_action_just_pressed('move_up'):
 		# check for nearby door
 		if parent.door != null and parent.key_obtained:

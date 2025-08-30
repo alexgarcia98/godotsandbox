@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl18w118bbwio"]
+
+[ext_resource type="Script" uid="uid://jp0ssw3lcy5o" path="res://src/scripts/objects/target.gd" id="1_mjyel"]
+[ext_resource type="Texture2D" uid="uid://bu5t2v1r4gtf3" path="res://src/assets/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Target2.png" id="2_mjyel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ea6vm"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjyel"]
+size = Vector2(32, 32)
+
+[node name="green_target" type="StaticBody2D"]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mjyel")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_mjyel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ea6vm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mjyel")

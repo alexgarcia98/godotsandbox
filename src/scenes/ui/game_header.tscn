@@ -233,7 +233,7 @@ text = "Restart"
 auto_translate_mode = 1
 title = "Controls"
 initial_position = 1
-size = Vector2i(600, 350)
+size = Vector2i(850, 350)
 visible = false
 always_on_top = true
 theme_override_fonts/title_font = ExtResource("3_lq4n0")
@@ -281,7 +281,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n1xgo")
 
 [node name="Action" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer7/PanelContainer3"]
-custom_minimum_size = Vector2(135, 0)
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
@@ -296,7 +296,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hdkpf")
 
 [node name="Input" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer7/PanelContainer4"]
-custom_minimum_size = Vector2(135, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
@@ -313,7 +313,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
@@ -343,7 +342,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer"]
@@ -373,7 +371,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/PanelContainer"]
@@ -403,7 +400,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4/PanelContainer"]
@@ -433,7 +429,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer5/PanelContainer"]
@@ -463,7 +458,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer6"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer6/PanelContainer"]
@@ -499,7 +493,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n1xgo")
 
 [node name="Action" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer7/PanelContainer3"]
-custom_minimum_size = Vector2(135, 0)
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
@@ -514,7 +508,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hdkpf")
 
 [node name="Input" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer7/PanelContainer4"]
-custom_minimum_size = Vector2(135, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
@@ -531,14 +525,13 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1_fgclx")
-text = "Action"
+text = "Interact"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -561,7 +554,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/PanelContainer"]
@@ -591,7 +583,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer3"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer3/PanelContainer"]
@@ -621,7 +612,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer4"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer4/PanelContainer"]
@@ -651,7 +641,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5/PanelContainer"]
@@ -681,7 +670,6 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
 
 [node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6/PanelContainer"]

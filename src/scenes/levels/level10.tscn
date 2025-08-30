@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://c1x8cafc3afd8"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_7mo25"]
-[ext_resource type="Script" path="res://src/scripts/levels/level10.gd" id="2_7c3vc"]
+[ext_resource type="Script" uid="uid://cr6iipjsne6yb" path="res://src/scripts/levels/level10.gd" id="2_7c3vc"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="3_aybvc"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="4_o25fq"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="5_rnoia"]
@@ -349,20 +349,20 @@ is_main = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = -416.0
-offset_top = 96.0
-offset_right = -116.0
-offset_bottom = 160.0
+offset_left = -392.0
+offset_top = 144.0
+offset_right = -92.0
+offset_bottom = 168.0
 theme_override_fonts/font = ExtResource("9_ovqsm")
 text = "Need some extra height?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -112.0
-offset_top = 8.0
-offset_right = 440.0
-offset_bottom = 62.0
+offset_left = -448.0
+offset_top = 56.0
+offset_right = 448.0
+offset_bottom = 110.0
 theme_override_fonts/font = ExtResource("9_ovqsm")
 text = "Press L to throw the secondary character
 Change the direction of the throw by holding

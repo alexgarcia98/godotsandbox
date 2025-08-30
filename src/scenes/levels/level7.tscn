@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_q6ybu"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_6i44b"]
-[ext_resource type="Script" path="res://src/scripts/levels/level7.gd" id="2_j7t6r"]
+[ext_resource type="Script" uid="uid://7jqwv41tgpmc" path="res://src/scripts/levels/level7.gd" id="2_j7t6r"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_o77mg"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="4_4qwww"]
 [ext_resource type="PackedScene" uid="uid://d02ixobxwh2kb" path="res://src/scenes/objects/red_door.tscn" id="5_tixw4"]
@@ -372,9 +372,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -432.0
-offset_right = -32.0
-offset_bottom = 64.0
+offset_left = -448.0
+offset_top = -64.0
+offset_right = 96.0
 theme_override_fonts/font = ExtResource("8_mwuwc")
 text = "You can also hit objects from afar!
 Press U to shoot a projectile"

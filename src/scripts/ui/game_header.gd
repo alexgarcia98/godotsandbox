@@ -96,7 +96,9 @@ func _ready() -> void:
 	Messages.connect("ShotFired", on_shot_fired)
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
-	Messages.connect("ButtonRemapped", on_button_remapped)
+	Messages.connect("KeyboardRemapped", on_keyboard_remapped)
+	Messages.connect("JoypadButtonRemapped", on_joypad_button_remapped)
+	Messages.connect("JoypadAxisRemapped", on_joypad_axis_remapped)
 	Messages.connect("ResetControls", on_reset_controls)
 	Messages.connect("BeginLevel", on_begin_level)
 	main_scene = get_parent()
@@ -149,23 +151,42 @@ func _ready() -> void:
 			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
 			var control_scheme = {}
 			for a in action_items_dict.keys():
-				control_scheme[a] = InputMap.action_get_events(a)[0].physical_keycode
+				control_scheme[a] = ["keyboard", InputMap.action_get_events(a)[0].physical_keycode, 0]
 			file2.store_var(control_scheme)
 			file2.close()
 			Messages.rebinds = control_scheme
 	else:
 		Messages.rebinds = file2.get_var()
 		file2.close()
+		
+		var first = Messages.rebinds.keys()[0]
+		if Messages.rebinds[first] is not Array:
+			# need to reconfigure
+			for a in Messages.rebinds.keys():
+				Messages.rebinds[a] = ["keyboard", Messages.rebinds[a], 0]
+			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
+			file2.store_var(Messages.rebinds)
+			file2.close()
+			
 		for a in Messages.rebinds.keys():
-			var event = InputEventKey.new()
-			event.physical_keycode = Messages.rebinds[a]
+			var event
+			if Messages.rebinds[a][0] == "keyboard":
+				event = InputEventKey.new()
+				event.physical_keycode = Messages.rebinds[a][1]
+			elif Messages.rebinds[a][0] == "joypad_button":
+				event = InputEventJoypadButton.new()
+				event.button_index = Messages.rebinds[a][1]
+			elif Messages.rebinds[a][0] == "joypad_axis":
+				event = InputEventJoypadMotion.new()
+				event.axis = Messages.rebinds[a][1]
+				event.axis_value = Messages.rebinds[a][2]
+			print("old event:")
+			for x in InputMap.action_get_events(a):
+				print(x.as_text())
 			InputMap.action_erase_events(a)
 			InputMap.action_add_event(a, event)
-			print("initializing remap of " + a + " to " + str(Messages.rebinds[a]))
-			var key_name = event.as_text()
-			if key_name.ends_with(" (Physical)"):
-				key_name = "%s" % key_name.substr(0, (key_name.length() - 11))
-			action_dict[a].text = key_name
+			print("initializing remap of " + a + " to " + str(Messages.rebinds[a][1]))
+			action_dict[a].text = Messages.get_event_text(event)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -355,28 +376,44 @@ func on_level_ended():
 	var best_time = Messages.get_readable_stored_level_time(current_index)
 	personal_best.text = "Best: " + best_time
 
-func on_button_remapped(a, key):
-	Messages.rebinds[a] = key
+func on_keyboard_remapped(a, key):
+	Messages.rebinds[a] = ["keyboard", key, 0]
 	write_file = FileAccess.open(filepath2, FileAccess.WRITE)
 	write_file.store_var(Messages.rebinds)
 	write_file.close()
 	print("storing remap of " + a + " to " + str(key))
+
+func on_joypad_button_remapped(a, button):
+	Messages.rebinds[a] = ["joypad_button", button, 0]
+	write_file = FileAccess.open(filepath2, FileAccess.WRITE)
+	write_file.store_var(Messages.rebinds)
+	write_file.close()
+	print("storing remap of " + a + " to " + str(button))
+
+func on_joypad_axis_remapped(a, axis, value):
+	var axis_value
+	if value < 0:
+		axis_value = -1
+	else:
+		axis_value = 1
+	Messages.rebinds[a] = ["joypad_axis", axis, axis_value]
+	write_file = FileAccess.open(filepath2, FileAccess.WRITE)
+	write_file.store_var(Messages.rebinds)
+	write_file.close()
+	print("storing remap of " + a + " to " + str(axis))
 
 func on_reset_controls():
 	var file2 = FileAccess.open(filepath2, FileAccess.WRITE)
 	var control_scheme = {}
 	var event
 	for a in action_items_dict.keys():
-		control_scheme[a] = action_items_dict[a]
+		control_scheme[a] = ["keyboard", action_items_dict[a], 0]
 		event = InputEventKey.new()
 		event.physical_keycode = action_items_dict[a]
 		InputMap.action_erase_events(a)
 		InputMap.action_add_event(a, event)
-		print("initializing remap of " + a + " to " + str(Messages.rebinds[a]))
-		var key_name = event.as_text()
-		if key_name.ends_with(" (Physical)"):
-			key_name = "%s" % key_name.substr(0, (key_name.length() - 11))
-		action_dict[a].text = key_name
+		print("initializing remap of " + a + " to " + str(control_scheme[a][1]))
+		action_dict[a].text = Messages.get_event_text(event)
 	
 	file2.store_var(control_scheme)
 	file2.close()

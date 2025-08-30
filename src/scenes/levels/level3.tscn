@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://d3hwjfkmbmr06"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_wuq67"]
-[ext_resource type="Script" path="res://src/scripts/levels/level3.gd" id="2_6o43a"]
+[ext_resource type="Script" uid="uid://bm66fr1r88f5h" path="res://src/scripts/levels/level3.gd" id="2_6o43a"]
 [ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="8_3afd7"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="9_h2p7i"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="10_ioee8"]
@@ -360,9 +360,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 64.0
+offset_left = 32.0
 offset_top = 64.0
-offset_right = 432.0
+offset_right = 448.0
 offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("8_3afd7")
 text = "Jump off of walls with SPACE

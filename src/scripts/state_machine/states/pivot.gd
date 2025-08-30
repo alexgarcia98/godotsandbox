@@ -29,10 +29,13 @@ func process_input(event: InputEvent) -> State:
 		elif animations.frame >= 5:
 			return dash_state
 	if Input.is_action_just_pressed('jump'):
-		if animations.frame > 2 and flipped:
-			return jump_state
-		elif animations.frame >= 5:
-			return jump_state
+		if parent.jump_released:
+			if animations.frame > 2 and flipped:
+				parent.jump_released = false
+				return jump_state
+			elif animations.frame >= 5:
+				parent.jump_released = false
+				return jump_state
 	return null
 
 func process_physics(delta: float) -> State:
