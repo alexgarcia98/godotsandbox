@@ -31,7 +31,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 143
+var max_levels = 83
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -81,8 +81,8 @@ var levelInfo = {
 	"Not Flappy Bird": [54, 8], "Quick Gap": [55, 12], "The Walls Are Moving!": [56, 10], "Chaos": [57, 10], "The Wave": [58, 4], "Enjoy the Ride": [59, 30],
 	"Pong": [60, 17], "Space Invaders": [61, 6], "Pac-Man": [62, 20], "Donkey Kong": [63, 25], "Bomberman": [64, 25], "Tetris": [65, 15], 
 	"Super Mario Bros.": [66, 20], "Mega Man 2": [67, 10], "Street Fighter 2": [68, 20], "Sonic the Hedgehog 2": [69, 5], "Doom": [70, 30], "Pokemon Red": [71, 10],
-	"37": [72, 10], "38": [73, 10], "39": [74, 10], "40": [75, 10], "41": [76, 10], "42": [77, 10], 
-	"43": [78, 10], "44": [79, 10], "45": [80, 10], "46": [81, 10], "47": [82, 10], "48": [83, 10],
+	"Break the Targets!!": [72, 10], "Moving Shot": [73, 10], "Shoot the Gap": [74, 10], "Precision Shooting": [75, 10], "Drop Shot": [76, 10], "It's the Breakout System": [77, 10], 
+	"Rapunzel": [78, 10], "Moving Targets": [79, 10], "Shooting Blind": [80, 10], "Target Smash! Lv.1": [81, 10], "Target Test: Fox": [82, 10], "Shoot Your Shot": [83, 10],
 	"49": [84, 10], "50": [85, 10], "51": [86, 10], "52": [87, 10], "53": [88, 10], "54": [89, 10], 
 	"55": [90, 10], "56": [91, 10], "57": [92, 10], "58": [93, 10], "59": [94, 10], "60": [95, 10],
 	"61": [96, 10], "62": [97, 10], "63": [98, 10], "64": [99, 10], "65": [100, 10], "66": [101, 10], 
@@ -109,8 +109,8 @@ var worldLevels = {
 		"Not Flappy Bird", "Quick Gap", "The Walls Are Moving!", "Chaos", "The Wave", "Enjoy the Ride"],
 	"Retro Games": ["Pong", "Space Invaders", "Pac-Man", "Donkey Kong", "Bomberman", "Tetris", 
 		"Super Mario Bros.", "Mega Man 2", "Street Fighter 2", "Sonic the Hedgehog 2", "Doom", "Pokemon Red"],
-	"Shooting Practice": ["37", "38", "39", "40", "41", "42", 
-		"43", "44", "45", "46", "47", "48"],
+	"Shooting Practice": ["Break the Targets!!", "Moving Shot", "Shoot the Gap", "Precision Shooting", "Drop Shot", "It's the Breakout System", 
+		"Rapunzel", "Moving Targets", "Shooting Blind", "Target Smash! Lv.1", "Target Test: Fox", "Shoot Your Shot"],
 	"Helping Hand": ["49", "50", "51", "52", "53", "54", 
 		"55", "56", "57", "58", "59", "60"],
 	"Around the World": ["61", "62", "63", "64", "65", "66", 
