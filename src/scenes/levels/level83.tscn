@@ -320,6 +320,21 @@ texture = ExtResource("1_ay4rp")
 [sub_resource type="TileSet" id="TileSet_cfd6o"]
 sources/0 = SubResource("TileSetAtlasSource_x6n5v")
 
+[sub_resource type="Animation" id="Animation_q4mml"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-304, 32)]
+}
+
 [sub_resource type="Animation" id="Animation_gtkn4"]
 resource_name = "move"
 length = 2.0
@@ -337,7 +352,13 @@ tracks/0/keys = {
 "values": [Vector2(-304, 32), Vector2(0, -144), Vector2(304, 32), Vector2(0, 208)]
 }
 
-[sub_resource type="Animation" id="Animation_q4mml"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oka42"]
+_data = {
+&"RESET": SubResource("Animation_q4mml"),
+&"move": SubResource("Animation_gtkn4")
+}
+
+[sub_resource type="Animation" id="Animation_6l6wl"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -349,13 +370,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-304, 32)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oka42"]
-_data = {
-&"RESET": SubResource("Animation_q4mml"),
-&"move": SubResource("Animation_gtkn4")
+"values": [Vector2(304, 32)]
 }
 
 [sub_resource type="Animation" id="Animation_qushe"]
@@ -373,21 +388,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(304, 32), Vector2(0, -144), Vector2(-304, 32), Vector2(0, 208)]
-}
-
-[sub_resource type="Animation" id="Animation_6l6wl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(304, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rfu01"]
@@ -414,6 +414,21 @@ size = Vector2(16, 256)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uop5i"]
 size = Vector2(16, 80)
 
+[sub_resource type="Animation" id="Animation_0sd3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(424, -72)]
+}
+
 [sub_resource type="Animation" id="Animation_0lms3"]
 resource_name = "move"
 loop_mode = 2
@@ -430,7 +445,13 @@ tracks/0/keys = {
 "values": [Vector2(424, -72), Vector2(424, 120)]
 }
 
-[sub_resource type="Animation" id="Animation_0sd3l"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qushe"]
+_data = {
+&"RESET": SubResource("Animation_0sd3l"),
+&"move": SubResource("Animation_0lms3")
+}
+
+[sub_resource type="Animation" id="Animation_npakx"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -442,13 +463,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(424, -72)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qushe"]
-_data = {
-&"RESET": SubResource("Animation_0sd3l"),
-&"move": SubResource("Animation_0lms3")
+"values": [Vector2(360, 120)]
 }
 
 [sub_resource type="Animation" id="Animation_phwnj"]
@@ -465,21 +480,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(328, 120), Vector2(328, 40)]
-}
-
-[sub_resource type="Animation" id="Animation_npakx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(360, 120)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6l6wl"]

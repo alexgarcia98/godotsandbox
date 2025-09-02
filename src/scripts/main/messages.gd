@@ -31,7 +31,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 83
+var max_levels = 143
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -54,15 +54,15 @@ var worldNames = [
 	"Getting Started",
 	"Mirror",
 	"The Movement",
+	"Around the World",
+	"Shooting Practice",
+	"FoodieLand",
+	"Helping Hand",
 	"Spo-cha",
+	"Invisible",
 	"Retro Games",
 	"Thread the Needle",
-	"Shooting Practice",
-	"Around the World",
-	"Helping Hand",
-	"WIP7",
-	"WIP8",
-	"WIP9"
+	"Endgame"
 ]
 
 # level info structure:
@@ -115,11 +115,11 @@ var worldLevels = {
 		"55", "56", "57", "58", "59", "60"],
 	"Around the World": ["61", "62", "63", "64", "65", "66", 
 		"67", "68", "69", "70", "71", "72"],
-	"WIP7": ["73", "74", "75", "76", "77", "78", 
+	"Invisible": ["73", "74", "75", "76", "77", "78", 
 		"79", "80", "81", "82", "83", "84"],
-	"WIP8": ["85", "86", "87", "88", "89", "90", 
+	"FoodieLand": ["85", "86", "87", "88", "89", "90", 
 		"91", "92", "93", "94", "95", "96"],
-	"WIP9": ["97", "98", "99", "100", "101", "102", 
+	"Endgame": ["97", "98", "99", "100", "101", "102", 
 		"103", "104", "105", "106", "107", "108"],
 }
 
