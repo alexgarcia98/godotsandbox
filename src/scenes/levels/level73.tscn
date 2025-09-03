@@ -465,12 +465,10 @@ shape = SubResource("RectangleShape2D_sy8ts")
 
 [node name="red_player" parent="." instance=ExtResource("6_eb21i")]
 position = Vector2(-288, 176)
-ammo = 5
 
 [node name="green_player" parent="." instance=ExtResource("7_3p57g")]
 position = Vector2(-304, 176)
 is_main = false
-ammo = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

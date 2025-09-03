@@ -31,7 +31,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 143
+var max_levels = 95
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -54,14 +54,14 @@ var worldNames = [
 	"Getting Started",
 	"Mirror",
 	"The Movement",
-	"Around the World",
 	"Shooting Practice",
-	"FoodieLand",
 	"Helping Hand",
 	"Spo-cha",
-	"Invisible",
 	"Retro Games",
 	"Thread the Needle",
+	"Around the World",
+	"Foodie Land",
+	"Invisible",
 	"Endgame"
 ]
 
@@ -81,10 +81,10 @@ var levelInfo = {
 	"Not Flappy Bird": [54, 8], "Quick Gap": [55, 12], "The Walls Are Moving!": [56, 10], "Chaos": [57, 10], "The Wave": [58, 4], "Enjoy the Ride": [59, 30],
 	"Pong": [60, 17], "Space Invaders": [61, 6], "Pac-Man": [62, 20], "Donkey Kong": [63, 25], "Bomberman": [64, 25], "Tetris": [65, 15], 
 	"Super Mario Bros.": [66, 20], "Mega Man 2": [67, 10], "Street Fighter 2": [68, 20], "Sonic the Hedgehog 2": [69, 5], "Doom": [70, 30], "Pokemon Red": [71, 10],
-	"Break the Targets!!": [72, 10], "Moving Shot": [73, 10], "Shoot the Gap": [74, 10], "Precision Shooting": [75, 10], "Drop Shot": [76, 10], "It's the Breakout System": [77, 10], 
-	"Rapunzel": [78, 10], "Moving Targets": [79, 10], "Shooting Blind": [80, 10], "Target Smash! Lv.1": [81, 10], "Target Test: Fox": [82, 10], "Shoot Your Shot": [83, 10],
-	"49": [84, 10], "50": [85, 10], "51": [86, 10], "52": [87, 10], "53": [88, 10], "54": [89, 10], 
-	"55": [90, 10], "56": [91, 10], "57": [92, 10], "58": [93, 10], "59": [94, 10], "60": [95, 10],
+	"Break the Targets!!": [72, 10], "Moving Shot": [73, 8], "Shoot the Gap": [74, 25], "Precision Shooting": [75, 20], "Drop Shot": [76, 5], "It's the Breakout System": [77, 20], 
+	"Rapunzel": [78, 30], "Moving Targets": [79, 30], "Shooting Blind": [80, 30], "Target Smash! Lv.1": [81, 20], "Target Test: Fox": [82, 30], "Shoot Your Shot": [83, 30],
+	"Mirror?": [84, 5], "Diving Partners": [85, 5], "Alternating Gates": [86, 20], "Rescue the Princess": [87, 10], "Heads Up": [88, 10], "Watch Your Feet!": [89, 7], 
+	"Scaffolds": [90, 12], "I'll Go First": [91, 30], "Lights Out": [92, 45], "Jailbreak": [93, 20], "Wall Break": [94, 30], "Escape": [95, 8],
 	"61": [96, 10], "62": [97, 10], "63": [98, 10], "64": [99, 10], "65": [100, 10], "66": [101, 10], 
 	"67": [102, 10], "68": [103, 10], "69": [104, 10], "70": [105, 10], "71": [106, 10], "72": [107, 10],
 	"73": [108, 10], "74": [109, 10], "75": [110, 10], "76": [111, 10], "77": [112, 10], "78": [113, 10], 
@@ -111,13 +111,13 @@ var worldLevels = {
 		"Super Mario Bros.", "Mega Man 2", "Street Fighter 2", "Sonic the Hedgehog 2", "Doom", "Pokemon Red"],
 	"Shooting Practice": ["Break the Targets!!", "Moving Shot", "Shoot the Gap", "Precision Shooting", "Drop Shot", "It's the Breakout System", 
 		"Rapunzel", "Moving Targets", "Shooting Blind", "Target Smash! Lv.1", "Target Test: Fox", "Shoot Your Shot"],
-	"Helping Hand": ["49", "50", "51", "52", "53", "54", 
-		"55", "56", "57", "58", "59", "60"],
+	"Helping Hand": ["Mirror?", "Diving Partners", "Alternating Gates", "Rescue the Princess", "Heads Up", "Watch Your Feet!", 
+		"Scaffolds", "I'll Go First", "Lights Out", "Jailbreak", "Wall Break", "Escape"],
 	"Around the World": ["61", "62", "63", "64", "65", "66", 
 		"67", "68", "69", "70", "71", "72"],
 	"Invisible": ["73", "74", "75", "76", "77", "78", 
 		"79", "80", "81", "82", "83", "84"],
-	"FoodieLand": ["85", "86", "87", "88", "89", "90", 
+	"Foodie Land": ["85", "86", "87", "88", "89", "90", 
 		"91", "92", "93", "94", "95", "96"],
 	"Endgame": ["97", "98", "99", "100", "101", "102", 
 		"103", "104", "105", "106", "107", "108"],

@@ -322,6 +322,7 @@ script = ExtResource("2_hw1yf")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(1, 1, 1, 0.501961)
 show_behind_parent = true
+tile_map_data = PackedByteArray("AAD+/wEAAAABAA8AAAD+/wIAAAABAA8AAAD+/wMAAAABAA8AAAD//wEAAAABAA8AAAD//wIAAAABAA8AAAD//wMAAAABAA8AAAAAAAEAAAABAA8AAAAAAAIAAAABAA8AAAAAAAMAAAABAA8AAAABAAEAAAABAA8AAAABAAIAAAABAA8AAAABAAMAAAABAA8AAAA=")
 tile_set = SubResource("TileSet_cfd6o")
 collision_enabled = false
 

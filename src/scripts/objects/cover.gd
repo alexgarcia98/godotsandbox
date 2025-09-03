@@ -25,4 +25,9 @@ func on_begin_level(_current_index):
 		animation_player.play("startup")
 
 func change_state() -> void:
-	visible = not visible
+	if animation_player != null and is_visible:
+		animation_player.play("turn_on")
+		is_visible = false
+	elif not is_visible:
+		animation_player.play_backwards("turn_on")
+		is_visible = true
