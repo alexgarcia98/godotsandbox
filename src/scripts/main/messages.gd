@@ -31,7 +31,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 95
+var max_levels = 107
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -57,11 +57,11 @@ var worldNames = [
 	"Shooting Practice",
 	"Helping Hand",
 	"Spo-cha",
+	"X-Ray",
 	"Retro Games",
 	"Thread the Needle",
 	"Around the World",
 	"Foodie Land",
-	"Invisible",
 	"Endgame"
 ]
 
@@ -85,8 +85,8 @@ var levelInfo = {
 	"Rapunzel": [78, 30], "Moving Targets": [79, 30], "Shooting Blind": [80, 30], "Target Smash! Lv.1": [81, 20], "Target Test: Fox": [82, 30], "Shoot Your Shot": [83, 30],
 	"Mirror?": [84, 5], "Diving Partners": [85, 5], "Alternating Gates": [86, 20], "Rescue the Princess": [87, 10], "Heads Up": [88, 10], "Watch Your Feet!": [89, 7], 
 	"Scaffolds": [90, 12], "I'll Go First": [91, 30], "Lights Out": [92, 45], "Jailbreak": [93, 20], "Wall Break": [94, 30], "Escape": [95, 8],
-	"61": [96, 10], "62": [97, 10], "63": [98, 10], "64": [99, 10], "65": [100, 10], "66": [101, 10], 
-	"67": [102, 10], "68": [103, 10], "69": [104, 10], "70": [105, 10], "71": [106, 10], "72": [107, 10],
+	"Walking on Air": [96, 4], "Invisible": [97, 8], "Mind the Gap": [98, 5], "Walls?": [99, 8], "Black Mold": [100, 8], "3hai": [101, 7], 
+	"Firewall": [102, 10], "Muscle Memory": [103, 8], "Find the Cheese": [104, 20], "Clear Shot": [105, 15], "Also Not Flappy Bird": [106, 8], "Potholes": [107, 17],
 	"73": [108, 10], "74": [109, 10], "75": [110, 10], "76": [111, 10], "77": [112, 10], "78": [113, 10], 
 	"79": [114, 10], "80": [115, 10], "81": [116, 10], "82": [117, 10], "83": [118, 10], "84": [119, 10],
 	"85": [120, 10], "86": [121, 10], "87": [122, 10], "88": [123, 10], "89": [124, 10], "90": [125, 10], 
@@ -113,9 +113,9 @@ var worldLevels = {
 		"Rapunzel", "Moving Targets", "Shooting Blind", "Target Smash! Lv.1", "Target Test: Fox", "Shoot Your Shot"],
 	"Helping Hand": ["Mirror?", "Diving Partners", "Alternating Gates", "Rescue the Princess", "Heads Up", "Watch Your Feet!", 
 		"Scaffolds", "I'll Go First", "Lights Out", "Jailbreak", "Wall Break", "Escape"],
-	"Around the World": ["61", "62", "63", "64", "65", "66", 
-		"67", "68", "69", "70", "71", "72"],
-	"Invisible": ["73", "74", "75", "76", "77", "78", 
+	"X-Ray": ["Walking on Air", "Invisible", "Also Not Flappy Bird", "Potholes", "Clear Shot", "Mind the Gap",
+		"Walls?", "3hai", "Firewall", "Black Mold", "Muscle Memory", "Find the Cheese"],
+	"Around the World": ["73", "74", "75", "76", "77", "78", 
 		"79", "80", "81", "82", "83", "84"],
 	"Foodie Land": ["85", "86", "87", "88", "89", "90", 
 		"91", "92", "93", "94", "95", "96"],
