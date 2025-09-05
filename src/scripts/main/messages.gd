@@ -31,7 +31,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 143
+var max_levels = 119
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -53,6 +53,7 @@ var control_names = {
 var worldNames = [
 	"Getting Started",
 	"Mirror",
+	"Around the World",
 	"The Movement",
 	"Shooting Practice",
 	"Spo-cha",
@@ -60,7 +61,6 @@ var worldNames = [
 	"Retro Games",
 	"Helping Hand",
 	"Thread the Needle",
-	"Around the World",
 	"Foodie Land",
 	"Endgame"
 ]
@@ -87,8 +87,8 @@ var levelInfo = {
 	"Scaffolds": [90, 12], "I'll Go First": [91, 30], "Lights Out": [92, 45], "Jailbreak": [93, 20], "Wall Break": [94, 30], "Escape": [95, 8],
 	"Walking on Air": [96, 4], "Invisible": [97, 8], "Mind the Gap": [98, 5], "Walls?": [99, 8], "Black Mold": [100, 8], "3hai": [101, 7], 
 	"Firewall": [102, 10], "Muscle Memory": [103, 8], "Find the Cheese": [104, 20], "Clear Shot": [105, 15], "Also Not Flappy Bird": [106, 8], "Potholes": [107, 17],
-	"73": [108, 10], "74": [109, 10], "75": [110, 10], "76": [111, 10], "77": [112, 10], "78": [113, 10], 
-	"79": [114, 10], "80": [115, 10], "81": [116, 10], "82": [117, 10], "83": [118, 10], "84": [119, 10],
+	"Golden Gate Bridge": [108, 7], "Mt. Fuji": [109, 7], "The Pyramids of Giza": [110, 7], "Christ the Redeemer": [111, 10], "Eiffel Tower": [112, 7], "Sydney Opera House": [113, 7], 
+	"Taj Mahal": [114, 8], "Stonehenge": [115, 7], "Leaning Tower of Pisa": [116, 8], "The Colosseum": [117, 7], "Great Wall of China": [118, 7], "Earth": [119, 18],
 	"85": [120, 10], "86": [121, 10], "87": [122, 10], "88": [123, 10], "89": [124, 10], "90": [125, 10], 
 	"91": [126, 10], "92": [127, 10], "93": [128, 10], "94": [129, 10], "95": [130, 10], "96": [131, 10],
 	"97": [132, 10], "98": [133, 10], "99": [134, 10], "100": [135, 10], "101": [136, 10], "102": [137, 10], 
@@ -115,8 +115,8 @@ var worldLevels = {
 		"Scaffolds", "I'll Go First", "Lights Out", "Jailbreak", "Wall Break", "Escape"],
 	"X-Ray": ["Walking on Air", "Invisible", "Also Not Flappy Bird", "Potholes", "Clear Shot", "Mind the Gap",
 		"Walls?", "3hai", "Firewall", "Black Mold", "Muscle Memory", "Find the Cheese"],
-	"Around the World": ["73", "74", "75", "76", "77", "78", 
-		"79", "80", "81", "82", "83", "84"],
+	"Around the World": ["Golden Gate Bridge", "Mt. Fuji", "The Pyramids of Giza", "Christ the Redeemer", "Eiffel Tower", "Sydney Opera House", 
+		"Taj Mahal", "Stonehenge", "Leaning Tower of Pisa", "The Colosseum", "Great Wall of China", "Earth"],
 	"Foodie Land": ["85", "86", "87", "88", "89", "90", 
 		"91", "92", "93", "94", "95", "96"],
 	"Endgame": ["97", "98", "99", "100", "101", "102", 
