@@ -18,6 +18,8 @@ extends Node2D
 @onready var rank_start: Label = $LevelStart/MarginContainer/VBoxContainer/Panel2/HBoxContainer/Rank
 @onready var sfx: AudioStreamPlayer2D = $sfx
 @onready var sfx_ui: AudioStreamPlayer2D = $sfx_ui
+@onready var red_death_animation: AnimationPlayer = $Node2D/RedDeath/RedDeathAnimation
+@onready var green_death_animation: AnimationPlayer = $Node2D2/GreenDeath/GreenDeathAnimation
 
 var current = null
 var red_opened = false
@@ -45,6 +47,7 @@ func _ready() -> void:
 	Messages.connect("UnlockLevels", on_unlock_levels)
 	Messages.connect("LockLevels", on_lock_levels)
 	Messages.connect("ResetLevelTime", on_reset_level_time)
+	Messages.connect("PlayerDied", on_player_died)
 	
 	dimmer.visible = false
 	dimmer.self_modulate.a = 0.5
@@ -238,6 +241,12 @@ func on_lock_levels():
 	
 func on_end_game():
 	get_tree().quit()
+	
+func on_player_died(player) -> void:
+	if player.name == "red_player":
+		red_death_animation.play("death")
+	if player.name == "green_player":
+		green_death_animation.play("death")
 
 func _on_level_select_pressed() -> void:
 	Messages.audio.stream = Messages.return_button_sound

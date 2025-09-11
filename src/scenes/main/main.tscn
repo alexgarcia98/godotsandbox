@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://enlgjks5pxns"]
+[gd_scene load_steps=14 format=3 uid="uid://enlgjks5pxns"]
 
 [ext_resource type="Script" uid="uid://02it17unsbqy" path="res://src/scripts/main/main.gd" id="1_407ex"]
 [ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="3_45uaa"]
+[ext_resource type="FontFile" uid="uid://qo7snklcg7f2" path="res://src/assets/fonts/PixelOperator8-Bold.ttf" id="4_vw57g"]
 [ext_resource type="PackedScene" uid="uid://db50rk53od7nn" path="res://src/scenes/ui/game_header.tscn" id="5_407ex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vw57g"]
@@ -27,6 +28,174 @@ border_width_top = 1
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_lq4n0"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-464, -240)]
+}
+
+[sub_resource type="Animation" id="Animation_gebrm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-464, -240)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qey3o"]
+_data = {
+&"RESET": SubResource("Animation_gebrm"),
+&"death": SubResource("Animation_lq4n0")
+}
+
+[sub_resource type="Animation" id="Animation_i5tgo"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-464, -240)]
+}
+
+[sub_resource type="Animation" id="Animation_gy141"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-464, -240)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xif52"]
+_data = {
+&"RESET": SubResource("Animation_gy141"),
+&"death": SubResource("Animation_i5tgo")
+}
 
 [node name="sample_scene" type="Node2D"]
 script = ExtResource("1_407ex")
@@ -358,6 +527,57 @@ text = "Level Select"
 bus = &"SFX"
 
 [node name="sfx_ui" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 60
+position = Vector2(-464, -240)
+
+[node name="RedDeath" type="Label" parent="Node2D"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 336.0
+offset_top = 48.0
+offset_right = 408.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_vw57g")
+theme_override_font_sizes/font_size = 24
+text = "+5s"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RedDeathAnimation" type="AnimationPlayer" parent="Node2D/RedDeath"]
+libraries = {
+&"": SubResource("AnimationLibrary_qey3o")
+}
+autoplay = "RESET"
+
+[node name="Node2D2" type="Node2D" parent="."]
+z_index = 60
+position = Vector2(-464, -240)
+
+[node name="GreenDeath" type="Label" parent="Node2D2"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 512.0
+offset_top = 48.0
+offset_right = 584.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_vw57g")
+theme_override_font_sizes/font_size = 24
+text = "+5s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GreenDeathAnimation" type="AnimationPlayer" parent="Node2D2/GreenDeath"]
+libraries = {
+&"": SubResource("AnimationLibrary_xif52")
+}
+autoplay = "RESET"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/StartLevel" to="." method="_on_start_level_pressed"]
