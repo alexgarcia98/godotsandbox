@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dj228avrixgrh"]
+[gd_scene load_steps=25 format=4 uid="uid://dj228avrixgrh"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_jd6jg"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_iebxm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cm0b4aojni12r" path="res://src/scenes/objects/red_gate.tscn" id="11_ecsy4"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="11_x3ceh"]
 [ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="12_fbau3"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="15_ecsy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_jd6jg")
@@ -628,3 +629,36 @@ is_main = false
 is_flipped = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Checkpoint" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(-88, 144)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(-40, 192)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(-392, 16)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(-408, -80)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(-296, -64)
+
+[node name="Checkpoint6" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(-152, -64)
+
+[node name="Checkpoint7" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(280, -80)
+
+[node name="Checkpoint8" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(392, 16)
+
+[node name="Checkpoint9" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(440, 64)
+
+[node name="Checkpoint10" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(88, 144)
+
+[node name="Checkpoint11" parent="." instance=ExtResource("15_ecsy4")]
+position = Vector2(424, 208)

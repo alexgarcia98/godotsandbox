@@ -5,6 +5,8 @@ signal DoorToggled(emitter)
 signal PlayerDied(emitter)
 signal PlayerRevived(emitter)
 signal PlayerVulnerable(emitter)
+signal SetRedPlayerRespawn(pos)
+signal SetGreenPlayerRespawn(pos)
 signal KeyboardRemapped(action, key)
 signal JoypadButtonRemapped(action, button)
 signal JoypadAxisRemapped(action, button, value)
@@ -31,7 +33,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
-var max_levels = 143
+var max_levels = 119
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -49,7 +51,7 @@ var control_names = {
 	"Joypad Motion on Axis 5 (Joystick 2 Y-Axis, Right Trigger, Sony R2, Xbox RT) with Value 1.00": "Right Trigger"
 }
 
-# ordered list for worlds
+# ordered list for worldsddddddddd
 var worldNames = [
 	"Getting Started",
 	"Mirror",
@@ -75,7 +77,7 @@ var levelInfo = {
 	"Archery": [18, 10], "Basketball": [19, 10], "Baseball": [20, 20], "Golf": [21, 10], "Football": [22, 10], "Soccer": [23, 10],
 	"One-Way Street": [24, 5], "Two-Way Street": [25, 5], "Double Dash": [26, 10], "Waves": [27, 15], "Tight Squeeze": [28, 12], "Trees": [29, 15], 
 	"Simon the Digger": [30, 30], "The Big One": [31, 15], "Good Luck": [32, 15], "Popo and Nana": [33, 15], "Parting Shot": [34, 20], "Exam-E": [35, 30],
-	"Meats": [36, 2], "In the Middle": [37, 5], "Small Jumps": [38, 5], "Big Jumps": [39, 8], "Twin Peaks": [40, 5], "Summit": [41, 5], 
+	"Reunion": [36, 2], "Meetup": [37, 5], "Small Jumps": [38, 5], "Big Jumps": [39, 8], "Twin Peaks": [40, 5], "Summit": [41, 5], 
 	"Airkick Turn": [42, 10], "Drop Chute": [43, 10], "U-Turn": [44, 20], "Escalator": [45, 5], "Big Dogs": [46, 10], "Exam-D": [47, 25],
 	"Uber": [48, 8], "Elevator": [49, 8], "Timed Doors": [50, 5], "My Back!": [51, 4], "Split Ascent": [52, 10], "Floaters": [53, 12], 
 	"Not Flappy Bird": [54, 8], "Quick Gap": [55, 12], "The Walls Are Moving!": [56, 10], "Chaos": [57, 10], "The Wave": [58, 4], "Enjoy the Ride": [59, 30],
@@ -83,7 +85,7 @@ var levelInfo = {
 	"Super Mario Bros.": [66, 20], "Mega Man 2": [67, 10], "Street Fighter 2": [68, 20], "Sonic the Hedgehog 2": [69, 5], "Doom": [70, 30], "Pokemon Red": [71, 10],
 	"Break the Targets!!": [72, 10], "Moving Shot": [73, 8], "Shoot the Gap": [74, 25], "Precision Shooting": [75, 20], "Drop Shot": [76, 5], "It's the Breakout System": [77, 20], 
 	"Rapunzel": [78, 30], "Moving Targets": [79, 30], "Shooting Blind": [80, 30], "Target Smash! Lv.1": [81, 20], "Target Test: Fox": [82, 30], "Shoot Your Shot": [83, 30],
-	"Mirror?": [84, 5], "Diving Partners": [85, 5], "Alternating Gates": [86, 20], "Rescue the Princess": [87, 10], "Heads Up": [88, 10], "Watch Your Feet!": [89, 7], 
+	"Mirror?": [84, 5], "Diving Partners": [85, 5], "Altergate": [86, 20], "Rescue the Princess": [87, 10], "Heads Up": [88, 10], "Watch Your Feet!": [89, 7], 
 	"Scaffolds": [90, 12], "I'll Go First": [91, 30], "Lights Out": [92, 45], "Jailbreak": [93, 20], "Wall Break": [94, 30], "Escape": [95, 8],
 	"Walking on Air": [96, 4], "Invisible": [97, 8], "Mind the Gap": [98, 5], "Walls?": [99, 8], "Black Mold": [100, 8], "3hai": [101, 7], 
 	"Firewall": [102, 10], "Muscle Memory": [103, 8], "Find the Cheese": [104, 20], "Clear Shot": [105, 15], "Also Not Flappy Bird": [106, 8], "Potholes": [107, 17],
@@ -103,7 +105,7 @@ var worldLevels = {
 		"Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer"],
 	"Thread the Needle": ["One-Way Street", "Two-Way Street", "Double Dash", "Waves", "Simon the Digger", "The Big One", 
 		"Tight Squeeze", "Trees", "Popo and Nana", "Parting Shot", "Good Luck", "Exam-E"],
-	"Mirror": ["Meats", "In the Middle", "Small Jumps", "Big Jumps", "Twin Peaks", "Summit", 
+	"Mirror": ["Reunion", "Meetup", "Small Jumps", "Big Jumps", "Twin Peaks", "Summit", 
 		"Drop Chute", "Airkick Turn", "Escalator", "U-Turn", "Big Dogs", "Exam-D"],
 	"The Movement": ["Uber", "Elevator", "Timed Doors", "My Back!", "Split Ascent", "Floaters", 
 		"Not Flappy Bird", "Quick Gap", "The Walls Are Moving!", "Chaos", "The Wave", "Enjoy the Ride"],
@@ -111,7 +113,7 @@ var worldLevels = {
 		"Super Mario Bros.", "Mega Man 2", "Street Fighter 2", "Sonic the Hedgehog 2", "Doom", "Pokemon Red"],
 	"Shooting Practice": ["Break the Targets!!", "Moving Shot", "Shoot the Gap", "Precision Shooting", "Drop Shot", "It's the Breakout System", 
 		"Rapunzel", "Moving Targets", "Shooting Blind", "Target Smash! Lv.1", "Target Test: Fox", "Shoot Your Shot"],
-	"Helping Hand": ["Mirror?", "Diving Partners", "Alternating Gates", "Rescue the Princess", "Heads Up", "Watch Your Feet!", 
+	"Helping Hand": ["Mirror?", "Diving Partners", "Altergate", "Rescue the Princess", "Heads Up", "Watch Your Feet!", 
 		"Scaffolds", "I'll Go First", "Lights Out", "Jailbreak", "Wall Break", "Escape"],
 	"X-Ray": ["Walking on Air", "Invisible", "Also Not Flappy Bird", "Potholes", "Clear Shot", "Mind the Gap",
 		"Walls?", "3hai", "Firewall", "Black Mold", "Muscle Memory", "Find the Cheese"],

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dt12r630tlee7"]
+[gd_scene load_steps=20 format=4 uid="uid://dt12r630tlee7"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_y0nr5"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_2fg6i"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bl18w118bbwio" path="res://src/scenes/objects/green_target.tscn" id="7_c41pw"]
 [ext_resource type="PackedScene" uid="uid://b6kekb7sxb3ij" path="res://src/scenes/objects/purple_gate_3.tscn" id="8_oug42"]
 [ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="10_oug42"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="13_37667"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_y0nr5")
@@ -409,3 +410,9 @@ position = Vector2(-112, -32)
 is_main = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Checkpoint" parent="." instance=ExtResource("13_37667")]
+position = Vector2(200, 128)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("13_37667")]
+position = Vector2(232, -64)

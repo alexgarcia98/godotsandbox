@@ -80,6 +80,7 @@ func process_physics(delta: float) -> State:
 	var movement = get_movement_input() * move_speed
 	var advancement = get_advancement_input() * move_speed
 	
+	parent.currently_flipped = animations.flip_h
 	if animations.flip_h:
 		advancement *= -1
 

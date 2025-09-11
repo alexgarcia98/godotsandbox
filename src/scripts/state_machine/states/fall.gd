@@ -77,7 +77,8 @@ func process_physics(delta: float) -> State:
 	var advancement = get_advancement_input() * move_speed
 	if animations.flip_h:
 		advancement *= -1
-
+		
+	parent.currently_flipped = animations.flip_h
 	var norm = parent.get_wall_normal()
 
 	if parent.is_on_wall_only():

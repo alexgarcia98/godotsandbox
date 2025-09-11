@@ -52,6 +52,7 @@ func _on_red_timer_timeout() -> void:
 	respawn_red.is_flipped = respawn_red.last_facing
 	respawn_red.flip_toggled = false
 	respawn_red.visible = true
+	respawn_red.jump_released = true
 	respawn_red.collision_shape_2d.set_deferred("disabled", false)
 	print(respawn_red.name + " revived")
 	Messages.PlayerRevived.emit(respawn_red.name)
@@ -61,6 +62,7 @@ func _on_green_timer_timeout() -> void:
 	respawn_green.is_flipped = respawn_green.last_facing
 	respawn_green.flip_toggled = false
 	respawn_green.visible = true
+	respawn_green.jump_released = true
 	respawn_green.collision_shape_2d.set_deferred("disabled", false)
 	print(respawn_green.name + " revived")
 	Messages.PlayerRevived.emit(respawn_green.name)

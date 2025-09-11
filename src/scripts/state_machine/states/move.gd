@@ -38,12 +38,12 @@ func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump'):
 		if parent.jump_released:
 			if parent.jumps_remaining > 0:
-				set_respawn("move1")
+				#set_respawn("move1")
 				parent.jump_released = false
 				return jump_state
 	if Input.is_action_just_pressed('dash'):
 		if parent.is_on_floor():
-			set_respawn("move2")
+			#set_respawn("move2")
 			return dash_state
 		else:
 			if parent.airdash_remaining > 0:
@@ -82,32 +82,35 @@ func process_physics(delta: float) -> State:
 	
 	if movement == 0:
 		if advancement == 0:
+			parent.currently_flipped = animations.flip_h
 			return idle_state
 		else:
 			parent.velocity.x = advancement
 			if animations.flip_h:
 				parent.velocity.x *= -1
 			parent.velocity = gate_check(parent.velocity)
+			parent.currently_flipped = animations.flip_h
 			parent.move_and_slide()
 	else:
 		animations.flip_h = movement < 0
 		parent.velocity.x = movement
 		parent.velocity = gate_check(parent.velocity)
+		parent.currently_flipped = animations.flip_h
 		parent.move_and_slide()
 		
 		if !parent.is_on_floor():
 			return fall_state
 	return null
 
-func set_respawn(location):
-	if parent.visible:
-		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
-			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
-				if (not parent.floor.is_colliding()): # check for being inside real floor
-					parent.last_valid = parent.position
-					parent.last_facing = animations.flip_h
-					print("%s: setting respawn at %s %s" % [parent.name, parent.last_valid, location])
-				else:
-					print("%s: inside real floor, no respawn set %s" % [parent.name, location])
-		else:
-			print("%s: mushroom detected, no respawn set %s" % [parent.name, location])
+#func set_respawn(location):
+	#if parent.visible:
+		#if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()):
+			#if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()):
+				#if (not parent.floor.is_colliding()): # check for being inside real floor
+					#parent.last_valid = parent.position
+					#parent.last_facing = animations.flip_h
+					#print("%s: setting respawn at %s %s" % [parent.name, parent.last_valid, location])
+				#else:
+					#print("%s: inside real floor, no respawn set %s" % [parent.name, location])
+		#else:
+			#print("%s: mushroom detected, no respawn set %s" % [parent.name, location])

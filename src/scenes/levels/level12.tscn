@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cpcj1pvw5hlls"]
+[gd_scene load_steps=16 format=4 uid="uid://cpcj1pvw5hlls"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_ophwr"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_k8yle"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="7_is0s6"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="8_tvcfm"]
 [ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="9_huojb"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="10_k1sgx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_ophwr")
@@ -375,3 +376,9 @@ theme_override_fonts/font = ExtResource("9_huojb")
 text = "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_k1sgx")]
+position = Vector2(-232, 176)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("10_k1sgx")]
+position = Vector2(104, 176)

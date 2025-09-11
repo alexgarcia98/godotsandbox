@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bskfewwyu7nsd"]
+[gd_scene load_steps=16 format=4 uid="uid://bskfewwyu7nsd"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_q0acy"]
 [ext_resource type="Script" uid="uid://bo2hw51lbdgv" path="res://src/scripts/levels/invisible_levels.gd" id="2_vq0wm"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="7_kprk5"]
 [ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="7_vq0wm"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="8_ptxw5"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="10_qsss0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_q0acy")
@@ -447,6 +448,54 @@ one_shot = true
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 9.0
 one_shot = true
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(-328, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(-296, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(-200, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(-168, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(-72, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint6" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(-40, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint7" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(56, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint8" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(88, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint9" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(184, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint10" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(216, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint11" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(312, 96)
+scale = Vector2(1, 1.5)
+
+[node name="Checkpoint12" parent="." instance=ExtResource("10_qsss0")]
+position = Vector2(344, 96)
+scale = Vector2(1, 1.5)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

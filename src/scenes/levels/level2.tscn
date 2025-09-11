@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dcd0nqo1im1c2"]
+[gd_scene load_steps=17 format=4 uid="uid://dcd0nqo1im1c2"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_5mybw"]
 [ext_resource type="PackedScene" uid="uid://l0q6n5r8pof8" path="res://src/scenes/objects/green_door.tscn" id="2_4b7du"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="6_ovyr1"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="7_k2dq7"]
 [ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="8_84a2j"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="11_qmxw1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_5mybw")
@@ -398,3 +399,15 @@ text = "Press SHIFT
 on the ground for a grounded dash"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Checkpoint" parent="." instance=ExtResource("11_qmxw1")]
+position = Vector2(-328, 208)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("11_qmxw1")]
+position = Vector2(-248, 208)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("11_qmxw1")]
+position = Vector2(-104, 208)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("11_qmxw1")]
+position = Vector2(152, 208)

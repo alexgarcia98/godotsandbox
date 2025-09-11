@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://1k0ks4yf5tip"]
+[gd_scene load_steps=16 format=4 uid="uid://1k0ks4yf5tip"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_gtcyo"]
 [ext_resource type="Script" uid="uid://bo2hw51lbdgv" path="res://src/scripts/levels/invisible_levels.gd" id="2_na7bc"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="7_30b6d"]
 [ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="7_na7bc"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="8_36xf8"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="10_ihvwk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_gtcyo")
@@ -420,6 +421,30 @@ one_shot = true
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 9.0
 one_shot = true
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_ihvwk")]
+position = Vector2(-296, 96)
+scale = Vector2(1, 3.25)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("10_ihvwk")]
+position = Vector2(-264, 96)
+scale = Vector2(1, 3.25)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("10_ihvwk")]
+position = Vector2(-24, 96)
+scale = Vector2(1, 3.25)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("10_ihvwk")]
+position = Vector2(8, 96)
+scale = Vector2(1, 3.25)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("10_ihvwk")]
+position = Vector2(248, 96)
+scale = Vector2(1, 3.25)
+
+[node name="Checkpoint6" parent="." instance=ExtResource("10_ihvwk")]
+position = Vector2(280, 96)
+scale = Vector2(1, 3.25)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

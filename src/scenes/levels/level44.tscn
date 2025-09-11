@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bb8apb7scas2h"]
+[gd_scene load_steps=21 format=4 uid="uid://bb8apb7scas2h"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_p7b8a"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_wmtjt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="6_ifw4s"]
 [ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="6_wmtjt"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="7_qbonr"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="9_ytdmm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_p7b8a")
@@ -527,3 +528,51 @@ position = Vector2(-496, 64)
 shape = SubResource("RectangleShape2D_ay8x7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Checkpoint" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-344, 176)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-344, 80)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-344, -16)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-344, -112)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-136, -112)
+
+[node name="Checkpoint6" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-136, -16)
+
+[node name="Checkpoint7" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-136, 80)
+
+[node name="Checkpoint8" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(-136, 176)
+
+[node name="Checkpoint9" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(136, 176)
+
+[node name="Checkpoint10" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(136, 80)
+
+[node name="Checkpoint11" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(136, -16)
+
+[node name="Checkpoint12" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(136, -112)
+
+[node name="Checkpoint13" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(344, -112)
+
+[node name="Checkpoint14" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(344, -16)
+
+[node name="Checkpoint15" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(344, 80)
+
+[node name="Checkpoint16" parent="." instance=ExtResource("9_ytdmm")]
+position = Vector2(344, 176)

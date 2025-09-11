@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://qay358aabbea"]
+[gd_scene load_steps=18 format=4 uid="uid://qay358aabbea"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_21851"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_m3230"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="7_oea8f"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="8_kef4v"]
 [ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="9_uq8ko"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="10_i86wn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_21851")
@@ -405,3 +406,27 @@ text = "Avoid mushrooms that don't match
 your character's color"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(-376, 144)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(-376, -48)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(8, -48)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(232, -48)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(104, 144)
+
+[node name="Checkpoint6" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(232, 144)
+
+[node name="Checkpoint7" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(8, 144)
+
+[node name="Checkpoint8" parent="." instance=ExtResource("10_i86wn")]
+position = Vector2(104, -48)

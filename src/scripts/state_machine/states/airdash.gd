@@ -6,6 +6,10 @@ extends State
 var wall_cling_state: State
 @export
 var fall_state: State
+@export
+var jump_state: State
+@export
+var enter_door_state: State
 
 @export
 var time_to_dash := 0.25
@@ -18,7 +22,7 @@ func enter() -> void:
 	parent.airdash_remaining -= 1
 	print(parent.name + " airdash remaining: " + str(parent.airdash_remaining))
 	dash_timer = time_to_dash
-
+	parent.currently_flipped = animations.flip_h
 	# Simple check for which direction to dash towards
 	if animations.flip_h:
 		direction = -1
@@ -30,6 +34,17 @@ func enter() -> void:
 ## Just to be safe, disable any other inputs
 func process_input(event: InputEvent) -> State:
 	return super(event)
+	if Input.is_action_just_pressed('move_up'):
+		# check for nearby door
+		if parent.door != null and parent.key_obtained:
+			return enter_door_state
+	if Input.is_action_just_pressed('jump'):
+		if parent.jump_released:
+			if parent.jumps_remaining > 0:
+				parent.jumps_remaining -= 1
+				parent.jump_released = false
+				return jump_state
+	return null
 
 func process_physics(delta: float) -> State:
 	check_stuck()

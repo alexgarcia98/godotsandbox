@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://bixmw5hjdstqq"]
+[gd_scene load_steps=40 format=4 uid="uid://bixmw5hjdstqq"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_c713n"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_h00y3"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="6_xwcjj"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="7_2wkck"]
 [ext_resource type="PackedScene" uid="uid://b2fimuh73cpjx" path="res://src/scenes/objects/platform_3H.tscn" id="8_h00y3"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="10_fan14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_c713n")
@@ -736,3 +737,11 @@ position = Vector2(-280, 104)
 libraries = {
 &"": SubResource("AnimationLibrary_8hfbp")
 }
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_fan14")]
+position = Vector2(-424, 224)
+scale = Vector2(1, 6.5)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("10_fan14")]
+position = Vector2(424, 224)
+scale = Vector2(1, 6.5)

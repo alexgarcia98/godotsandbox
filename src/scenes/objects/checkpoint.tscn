@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8asxp5v2r1hw"]
+
+[ext_resource type="Script" uid="uid://cvx0edkb2urf4" path="res://src/scripts/objects/checkpoint.gd" id="1_0gkn2"]
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_0gkn2")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -48)
+collision_mask = 2
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(0, -48)
+collision_mask = 4

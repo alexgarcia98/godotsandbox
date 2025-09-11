@@ -35,6 +35,7 @@ func enter() -> void:
 			animations.flip_h = true
 		else:
 			animations.flip_h = false
+	parent.currently_flipped = animations.flip_h
 	super()
 	parent.velocity.x = 0
 	parent.jumps_remaining = parent.max_jumps
@@ -50,7 +51,7 @@ func process_input(event: InputEvent) -> State:
 	if event is InputEventJoypadMotion:
 		if event.axis_value < 0.2 and event.axis_value > -0.2:
 			return null
-	set_respawn("idle")
+	parent.on_set_player_respawn(parent.position)
 	if Input.is_action_just_pressed('move_up'):
 		# check for nearby door
 		if parent.door != null and parent.key_obtained:
@@ -101,15 +102,15 @@ func process_physics(delta: float) -> State:
 			return fall_state
 	return null
 
-func set_respawn(location):
-	if parent.visible:
-		if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()): # check for mushrooms
-			if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()): # check for temporary platforms
-				if (not parent.floor.is_colliding()): # check for being inside real floor
-					parent.last_valid = parent.position
-					parent.last_facing = animations.flip_h
-					print("%s: setting respawn at %s %s" % [parent.name, parent.last_valid, location])
-				else:
-					print("%s: inside real floor, no respawn set %s" % [parent.name, location])
-		else:
-			print("%s: mushroom detected, no respawn set %s" % [parent.name, location])
+#func set_respawn(location):
+	#if parent.visible:
+		#if (not parent.floor_down_5.is_colliding()) and (not parent.floor_down_6.is_colliding()): # check for mushrooms
+			#if (not parent.gate_down_1.is_colliding()) and (not parent.gate_down_2.is_colliding()): # check for temporary platforms
+				#if (not parent.floor.is_colliding()): # check for being inside real floor
+					#parent.last_valid = parent.position
+					#parent.last_facing = animations.flip_h
+					#print("%s: setting respawn at %s %s" % [parent.name, parent.last_valid, location])
+				#else:
+					#print("%s: inside real floor, no respawn set %s" % [parent.name, location])
+		#else:
+			#print("%s: mushroom detected, no respawn set %s" % [parent.name, location])

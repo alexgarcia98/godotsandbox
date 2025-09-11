@@ -695,19 +695,22 @@ shoot_state = NodePath("../shoot")
 enter_door_state = NodePath("../enter_door")
 animation_name = "move"
 
-[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "enter_door_state")]
+[node name="dash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "jump_state", "enter_door_state")]
 script = ExtResource("11_ei7e8")
 move_state = NodePath("../move")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
+jump_state = NodePath("../jump")
 enter_door_state = NodePath("../enter_door")
 animation_name = "crouch"
 move_speed = 384.0
 
-[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("wall_cling_state", "fall_state")]
+[node name="airdash" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("wall_cling_state", "fall_state", "jump_state", "enter_door_state")]
 script = ExtResource("30_xmpm3")
 wall_cling_state = NodePath("../wall_cling")
 fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+enter_door_state = NodePath("../enter_door")
 animation_name = "airdash"
 move_speed = 384.0
 

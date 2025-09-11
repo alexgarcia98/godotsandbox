@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://cvf8kp51ctjt8"]
+[gd_scene load_steps=29 format=4 uid="uid://cvf8kp51ctjt8"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_0x5hk"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_6r47y"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d1o4p35ak4q1f" path="res://src/scenes/objects/red_button.tscn" id="16_eh4ap"]
 [ext_resource type="PackedScene" uid="uid://dg5gp5goggaen" path="res://src/scenes/objects/green_button.tscn" id="17_2o8ua"]
 [ext_resource type="PackedScene" uid="uid://cu1bot57hk8kt" path="res://src/scenes/objects/kill_player.tscn" id="20_2o8ua"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="23_yk4r6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_0x5hk")
@@ -511,3 +512,9 @@ collision_mask = 6
 position = Vector2(224, 144)
 target_position = Vector2(-48, 0)
 collision_mask = 6
+
+[node name="Checkpoint20" parent="." instance=ExtResource("23_yk4r6")]
+position = Vector2(-120, 208)
+
+[node name="Checkpoint21" parent="." instance=ExtResource("23_yk4r6")]
+position = Vector2(-8, 208)

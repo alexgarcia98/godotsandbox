@@ -91,12 +91,14 @@ var left_stuck_count = 0
 var right_stuck_count = 0
 
 var can_move = false
+var currently_flipped = false
 
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
 	#gun_state_machine.init(self, gun_animations, player_move_component)
 	last_valid = position
 	last_facing = is_flipped
+	currently_flipped = is_flipped
 	can_die = true
 	jump_released = true
 	freeze_released = true
@@ -110,6 +112,10 @@ func _ready() -> void:
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
 	Messages.connect("PlayerVulnerable", on_player_vulnerable)
+	if name == "red_player":
+		Messages.connect("SetRedPlayerRespawn", on_set_player_respawn)
+	elif name == "green_player":
+		Messages.connect("SetGreenPlayerRespawn", on_set_player_respawn)
 	if name == "red_player":
 		level_parent = get_parent()
 		green_player = level_parent.get_node("green_player")
@@ -215,3 +221,16 @@ func on_level_ended():
 func on_player_vulnerable(player_name):
 	if player_name == name:
 		can_die = true
+
+func on_set_player_respawn(set_position):
+	if visible:
+		if (not floor_down_5.is_colliding()) and (not floor_down_6.is_colliding()): # check for mushrooms
+			if (not gate_down_1.is_colliding()) and (not gate_down_2.is_colliding()): # check for temporary platforms
+				if (not floor.is_colliding()): # check for being inside real floor
+					last_valid = set_position
+					last_facing = currently_flipped
+					print("%s: setting respawn at %s" % [name, last_valid])
+				else:
+					print("%s: inside real floor, no respawn set" % [name])
+		else:
+			print("%s: mushroom detected, no respawn set" % [name])
