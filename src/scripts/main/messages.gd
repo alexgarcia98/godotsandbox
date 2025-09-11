@@ -33,6 +33,7 @@ signal LockLevels()
 signal ResetControls()
 
 var rebinds = {}
+var controller_rebinds = {}
 var max_levels = 119
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
@@ -286,3 +287,17 @@ func get_event_text(event):
 		if control_names.has(text_event):
 			text_event = control_names[text_event]
 	return text_event
+
+func erase_keyboard_events(action):
+	var events = InputMap.action_get_events(action)
+	for event in events:
+		if event is InputEventKey:
+			InputMap.action_erase_event(action, event)
+
+func erase_controller_events(action):
+	var events = InputMap.action_get_events(action)
+	for event in events:
+		if event is InputEventJoypadButton:
+			InputMap.action_erase_event(action, event)
+		elif event is InputEventJoypadMotion:
+			InputMap.action_erase_event(action, event)

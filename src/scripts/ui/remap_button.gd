@@ -2,6 +2,7 @@ extends Button
 
 class_name RemapButton
 @export var action: String
+@export var controller: bool = false
 var key: Key
 var button: JoyButton
 var axis: JoyAxis
@@ -18,11 +19,42 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_process_unhandled_input(false)
-	update_key_text()
+	init_text()
+
+func init_text():
+	text = ""
+	var events = InputMap.action_get_events(action)
+	for event in events:
+		if not controller:
+			if event is InputEventKey:
+				text = Messages.get_event_text(event)
+				break
+		else:
+			if event is InputEventJoypadButton:
+				text = Messages.get_event_text(event)
+				break
+			elif event is InputEventJoypadMotion:
+				text = Messages.get_event_text(event)
+				break
+	print("init button %s to %s, controller %s" % [action, text, controller])
 
 func update_key_text():
-	text = Messages.get_event_text(InputMap.action_get_events(action)[0])
-	print(text)
+	text = ""
+	var events = InputMap.action_get_events(action)
+	for event in events:
+		if not controller:
+			if event is InputEventKey:
+				text = Messages.get_event_text(event)
+				break
+		else:
+			if event is InputEventJoypadButton:
+				text = Messages.get_event_text(event)
+				break
+			elif event is InputEventJoypadMotion:
+				text = Messages.get_event_text(event)
+				break
+	print("updating button %s to %s, controller %s" % [action, text, controller])
+	
 	
 func _toggled(button_pressed):
 	set_process_unhandled_input(button_pressed)
@@ -46,21 +78,21 @@ func _unhandled_input(event) -> void:
 	key_set = false
 	button_set = false
 	axis_set = false
-	if event is InputEventKey:
+	if event is InputEventKey and not controller:
 		if event.pressed:
-			InputMap.action_erase_events(action)
+			Messages.erase_keyboard_events(action)
 			InputMap.action_add_event(action, event)
 			key = event.physical_keycode
 			key_set = true
 			button_pressed = false
-	elif event is InputEventJoypadButton:
+	elif event is InputEventJoypadButton and controller:
 		if event.pressed:
-			InputMap.action_erase_events(action)
+			Messages.erase_controller_events(action)
 			InputMap.action_add_event(action, event)
 			button = event.button_index
 			button_set = true
 			button_pressed = false
-	elif event is InputEventJoypadMotion:
+	elif event is InputEventJoypadMotion and controller:
 		if event.axis_value < 0.2 and event.axis_value > -0.2:
 			pass
 		else:
@@ -68,11 +100,10 @@ func _unhandled_input(event) -> void:
 				event.axis_value = -1
 			elif event.axis_value > 0:
 				event.axis_value = 1
-			InputMap.action_erase_events(action)
+			Messages.erase_controller_events(action)
 			InputMap.action_add_event(action, event)
 			InputMap.action_set_deadzone(action, 0.2)
 			axis = event.axis
 			value = event.axis_value
 			axis_set = true
 			button_pressed = false
-		

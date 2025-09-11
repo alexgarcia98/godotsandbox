@@ -21,6 +21,10 @@ extends Control
 @onready var exit: Button = $Settings/MarginContainer/VBoxContainer/Navigation/Exit
 @onready var reset_times: Button = $Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes
 @onready var controls: Button = $Settings/MarginContainer/VBoxContainer/HBoxContainer/Controls
+@onready var keyboard_inputs: Button = $Help/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/KeyboardInputs
+@onready var controller_inputs: Button = $Help/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ControllerInputs
+@onready var keyboard_remaps: HBoxContainer = $Help/MarginContainer/VBoxContainer/HBoxContainer
+@onready var controller_remaps: HBoxContainer = $Help/MarginContainer/VBoxContainer/HBoxContainer2
 
 # button remaps
 @onready var move_left: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/move_left
@@ -35,6 +39,19 @@ extends Control
 @onready var shoot: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer4/shoot
 @onready var switch: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5/switch
 @onready var pivot: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6/pivot
+
+@onready var move_left_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/move_left
+@onready var move_right_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2/move_right
+@onready var move_up_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3/move_up
+@onready var move_down_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4/move_down
+@onready var jump_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer5/jump
+@onready var dash_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer6/dash
+@onready var action_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/action
+@onready var freeze_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/freeze
+@onready var throw_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/throw
+@onready var shoot_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer4/shoot
+@onready var switch_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer5/switch
+@onready var pivot_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer6/pivot
 
 # volume
 @onready var master_volume: HScrollBar = $Settings/MarginContainer/VBoxContainer/Volume/VBoxContainer/MasterVolume/HBoxContainer3/MasterVolume
@@ -54,6 +71,7 @@ var current_index = 0
 var max_levels
 
 var filepath2 = "user://controls.dat"
+var filepath4 = "user://controller.dat"
 var filepath3 = "user://volume.dat"
 var write_file
 var volume_file
@@ -73,6 +91,21 @@ var action_items_dict = {
 	"pivot": 79
 }
 
+var action_items_dict_controller = {
+	"move_left": ["joypad_axis", 0, -1], 
+	"move_right": ["joypad_axis", 0, 1],
+	"move_up": ["joypad_axis", 1, -1],
+	"move_down": ["joypad_axis", 1, 1],
+	"jump": ["joypad_button", 0, 0],
+	"dash": ["joypad_axis", 5, 1],
+	"action": ["joypad_button", 3, 0],
+	"freeze": ["joypad_button", 10, 0],
+	"throw": ["joypad_button", 2, 0],
+	"shoot": ["joypad_button", 1, 0],
+	"switch": ["joypad_axis", 4, 1],
+	"pivot": ["joypad_button", 9, 0]
+}
+
 var button_dict = {
 	"move_left": "Left", 
 	"move_right": "Right",
@@ -89,6 +122,8 @@ var button_dict = {
 }
 
 var action_dict = {}
+
+var controller_action_dict = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -143,6 +178,21 @@ func _ready() -> void:
 		"shoot": shoot
 	}
 	
+	controller_action_dict = {
+		"move_left": move_left_2, 
+		"move_right": move_right_2,
+		"move_up": move_up_2,
+		"move_down": move_down_2,
+		"jump": jump_2,
+		"dash": dash_2,
+		"pivot": pivot_2,
+		"action": action_2,
+		"throw": throw_2,
+		"freeze": freeze_2,
+		"switch": switch_2,
+		"shoot": shoot_2
+	}
+	
 	# check if input remaps exist
 	var file2 = FileAccess.open(filepath2, FileAccess.READ)
 	if file2 == null:
@@ -151,13 +201,18 @@ func _ready() -> void:
 			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
 			var control_scheme = {}
 			for a in action_items_dict.keys():
-				control_scheme[a] = ["keyboard", InputMap.action_get_events(a)[0].physical_keycode, 0]
+				print("current action: %s" % a)
+				var temp = InputMap.action_get_events(a)
+				for e in temp:
+					if e is InputEventKey:
+						control_scheme[a] = ["keyboard", e.physical_keycode, 0]
 			file2.store_var(control_scheme)
 			file2.close()
 			Messages.rebinds = control_scheme
 	else:
 		Messages.rebinds = file2.get_var()
 		file2.close()
+		print("saved keyboard rebinds: %s" % Messages.rebinds)
 		
 		var first = Messages.rebinds.keys()[0]
 		if Messages.rebinds[first] is not Array:
@@ -183,10 +238,73 @@ func _ready() -> void:
 			print("old event:")
 			for x in InputMap.action_get_events(a):
 				print(x.as_text())
-			InputMap.action_erase_events(a)
+			Messages.erase_keyboard_events(a)
 			InputMap.action_add_event(a, event)
 			print("initializing remap of " + a + " to " + str(Messages.rebinds[a][1]))
 			action_dict[a].text = Messages.get_event_text(event)
+
+	# check if input remaps exist for contoller
+	var file4 = FileAccess.open(filepath4, FileAccess.READ)
+	if file4 == null:
+		var err = FileAccess.get_open_error()
+		if err == ERR_FILE_NOT_FOUND:
+			file4 = FileAccess.open(filepath4, FileAccess.WRITE)
+			var control_scheme = {}
+			for a in action_items_dict.keys():
+				print("current action: %s" % a)
+				var temp = InputMap.action_get_events(a)
+				for e in temp:
+					if e is InputEventJoypadButton:
+						control_scheme[a] = ["joypad_button", e.button_index, 0]
+						break
+					elif e is InputEventJoypadMotion:
+						control_scheme[a] = ["joypad_axis", e.axis, e.axis_value]
+						break
+			file4.store_var(control_scheme)
+			file4.close()
+			print(control_scheme)
+			Messages.controller_rebinds = control_scheme
+	else:
+		Messages.controller_rebinds = file4.get_var()
+		file4.close()
+		print("saved controller rebinds: %s" % Messages.controller_rebinds)
+		
+		var first = Messages.controller_rebinds.keys()[0]
+		if Messages.controller_rebinds[first] is not Array:
+			# need to reconfigure
+			for a in Messages.controller_rebinds.keys():
+				print("current action: %s" % a)
+				var temp = InputMap.action_get_events(a)
+				for e in temp:
+					if e is InputEventJoypadButton:
+						Messages.controller_rebinds[a] = ["joypad_button", e.button_index, 0]
+						break
+					elif e is InputEventJoypadMotion:
+						Messages.controller_rebinds[a] = ["joypad_axis", e.axis, e.axis_value]
+						break
+			file4 = FileAccess.open(filepath4, FileAccess.WRITE)
+			file4.store_var(Messages.controller_rebinds)
+			file4.close()
+			
+		for a in Messages.controller_rebinds.keys():
+			var event
+			if Messages.controller_rebinds[a][0] == "keyboard":
+				event = InputEventKey.new()
+				event.physical_keycode = Messages.controller_rebinds[a][1]
+			elif Messages.controller_rebinds[a][0] == "joypad_button":
+				event = InputEventJoypadButton.new()
+				event.button_index = Messages.controller_rebinds[a][1]
+			elif Messages.controller_rebinds[a][0] == "joypad_axis":
+				event = InputEventJoypadMotion.new()
+				event.axis = Messages.controller_rebinds[a][1]
+				event.axis_value = Messages.controller_rebinds[a][2]
+			print("old event:")
+			for x in InputMap.action_get_events(a):
+				print(x.as_text())
+			Messages.erase_controller_events(a)
+			InputMap.action_add_event(a, event)
+			print("initializing remap of " + a + " to " + str(Messages.controller_rebinds[a][1]))
+			controller_action_dict[a].text = Messages.get_event_text(event)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -230,6 +348,8 @@ func _on_controls_pressed() -> void:
 	Messages.audio.stream = Messages.stage_select_pressed_sound
 	Messages.audio.play()
 	help.show()
+	keyboard_remaps.show()
+	controller_remaps.hide()
 	settingsWindow.hide()
 
 func _on_help_close_requested() -> void:
@@ -384,9 +504,9 @@ func on_keyboard_remapped(a, key):
 	print("storing remap of " + a + " to " + str(key))
 
 func on_joypad_button_remapped(a, button):
-	Messages.rebinds[a] = ["joypad_button", button, 0]
-	write_file = FileAccess.open(filepath2, FileAccess.WRITE)
-	write_file.store_var(Messages.rebinds)
+	Messages.controller_rebinds[a] = ["joypad_button", button, 0]
+	write_file = FileAccess.open(filepath4, FileAccess.WRITE)
+	write_file.store_var(Messages.controller_rebinds)
 	write_file.close()
 	print("storing remap of " + a + " to " + str(button))
 
@@ -396,27 +516,44 @@ func on_joypad_axis_remapped(a, axis, value):
 		axis_value = -1
 	else:
 		axis_value = 1
-	Messages.rebinds[a] = ["joypad_axis", axis, axis_value]
-	write_file = FileAccess.open(filepath2, FileAccess.WRITE)
-	write_file.store_var(Messages.rebinds)
+	Messages.controller_rebinds[a] = ["joypad_axis", axis, axis_value]
+	write_file = FileAccess.open(filepath4, FileAccess.WRITE)
+	write_file.store_var(Messages.controller_rebinds)
 	write_file.close()
 	print("storing remap of " + a + " to " + str(axis))
 
 func on_reset_controls():
 	var file2 = FileAccess.open(filepath2, FileAccess.WRITE)
 	var control_scheme = {}
+	var file4 = FileAccess.open(filepath4, FileAccess.WRITE)
+	var control_scheme_2 = {}
 	var event
+	var event_2
+	control_scheme_2 = action_items_dict_controller
 	for a in action_items_dict.keys():
 		control_scheme[a] = ["keyboard", action_items_dict[a], 0]
 		event = InputEventKey.new()
 		event.physical_keycode = action_items_dict[a]
+		if action_items_dict_controller[a][0] == "joypad_axis":
+			event_2 = InputEventJoypadMotion.new()
+			event_2.axis = action_items_dict_controller[a][1]
+			event_2.axis_value = action_items_dict_controller[a][2]
+		elif action_items_dict_controller[a][0] == "joypad_button":
+			event_2 = InputEventJoypadButton.new()
+			event_2.button_index = action_items_dict_controller[a][1]
 		InputMap.action_erase_events(a)
 		InputMap.action_add_event(a, event)
+		InputMap.action_add_event(a, event_2)
 		print("initializing remap of " + a + " to " + str(control_scheme[a][1]))
 		action_dict[a].text = Messages.get_event_text(event)
+		controller_action_dict[a].text = Messages.get_event_text(event_2)
 	
 	file2.store_var(control_scheme)
 	file2.close()
+	file4.store_var(control_scheme_2)
+	file4.close()
+	
+	Messages.controller_rebinds = control_scheme_2
 	Messages.rebinds = control_scheme
 
 func _on_master_volume_value_changed(value: float) -> void:
@@ -435,3 +572,11 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(movement_bus_index, value)
 	var ui_bus_index = AudioServer.get_bus_index("UI")
 	AudioServer.set_bus_volume_linear(ui_bus_index, value)
+
+func _on_keyboard_inputs_pressed() -> void:
+	keyboard_remaps.show()
+	controller_remaps.hide()
+
+func _on_controller_inputs_pressed() -> void:
+	keyboard_remaps.hide()
+	controller_remaps.show()

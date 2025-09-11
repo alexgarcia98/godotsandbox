@@ -253,6 +253,28 @@ layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
+[node name="MarginContainer" type="MarginContainer" parent="Help/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="KeyboardInputs" type="Button" parent="Help/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_lq4n0")
+text = "Keyboard Inputs"
+
+[node name="ControllerInputs" type="Button" parent="Help/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_lq4n0")
+text = "Controller Inputs"
+
 [node name="Label" type="Label" parent="Help/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fgclx")
@@ -691,6 +713,448 @@ script = ExtResource("3_v8pfy")
 action = "pivot"
 metadata/_custom_type_script = "uid://oaxgo0r47f3y"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1xgo")
+
+[node name="Action" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer7/PanelContainer3"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Action"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hdkpf")
+
+[node name="Input" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer7/PanelContainer4"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Input"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_left" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "move_left"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Right"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_right" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "move_right"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Up"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_up" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "move_up"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Down"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_down" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "move_down"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer5/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="jump" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "jump"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer6/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Dash"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dash" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "dash"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer7"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1xgo")
+
+[node name="Action" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer7/PanelContainer3"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Action"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer7"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hdkpf")
+
+[node name="Input" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer7/PanelContainer4"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Input"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="action" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "action"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Freeze"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="freeze" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "freeze"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Throw"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="throw" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "throw"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer4"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer4/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Shoot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shoot" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer4"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "shoot"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer5"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer5/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Switch"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="switch" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer5"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "switch"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer6"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb0j8")
+
+[node name="Left" type="Label" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer6/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Pivot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pivot" type="Button" parent="Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer6"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "A"
+script = ExtResource("3_v8pfy")
+action = "pivot"
+controller = true
+metadata/_custom_type_script = "uid://oaxgo0r47f3y"
+
 [node name="Settings" type="Window" parent="."]
 title = "Settings"
 initial_position = 1
@@ -965,6 +1429,8 @@ text = "Exit Game"
 [connection signal="pressed" from="FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Menu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Menu/Restart" to="." method="_on_restart_pressed"]
 [connection signal="close_requested" from="Help" to="." method="_on_help_close_requested"]
+[connection signal="pressed" from="Help/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/KeyboardInputs" to="." method="_on_keyboard_inputs_pressed"]
+[connection signal="pressed" from="Help/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ControllerInputs" to="." method="_on_controller_inputs_pressed"]
 [connection signal="close_requested" from="Settings" to="." method="_on_settings_close_requested"]
 [connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Volume/VBoxContainer/MasterVolume/HBoxContainer3/MasterVolume" to="." method="_on_master_volume_value_changed"]
 [connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Volume/VBoxContainer/MusicVolume/HBoxContainer3/MusicVolume" to="." method="_on_music_volume_value_changed"]
