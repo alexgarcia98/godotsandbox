@@ -34,7 +34,7 @@ signal ResetControls()
 
 var rebinds = {}
 var controller_rebinds = {}
-var max_levels = 119
+var max_levels = 143
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -64,7 +64,7 @@ var worldNames = [
 	"Retro Games",
 	"Helping Hand",
 	"Thread the Needle",
-	"Foodie Land",
+	"Foodieland",
 	"Endgame"
 ]
 
@@ -85,15 +85,15 @@ var levelInfo = {
 	"Pong": [60, 17], "Space Invaders": [61, 6], "Pac-Man": [62, 20], "Donkey Kong": [63, 25], "Bomberman": [64, 25], "Tetris": [65, 15], 
 	"Super Mario Bros.": [66, 20], "Mega Man 2": [67, 10], "Street Fighter 2": [68, 20], "Sonic the Hedgehog 2": [69, 5], "Doom": [70, 30], "Pokemon Red": [71, 10],
 	"Break the Targets!!": [72, 10], "Moving Shot": [73, 8], "Shoot the Gap": [74, 25], "Precision Shooting": [75, 20], "Drop Shot": [76, 5], "It's the Breakout System": [77, 20], 
-	"Rapunzel": [78, 30], "Moving Targets": [79, 30], "Shooting Blind": [80, 30], "Target Smash! Lv.1": [81, 20], "Target Test: Fox": [82, 30], "Shoot Your Shot": [83, 30],
+	"Rapunzel": [78, 30], "Moving Targets": [79, 30], "Shooting Blind": [80, 30], "Target Smash! Lv.1": [81, 20], "Fox Target Test": [82, 30], "Shoot Your Shot": [83, 30],
 	"Mirror?": [84, 5], "Diving Partners": [85, 5], "Altergate": [86, 20], "Rescue the Princess": [87, 10], "Heads Up": [88, 10], "Watch Your Feet!": [89, 7], 
 	"Scaffolds": [90, 12], "I'll Go First": [91, 30], "Lights Out": [92, 45], "Jailbreak": [93, 20], "Wall Break": [94, 30], "Escape": [95, 8],
 	"Walking on Air": [96, 4], "Invisible": [97, 8], "Mind the Gap": [98, 5], "Walls?": [99, 8], "Black Mold": [100, 8], "3hai": [101, 7], 
 	"Firewall": [102, 10], "Muscle Memory": [103, 8], "Find the Cheese": [104, 20], "Clear Shot": [105, 15], "Also Not Flappy Bird": [106, 8], "Potholes": [107, 17],
 	"Golden Gate Bridge": [108, 7], "Mt. Fuji": [109, 7], "The Pyramids of Giza": [110, 7], "Christ the Redeemer": [111, 10], "Eiffel Tower": [112, 7], "Sydney Opera House": [113, 7], 
 	"Taj Mahal": [114, 8], "Stonehenge": [115, 7], "Leaning Tower of Pisa": [116, 8], "The Colosseum": [117, 7], "Great Wall of China": [118, 7], "Earth": [119, 18],
-	"85": [120, 10], "86": [121, 10], "87": [122, 10], "88": [123, 10], "89": [124, 10], "90": [125, 10], 
-	"91": [126, 10], "92": [127, 10], "93": [128, 10], "94": [129, 10], "95": [130, 10], "96": [131, 10],
+	"Dim Sum": [120, 10], "Samosas": [121, 10], "Macarons": [122, 10], "Tacos": [123, 10], "Lechon": [124, 10], "Jamón": [125, 10], 
+	"Bibimbap": [126, 10], "Sushi": [127, 10], "93": [128, 10], "94": [129, 10], "95": [130, 10], "96": [131, 10],
 	"97": [132, 10], "98": [133, 10], "99": [134, 10], "100": [135, 10], "101": [136, 10], "102": [137, 10], 
 	"103": [138, 10], "104": [139, 10], "105": [140, 10], "106": [141, 10], "107": [142, 10], "108": [143, 10]
 }
@@ -113,15 +113,15 @@ var worldLevels = {
 	"Retro Games": ["Pong", "Space Invaders", "Pac-Man", "Donkey Kong", "Bomberman", "Tetris", 
 		"Super Mario Bros.", "Mega Man 2", "Street Fighter 2", "Sonic the Hedgehog 2", "Doom", "Pokemon Red"],
 	"Shooting Practice": ["Break the Targets!!", "Moving Shot", "Shoot the Gap", "Precision Shooting", "Drop Shot", "It's the Breakout System", 
-		"Rapunzel", "Moving Targets", "Shooting Blind", "Target Smash! Lv.1", "Target Test: Fox", "Shoot Your Shot"],
+		"Rapunzel", "Moving Targets", "Shooting Blind", "Target Smash! Lv.1", "Fox Target Test", "Shoot Your Shot"],
 	"Helping Hand": ["Mirror?", "Diving Partners", "Altergate", "Rescue the Princess", "Heads Up", "Watch Your Feet!", 
 		"Scaffolds", "I'll Go First", "Lights Out", "Jailbreak", "Wall Break", "Escape"],
 	"X-Ray": ["Walking on Air", "Invisible", "Also Not Flappy Bird", "Potholes", "Clear Shot", "Mind the Gap",
 		"Walls?", "3hai", "Firewall", "Black Mold", "Muscle Memory", "Find the Cheese"],
 	"Around the World": ["Golden Gate Bridge", "Mt. Fuji", "The Pyramids of Giza", "Christ the Redeemer", "Eiffel Tower", "Sydney Opera House", 
 		"Taj Mahal", "Stonehenge", "Leaning Tower of Pisa", "The Colosseum", "Great Wall of China", "Earth"],
-	"Foodie Land": ["85", "86", "87", "88", "89", "90", 
-		"91", "92", "93", "94", "95", "96"],
+	"Foodieland": ["Dim Sum", "Samosas", "Macarons", "Tacos", "Lechon", "Jamón", 
+		"Bibimbap", "Sushi", "93", "94", "95", "96"],
 	"Endgame": ["97", "98", "99", "100", "101", "102", 
 		"103", "104", "105", "106", "107", "108"],
 }
