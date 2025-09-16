@@ -58,13 +58,13 @@ var worldNames = [
 	"Mirror",
 	"Around the World",
 	"The Movement",
+	"Foodieland",
 	"Shooting Practice",
 	"Spo-cha",
 	"X-Ray",
 	"Retro Games",
 	"Helping Hand",
 	"Thread the Needle",
-	"Foodieland",
 	"Endgame"
 ]
 
@@ -92,8 +92,8 @@ var levelInfo = {
 	"Firewall": [102, 10], "Muscle Memory": [103, 8], "Find the Cheese": [104, 20], "Clear Shot": [105, 15], "Also Not Flappy Bird": [106, 8], "Potholes": [107, 17],
 	"Golden Gate Bridge": [108, 7], "Mt. Fuji": [109, 7], "The Pyramids of Giza": [110, 7], "Christ the Redeemer": [111, 10], "Eiffel Tower": [112, 7], "Sydney Opera House": [113, 7], 
 	"Taj Mahal": [114, 8], "Stonehenge": [115, 7], "Leaning Tower of Pisa": [116, 8], "The Colosseum": [117, 7], "Great Wall of China": [118, 7], "Earth": [119, 18],
-	"Dim Sum": [120, 10], "Samosas": [121, 10], "Macarons": [122, 10], "Tacos": [123, 10], "Lechon": [124, 10], "Jamón": [125, 10], 
-	"Bibimbap": [126, 10], "Sushi": [127, 10], "Spaghetti": [128, 10], "Thai Iced Tea": [129, 10], "Barbecue": [130, 10], "Dondurma": [131, 10],
+	"Dim Sum": [120, 10], "Samosas": [121, 7], "Macarons": [122, 10], "Tacos": [123, 7], "Lechon": [124, 7], "Jamón": [125, 10], 
+	"Bibimbap": [126, 10], "Sushi": [127, 7], "Spaghetti": [128, 10], "Thai Iced Tea": [129, 10], "Barbecue": [130, 7], "Dondurma": [131, 20],
 	"97": [132, 10], "98": [133, 10], "99": [134, 10], "100": [135, 10], "101": [136, 10], "102": [137, 10], 
 	"103": [138, 10], "104": [139, 10], "105": [140, 10], "106": [141, 10], "107": [142, 10], "108": [143, 10]
 }
