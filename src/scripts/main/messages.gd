@@ -34,7 +34,7 @@ signal ResetControls()
 
 var rebinds = {}
 var controller_rebinds = {}
-var max_levels = 143
+var max_levels = 131
 var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
@@ -93,7 +93,7 @@ var levelInfo = {
 	"Golden Gate Bridge": [108, 7], "Mt. Fuji": [109, 7], "The Pyramids of Giza": [110, 7], "Christ the Redeemer": [111, 10], "Eiffel Tower": [112, 7], "Sydney Opera House": [113, 7], 
 	"Taj Mahal": [114, 8], "Stonehenge": [115, 7], "Leaning Tower of Pisa": [116, 8], "The Colosseum": [117, 7], "Great Wall of China": [118, 7], "Earth": [119, 18],
 	"Dim Sum": [120, 10], "Samosas": [121, 10], "Macarons": [122, 10], "Tacos": [123, 10], "Lechon": [124, 10], "Jamón": [125, 10], 
-	"Bibimbap": [126, 10], "Sushi": [127, 10], "93": [128, 10], "94": [129, 10], "95": [130, 10], "96": [131, 10],
+	"Bibimbap": [126, 10], "Sushi": [127, 10], "Spaghetti": [128, 10], "Thai Iced Tea": [129, 10], "Barbecue": [130, 10], "Dondurma": [131, 10],
 	"97": [132, 10], "98": [133, 10], "99": [134, 10], "100": [135, 10], "101": [136, 10], "102": [137, 10], 
 	"103": [138, 10], "104": [139, 10], "105": [140, 10], "106": [141, 10], "107": [142, 10], "108": [143, 10]
 }
@@ -120,8 +120,8 @@ var worldLevels = {
 		"Walls?", "3hai", "Firewall", "Black Mold", "Muscle Memory", "Find the Cheese"],
 	"Around the World": ["Golden Gate Bridge", "Mt. Fuji", "The Pyramids of Giza", "Christ the Redeemer", "Eiffel Tower", "Sydney Opera House", 
 		"Taj Mahal", "Stonehenge", "Leaning Tower of Pisa", "The Colosseum", "Great Wall of China", "Earth"],
-	"Foodieland": ["Dim Sum", "Samosas", "Macarons", "Tacos", "Lechon", "Jamón", 
-		"Bibimbap", "Sushi", "93", "94", "95", "96"],
+	"Foodieland": ["Dim Sum", "Jamón", "Samosas", "Sushi", "Tacos", "Spaghetti",
+		"Bibimbap", "Barbecue", "Lechon", "Thai Iced Tea", "Macarons", "Dondurma"],
 	"Endgame": ["97", "98", "99", "100", "101", "102", 
 		"103", "104", "105", "106", "107", "108"],
 }

@@ -344,6 +344,7 @@ tile_map_data = PackedByteArray("AAD///P/AAACAA8AAADj//P/AAACAA8AAADk//P/AAACAA8
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 position = Vector2(-24, 8)
 scale = Vector2(0.403704, 0.403704)
