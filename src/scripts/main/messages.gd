@@ -95,7 +95,7 @@ var levelInfo = {
 	"Dim Sum": [120, 10], "Samosas": [121, 7], "Macarons": [122, 10], "Tacos": [123, 7], "Lechon": [124, 7], "Jamón": [125, 10], 
 	"Bibimbap": [126, 10], "Sushi": [127, 7], "Spaghetti": [128, 10], "Thai Iced Tea": [129, 10], "Barbecue": [130, 7], "Dondurma": [131, 20],
 	"Sans": [132, 8], "Madness": [133, 10], "The Bam Special": [134, 10], "Hold On Tight": [135, 30], "Rat Poison": [136, 15], "We Were Drifting": [137, 10], 
-	"Strafe": [138, 20], "Ice Wall": [139, 30], "Target Smash! Lv.5": [140, 20], "PEAK": [141, 7], "Exam-F": [142, 45], "Twice Climbers": [143, 7]
+	"Strafe": [138, 20], "Ice Wall": [139, 25], "Target Smash! Lv.5": [140, 20], "PEAK": [141, 5], "Exam-F": [142, 45], "Twice Climbers": [143, 5]
 }
 
 # lists are ordered for level select
