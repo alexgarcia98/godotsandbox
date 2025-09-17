@@ -94,8 +94,8 @@ var levelInfo = {
 	"Taj Mahal": [114, 8], "Stonehenge": [115, 7], "Leaning Tower of Pisa": [116, 8], "The Colosseum": [117, 7], "Great Wall of China": [118, 7], "Earth": [119, 18],
 	"Dim Sum": [120, 10], "Samosas": [121, 7], "Macarons": [122, 10], "Tacos": [123, 7], "Lechon": [124, 7], "Jamón": [125, 10], 
 	"Bibimbap": [126, 10], "Sushi": [127, 7], "Spaghetti": [128, 10], "Thai Iced Tea": [129, 10], "Barbecue": [130, 7], "Dondurma": [131, 20],
-	"Sans": [132, 10], "Madness": [133, 10], "The Bam Special": [134, 10], "Hold On Tight": [135, 10], "Rat Poison": [136, 10], "We Were Drifting": [137, 10], 
-	"Strafe": [138, 10], "104": [139, 10], "105": [140, 10], "106": [141, 10], "107": [142, 10], "108": [143, 10]
+	"Sans": [132, 8], "Madness": [133, 10], "The Bam Special": [134, 10], "Hold On Tight": [135, 30], "Rat Poison": [136, 15], "We Were Drifting": [137, 10], 
+	"Strafe": [138, 20], "Ice Wall": [139, 30], "Target Smash! Lv.5": [140, 20], "PEAK": [141, 7], "Exam-F": [142, 45], "Twice Climbers": [143, 7]
 }
 
 # lists are ordered for level select
@@ -122,8 +122,8 @@ var worldLevels = {
 		"Taj Mahal", "Stonehenge", "Leaning Tower of Pisa", "The Colosseum", "Great Wall of China", "Earth"],
 	"Foodieland": ["Dim Sum", "Jamón", "Samosas", "Sushi", "Tacos", "Spaghetti",
 		"Bibimbap", "Barbecue", "Lechon", "Thai Iced Tea", "Macarons", "Dondurma"],
-	"Endgame": ["Sans", "Madness", "The Bam Special", "Hold On Tight", "Rat Poison", "Strafe", 
-		"We Were Drifting", "104", "105", "106", "107", "108"],
+	"Endgame": ["PEAK", "Sans", "Hold On Tight", "Target Smash! Lv.5", "Rat Poison", "Madness", 
+		"Ice Wall", "The Bam Special", "Strafe", "We Were Drifting", "Exam-F", "Twice Climbers"],
 }
 
 var rank_changes = [1, 1.25, 2, 3, 10]

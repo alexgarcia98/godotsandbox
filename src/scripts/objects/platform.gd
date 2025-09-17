@@ -18,3 +18,7 @@ func on_begin_level(_current_index):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func move():
+	if animation_player != null:
+		animation_player.play("move")

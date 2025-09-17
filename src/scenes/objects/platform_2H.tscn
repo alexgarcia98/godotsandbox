@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d06hmrvtvw3gd"]
+
+[ext_resource type="Script" uid="uid://cejvvo50kfsek" path="res://src/scripts/objects/platform.gd" id="1_ut2pd"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="2_ynhhp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wift6"]
+size = Vector2(16, 16)
+
+[node name="Platform_1" type="AnimatableBody2D"]
+collision_layer = 4096
+script = ExtResource("1_ut2pd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+texture = ExtResource("2_ynhhp")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+texture = ExtResource("2_ynhhp")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_wift6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_wift6")

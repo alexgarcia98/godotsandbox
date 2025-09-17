@@ -8,6 +8,8 @@ signal PopoHammer()
 signal NanaFace()
 signal NanaHammer()
 signal EnemyShot()
+signal PopoShot()
+signal NanaShot()
 
 @onready
 var objects: Node = get_parent()
@@ -28,6 +30,16 @@ func _ready() -> void:
 		var level = objects.get_parent()
 		var hp = level.get_node("hp")
 		connect("AirmanShot", hp.decrease)
+		damaged = false
+	elif name.begins_with("boss_popo"):
+		var level = objects.get_parent()
+		var hp = level.get_node("PopoHP")
+		connect("PopoShot", hp.decrease)
+		damaged = false
+	elif name.begins_with("boss_nana"):
+		var level = objects.get_parent()
+		var hp = level.get_node("NanaHP")
+		connect("NanaShot", hp.decrease)
 		damaged = false
 	elif name.begins_with("doom"):
 		pass
@@ -89,6 +101,16 @@ func activate() -> void:
 			damaged = true
 			animations.play("button_on_off")
 			emit_signal("AirmanShot")
+	elif name.begins_with("boss_popo"):
+		if not damaged:
+			damaged = true
+			animations.play("button_on_off")
+			emit_signal("PopoShot")
+	elif name.begins_with("boss_nana"):
+		if not damaged:
+			damaged = true
+			animations.play("button_on_off")
+			emit_signal("NanaShot")
 	elif name.begins_with("doom"):
 		objects.queue_free()
 	elif name.begins_with("popo_hammer"):
