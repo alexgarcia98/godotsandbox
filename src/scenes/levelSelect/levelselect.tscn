@@ -110,6 +110,21 @@ autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
 
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level1"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank1" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level1/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level2" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -129,6 +144,21 @@ autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 1
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank2" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level3" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -150,6 +180,21 @@ script = ExtResource("4_aq5mt")
 level = 2
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
 
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank3" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level4" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -169,6 +214,21 @@ autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 3
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level4"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank4" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level4/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -195,6 +255,21 @@ script = ExtResource("4_aq5mt")
 level = 4
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
 
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level5"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank5" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level5/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level6" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -214,6 +289,21 @@ autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 5
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank6" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level7" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -235,6 +325,21 @@ script = ExtResource("4_aq5mt")
 level = 6
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
 
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank7" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level8" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -254,6 +359,21 @@ autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 7
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level8"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank8" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level8/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -280,6 +400,21 @@ script = ExtResource("4_aq5mt")
 level = 8
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
 
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level9"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank9" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level9/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Level10" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -294,11 +429,28 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_tw266")
 theme_override_font_sizes/font_size = 24
-text = "10"
+text = "StonehengE
+Stonehenge
+Stonehenge"
 autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 9
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank10" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level11" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -314,11 +466,26 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_tw266")
 theme_override_font_sizes/font_size = 24
-text = "11"
+text = "It's The Breakout System!"
 autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 10
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank11" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level12" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -339,6 +506,21 @@ autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 11
 metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank12" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/Title" to="." method="_on_title_pressed"]
 [connection signal="pressed" from="WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/Back" to="." method="_on_back_pressed"]

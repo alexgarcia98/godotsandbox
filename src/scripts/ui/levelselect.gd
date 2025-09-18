@@ -17,6 +17,19 @@ extends Control
 @onready var level_11: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/Level11
 @onready var level_12: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12/Level12
 
+@onready var rank_1: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level1/MarginContainer/Rank1
+@onready var rank_2: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2/MarginContainer/Rank2
+@onready var rank_3: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3/MarginContainer/Rank3
+@onready var rank_4: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level4/MarginContainer/Rank4
+@onready var rank_5: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level5/MarginContainer/Rank5
+@onready var rank_6: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6/MarginContainer/Rank6
+@onready var rank_7: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7/MarginContainer/Rank7
+@onready var rank_8: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level8/MarginContainer/Rank8
+@onready var rank_9: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level9/MarginContainer/Rank9
+@onready var rank_10: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10/MarginContainer/Rank10
+@onready var rank_11: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/MarginContainer/Rank11
+@onready var rank_12: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12/MarginContainer/Rank12
+
 @export var world_level: int = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -41,6 +54,21 @@ func _ready() -> void:
 		level_12
 	]
 	
+	var rankList = [
+		rank_1,
+		rank_2,
+		rank_3,
+		rank_4,
+		rank_5,
+		rank_6,
+		rank_7,
+		rank_8,
+		rank_9,
+		rank_10,
+		rank_11,
+		rank_12,
+	]
+	
 	for i in range(levelList.size()):
 		levelList[i].level = (world_level * 12) + i
 	
@@ -55,6 +83,11 @@ func _ready() -> void:
 	for i in range(max_level - 13, max_level):
 		var level = levelList[i % 12]
 		var worldName = Messages.worldNames[i / 12]
+		var level_rank = Messages.get_stored_rank(i)
+		if level_rank == "None":
+			level_rank = ""
+		var rank = rankList[i % 12]
+		rank.text = level_rank
 		level.text = Messages.worldLevels[worldName][i % 12]
 	
 	var worldIndex = level_1.level / 12
