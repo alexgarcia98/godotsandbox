@@ -27,9 +27,6 @@ var green_opened = false
 var old_clear
 var old_rank
 
-var levels_unlocked: int = 1
-var filepath = "user://levels_unlocked.dat"
-
 var timer_running = false
 var reset_check = false
 
@@ -54,21 +51,6 @@ func _ready() -> void:
 	level_start.visible = false
 	level_end.visible = false
 	
-	var file = FileAccess.open(filepath, FileAccess.READ)
-	if file == null:
-		var err = FileAccess.get_open_error()
-		if err == ERR_FILE_NOT_FOUND:
-			# create new save data
-			file = FileAccess.open(filepath, FileAccess.WRITE)
-			var unlocked = 1
-			file.store_var(unlocked)
-			file.close()
-			levels_unlocked = unlocked
-	else:
-		# load levels unlocked
-		levels_unlocked = file.get_var()
-		file.close()
-	
 	on_main_menu()
 	
 func load_level(index):
@@ -79,12 +61,6 @@ func load_level(index):
 	var new_level = load("src/scenes/levels/level" + str(level_index) + ".tscn")
 	current = new_level.instantiate()
 	add_child(current)
-
-	if (current_index + 1) > levels_unlocked:
-		levels_unlocked = current_index + 1
-		var write_file = FileAccess.open(filepath, FileAccess.WRITE)
-		write_file.store_var(levels_unlocked)
-		write_file.close()
 	
 	dimmer.visible = true
 	level_start.visible = true
@@ -228,16 +204,10 @@ func on_load_world(index):
 	add_child(current)
 	
 func on_unlock_levels():
-	levels_unlocked = Messages.max_levels + 1
-	var write_file = FileAccess.open(filepath, FileAccess.WRITE)
-	write_file.store_var(levels_unlocked)
-	write_file.close()
+	Messages.unlock_levels()
 
 func on_lock_levels():
-	levels_unlocked = 1
-	var write_file = FileAccess.open(filepath, FileAccess.WRITE)
-	write_file.store_var(levels_unlocked)
-	write_file.close()
+	Messages.lock_levels()
 	
 func on_end_game():
 	get_tree().quit()

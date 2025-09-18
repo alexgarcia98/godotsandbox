@@ -39,6 +39,9 @@ var filepath = "user://save_data.dat"
 var new_filepath = "user://save_data_v2.dat"
 var saved_times = []
 
+var levels_unlocked: int = 1
+var levels_unlocked_filepath = "user://levels_unlocked.dat"
+
 var control_names = {
 	"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value -1.00": "Left Stick Left",
 	"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value 1.00": "Left Stick Right",
@@ -130,6 +133,8 @@ var rank_changes = [1, 1.25, 2, 3, 10]
 
 var rank_assn = ["S", "A", "B", "C", "D", "F", "No Rank Achieved"]
 
+var rank_color = {"S": "c687f7", "A": "7bf7f6", "B": "d2d2d2", "C": "e8b904", "D": "9e9ea8", "F": "c98645", "None": "ffffff"}
+
 const jump_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/3. Movement/Jump_18.wav")
 const dash_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/3. Movement/Jump_4.wav")
 const airdash_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/3. Movement/Jump_6.wav")
@@ -189,6 +194,40 @@ func _ready() -> void:
 					if saved_times[i] == null:
 						saved_times[i] = 5999999
 		file.close()
+	
+	var file2 = FileAccess.open(levels_unlocked_filepath, FileAccess.READ)
+	if file2 == null:
+		var err = FileAccess.get_open_error()
+		if err == ERR_FILE_NOT_FOUND:
+			# create new save data
+			file2 = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
+			var unlocked = 1
+			file2.store_var(unlocked)
+			file2.close()
+			levels_unlocked = unlocked
+	else:
+		# load levels unlocked
+		levels_unlocked = file2.get_var()
+		file2.close()
+
+func unlock_next_level(current_index):
+	if (current_index + 2) > levels_unlocked:
+		levels_unlocked = min(current_index + 2, max_levels + 1)
+		var write_file = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
+		write_file.store_var(levels_unlocked)
+		write_file.close()
+
+func unlock_levels():
+	levels_unlocked = max_levels + 1
+	var write_file = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
+	write_file.store_var(levels_unlocked)
+	write_file.close()
+
+func lock_levels():
+	levels_unlocked = 1
+	var write_file = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
+	write_file.store_var(levels_unlocked)
+	write_file.close()
 
 func get_save_index(current_index) -> int:
 	var worldName = worldNames[current_index / 12]
@@ -241,6 +280,9 @@ func get_rank_from_time(current_index, ms) -> String:
 		rank = "None"
 	
 	return rank
+
+func get_rank_color(rank):
+	return rank_color[rank]
 
 func get_world_level_name(current_index) -> String:
 	var worldName = worldNames[current_index / 12]

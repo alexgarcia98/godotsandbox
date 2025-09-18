@@ -119,6 +119,9 @@ size_flags_vertical = 0
 [node name="Rank1" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level1/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.776471, 0.529412, 0.968627, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "S"
@@ -154,9 +157,12 @@ size_flags_vertical = 0
 [node name="Rank2" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.482353, 0.968627, 0.964706, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
-text = "S"
+text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -189,9 +195,12 @@ size_flags_vertical = 0
 [node name="Rank3" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
-text = "S"
+text = "B"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -224,9 +233,12 @@ size_flags_vertical = 0
 [node name="Rank4" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level4/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.909804, 0.72549, 0.0156863, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
-text = "S"
+text = "C"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -264,9 +276,12 @@ size_flags_vertical = 0
 [node name="Rank5" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level5/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.619608, 0.619608, 0.658824, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
-text = "S"
+text = "D"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -299,9 +314,12 @@ size_flags_vertical = 0
 [node name="Rank6" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.788235, 0.52549, 0.270588, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
-text = "S"
+text = "F"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -334,6 +352,9 @@ size_flags_vertical = 0
 [node name="Rank7" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "S"
@@ -369,6 +390,9 @@ size_flags_vertical = 0
 [node name="Rank8" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level8/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "S"
@@ -409,6 +433,9 @@ size_flags_vertical = 0
 [node name="Rank9" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level9/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "S"
@@ -446,6 +473,9 @@ size_flags_vertical = 0
 [node name="Rank10" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "S"
@@ -481,6 +511,9 @@ size_flags_vertical = 0
 [node name="Rank11" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "S"
@@ -516,6 +549,9 @@ size_flags_vertical = 0
 [node name="Rank12" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "S"

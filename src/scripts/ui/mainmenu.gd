@@ -32,10 +32,10 @@ func populate_records():
 		child.queue_free()
 	var sep : HSeparator = HSeparator.new()
 	level_records.add_child(sep)
-	var max_level = min((mainScene.levels_unlocked - 1), Messages.max_levels)
+	var max_level = min((Messages.levels_unlocked - 1), Messages.max_levels)
 	for j in range((max_level / 12) + 1):
 		var expand_record : ExpandRecordContainer = ExpandRecordContainer.new()
-		expand_record.levels_unlocked = mainScene.levels_unlocked
+		expand_record.levels_unlocked = Messages.levels_unlocked
 		expand_record.world_number = j
 		level_records.add_child(expand_record)
 	var total_time : int = 0
@@ -177,7 +177,7 @@ func _on_export_pressed() -> void:
 		record_text += "Clear all available levels to obtain a total high score!\n\n"
 	
 	# generate world subsection scores
-	for j in range((mainScene.levels_unlocked / 12)):
+	for j in range((Messages.levels_unlocked / 12)):
 		var world_number = j
 		var worldName = Messages.worldNames[world_number]
 		record_text += "%s: " % [worldName]
@@ -209,7 +209,7 @@ func _on_export_pressed() -> void:
 		
 	record_text += "\n"
 	
-	for i in range(mainScene.levels_unlocked):
+	for i in range(Messages.levels_unlocked):
 		if i > Messages.max_levels:
 			break
 		

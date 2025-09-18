@@ -37,7 +37,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 	# init button visibility
 	var mainNode = get_parent()
-	var levelCount = min(mainNode.levels_unlocked, Messages.max_levels + 1)
+	var levelCount = min(Messages.levels_unlocked, Messages.max_levels + 1)
 	
 	var levelList = [
 		level_1, 
@@ -82,11 +82,12 @@ func _ready() -> void:
 			
 	for i in range(max_level - 13, max_level):
 		var level = levelList[i % 12]
+		var rank = rankList[i % 12]
 		var worldName = Messages.worldNames[i / 12]
 		var level_rank = Messages.get_stored_rank(i)
+		rank.set("theme_override_colors/font_color", Color(Messages.get_rank_color(level_rank)))
 		if level_rank == "None":
 			level_rank = ""
-		var rank = rankList[i % 12]
 		rank.text = level_rank
 		level.text = Messages.worldLevels[worldName][i % 12]
 	

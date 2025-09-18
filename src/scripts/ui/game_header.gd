@@ -328,7 +328,7 @@ func _on_next_level_pressed() -> void:
 	Messages.audio.play()
 	next_level.release_focus()
 	if not (level_ended):
-		if current_index < main_scene.levels_unlocked:
+		if current_index < Messages.levels_unlocked:
 			Messages.NextLevel.emit()
 
 func _on_restart_pressed() -> void:
@@ -482,7 +482,7 @@ func on_level_started(index):
 		previous_level.disabled = true
 	else:
 		previous_level.disabled = false
-	if (current_index + 1) < main_scene.levels_unlocked:
+	if (current_index + 1) < Messages.levels_unlocked:
 		next_level.disabled = false
 	else:
 		next_level.disabled = true
@@ -495,6 +495,7 @@ func on_level_ended():
 	Messages.update_level_time(current_index, level_time_ms)
 	var best_time = Messages.get_readable_stored_level_time(current_index)
 	personal_best.text = "Best: " + best_time
+	Messages.unlock_next_level(current_index)
 
 func on_keyboard_remapped(a, key):
 	Messages.rebinds[a] = ["keyboard", key, 0]
