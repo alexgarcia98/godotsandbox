@@ -1,20 +1,20 @@
 extends TileMapLayer
 
-@onready var play: Button = $UI/MarginContainer/HBoxContainer/Play
-@onready var exit: Button = $UI/MarginContainer/HBoxContainer/Exit
-@onready var records: Button = $UI/MarginContainer/HBoxContainer/Records
-@onready var debug: Button = $UI/MarginContainer/HBoxContainer/Debug
+@onready var play: Button = $AllUI/UI/MarginContainer/HBoxContainer/Play
+@onready var exit: Button = $AllUI/UI/MarginContainer/HBoxContainer/Exit
+@onready var records: Button = $AllUI/UI/MarginContainer/HBoxContainer/Records
+@onready var debug: Button = $AllUI/UI/MarginContainer/HBoxContainer/Debug
 @onready var dimmer: ColorRect = $Dimmer
-@onready var debug_window: Window = $DebugWindow
-@onready var records_window: Window = $RecordsWindow
-@onready var help_text: Label = $DebugWindow/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
-@onready var reset_records: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/ResetRecords
-@onready var lock_levels: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/LockLevels
-@onready var reset_controls: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls
-@onready var unlock_levels: Button = $DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/UnlockLevels
-@onready var level_records: VBoxContainer = $RecordsWindow/MarginContainer/VBoxContainer/PanelContainer2/ScrollContainer/LevelRecords
-@onready var total_high_score: Label = $RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/TotalHighScore
-@onready var export: Button = $RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/Export
+@onready var debug_window: Control = $AllUI/DebugWindow
+@onready var records_window: Control = $AllUI/RecordsWindow
+@onready var help_text: Label = $AllUI/DebugWindow/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
+@onready var reset_records: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/ResetRecords
+@onready var lock_levels: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/LockLevels
+@onready var reset_controls: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls
+@onready var unlock_levels: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/UnlockLevels
+@onready var level_records: VBoxContainer = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/PanelContainer2/ScrollContainer/LevelRecords
+@onready var total_high_score: Label = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/TotalHighScore
+@onready var export: Button = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/Export
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +24,7 @@ func _ready() -> void:
 	records_window.visible = false
 	help_text.text = ""
 	populate_records()
+	play.grab_focus.call_deferred()
 
 func populate_records():
 	var mainScene = get_parent()
@@ -78,12 +79,14 @@ func _on_records_pressed() -> void:
 	Messages.audio.play()
 	dimmer.visible = true
 	records_window.visible = true
+	export.grab_focus.call_deferred()
 
 func _on_debug_pressed() -> void:
 	Messages.audio.stream = Messages.stage_select_pressed_sound
 	Messages.audio.play()
 	dimmer.visible = true
 	debug_window.visible = true
+	unlock_levels.grab_focus.call_deferred()
 
 func _on_debug_window_close_requested() -> void:
 	Messages.audio.stream = Messages.return_button_sound
@@ -103,21 +106,18 @@ func _on_unlock_levels_pressed() -> void:
 	Messages.emit_signal("UnlockLevels")
 	help_text.text = "All levels are now available to play"
 	populate_records()
-	unlock_levels.release_focus()
 
 func _on_reset_records_pressed() -> void:
 	Messages.audio.stream = Messages.high_button_sound
 	Messages.audio.play()
 	Messages.emit_signal("ResetTimes")
 	help_text.text = "All best times have been cleared"
-	reset_records.release_focus()
 	
 func _on_reset_controls_pressed() -> void:
 	Messages.audio.stream = Messages.high_button_sound
 	Messages.audio.play()
 	Messages.emit_signal("ResetControls")
 	help_text.text = "Controls set to default control scheme"
-	reset_controls.release_focus()
 
 func _on_lock_levels_pressed() -> void:
 	Messages.audio.stream = Messages.high_button_sound
@@ -125,7 +125,6 @@ func _on_lock_levels_pressed() -> void:
 	Messages.emit_signal("LockLevels")
 	help_text.text = "Level unlocks have been reset"
 	populate_records()
-	lock_levels.release_focus()
 
 func _on_unlock_levels_mouse_entered() -> void:
 	help_text.text = "Make all levels available to play"
@@ -150,9 +149,44 @@ func _on_reset_controls_mouse_entered() -> void:
 
 func _on_reset_controls_mouse_exited() -> void:
 	help_text.text = ""
+	
+func _on_unlock_levels_focus_entered() -> void:
+	help_text.text = "Make all levels available to play"
+
+func _on_unlock_levels_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_reset_records_focus_entered() -> void:
+	help_text.text = "Clear best times for ALL levels"
+
+func _on_reset_records_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_lock_levels_focus_entered() -> void:
+	help_text.text = "Return level unlocks to first level only\n(level records are preserved)"
+
+func _on_lock_levels_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_reset_controls_focus_entered() -> void:
+	help_text.text = "Revert controls to default control scheme"
+
+func _on_reset_controls_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_exit_debug_focus_entered() -> void:
+	help_text.text = "Close debug menu"
+
+func _on_exit_debug_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_exit_debug_mouse_entered() -> void:
+	help_text.text = "Close debug menu"
+
+func _on_exit_debug_mouse_exited() -> void:
+	help_text.text = ""
 
 func _on_export_pressed() -> void:
-	export.release_focus()
 	# generate text
 	var mainScene = get_parent()
 	var record_text = ""
@@ -220,3 +254,17 @@ func _on_export_pressed() -> void:
 		record_text += ": " + Messages.get_readable_stored_level_time(i) + "\n"
 	
 	DisplayServer.clipboard_set(record_text)
+
+func _on_exit_debug_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
+	dimmer.visible = false
+	debug_window.visible = false
+	debug.grab_focus.call_deferred()
+
+func _on_exit_records_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
+	dimmer.visible = false
+	records_window.visible = false
+	records.grab_focus.call_deferred()

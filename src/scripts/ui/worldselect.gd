@@ -43,6 +43,8 @@ func _ready() -> void:
 		
 	for i in range(worldList.size()):
 		worldList[i].text = Messages.worldNames[i]
+	
+	world_1.grab_focus.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

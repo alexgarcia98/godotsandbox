@@ -75,8 +75,6 @@ func _process(delta: float) -> void:
 	pass
 
 func on_button_pressed():
-	expand_world_button_1.release_focus()
-	expand_world_button_2.release_focus()
 	if world_levels.visible:
 		world_levels.visible = false
 		expand_world_button_1.text = "Show %s Level Scores" % Messages.worldNames[world_number]

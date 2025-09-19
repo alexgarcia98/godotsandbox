@@ -201,8 +201,10 @@ _data = {
 script = ExtResource("1_407ex")
 
 [node name="UI" parent="." instance=ExtResource("5_407ex")]
+offset_left = -464.0
 offset_top = -240.0
-offset_bottom = -240.0
+offset_right = 464.0
+offset_bottom = 240.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -329,6 +331,7 @@ theme_override_constants/margin_bottom = 4
 [node name="StartLevel" type="Button" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../../MarginContainer2/LevelSelect")
 theme_override_fonts/font = ExtResource("3_45uaa")
 theme_override_font_sizes/font_size = 16
 text = "Start Level"
@@ -344,6 +347,7 @@ theme_override_constants/margin_bottom = 4
 [node name="LevelSelect" type="Button" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../MarginContainer/StartLevel")
 theme_override_fonts/font = ExtResource("3_45uaa")
 theme_override_font_sizes/font_size = 16
 text = "Level Select"

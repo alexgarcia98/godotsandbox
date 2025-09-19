@@ -20,12 +20,16 @@ extends Node2D
 @onready var sfx_ui: AudioStreamPlayer2D = $sfx_ui
 @onready var red_death_animation: AnimationPlayer = $Node2D/RedDeath/RedDeathAnimation
 @onready var green_death_animation: AnimationPlayer = $Node2D2/GreenDeath/GreenDeathAnimation
+@onready var next_level: Button = $LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/NextLevel
 
 var current = null
 var red_opened = false
 var green_opened = false
+var settings_valid = false
+var restart_valid = false
 var old_clear
 var old_rank
+var settings_released = true
 
 var timer_running = false
 var reset_check = false
@@ -45,11 +49,21 @@ func _ready() -> void:
 	Messages.connect("LockLevels", on_lock_levels)
 	Messages.connect("ResetLevelTime", on_reset_level_time)
 	Messages.connect("PlayerDied", on_player_died)
+	Messages.connect("StopMovement", on_stop_movement)
+	Messages.connect("ResumeMovement", on_resume_movement)
+	Messages.connect("BeginLevel", on_begin_level)
+	Messages.connect("LevelEnded", on_level_ended)
+	Messages.connect("RemapActive", on_remap_active)
+	Messages.connect("RemapInactive", on_remap_inactive)
+	
 	
 	dimmer.visible = false
 	dimmer.self_modulate.a = 0.5
 	level_start.visible = false
 	level_end.visible = false
+	restart_valid = false
+	settings_valid = false
+	settings_released = true
 	
 	on_main_menu()
 	
@@ -64,6 +78,9 @@ func load_level(index):
 	
 	dimmer.visible = true
 	level_start.visible = true
+	restart_valid = false
+	settings_valid = false
+	start_level.grab_focus.call_deferred()
 	init_level_data()
 	Messages.LevelStarted.emit(index)
 
@@ -103,6 +120,8 @@ func on_main_menu():
 	dimmer.visible = false
 	level_start.visible = false
 	level_end.visible = false
+	restart_valid = false
+	settings_valid = false
 	current = new_level.instantiate()
 	add_child(current)
 
@@ -144,6 +163,7 @@ func _on_timer_timeout():
 		level_end.visible = true
 		best_rank.visible = true
 		best_time_end.visible = true
+		next_level.grab_focus.call_deferred()
 		var new_clear = Messages.get_stored_level_time(current_index)
 		if new_clear < old_clear:
 			# new record
@@ -181,6 +201,8 @@ func on_world_select():
 	dimmer.visible = false
 	level_start.visible = false
 	level_end.visible = false
+	restart_valid = false
+	settings_valid = false
 	current = new_level.instantiate()
 	add_child(current)
 	
@@ -232,3 +254,49 @@ func _on_restart_level_pressed() -> void:
 	Messages.audio.stream = Messages.progress_button_sound
 	Messages.audio.play()
 	on_restart()
+
+func on_stop_movement():
+	restart_valid = false
+
+func on_resume_movement():
+	restart_valid = true
+	
+func on_begin_level(_level):
+	restart_valid = true
+	settings_valid = true
+	
+func on_level_ended():
+	restart_valid = true
+	settings_valid = false
+
+func on_remap_active():
+	settings_valid = false
+
+func on_remap_inactive():
+	settings_valid = true
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed('restart'):
+		if restart_valid:
+			Messages.Restart.emit()
+	elif Input.is_action_just_pressed('settings'):
+		if settings_valid and settings_released and remap:
+			settings_released = false
+			print("settings pressed")
+			Messages.Settings.emit()
+	elif Input.is_action_just_released("settings"):
+		print("settings released")
+		settings_released = true
+	#elif Input.is_action_just_pressed('move_up'):
+		#print("pressing ui up")
+		#Input.action_press("ui_up")
+	#elif Input.is_action_just_pressed('move_down'):
+		#print("pressing ui down")
+		#Input.action_press("ui_down")
+	#elif Input.is_action_just_pressed('move_left'):
+		#print("pressing ui left")
+		#Input.action_press("ui_left")
+	#elif Input.is_action_just_pressed('move_right'):
+		#print("pressing ui right")
+		#Input.action_press("ui_right")
+	

@@ -93,6 +93,8 @@ func _ready() -> void:
 	
 	var worldIndex = level_1.level / 12
 	select_level.text = Messages.worldNames[worldIndex]
+	
+	level_1.grab_focus.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

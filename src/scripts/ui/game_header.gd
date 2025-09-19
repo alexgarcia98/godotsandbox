@@ -11,8 +11,11 @@ extends Control
 @onready var restart: Button = $FullUIContainer/UIMargins/Elements/Right/HBoxContainer/Menu/Restart
 @onready var level_name: Label = $FullUIContainer/UIMargins/Elements/Left/VBoxContainer/Panel/LevelName
 
-@onready var help: Window = $Help
-@onready var settingsWindow: Window = $Settings
+@onready var help: Control = $Help
+@onready var settingsWindow: Control = $Settings
+@onready var dimmer: ColorRect = $Dimmer
+@onready var exit_help: Button = $Help/MarginContainer2/MarginContainer/ExitHelp
+@onready var exit_settings: Button = $Settings/MarginContainer2/MarginContainer/ExitSettings
 
 # settings menu
 @onready var help_text: Label = $Settings/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
@@ -25,6 +28,11 @@ extends Control
 @onready var controller_inputs: Button = $Help/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ControllerInputs
 @onready var keyboard_remaps: HBoxContainer = $Help/MarginContainer/VBoxContainer/HBoxContainer
 @onready var controller_remaps: HBoxContainer = $Help/MarginContainer/VBoxContainer/HBoxContainer2
+@onready var previous_level_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/PreviousLevelButton
+@onready var restart_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/RestartButton
+@onready var next_level_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/NextLevelButton
+
+
 
 # button remaps
 @onready var move_left: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/move_left
@@ -39,6 +47,8 @@ extends Control
 @onready var shoot: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer4/shoot
 @onready var switch: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5/switch
 @onready var pivot: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6/pivot
+@onready var settings_remap_1: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer8/settings
+@onready var restart_remap_1: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer8/restart
 
 @onready var move_left_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/move_left
 @onready var move_right_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2/move_right
@@ -52,6 +62,8 @@ extends Control
 @onready var shoot_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer4/shoot
 @onready var switch_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer5/switch
 @onready var pivot_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer6/pivot
+@onready var settings_remap_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer8/settings
+@onready var restart_remap_2: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer8/restart
 
 # volume
 @onready var master_volume: HScrollBar = $Settings/MarginContainer/VBoxContainer/Volume/VBoxContainer/MasterVolume/HBoxContainer3/MasterVolume
@@ -88,7 +100,9 @@ var action_items_dict = {
 	"throw": 76,
 	"shoot": 85,
 	"switch": 73,
-	"pivot": 79
+	"pivot": 79,
+	"settings": 4194305,
+	"restart": 66
 }
 
 var action_items_dict_controller = {
@@ -103,7 +117,9 @@ var action_items_dict_controller = {
 	"throw": ["joypad_button", 2, 0],
 	"shoot": ["joypad_button", 1, 0],
 	"switch": ["joypad_axis", 4, 1],
-	"pivot": ["joypad_button", 9, 0]
+	"pivot": ["joypad_button", 9, 0],
+	"settings": ["joypad_button", 6, 0],
+	"restart": ["joypad_button", 4, 0]
 }
 
 var button_dict = {
@@ -118,7 +134,9 @@ var button_dict = {
 	"throw": "Throw",
 	"freeze": "Freeze",
 	"switch": "Switch",
-	"shoot": "Shoot"
+	"shoot": "Shoot",
+	"settings": "Settings",
+	"restart": "Restart"
 }
 
 var action_dict = {}
@@ -136,8 +154,13 @@ func _ready() -> void:
 	Messages.connect("JoypadAxisRemapped", on_joypad_axis_remapped)
 	Messages.connect("ResetControls", on_reset_controls)
 	Messages.connect("BeginLevel", on_begin_level)
+	Messages.connect("Settings", on_settings)
 	main_scene = get_parent()
 	max_levels = Messages.max_levels
+	
+	dimmer.visible = false
+	help.visible = false
+	settingsWindow.visible = false
 	
 	# check if volume settings exist
 	volume_file = FileAccess.open(filepath3, FileAccess.READ)
@@ -175,7 +198,9 @@ func _ready() -> void:
 		"throw": throw,
 		"freeze": freeze,
 		"switch": switch,
-		"shoot": shoot
+		"shoot": shoot,
+		"settings": settings_remap_1,
+		"restart": restart_remap_1
 	}
 	
 	controller_action_dict = {
@@ -190,7 +215,9 @@ func _ready() -> void:
 		"throw": throw_2,
 		"freeze": freeze_2,
 		"switch": switch_2,
-		"shoot": shoot_2
+		"shoot": shoot_2,
+		"settings": settings_remap_2,
+		"restart": restart_remap_2
 	}
 	
 	# check if input remaps exist
@@ -321,6 +348,9 @@ func _on_previous_level_pressed() -> void:
 	previous_level.release_focus()
 	if not (level_ended):
 		if current_index > 0:
+			settingsWindow.visible = false
+			dimmer.visible = false
+			exit_settings.release_focus()
 			Messages.PreviousLevel.emit()
 
 func _on_next_level_pressed() -> void:
@@ -329,16 +359,21 @@ func _on_next_level_pressed() -> void:
 	next_level.release_focus()
 	if not (level_ended):
 		if current_index < Messages.levels_unlocked:
+			settingsWindow.visible = false
+			dimmer.visible = false
+			exit_settings.release_focus()
 			Messages.NextLevel.emit()
 
 func _on_restart_pressed() -> void:
 	Messages.audio.stream = Messages.progress_button_sound
 	Messages.audio.play()
 	restart.release_focus()
+	settingsWindow.visible = false
+	dimmer.visible = false
+	exit_settings.release_focus()
 	Messages.Restart.emit()
 
 func _on_reset_times_pressed() -> void:
-	reset_times.release_focus()
 	if not (level_ended):
 		Messages.reset_level_time(current_index)
 		personal_best.text = "Best: " + Messages.get_readable_stored_level_time(current_index)
@@ -347,25 +382,32 @@ func _on_reset_times_pressed() -> void:
 func _on_controls_pressed() -> void:
 	Messages.audio.stream = Messages.stage_select_pressed_sound
 	Messages.audio.play()
-	help.show()
+	help.visible = true
 	keyboard_remaps.show()
 	controller_remaps.hide()
-	settingsWindow.hide()
+	settingsWindow.visible = false
+	keyboard_inputs.grab_focus.call_deferred()
+	Messages.emit_signal("RemapActive")
 
-func _on_help_close_requested() -> void:
+func _on_exit_help_pressed() -> void:
 	Messages.audio.stream = Messages.return_button_sound
 	Messages.audio.play()
-	help.hide()
-	settingsWindow.show()
-	controls.release_focus()
+	help.visible = false
+	settingsWindow.visible = true
+	exit_settings.grab_focus.call_deferred()
+	Messages.emit_signal("RemapInactive")
 
 func _on_settings_pressed() -> void:
 	Messages.audio.stream = Messages.stage_select_pressed_sound
 	Messages.audio.play()
-	settingsWindow.show()
+	settingsWindow.visible = true
+	dimmer.visible = true
 	help_text.text = ""
+	restart_button.grab_focus.call_deferred()
+	Messages.emit_signal("StopMovement")
+	exit_settings.grab_focus.call_deferred()
 
-func _on_settings_close_requested() -> void:
+func _on_exit_settings_pressed() -> void:
 	volume_file = FileAccess.open(filepath3, FileAccess.WRITE)
 	var volume = []
 	volume.append(master_volume.value)
@@ -375,29 +417,43 @@ func _on_settings_close_requested() -> void:
 	volume_file.close()
 	Messages.audio.stream = Messages.return_button_sound
 	Messages.audio.play()
-	settingsWindow.hide()
-	settings.release_focus()
+	settingsWindow.visible = false
+	dimmer.visible = false
+	exit_settings.release_focus()
+	Messages.emit_signal("ResumeMovement")
 
 func _on_stage_select_pressed() -> void:
 	Messages.audio.stream = Messages.return_button_sound
 	Messages.audio.play()
-	help.hide()
-	settingsWindow.hide()
+	help.visible = false
+	settingsWindow.visible = false
+	dimmer.visible = false
 	Messages.emit_signal("WorldSelect")
 
 func _on_title_pressed() -> void:
 	Messages.audio.stream = Messages.return_button_sound
 	Messages.audio.play()
-	help.hide()
-	settingsWindow.hide()
+	help.visible = false
+	settingsWindow.visible = false
+	dimmer.visible = false
 	Messages.emit_signal("MainMenu")
 
 func _on_exit_pressed() -> void:
 	Messages.audio.stream = Messages.return_button_sound
 	Messages.audio.play()
-	help.hide()
-	settingsWindow.hide()
+	help.visible = false
+	settingsWindow.visible = false
+	dimmer.visible = false
 	Messages.emit_signal("EndGame")
+
+func _on_previous_level_button_pressed() -> void:
+	_on_previous_level_pressed()
+
+func _on_restart_button_pressed() -> void:
+	_on_restart_pressed()
+
+func _on_next_level_button_pressed() -> void:
+	_on_next_level_pressed()
 
 # help text
 
@@ -429,6 +485,84 @@ func _on_controls_mouse_entered() -> void:
 	help_text.text = "View and remap controls"
 
 func _on_controls_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_previous_level_button_mouse_entered() -> void:
+	help_text.text = "Play previous level"
+
+func _on_previous_level_button_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_restart_button_mouse_entered() -> void:
+	help_text.text = "Restart current level"
+
+func _on_restart_button_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_next_level_button_mouse_entered() -> void:
+	help_text.text = "Play next level"
+
+func _on_next_level_button_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_exit_settings_focus_entered() -> void:
+	help_text.text = "Exit settings menu"
+
+func _on_exit_settings_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_exit_settings_mouse_entered() -> void:
+	help_text.text = "Exit settings menu"
+
+func _on_exit_settings_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_reset_times_focus_entered() -> void:
+	help_text.text = "Clear best time from the current level"
+
+func _on_reset_times_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_controls_focus_entered() -> void:
+	help_text.text = "View and remap controls"
+
+func _on_controls_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_previous_level_button_focus_entered() -> void:
+	help_text.text = "Play previous level"
+
+func _on_previous_level_button_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_restart_button_focus_entered() -> void:
+	help_text.text = "Restart current level"
+
+func _on_restart_button_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_next_level_button_focus_entered() -> void:
+	help_text.text = "Play next level"
+
+func _on_next_level_button_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_stage_select_focus_entered() -> void:
+	help_text.text = "Return to the Stage Select screen"
+
+func _on_stage_select_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_title_focus_entered() -> void:
+	help_text.text = "Return to the Title Screen"
+
+func _on_title_focus_exited() -> void:
+	help_text.text = ""
+	
+func _on_exit_focus_entered() -> void:
+	help_text.text = "Exit the game"
+
+func _on_exit_focus_exited() -> void:
 	help_text.text = ""
 
 # incoming signal handlers
@@ -480,12 +614,16 @@ func on_level_started(index):
 	green_ammo.text = "Green Ammo: %s" % green_ammo_count
 	if current_index == 0:
 		previous_level.disabled = true
+		previous_level_button.disabled = true
 	else:
 		previous_level.disabled = false
+		previous_level_button.disabled = false
 	if (current_index + 1) < Messages.levels_unlocked:
 		next_level.disabled = false
+		next_level_button.disabled = false
 	else:
 		next_level.disabled = true
+		next_level_button.disabled = true
 	
 func on_level_ended():
 	level_ended = true
@@ -556,6 +694,12 @@ func on_reset_controls():
 	
 	Messages.controller_rebinds = control_scheme_2
 	Messages.rebinds = control_scheme
+
+func on_settings():
+	if settingsWindow.visible:
+		_on_exit_settings_pressed()
+	else:
+		_on_settings_pressed()
 
 func _on_master_volume_value_changed(value: float) -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")

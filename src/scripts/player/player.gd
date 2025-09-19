@@ -111,6 +111,8 @@ func _ready() -> void:
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
+	Messages.connect("StopMovement", on_stop_movement)
+	Messages.connect("ResumeMovement", on_resume_movement)
 	Messages.connect("PlayerVulnerable", on_player_vulnerable)
 	if name == "red_player":
 		Messages.connect("SetRedPlayerRespawn", on_set_player_respawn)
@@ -233,6 +235,12 @@ func on_level_started(_index):
 	
 func on_level_ended():
 	can_move = false
+
+func on_stop_movement():
+	can_move = false
+
+func on_resume_movement():
+	can_move = true
 
 func on_player_vulnerable(player_name):
 	if player_name == name:
