@@ -46,7 +46,6 @@ func _ready() -> void:
 	var end_range = min(((world_number + 1) * 12), (Messages.max_levels + 1))
 	var ms = 0
 	var cleared = true
-	var rank_threshold = 0
 	for i in range(start_range, end_range):
 		var level_time = Messages.get_stored_level_time(i)
 		if level_time == 5999999:
@@ -54,13 +53,8 @@ func _ready() -> void:
 			break
 		else:
 			ms += level_time
-			rank_threshold += Messages.get_rank_threshold(i)
-	
-	rank.text = "F"
-	for i in range(Messages.rank_changes.size()):
-		if ms < (rank_threshold * Messages.rank_changes[i] * 1000):
-			rank.text = Messages.rank_assn[i]
-			break
+
+	rank.text = Messages.get_world_rank(world_number)
 	
 	if cleared:
 		right.text = "\n" + Messages.get_readable_time(ms) + "\n"

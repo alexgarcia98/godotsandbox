@@ -33,6 +33,7 @@ var settings_released = true
 
 var timer_running = false
 var reset_check = false
+var world_clear_active = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -64,6 +65,7 @@ func _ready() -> void:
 	restart_valid = false
 	settings_valid = false
 	settings_released = true
+	world_clear_active = false
 	
 	on_main_menu()
 	
@@ -127,7 +129,17 @@ func on_main_menu():
 
 func on_next_level() -> void:
 	var index = (current_index + 1) % (Messages.max_levels + 1)
-	load_level(index)
+	if (current_index + 1) % 12 == 0:
+		if world_clear_active:
+			world_clear_active = false
+			if current_index == Messages.max_levels:
+				clear_screen()
+			else:
+				load_level(index)
+		else:
+			world_clear(current_index / 12)
+	else:
+		load_level(index)
 
 func on_restart() -> void:
 	var level_index = Messages.get_save_index(current_index)
@@ -205,6 +217,34 @@ func on_world_select():
 	settings_valid = false
 	current = new_level.instantiate()
 	add_child(current)
+	
+func clear_screen():
+	if current:
+		current.queue_free()
+	var new_level = load("res://src/scenes/levels/clearscreen.tscn")
+	ui.visible = false
+	dimmer.visible = false
+	level_start.visible = false
+	level_end.visible = false
+	restart_valid = false
+	settings_valid = false
+	current = new_level.instantiate()
+	add_child(current)
+	
+func world_clear(world_index):
+	if current:
+		current.queue_free()
+	var new_level = load("res://src/scenes/levels/clearworld.tscn")
+	ui.visible = false
+	dimmer.visible = false
+	level_start.visible = false
+	level_end.visible = false
+	restart_valid = false
+	settings_valid = false
+	current = new_level.instantiate()
+	current.world_number = world_index
+	add_child(current)
+	world_clear_active = true
 	
 func on_load_level(index):
 	load_level(index)

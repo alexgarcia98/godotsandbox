@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=4 uid="uid://cp0i3ciyyiktp"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_okxwd"]
-[ext_resource type="Script" uid="uid://c8pu752f2g1p" path="res://src/scenes/levels/level_140.gd" id="2_xflub"]
+[ext_resource type="Script" uid="uid://c8pu752f2g1p" path="res://src/scripts/levels/level_140.gd" id="2_xflub"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_xgxwm"]
 [ext_resource type="PackedScene" uid="uid://cbsvscsy0qxai" path="res://src/scenes/objects/red_key.tscn" id="3_b5c8w"]
 [ext_resource type="Texture2D" uid="uid://bj10kjrvotony" path="res://src/assets/05.jpg" id="3_xflub"]

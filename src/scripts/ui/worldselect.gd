@@ -13,6 +13,19 @@ extends Control
 @onready var world_11: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World3/World11
 @onready var world_12: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World4/World12
 
+@onready var rank_1: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World1/MarginContainer/Rank1
+@onready var rank_2: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World2/MarginContainer/Rank2
+@onready var rank_3: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World3/MarginContainer/Rank3
+@onready var rank_4: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/World4/MarginContainer/Rank4
+@onready var rank_5: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World1/MarginContainer/Rank5
+@onready var rank_6: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World2/MarginContainer/Rank6
+@onready var rank_7: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World3/MarginContainer/Rank7
+@onready var rank_8: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/World4/MarginContainer/Rank8
+@onready var rank_9: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World9/MarginContainer/Rank9
+@onready var rank_10: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World2/MarginContainer/Rank10
+@onready var rank_11: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World3/MarginContainer/Rank11
+@onready var rank_12: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/World4/MarginContainer/Rank12
+
 @onready var title: Button = $WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/Title
 
 # Called when the node enters the scene tree for the first time.
@@ -38,11 +51,34 @@ func _ready() -> void:
 		world_12
 	]
 	
+	var rankList = [
+		rank_1, 
+		rank_2,
+		rank_3,
+		rank_4,
+		rank_5,
+		rank_6,
+		rank_7,
+		rank_8,
+		rank_9,
+		rank_10,
+		rank_11,
+		rank_12
+	]
+	
 	for i in range(worldCount, worldList.size()):
 		worldList[i].disabled = true
 		
 	for i in range(worldList.size()):
 		worldList[i].text = Messages.worldNames[i]
+	
+	for i in range(worldList.size()):
+		var world_rank = Messages.get_world_rank(i)
+		var rank = rankList[i]
+		rank.set("theme_override_colors/font_color", Color(Messages.get_rank_color(world_rank)))
+		if world_rank == "None":
+			world_rank = ""
+		rank.text = world_rank
 	
 	world_1.grab_focus.call_deferred()
 

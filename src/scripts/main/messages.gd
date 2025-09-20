@@ -293,7 +293,58 @@ func get_world_level_name(current_index) -> String:
 	var worldName = worldNames[current_index / 12]
 	var levelName = worldLevels[worldName][current_index % 12]
 	return "%s: %s" % [worldName, levelName]
+
+func get_world_time(world_number):
+	var start_range = world_number * 12
+	var end_range = min(((world_number + 1) * 12), (max_levels + 1))
+	var ms = 0
+	var cleared = true
+	for i in range(start_range, end_range):
+		var level_time = get_stored_level_time(i)
+		if level_time == 5999999:
+			cleared = false
+			break
+		else:
+			ms += level_time
+
+	if cleared:
+		return Messages.get_readable_time(ms)
 	
+	return ""
+
+func get_world_rank(world_number):
+	var rank = "F"
+	var start_range = world_number * 12
+	var end_range = min(((world_number + 1) * 12), (max_levels + 1))
+	var ms = 0
+	var cleared = true
+	var rank_threshold = 0
+	var all_s = true
+	for i in range(start_range, end_range):
+		var level_time = get_stored_level_time(i)
+		var level_rank = get_rank_from_time(i, level_time)
+		if level_rank != "S":
+			all_s = false
+		if level_time == 5999999:
+			cleared = false
+			break
+		else:
+			ms += level_time
+			rank_threshold += get_rank_threshold(i)
+	
+	for i in range(rank_changes.size()):
+		if ms < (rank_threshold * rank_changes[i] * 1000):
+			rank = rank_assn[i]
+			break
+	
+	if cleared:
+		if rank == "S" and not all_s:
+			return "A"
+		else:
+			return rank
+	else:
+		return ""
+
 func reset_level_time(index):
 	var save_index = get_save_index(index)
 	saved_times[save_index] = 5999999
