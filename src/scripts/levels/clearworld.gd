@@ -9,6 +9,7 @@ extends TileMapLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	world_name.text = Messages.worldNames[world_number]
 	var clear_time_text = Messages.get_world_time(world_number)
 	var rank_text = Messages.get_world_rank(world_number)
 	

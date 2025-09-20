@@ -124,6 +124,7 @@ func on_main_menu():
 	level_end.visible = false
 	restart_valid = false
 	settings_valid = false
+	world_clear_active = false
 	current = new_level.instantiate()
 	add_child(current)
 
@@ -215,6 +216,7 @@ func on_world_select():
 	level_end.visible = false
 	restart_valid = false
 	settings_valid = false
+	world_clear_active = false
 	current = new_level.instantiate()
 	add_child(current)
 	
@@ -232,6 +234,7 @@ func clear_screen():
 	add_child(current)
 	
 func world_clear(world_index):
+	world_clear_active = true
 	if current:
 		current.queue_free()
 	var new_level = load("res://src/scenes/levels/clearworld.tscn")
@@ -244,7 +247,6 @@ func world_clear(world_index):
 	current = new_level.instantiate()
 	current.world_number = world_index
 	add_child(current)
-	world_clear_active = true
 	
 func on_load_level(index):
 	load_level(index)

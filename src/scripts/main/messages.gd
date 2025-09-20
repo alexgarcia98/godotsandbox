@@ -60,7 +60,7 @@ var control_names = {
 	"Joypad Motion on Axis 5 (Joystick 2 Y-Axis, Right Trigger, Sony R2, Xbox RT) with Value 1.00": "Right Trigger"
 }
 
-# ordered list for worldsddddddddd
+# ordered list for worlds
 var worldNames = [
 	"Getting Started",
 	"Mirror",
