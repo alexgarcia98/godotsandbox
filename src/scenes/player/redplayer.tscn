@@ -802,12 +802,14 @@ airdash_state = NodePath("../airdash")
 jump_state = NodePath("../jump")
 animation_name = "main_switch"
 
-[node name="shoot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "jump_state", "move_state")]
+[node name="shoot" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "jump_state", "move_state", "dash_state", "airdash_state")]
 script = ExtResource("77_7l7ca")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
+dash_state = NodePath("../dash")
+airdash_state = NodePath("../airdash")
 animation_name = "throw_left"
 
 [node name="enter_door" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]

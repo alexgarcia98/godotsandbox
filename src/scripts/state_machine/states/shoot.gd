@@ -8,6 +8,10 @@ var fall_state: State
 var jump_state: State
 @export
 var move_state: State
+@export
+var dash_state: State
+@export
+var airdash_state: State
 
 func enter() -> void:
 	if parent.is_main:
@@ -37,7 +41,25 @@ func enter() -> void:
 	parent.sfx.play()
 
 func process_input(event: InputEvent) -> State:
-	return super(event)
+	super(event)
+	if !parent.is_on_floor():
+		if Input.is_action_just_pressed('dash'):
+			if parent.airdash_remaining > 0:
+				return airdash_state
+		if Input.is_action_just_pressed('jump'):
+			if parent.jump_released:
+				if parent.jumps_remaining > 0:
+					parent.jumps_remaining -= 1
+					parent.jump_released = false
+					return jump_state
+	else:
+		if Input.is_action_just_pressed('dash'):
+			return dash_state
+		if Input.is_action_just_pressed('jump'):
+			if parent.jump_released:
+				parent.jump_released = false
+				return jump_state
+	return null
 
 func process_physics(delta: float) -> State:
 	check_stuck()
