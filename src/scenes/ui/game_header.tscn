@@ -1324,6 +1324,7 @@ controller = true
 metadata/_custom_type_script = "uid://oaxgo0r47f3y"
 
 [node name="Settings" type="Control" parent="."]
+visible = false
 z_index = 50
 layout_mode = 1
 anchors_preset = 15

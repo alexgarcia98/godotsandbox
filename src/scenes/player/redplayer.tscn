@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://di4b3fet5cvsw"]
+[gd_scene load_steps=94 format=3 uid="uid://di4b3fet5cvsw"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/scripts/player/player.gd" id="1_ryxk6"]
 [ext_resource type="Texture2D" uid="uid://in1gh3nmft7l" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_land_0.png" id="2_e7e1q"]
@@ -88,6 +88,7 @@
 [ext_resource type="Script" uid="uid://bmc2ip0hujwtr" path="res://src/scripts/state_machine/states/interact.gd" id="71_ghj7r"]
 [ext_resource type="Script" uid="uid://bfcao6568ko8b" path="res://src/scripts/state_machine/states/air_pivot.gd" id="76_7813v"]
 [ext_resource type="Script" uid="uid://bscu0dpmu1432" path="res://src/scripts/state_machine/states/shoot.gd" id="77_7l7ca"]
+[ext_resource type="Script" uid="uid://b3wo38cgmkvwx" path="res://src/scripts/state_machine/states/replay.gd" id="89_gc3cn"]
 [ext_resource type="Script" uid="uid://d3qmncoha0v24" path="res://src/scripts/state_machine/states/enter_door.gd" id="89_p06bt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l17t8"]
@@ -817,6 +818,10 @@ script = ExtResource("89_p06bt")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "enter_door"
+
+[node name="replay" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("89_gc3cn")
+idle_state = NodePath("../idle")
 
 [node name="player_move_component" type="Node" parent="."]
 script = ExtResource("11_ce5lr")

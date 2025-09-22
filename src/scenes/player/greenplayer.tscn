@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://bgmq4knhxggl2"]
+[gd_scene load_steps=94 format=3 uid="uid://bgmq4knhxggl2"]
 
 [ext_resource type="Script" uid="uid://d3ckaoly0wqvx" path="res://src/scripts/player/player.gd" id="1_nxtay"]
 [ext_resource type="Texture2D" uid="uid://dnkewktf1p72v" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 1/Clothes 2/Character1F_2_punch_1.png" id="3_0ciyq"]
@@ -89,6 +89,7 @@
 [ext_resource type="Script" uid="uid://bfcao6568ko8b" path="res://src/scripts/state_machine/states/air_pivot.gd" id="75_uf2y3"]
 [ext_resource type="Script" uid="uid://bscu0dpmu1432" path="res://src/scripts/state_machine/states/shoot.gd" id="76_ookyx"]
 [ext_resource type="Script" uid="uid://d3qmncoha0v24" path="res://src/scripts/state_machine/states/enter_door.gd" id="77_370xr"]
+[ext_resource type="Script" uid="uid://b3wo38cgmkvwx" path="res://src/scripts/state_machine/states/replay.gd" id="89_j3722"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l17t8"]
 animations = [{
@@ -813,6 +814,10 @@ script = ExtResource("77_370xr")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "enter_door"
+
+[node name="replay" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("89_j3722")
+idle_state = NodePath("../idle")
 
 [node name="player_move_component" type="Node" parent="."]
 script = ExtResource("75_4qyag")

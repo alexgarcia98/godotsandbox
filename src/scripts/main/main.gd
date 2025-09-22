@@ -21,6 +21,7 @@ extends Node2D
 @onready var red_death_animation: AnimationPlayer = $Node2D/RedDeath/RedDeathAnimation
 @onready var green_death_animation: AnimationPlayer = $Node2D2/GreenDeath/GreenDeathAnimation
 @onready var next_level: Button = $LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/NextLevel
+@onready var view_replay: Button = $LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer4/ViewReplay
 
 var current = null
 var red_opened = false
@@ -30,10 +31,21 @@ var restart_valid = false
 var old_clear
 var old_rank
 var settings_released = true
+var replay_released = true
+var replay_valid = false
+var replay_active = false
 
 var timer_running = false
 var reset_check = false
 var world_clear_active = false
+var start_time
+var next_action_time
+var action_count = 0
+var redp
+var greenp
+var level_start_ms = 0
+
+var replay_actions = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,7 +68,7 @@ func _ready() -> void:
 	Messages.connect("LevelEnded", on_level_ended)
 	Messages.connect("RemapActive", on_remap_active)
 	Messages.connect("RemapInactive", on_remap_inactive)
-	
+	Messages.connect("Replay", on_replay)
 	
 	dimmer.visible = false
 	dimmer.self_modulate.a = 0.5
@@ -66,6 +78,9 @@ func _ready() -> void:
 	settings_valid = false
 	settings_released = true
 	world_clear_active = false
+	replay_released = true
+	replay_valid = false
+	replay_active = false
 	
 	on_main_menu()
 	
@@ -82,6 +97,9 @@ func load_level(index):
 	level_start.visible = true
 	restart_valid = false
 	settings_valid = false
+	replay_valid = false
+	replay_active = false
+	replay_actions = []
 	start_level.grab_focus.call_deferred()
 	init_level_data()
 	Messages.LevelStarted.emit(index)
@@ -102,17 +120,15 @@ func init_level_data():
 	else:
 		rank_start.text = "Best Rank: " + old_rank
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _on_start_level_pressed() -> void:
 	dimmer.visible = false
 	level_start.visible = false
 	level_end.visible = false
 	Messages.audio.stream = Messages.progress_button_sound
 	Messages.audio.play()
+	replay_actions = []
 	Messages.BeginLevel.emit(current_index)
+	level_start_ms = Time.get_ticks_msec()
 
 func on_main_menu():
 	if current:
@@ -124,6 +140,7 @@ func on_main_menu():
 	level_end.visible = false
 	restart_valid = false
 	settings_valid = false
+	replay_valid = false
 	world_clear_active = false
 	current = new_level.instantiate()
 	add_child(current)
@@ -154,7 +171,9 @@ func on_restart() -> void:
 	current = new_level.instantiate()
 	add_child(current)
 	init_level_data()
+	replay_actions = []
 	Messages.BeginLevel.emit(current_index)
+	level_start_ms = Time.get_ticks_msec()
 	
 func on_door_toggled(player) -> void:
 	# check sender
@@ -216,6 +235,7 @@ func on_world_select():
 	level_end.visible = false
 	restart_valid = false
 	settings_valid = false
+	replay_valid = false
 	world_clear_active = false
 	current = new_level.instantiate()
 	add_child(current)
@@ -230,6 +250,7 @@ func clear_screen():
 	level_end.visible = false
 	restart_valid = false
 	settings_valid = false
+	replay_valid = false
 	current = new_level.instantiate()
 	add_child(current)
 	
@@ -244,6 +265,7 @@ func world_clear(world_index):
 	level_end.visible = false
 	restart_valid = false
 	settings_valid = false
+	replay_valid = false
 	current = new_level.instantiate()
 	current.world_number = world_index
 	add_child(current)
@@ -297,25 +319,70 @@ func _on_restart_level_pressed() -> void:
 	Messages.audio.play()
 	on_restart()
 
+func _on_view_replay_pressed() -> void:
+	on_replay()
+
 func on_stop_movement():
 	restart_valid = false
+	replay_valid = false
 
 func on_resume_movement():
 	restart_valid = true
+	replay_valid = true
 	
 func on_begin_level(_level):
 	restart_valid = true
 	settings_valid = true
+	replay_valid = true
 	
 func on_level_ended():
 	restart_valid = true
 	settings_valid = false
+	replay_valid = false
 
 func on_remap_active():
 	settings_valid = false
+	replay_valid = false
 
 func on_remap_inactive():
 	settings_valid = true
+	replay_valid = false
+	
+func on_replay():
+	var level_index = Messages.get_save_index(current_index)
+	var new_level = load("src/scenes/levels/level" + str(level_index) + ".tscn")
+	reset_check = true
+	dimmer.visible = false
+	level_end.visible = false
+	level_start.visible = false
+	if current:
+		current.queue_free()
+	current = new_level.instantiate()
+	add_child(current)
+	init_level_data()
+	replay_active = true
+	if replay_actions.size() > 0:
+		next_action_time = replay_actions[0][0]
+	var next_action_time
+	action_count = 0
+	Messages.BeginLevel.emit(current_index)
+	level_start_ms = Time.get_ticks_msec()
+
+func _process(delta: float) -> void:
+	if not replay_active:
+		return
+	if action_count >= replay_actions.size():
+		replay_active = false
+		return
+	var current_time = Time.get_ticks_msec() - level_start_ms
+	if current_time > next_action_time:
+		Input.parse_input_event(replay_actions[action_count][1])
+		action_count += 1
+		if action_count < replay_actions.size():
+			next_action_time = replay_actions[action_count][0]
+		else:
+			replay_active = false
+			
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed('restart'):
@@ -326,9 +393,23 @@ func _unhandled_input(event: InputEvent) -> void:
 			settings_released = false
 			print("settings pressed")
 			Messages.Settings.emit()
-	elif Input.is_action_just_released("settings"):
+	elif Input.is_action_just_released("settings"): 
 		print("settings released")
 		settings_released = true
+	elif Input.is_action_just_pressed('replay'):
+		if replay_valid and replay_released and remap:
+			replay_released = false
+			print("replay pressed")
+			Messages.Replay.emit()
+	elif Input.is_action_just_released("replay"):
+		print("replay released")
+		replay_released = true
+	else:
+		if not replay_active:
+			var input_time = Time.get_ticks_msec() - level_start_ms
+			if input_time > 60000:
+				return
+			replay_actions.append([input_time, event])
 	#elif Input.is_action_just_pressed('move_up'):
 		#print("pressing ui up")
 		#Input.action_press("ui_up")

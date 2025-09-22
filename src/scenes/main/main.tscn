@@ -353,7 +353,6 @@ theme_override_font_sizes/font_size = 16
 text = "Level Select"
 
 [node name="LevelEnd" type="Control" parent="."]
-visible = false
 z_index = 20
 layout_mode = 3
 anchors_preset = 15
@@ -510,7 +509,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_45uaa")
 theme_override_font_sizes/font_size = 16
-text = "Restart Level"
+text = "Restart"
+
+[node name="MarginContainer4" type="MarginContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ViewReplay" type="Button" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "View Replay"
 
 [node name="MarginContainer2" type="MarginContainer" parent="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -588,4 +602,5 @@ autoplay = "RESET"
 [connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2/LevelSelect" to="." method="_on_level_select_pressed"]
 [connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/NextLevel" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer3/RestartLevel" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer4/ViewReplay" to="." method="_on_view_replay_pressed"]
 [connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2/LevelSelect" to="." method="_on_level_select_pressed"]
