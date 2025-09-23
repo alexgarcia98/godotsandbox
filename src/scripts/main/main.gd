@@ -78,7 +78,6 @@ func _ready() -> void:
 	Messages.connect("LevelEnded", on_level_ended)
 	Messages.connect("RemapActive", on_remap_active)
 	Messages.connect("RemapInactive", on_remap_inactive)
-	Messages.connect("Replay", on_replay)
 	Messages.connect("StoreReplay", on_store_replay)
 	
 	dimmer.visible = false
@@ -233,8 +232,6 @@ func on_door_toggled(player) -> void:
 
 func _on_timer_timeout():
 	if not reset_check:
-		red_player.can_move = true
-		green_player.can_move = true
 		red_player.modulate = Color.WHITE
 		green_player.modulate = Color.WHITE
 		red_player.modulate.a = 1
@@ -246,6 +243,10 @@ func _on_timer_timeout():
 		next_level.grab_focus.call_deferred()
 		var new_clear = Messages.get_stored_level_time(current_index)
 		replay_end_time = ui.level_time_ms
+		if replay_end_time >= 60000:
+			view_replay.disabled = true
+		else:
+			view_replay.disabled = false
 		if new_clear < old_clear:
 			# new record
 			clear_time_end.text = "New Personal Best: " + Messages.get_readable_stored_level_time(current_index)
@@ -454,6 +455,7 @@ func on_replay():
 	position_count = 0
 	if replay_actions.size() > 0:
 		next_action_time = replay_actions[0][0]
+	Messages.Replay.emit()
 	Messages.BeginLevel.emit(current_index)
 	red_player.modulate = Color.RED
 	red_player.modulate.a = 0.5
@@ -490,6 +492,8 @@ func _process(delta: float) -> void:
 		recording_active = false
 		red_player.global_position = red_end_pos
 		green_player.global_position = green_end_pos
+		red_player.key_obtained = true
+		green_player.key_obtained = true
 		var event = InputEventAction.new()
 		event.pressed = true
 		event.action = "move_up"
@@ -508,15 +512,20 @@ func _process(delta: float) -> void:
 			if stored_event[0] == "keyboard":
 				input_event = InputEventKey.new()
 				input_event.physical_keycode = stored_event[1]
+				input_event.pressed = stored_event[2]
 			elif stored_event[0] == "joypad_button":
 				input_event = InputEventJoypadButton.new()
 				input_event.button_index = stored_event[1]
+				input_event.pressed = stored_event[2]
 			elif stored_event[0] == "joypad_axis":
 				input_event = InputEventJoypadMotion.new()
 				input_event.axis = stored_event[1]
 				input_event.axis_value = stored_event[2]
-			
+			print("event: %s" % input_event)
 			Input.parse_input_event(input_event)
+			#red_player.movement_state_machine.process_input(input_event)
+			#green_player.movement_state_machine.process_input(input_event)
+			#print(input_event)
 			action_count += 1
 			if action_count < replay_actions.size():
 				next_action_time = replay_actions[action_count][0]
@@ -536,6 +545,10 @@ func _physics_process(delta: float) -> void:
 			replay_active = false
 			send_end_replay = true
 			recording_active = false
+			red_player.global_position = red_end_pos
+			green_player.global_position = green_end_pos
+			red_player.key_obtained = true
+			green_player.key_obtained = true
 			var event = InputEventAction.new()
 			event.pressed = true
 			event.action = "move_up"
@@ -561,27 +574,19 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif Input.is_action_just_released("settings"): 
 		print("settings released")
 		settings_released = true
-	elif Input.is_action_just_pressed('replay'):
-		if replay_valid and replay_released and remap:
-			replay_released = false
-			print("replay pressed")
-			Messages.Replay.emit()
-	elif Input.is_action_just_released("replay"):
-		print("replay released")
-		replay_released = true
 	else:
 		if not replay_active:
 			if event is InputEventJoypadMotion:
 				if abs(event.axis_value) < 0.05:
 					return
 			var input_time = Time.get_ticks_msec() - level_start_ms
-			if input_time > 60000:
+			if input_time >= 60000:
 				return
 			var input_event_storage
 			if event is InputEventKey:
-				input_event_storage = ["keyboard", event.physical_keycode, 0]
+				input_event_storage = ["keyboard", event.physical_keycode, event.pressed]
 			elif event is InputEventJoypadButton:
-				input_event_storage = ["joypad_button", event.button_index, 0]
+				input_event_storage = ["joypad_button", event.button_index, event.pressed]
 			elif event is InputEventJoypadMotion:
 				input_event_storage = ["joypad_axis", event.axis, event.axis_value]
 			else:

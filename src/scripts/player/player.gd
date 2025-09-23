@@ -92,6 +92,7 @@ var right_stuck_count = 0
 
 var can_move = false
 var currently_flipped = false
+var replay = false
 
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animations, player_move_component)
@@ -103,6 +104,7 @@ func _ready() -> void:
 	jump_released = true
 	freeze_released = true
 	switch_released = true
+	replay = false
 	floor_stuck_count = 0
 	ceiling_stuck_count = 0
 	left_stuck_count = 0
@@ -111,6 +113,7 @@ func _ready() -> void:
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
+	Messages.connect("Replay", on_replay)
 	Messages.connect("EndReplay", on_replay_ended)
 	Messages.connect("StopMovement", on_stop_movement)
 	Messages.connect("ResumeMovement", on_resume_movement)
@@ -237,8 +240,13 @@ func on_level_started(_index):
 func on_level_ended():
 	can_move = false
 
+func on_replay():
+	can_move = true
+	replay = true
+
 func on_replay_ended(_time):
 	can_move = false
+	replay = false
 
 func on_stop_movement():
 	can_move = false

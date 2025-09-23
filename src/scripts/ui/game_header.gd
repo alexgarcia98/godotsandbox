@@ -636,9 +636,11 @@ func on_level_ended():
 	personal_best.text = "Best: " + best_time
 	Messages.unlock_next_level(current_index)
 	if current_index not in Messages.replays:
-		Messages.StoreReplay.emit()
+		if level_time_ms < 60000:
+			Messages.StoreReplay.emit()
 	elif level_time_ms < Messages.replays[current_index][2]:
-		Messages.StoreReplay.emit()
+		if level_time_ms < 60000:
+			Messages.StoreReplay.emit()
 
 func on_replay_ended(end_time):
 	level_ended = true
