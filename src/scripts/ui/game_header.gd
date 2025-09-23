@@ -155,6 +155,7 @@ func _ready() -> void:
 	Messages.connect("ResetControls", on_reset_controls)
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("Settings", on_settings)
+	Messages.connect("EndReplay", on_replay_ended)
 	main_scene = get_parent()
 	max_levels = Messages.max_levels
 	
@@ -634,6 +635,17 @@ func on_level_ended():
 	var best_time = Messages.get_readable_stored_level_time(current_index)
 	personal_best.text = "Best: " + best_time
 	Messages.unlock_next_level(current_index)
+	if current_index not in Messages.replays:
+		Messages.StoreReplay.emit()
+	elif level_time_ms < Messages.replays[current_index][2]:
+		Messages.StoreReplay.emit()
+
+func on_replay_ended(end_time):
+	level_ended = true
+	level_time_ms = end_time
+	level_time.text = Messages.get_readable_time(level_time_ms)
+	var best_time = Messages.get_readable_stored_level_time(current_index)
+	personal_best.text = "Best: " + best_time
 
 func on_keyboard_remapped(a, key):
 	Messages.rebinds[a] = ["keyboard", key, 0]

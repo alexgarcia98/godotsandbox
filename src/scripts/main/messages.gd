@@ -37,12 +37,15 @@ signal LockLevels()
 signal ResetControls()
 signal RemapActive()
 signal RemapInactive()
+signal EndReplay(end_time)
+signal StoreReplay()
 
 var rebinds = {}
+var replays = {}
 var controller_rebinds = {}
 var max_levels = 143
 var filepath = "user://save_data.dat"
-var new_filepath = "user://save_data_v2.dat"
+var replay_filepath = "user://replays.dat"
 var saved_times = []
 
 var levels_unlocked: int = 1
@@ -215,6 +218,21 @@ func _ready() -> void:
 		# load levels unlocked
 		levels_unlocked = file2.get_var()
 		file2.close()
+		
+	var file3 = FileAccess.open(replay_filepath, FileAccess.READ)
+	if file3 == null:
+		var err = FileAccess.get_open_error()
+		if err == ERR_FILE_NOT_FOUND:
+			# create new save data
+			file3 = FileAccess.open(replay_filepath, FileAccess.WRITE)
+			var empty_replays = {}
+			file3.store_var(empty_replays)
+			file3.close()
+			replays = empty_replays
+	else:
+		# load levels unlocked
+		replays = file3.get_var()
+		file3.close()
 
 func unlock_next_level(current_index):
 	if (current_index + 2) > levels_unlocked:
@@ -400,3 +418,12 @@ func erase_controller_events(action):
 			InputMap.action_erase_event(action, event)
 		elif event is InputEventJoypadMotion:
 			InputMap.action_erase_event(action, event)
+
+func store_replay(actions, positions, time, level):
+	replays[level] = []
+	replays[level].append(actions)
+	replays[level].append(positions)
+	replays[level].append(time)
+	var write_file = FileAccess.open(replay_filepath, FileAccess.WRITE)
+	write_file.store_var(replays)
+	write_file.close()

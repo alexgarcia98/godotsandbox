@@ -111,6 +111,7 @@ func _ready() -> void:
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("LevelStarted", on_level_started)
 	Messages.connect("LevelEnded", on_level_ended)
+	Messages.connect("EndReplay", on_replay_ended)
 	Messages.connect("StopMovement", on_stop_movement)
 	Messages.connect("ResumeMovement", on_resume_movement)
 	Messages.connect("PlayerVulnerable", on_player_vulnerable)
@@ -234,6 +235,9 @@ func on_level_started(_index):
 	can_move = false
 	
 func on_level_ended():
+	can_move = false
+
+func on_replay_ended(_time):
 	can_move = false
 
 func on_stop_movement():

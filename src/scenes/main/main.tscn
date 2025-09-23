@@ -223,7 +223,6 @@ offset_bottom = 240.0
 color = Color(0, 0, 0, 1)
 
 [node name="LevelStart" type="Control" parent="."]
-visible = false
 z_index = 20
 layout_mode = 3
 anchors_preset = 15
@@ -331,10 +330,26 @@ theme_override_constants/margin_bottom = 4
 [node name="StartLevel" type="Button" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_right = NodePath("../../MarginContainer2/LevelSelect")
+focus_neighbor_right = NodePath("../../MarginContainer3/ViewBestReplay")
 theme_override_fonts/font = ExtResource("3_45uaa")
 theme_override_font_sizes/font_size = 16
 text = "Start Level"
+
+[node name="MarginContainer3" type="MarginContainer" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ViewBestReplay" type="Button" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../../MarginContainer2/LevelSelect")
+theme_override_fonts/font = ExtResource("3_45uaa")
+theme_override_font_sizes/font_size = 16
+text = "View Best Replay"
 
 [node name="MarginContainer2" type="MarginContainer" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -347,12 +362,13 @@ theme_override_constants/margin_bottom = 4
 [node name="LevelSelect" type="Button" parent="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../../MarginContainer/StartLevel")
+focus_neighbor_left = NodePath("../../MarginContainer3/ViewBestReplay")
 theme_override_fonts/font = ExtResource("3_45uaa")
 theme_override_font_sizes/font_size = 16
 text = "Level Select"
 
 [node name="LevelEnd" type="Control" parent="."]
+visible = false
 z_index = 20
 layout_mode = 3
 anchors_preset = 15
@@ -599,6 +615,7 @@ autoplay = "RESET"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/StartLevel" to="." method="_on_start_level_pressed"]
+[connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer3/ViewBestReplay" to="." method="_on_view_best_replay_pressed"]
 [connection signal="pressed" from="LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer2/LevelSelect" to="." method="_on_level_select_pressed"]
 [connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/NextLevel" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer3/RestartLevel" to="." method="_on_restart_level_pressed"]

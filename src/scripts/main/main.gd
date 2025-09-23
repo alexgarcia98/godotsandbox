@@ -22,6 +22,7 @@ extends Node2D
 @onready var green_death_animation: AnimationPlayer = $Node2D2/GreenDeath/GreenDeathAnimation
 @onready var next_level: Button = $LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer/NextLevel
 @onready var view_replay: Button = $LevelEnd/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer4/ViewReplay
+@onready var view_best_replay: Button = $LevelStart/MarginContainer/VBoxContainer/Panel3/MarginContainer/HBoxContainer/MarginContainer3/ViewBestReplay
 
 var current = null
 var red_opened = false
@@ -41,11 +42,20 @@ var world_clear_active = false
 var start_time
 var next_action_time
 var action_count = 0
+var position_count = 0
 var redp
 var greenp
 var level_start_ms = 0
+var recording_active
+var red_player
+var green_player
+var replay_end_time
+var send_end_replay
+var red_end_pos
+var green_end_pos
 
 var replay_actions = []
+var replay_positions = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -69,6 +79,7 @@ func _ready() -> void:
 	Messages.connect("RemapActive", on_remap_active)
 	Messages.connect("RemapInactive", on_remap_inactive)
 	Messages.connect("Replay", on_replay)
+	Messages.connect("StoreReplay", on_store_replay)
 	
 	dimmer.visible = false
 	dimmer.self_modulate.a = 0.5
@@ -81,6 +92,8 @@ func _ready() -> void:
 	replay_released = true
 	replay_valid = false
 	replay_active = false
+	recording_active = false
+	send_end_replay = false
 	
 	on_main_menu()
 	
@@ -99,7 +112,14 @@ func load_level(index):
 	settings_valid = false
 	replay_valid = false
 	replay_active = false
+	recording_active = false
+	send_end_replay = false
 	replay_actions = []
+	replay_positions = []
+	if current_index in Messages.replays:
+		view_best_replay.disabled = false
+	else:
+		view_best_replay.disabled = true
 	start_level.grab_focus.call_deferred()
 	init_level_data()
 	Messages.LevelStarted.emit(index)
@@ -119,6 +139,8 @@ func init_level_data():
 		rank_start.text = old_rank
 	else:
 		rank_start.text = "Best Rank: " + old_rank
+	red_player = current.get_node("red_player")
+	green_player = current.get_node("green_player")
 
 func _on_start_level_pressed() -> void:
 	dimmer.visible = false
@@ -127,8 +149,10 @@ func _on_start_level_pressed() -> void:
 	Messages.audio.stream = Messages.progress_button_sound
 	Messages.audio.play()
 	replay_actions = []
+	replay_positions = []
 	Messages.BeginLevel.emit(current_index)
 	level_start_ms = Time.get_ticks_msec()
+	recording_active = true
 
 func on_main_menu():
 	if current:
@@ -141,6 +165,8 @@ func on_main_menu():
 	restart_valid = false
 	settings_valid = false
 	replay_valid = false
+	replay_active = false
+	recording_active = false
 	world_clear_active = false
 	current = new_level.instantiate()
 	add_child(current)
@@ -172,8 +198,12 @@ func on_restart() -> void:
 	add_child(current)
 	init_level_data()
 	replay_actions = []
+	replay_positions = []
 	Messages.BeginLevel.emit(current_index)
 	level_start_ms = Time.get_ticks_msec()
+	recording_active = true
+	replay_active = false
+	send_end_replay = false
 	
 func on_door_toggled(player) -> void:
 	# check sender
@@ -182,21 +212,40 @@ func on_door_toggled(player) -> void:
 	elif player == "green_player":
 		green_opened = not green_opened
 	if red_opened and green_opened:
-		Messages.LevelEnded.emit()
+		red_end_pos = current.get_node("objects").get_node("red_door").global_position
+		red_end_pos.y += 8
+		green_end_pos = current.get_node("objects").get_node("green_door").global_position
+		green_end_pos.y += 8
+		if send_end_replay:
+			send_end_replay = false
+			Messages.EndReplay.emit(replay_end_time)
+		elif replay_active:
+			send_end_replay = false
+			Messages.EndReplay.emit(replay_end_time)
+		else:
+			Messages.LevelEnded.emit()
 		timer_running = true
 		reset_check = false
+		recording_active = false
 		sfx.stream = Messages.clear_sound
 		sfx.play()
 		timer.start()
 
 func _on_timer_timeout():
 	if not reset_check:
+		red_player.can_move = true
+		green_player.can_move = true
+		red_player.modulate = Color.WHITE
+		green_player.modulate = Color.WHITE
+		red_player.modulate.a = 1
+		red_player.modulate.a = 1
 		dimmer.visible = true
 		level_end.visible = true
 		best_rank.visible = true
 		best_time_end.visible = true
 		next_level.grab_focus.call_deferred()
 		var new_clear = Messages.get_stored_level_time(current_index)
+		replay_end_time = ui.level_time_ms
 		if new_clear < old_clear:
 			# new record
 			clear_time_end.text = "New Personal Best: " + Messages.get_readable_stored_level_time(current_index)
@@ -237,6 +286,8 @@ func on_world_select():
 	settings_valid = false
 	replay_valid = false
 	world_clear_active = false
+	replay_active = false
+	recording_active = false
 	current = new_level.instantiate()
 	add_child(current)
 	
@@ -251,6 +302,8 @@ func clear_screen():
 	restart_valid = false
 	settings_valid = false
 	replay_valid = false
+	replay_active = false
+	recording_active = false
 	current = new_level.instantiate()
 	add_child(current)
 	
@@ -266,6 +319,8 @@ func world_clear(world_index):
 	restart_valid = false
 	settings_valid = false
 	replay_valid = false
+	replay_active = false
+	recording_active = false
 	current = new_level.instantiate()
 	current.world_number = world_index
 	add_child(current)
@@ -322,6 +377,16 @@ func _on_restart_level_pressed() -> void:
 func _on_view_replay_pressed() -> void:
 	on_replay()
 
+func _on_view_best_replay_pressed() -> void:
+	replay_actions = Messages.replays[current_index][0]
+	replay_positions = Messages.replays[current_index][1]
+	red_end_pos = current.get_node("objects").get_node("red_door").global_position
+	red_end_pos.y += 8
+	green_end_pos = current.get_node("objects").get_node("green_door").global_position
+	green_end_pos.y += 8
+	replay_end_time = Messages.replays[current_index][2]
+	on_replay()
+
 func on_stop_movement():
 	restart_valid = false
 	replay_valid = false
@@ -348,6 +413,29 @@ func on_remap_inactive():
 	settings_valid = true
 	replay_valid = false
 	
+#func on_replay():
+	#var level_index = Messages.get_save_index(current_index)
+	#var new_level = load("src/scenes/levels/level" + str(level_index) + ".tscn")
+	#reset_check = true
+	#dimmer.visible = false
+	#level_end.visible = false
+	#level_start.visible = false
+	#if current:
+		#current.queue_free()
+	#current = new_level.instantiate()
+	#add_child(current)
+	#init_level_data()
+	#replay_active = true
+	#if replay_actions.size() > 0:
+		#next_action_time = replay_actions[0][0]
+	#var next_action_time
+	#action_count = 0
+	#Messages.BeginLevel.emit(current_index)
+	#level_start_ms = Time.get_ticks_msec()
+
+func on_store_replay():
+	Messages.store_replay(replay_actions, replay_positions, ui.level_time_ms, current_index)
+
 func on_replay():
 	var level_index = Messages.get_save_index(current_index)
 	var new_level = load("src/scenes/levels/level" + str(level_index) + ".tscn")
@@ -361,28 +449,105 @@ func on_replay():
 	add_child(current)
 	init_level_data()
 	replay_active = true
+	recording_active = false
+	action_count = 0
+	position_count = 0
 	if replay_actions.size() > 0:
 		next_action_time = replay_actions[0][0]
-	var next_action_time
-	action_count = 0
 	Messages.BeginLevel.emit(current_index)
+	red_player.modulate = Color.RED
+	red_player.modulate.a = 0.5
+	green_player.modulate = Color.DARK_GREEN
+	green_player.modulate.a = 0.5
+	red_player.can_move = true
+	green_player.can_move = true
 	level_start_ms = Time.get_ticks_msec()
+	#red_player.can_move = false
+	#green_player.can_move = false
+
+#func _process(delta: float) -> void:
+	#if not replay_active:
+		#return
+	#if action_count >= replay_actions.size():
+		#replay_active = false
+		#return
+	#var current_time = Time.get_ticks_msec() - level_start_ms
+	#if current_time > next_action_time:
+		#Input.parse_input_event(replay_actions[action_count][1])
+		#action_count += 1
+		#if action_count < replay_actions.size():
+			#next_action_time = replay_actions[action_count][0]
+		#else:
+			#replay_active = false
+			
 
 func _process(delta: float) -> void:
 	if not replay_active:
 		return
 	if action_count >= replay_actions.size():
 		replay_active = false
+		send_end_replay = true
+		recording_active = false
+		red_player.global_position = red_end_pos
+		green_player.global_position = green_end_pos
+		var event = InputEventAction.new()
+		event.pressed = true
+		event.action = "move_up"
+		Input.parse_input_event(event)
+		var event2 = InputEventAction.new()
+		event2.pressed = false
+		event2.action = "move_up"
+		Input.parse_input_event(event2)
 		return
-	var current_time = Time.get_ticks_msec() - level_start_ms
-	if current_time > next_action_time:
-		Input.parse_input_event(replay_actions[action_count][1])
-		action_count += 1
-		if action_count < replay_actions.size():
-			next_action_time = replay_actions[action_count][0]
+	while(true):
+		var event = replay_actions[action_count][1]
+		var current_time = Time.get_ticks_msec() - level_start_ms
+		if current_time > next_action_time:
+			var input_event
+			var stored_event = replay_actions[action_count][1]
+			if stored_event[0] == "keyboard":
+				input_event = InputEventKey.new()
+				input_event.physical_keycode = stored_event[1]
+			elif stored_event[0] == "joypad_button":
+				input_event = InputEventJoypadButton.new()
+				input_event.button_index = stored_event[1]
+			elif stored_event[0] == "joypad_axis":
+				input_event = InputEventJoypadMotion.new()
+				input_event.axis = stored_event[1]
+				input_event.axis_value = stored_event[2]
+			
+			Input.parse_input_event(input_event)
+			action_count += 1
+			if action_count < replay_actions.size():
+				next_action_time = replay_actions[action_count][0]
+			else:
+				break
+		else:
+			break
+
+func _physics_process(delta: float) -> void:
+	if replay_active:
+		if position_count < replay_positions.size():
+			var pos = replay_positions[position_count]
+			red_player.global_position = pos[0]
+			green_player.global_position = pos[1]
+			position_count += 1
 		else:
 			replay_active = false
-			
+			send_end_replay = true
+			recording_active = false
+			var event = InputEventAction.new()
+			event.pressed = true
+			event.action = "move_up"
+			Input.parse_input_event(event)
+			var event2 = InputEventAction.new()
+			event2.pressed = false
+			event2.action = "move_up"
+			Input.parse_input_event(event2)
+	elif recording_active:
+		var pos1 = red_player.global_position
+		var pos2 = green_player.global_position
+		replay_positions.append([pos1, pos2])
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed('restart'):
@@ -406,10 +571,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		replay_released = true
 	else:
 		if not replay_active:
+			if event is InputEventJoypadMotion:
+				if abs(event.axis_value) < 0.05:
+					return
 			var input_time = Time.get_ticks_msec() - level_start_ms
 			if input_time > 60000:
 				return
-			replay_actions.append([input_time, event])
+			var input_event_storage
+			if event is InputEventKey:
+				input_event_storage = ["keyboard", event.physical_keycode, 0]
+			elif event is InputEventJoypadButton:
+				input_event_storage = ["joypad_button", event.button_index, 0]
+			elif event is InputEventJoypadMotion:
+				input_event_storage = ["joypad_axis", event.axis, event.axis_value]
+			else:
+				return
+			replay_actions.append([input_time, input_event_storage])
 	#elif Input.is_action_just_pressed('move_up'):
 		#print("pressing ui up")
 		#Input.action_press("ui_up")
