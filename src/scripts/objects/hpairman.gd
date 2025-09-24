@@ -9,7 +9,7 @@ var shot_count = 0
 @onready var tornado_5: AnimatableBody2D = $"../Tornado5"
 @onready var tornado_6: AnimatableBody2D = $"../Tornado6"
 @onready var airman: AnimatableBody2D = $"../airman"
-@onready var green_gate: AnimatableBody2D = $"../objects/green_gate"
+@onready var green_gate: AnimatableBody2D = $"../objects/purple_gate"
 
 func decrease():
 	shot_count += 1

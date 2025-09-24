@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://gk1wmpyo5i1q"]
+[gd_scene load_steps=24 format=4 uid="uid://gk1wmpyo5i1q"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_qpbgf"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_bvtg8"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://cm0b4aojni12r" path="res://src/scenes/objects/red_gate.tscn" id="11_18uyg"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="11_wj1on"]
 [ext_resource type="PackedScene" uid="uid://d1o4p35ak4q1f" path="res://src/scenes/objects/red_button.tscn" id="11_wjvvy"]
+[ext_resource type="PackedScene" uid="uid://duujmb213u7dg" path="res://src/scenes/objects/green_gate_slow.tscn" id="12_oqo01"]
+[ext_resource type="PackedScene" uid="uid://d2o5a287qx8jw" path="res://src/scenes/objects/red_gate_slow.tscn" id="13_2j2an"]
 [ext_resource type="PackedScene" uid="uid://bhgeylc3lkiwf" path="res://src/scenes/objects/popo.tscn" id="14_wjvvy"]
 [ext_resource type="PackedScene" uid="uid://b8pdp0li80lk6" path="res://src/scenes/objects/nana.tscn" id="15_3yqhh"]
 
@@ -536,40 +538,6 @@ pairing = 2
 position = Vector2(-152, -64)
 pairing = 1
 
-[node name="green_gate2" parent="objects" instance=ExtResource("10_bvtg8")]
-position = Vector2(-72, -112)
-rotation = 3.14159
-pairing = 8
-animation_name = "opened"
-
-[node name="green_gate3" parent="objects" instance=ExtResource("10_bvtg8")]
-position = Vector2(-104, -112)
-rotation = 3.14159
-pairing = 4
-
-[node name="green_gate4" parent="objects" instance=ExtResource("10_bvtg8")]
-position = Vector2(-136, -112)
-rotation = 3.14159
-pairing = 6
-animation_name = "opened"
-
-[node name="red_gate2" parent="objects" instance=ExtResource("11_18uyg")]
-position = Vector2(72, -112)
-rotation = 3.14159
-pairing = 7
-animation_name = "opened"
-
-[node name="red_gate3" parent="objects" instance=ExtResource("11_18uyg")]
-position = Vector2(136, -112)
-rotation = 3.14159
-pairing = 3
-animation_name = "opened"
-
-[node name="red_gate4" parent="objects" instance=ExtResource("11_18uyg")]
-position = Vector2(104, -112)
-rotation = 3.14159
-pairing = 5
-
 [node name="green_gate5" parent="objects" instance=ExtResource("10_bvtg8")]
 position = Vector2(-136, 144)
 rotation = 3.14159
@@ -657,6 +625,40 @@ position = Vector2(-392, 40)
 rotation = 1.5708
 pairing = 15
 button_pressed = true
+
+[node name="green_gate2" parent="objects" instance=ExtResource("12_oqo01")]
+position = Vector2(-136, -112)
+rotation = 3.14159
+pairing = 4
+animation_name = "opened"
+
+[node name="green_gate3" parent="objects" instance=ExtResource("12_oqo01")]
+position = Vector2(-104, -112)
+rotation = 3.14159
+pairing = 6
+
+[node name="green_gate4" parent="objects" instance=ExtResource("12_oqo01")]
+position = Vector2(-72, -112)
+rotation = 3.14159
+pairing = 8
+animation_name = "opened"
+
+[node name="red_gate2" parent="objects" instance=ExtResource("13_2j2an")]
+position = Vector2(136, -112)
+rotation = 3.14159
+pairing = 3
+animation_name = "opened"
+
+[node name="red_gate3" parent="objects" instance=ExtResource("13_2j2an")]
+position = Vector2(104, -112)
+rotation = 3.14159
+pairing = 5
+
+[node name="red_gate4" parent="objects" instance=ExtResource("13_2j2an")]
+position = Vector2(72, -112)
+rotation = 3.14159
+pairing = 7
+animation_name = "opened"
 
 [node name="red_player" parent="." instance=ExtResource("10_d8pmk")]
 position = Vector2(-440, -64)

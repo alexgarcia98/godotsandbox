@@ -361,6 +361,11 @@ tile_map_data = PackedByteArray("AAD2////AAADAAAAAAD2//7/AAADAAAAAAAIAAYAAAADAAA
 tile_set = SubResource("TileSet_cfd6o")
 collision_enabled = false
 
+[node name="TileMapLayer5" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAYAAoAAAABAA8AAAAYAAsAAAABAA8AAAAYAAwAAAABAA8AAAAZAAoAAAABAA8AAAAZAAsAAAABAA8AAAAZAAwAAAABAA8AAAAaAAoAAAABAA8AAAAaAAsAAAABAA8AAAAaAAwAAAABAA8AAAAbAAoAAAABAA8AAAAbAAsAAAABAA8AAAAbAAwAAAABAA8AAAA=")
+tile_set = SubResource("TileSet_cfd6o")
+collision_enabled = false
+
 [node name="cover1" parent="." instance=ExtResource("2_btfeb")]
 visible = false
 z_index = 10
