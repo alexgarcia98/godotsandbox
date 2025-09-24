@@ -547,7 +547,6 @@ tile_set = SubResource("TileSet_e3rm6")
 collision_enabled = false
 
 [node name="Platform_5H" parent="." instance=ExtResource("2_hdeby")]
-visible = false
 position = Vector2(216, -8)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platform_5H"]
