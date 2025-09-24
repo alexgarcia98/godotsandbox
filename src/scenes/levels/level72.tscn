@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://ctqq47x0agjk8"]
+[gd_scene load_steps=17 format=4 uid="uid://ctqq47x0agjk8"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_38vc6"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_cd3uc"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://but8vfyqaqvpy" path="res://src/scenes/objects/red_target.tscn" id="7_to7gf"]
 [ext_resource type="PackedScene" uid="uid://bl18w118bbwio" path="res://src/scenes/objects/green_target.tscn" id="8_lv5mh"]
 [ext_resource type="PackedScene" uid="uid://b6kekb7sxb3ij" path="res://src/scenes/objects/purple_gate_3.tscn" id="9_w3gc3"]
+[ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="12_to7gf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_38vc6")
@@ -436,3 +437,16 @@ position = Vector2(-440, 208)
 is_main = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -448.0
+offset_top = 72.0
+offset_right = 448.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_to7gf")
+theme_override_font_sizes/font_size = 16
+text = "Break targets using Shoot or Interact
+Break all targets to open the purple gate"
+horizontal_alignment = 1
+vertical_alignment = 1
