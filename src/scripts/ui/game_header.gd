@@ -380,6 +380,11 @@ func _on_reset_times_pressed() -> void:
 		personal_best.text = "Best: " + Messages.get_readable_stored_level_time(current_index)
 		Messages.ResetLevelTime.emit(current_index)
 
+func _on_view_replay_pressed() -> void:
+	settingsWindow.visible = false
+	dimmer.visible = false
+	Messages.ViewBestReplay.emit()
+
 func _on_controls_pressed() -> void:
 	Messages.audio.stream = Messages.stage_select_pressed_sound
 	Messages.audio.play()
@@ -522,6 +527,18 @@ func _on_reset_times_focus_entered() -> void:
 	help_text.text = "Clear best time from the current level"
 
 func _on_reset_times_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_view_replay_focus_entered() -> void:
+	help_text.text = "View best saved replay for the current level"
+
+func _on_view_replay_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_view_replay_mouse_entered() -> void:
+	help_text.text = "View best saved replay for the current level"
+
+func _on_view_replay_mouse_exited() -> void:
 	help_text.text = ""
 
 func _on_controls_focus_entered() -> void:

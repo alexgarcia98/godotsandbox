@@ -1324,7 +1324,6 @@ controller = true
 metadata/_custom_type_script = "uid://oaxgo0r47f3y"
 
 [node name="Settings" type="Control" parent="."]
-visible = false
 z_index = 50
 layout_mode = 1
 anchors_preset = 15
@@ -1594,6 +1593,16 @@ theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
 text = "Clear Time"
 
+[node name="ViewReplay" type="Button" parent="Settings/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "View Replay"
+
 [node name="Controls" type="Button" parent="Settings/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1683,6 +1692,11 @@ text = "Exit Game"
 [connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes" to="." method="_on_reset_times_mouse_entered"]
 [connection signal="mouse_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes" to="." method="_on_reset_times_mouse_exited"]
 [connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes" to="." method="_on_reset_times_pressed"]
+[connection signal="focus_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_focus_entered"]
+[connection signal="focus_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_focus_exited"]
+[connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_mouse_entered"]
+[connection signal="mouse_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_mouse_exited"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_pressed"]
 [connection signal="focus_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/Controls" to="." method="_on_controls_focus_entered"]
 [connection signal="focus_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/Controls" to="." method="_on_controls_focus_exited"]
 [connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/Controls" to="." method="_on_controls_mouse_entered"]

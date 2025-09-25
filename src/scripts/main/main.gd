@@ -79,6 +79,7 @@ func _ready() -> void:
 	Messages.connect("RemapActive", on_remap_active)
 	Messages.connect("RemapInactive", on_remap_inactive)
 	Messages.connect("StoreReplay", on_store_replay)
+	Messages.connect("ViewBestReplay", _on_view_best_replay_pressed)
 	
 	dimmer.visible = false
 	dimmer.self_modulate.a = 0.5

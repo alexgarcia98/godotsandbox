@@ -39,6 +39,7 @@ signal RemapActive()
 signal RemapInactive()
 signal EndReplay(end_time)
 signal StoreReplay()
+signal ViewBestReplay()
 
 var rebinds = {}
 var replays = {}
