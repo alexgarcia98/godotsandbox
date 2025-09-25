@@ -31,8 +31,7 @@ extends Control
 @onready var previous_level_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/PreviousLevelButton
 @onready var restart_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/RestartButton
 @onready var next_level_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/NextLevelButton
-
-
+@onready var view_replay: Button = $Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay
 
 # button remaps
 @onready var move_left: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/move_left
@@ -642,6 +641,10 @@ func on_level_started(index):
 	else:
 		next_level.disabled = true
 		next_level_button.disabled = true
+	if current_index not in Messages.replays:
+		view_replay.disabled = true
+	else:
+		view_replay.disabled = false
 	
 func on_level_ended():
 	level_ended = true
@@ -658,6 +661,16 @@ func on_level_ended():
 	elif level_time_ms < Messages.replays[current_index][2]:
 		if level_time_ms < 60000:
 			Messages.StoreReplay.emit()
+	if (current_index + 1) < Messages.levels_unlocked:
+		next_level.disabled = false
+		next_level_button.disabled = false
+	else:
+		next_level.disabled = true
+		next_level_button.disabled = true
+	if current_index not in Messages.replays:
+		view_replay.disabled = true
+	else:
+		view_replay.disabled = false
 
 func on_replay_ended(end_time):
 	level_ended = true
