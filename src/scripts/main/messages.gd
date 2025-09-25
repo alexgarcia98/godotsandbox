@@ -165,12 +165,21 @@ const ring_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/5. 
 
 
 var audio: AudioStreamPlayer2D
+var music: AudioStreamPlayer2D
+var current_song_index = -1
+
+
+var song_path = "res://src/assets/music/world"
 
 func _init() -> void:
 	audio = AudioStreamPlayer2D.new()
 	add_child(audio)
 	audio.bus = "UI"
+	music = AudioStreamPlayer2D.new()
+	add_child(music)
+	music.bus = "Music"
 	connect("ResetTimes", reset_all_level_times)
+	music.connect("finished", _on_music_finished)
 
 func _ready() -> void:
 	# check if save data exists
@@ -234,6 +243,8 @@ func _ready() -> void:
 		# load levels unlocked
 		replays = file3.get_var()
 		file3.close()
+	
+	current_song_index = -1
 
 func unlock_next_level(current_index):
 	if (current_index + 2) > levels_unlocked:
@@ -428,3 +439,20 @@ func store_replay(actions, positions, time, level):
 	var write_file = FileAccess.open(replay_filepath, FileAccess.WRITE)
 	write_file.store_var(replays)
 	write_file.close()
+
+func menu_music():
+	music.stop()
+	current_song_index = -1
+	music.stream = load("res://src/assets/music/menu.ogg")
+	music.play()
+
+func world_loaded(world_number):
+	if world_number != current_song_index:
+		music.stop()
+		var full_path = song_path + str(world_number) + ".ogg"
+		music.stream = load(full_path)
+		music.play()
+		current_song_index = world_number
+
+func _on_music_finished():
+	music.play()

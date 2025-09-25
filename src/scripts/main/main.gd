@@ -123,6 +123,7 @@ func load_level(index):
 	start_level.grab_focus.call_deferred()
 	init_level_data()
 	Messages.LevelStarted.emit(index)
+	Messages.world_loaded(index / 12)
 
 func init_level_data():
 	ui.visible = true
@@ -170,6 +171,7 @@ func on_main_menu():
 	world_clear_active = false
 	current = new_level.instantiate()
 	add_child(current)
+	Messages.menu_music()
 
 func on_next_level() -> void:
 	var index = (current_index + 1) % (Messages.max_levels + 1)
@@ -292,6 +294,7 @@ func on_world_select():
 	recording_active = false
 	current = new_level.instantiate()
 	add_child(current)
+	Messages.menu_music()
 	
 func clear_screen():
 	if current:
