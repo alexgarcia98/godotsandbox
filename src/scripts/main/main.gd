@@ -56,6 +56,7 @@ var green_end_pos
 
 var replay_actions = []
 var replay_positions = []
+var axis_active = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -94,6 +95,13 @@ func _ready() -> void:
 	replay_active = false
 	recording_active = false
 	send_end_replay = false
+	
+	axis_active = [
+		false, false, false, false, false,
+		false, false, false, false, false,
+		false, false, false, false, false,
+		false, false, false, false, false
+	]
 	
 	on_main_menu()
 	
@@ -151,6 +159,7 @@ func _on_start_level_pressed() -> void:
 	Messages.audio.play()
 	replay_actions = []
 	replay_positions = []
+	Messages.clear_emulated_inputs()
 	Messages.BeginLevel.emit(current_index)
 	level_start_ms = Time.get_ticks_msec()
 	recording_active = true
@@ -201,6 +210,7 @@ func on_restart() -> void:
 	init_level_data()
 	replay_actions = []
 	replay_positions = []
+	Messages.clear_emulated_inputs()
 	Messages.BeginLevel.emit(current_index)
 	level_start_ms = Time.get_ticks_msec()
 	recording_active = true
@@ -459,6 +469,7 @@ func on_replay():
 	position_count = 0
 	if replay_actions.size() > 0:
 		next_action_time = replay_actions[0][0]
+	Messages.clear_emulated_inputs()
 	Messages.Replay.emit()
 	Messages.BeginLevel.emit(current_index)
 	red_player.modulate = Color.RED
@@ -501,30 +512,25 @@ func _process(delta: float) -> void:
 		var event = InputEventAction.new()
 		event.pressed = true
 		event.action = "move_up"
+		event.device = -5
 		Input.parse_input_event(event)
 		var event2 = InputEventAction.new()
 		event2.pressed = false
 		event2.action = "move_up"
+		event2.device = -5
 		Input.parse_input_event(event2)
+		Messages.clear_emulated_inputs()
 		return
 	while(true):
 		var event = replay_actions[action_count][1]
 		var current_time = Time.get_ticks_msec() - level_start_ms
 		if current_time > next_action_time:
-			var input_event
+			var input_event = InputEventAction.new()
 			var stored_event = replay_actions[action_count][1]
-			if stored_event[0] == "keyboard":
-				input_event = InputEventKey.new()
-				input_event.physical_keycode = stored_event[1]
-				input_event.pressed = stored_event[2]
-			elif stored_event[0] == "joypad_button":
-				input_event = InputEventJoypadButton.new()
-				input_event.button_index = stored_event[1]
-				input_event.pressed = stored_event[2]
-			elif stored_event[0] == "joypad_axis":
-				input_event = InputEventJoypadMotion.new()
-				input_event.axis = stored_event[1]
-				input_event.axis_value = stored_event[2]
+			input_event.action = stored_event[0]
+			input_event.pressed = stored_event[1]
+			input_event.strength = stored_event[2]
+			input_event.device = -5
 			print("event: %s" % input_event)
 			Input.parse_input_event(input_event)
 			#red_player.movement_state_machine.process_input(input_event)
@@ -556,11 +562,14 @@ func _physics_process(delta: float) -> void:
 			var event = InputEventAction.new()
 			event.pressed = true
 			event.action = "move_up"
+			event.device = -5
 			Input.parse_input_event(event)
 			var event2 = InputEventAction.new()
 			event2.pressed = false
 			event2.action = "move_up"
+			event2.device = -5
 			Input.parse_input_event(event2)
+			Messages.clear_emulated_inputs()
 	elif recording_active:
 		var pos1 = red_player.global_position
 		var pos2 = green_player.global_position
@@ -568,8 +577,15 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed('restart'):
-		if restart_valid:
+		if restart_valid and replay_released:
+			restart_valid = false
+			replay_released = false
 			Messages.Restart.emit()
+			print("emitted restart")
+	elif Input.is_action_just_released('restart'):
+		print("restart released")
+		replay_released = true
+		return
 	elif Input.is_action_just_pressed('settings'):
 		if settings_valid and settings_released and remap:
 			settings_released = false
@@ -587,15 +603,36 @@ func _unhandled_input(event: InputEvent) -> void:
 			if input_time >= 60000:
 				return
 			var input_event_storage
+			var strength = 0
+			var valid = true
 			if event is InputEventKey:
-				input_event_storage = ["keyboard", event.physical_keycode, event.pressed]
+				if event.pressed:
+					strength = 1
+				if event.physical_keycode in Messages.action_lookup["keyboard"]:
+					input_event_storage = [Messages.action_lookup["keyboard"][event.physical_keycode], event.pressed, strength]
 			elif event is InputEventJoypadButton:
-				input_event_storage = ["joypad_button", event.button_index, event.pressed]
+				if event.pressed:
+					strength = 1
+				if event.button_index in Messages.action_lookup["joypad_button"]:
+					input_event_storage = [Messages.action_lookup["joypad_button"][event.button_index], event.pressed, strength]
 			elif event is InputEventJoypadMotion:
 				input_event_storage = ["joypad_axis", event.axis, event.axis_value]
+				var pressed = true
+				if abs(event.axis_value) < 0.2:
+					pressed = false
+				var axis = event.axis
+				if event.axis_value < 0:
+					axis = event.axis + 10
+				if axis_active[axis] == pressed:
+					valid = false
+				else:
+					if axis in Messages.action_lookup["joypad_axis"]:
+						input_event_storage = [Messages.action_lookup["joypad_axis"][axis], pressed, event.axis_value]
+						axis_active[axis] = pressed
 			else:
 				return
-			replay_actions.append([input_time, input_event_storage])
+			if valid:
+				replay_actions.append([input_time, input_event_storage])
 	#elif Input.is_action_just_pressed('move_up'):
 		#print("pressing ui up")
 		#Input.action_press("ui_up")

@@ -233,6 +233,7 @@ func _ready() -> void:
 				for e in temp:
 					if e is InputEventKey:
 						control_scheme[a] = ["keyboard", e.physical_keycode, 0]
+						
 			file2.store_var(control_scheme)
 			file2.close()
 			Messages.rebinds = control_scheme
@@ -249,7 +250,8 @@ func _ready() -> void:
 			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
 			file2.store_var(Messages.rebinds)
 			file2.close()
-			
+		
+		var modified = false
 		for a in Messages.rebinds.keys():
 			var event
 			if Messages.rebinds[a][0] == "keyboard":
@@ -269,6 +271,17 @@ func _ready() -> void:
 			InputMap.action_add_event(a, event)
 			print("initializing remap of " + a + " to " + str(Messages.rebinds[a][1]))
 			action_dict[a].text = Messages.get_event_text(event)
+		for a in action_items_dict_controller.keys():
+			if a not in Messages.rebinds:
+				var temp = InputMap.action_get_events(a)
+				for e in temp:
+					if e is InputEventKey:
+						modified = true
+						Messages.rebinds[a] = ["keyboard", e.physical_keycode, 0]
+		if modified:
+			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
+			file2.store_var(Messages.rebinds)
+			file2.close()
 
 	# check if input remaps exist for contoller
 	var file4 = FileAccess.open(filepath4, FileAccess.READ)
@@ -313,6 +326,7 @@ func _ready() -> void:
 			file4.store_var(Messages.controller_rebinds)
 			file4.close()
 			
+		var modified = false
 		for a in Messages.controller_rebinds.keys():
 			var event
 			if Messages.controller_rebinds[a][0] == "keyboard":
@@ -332,6 +346,24 @@ func _ready() -> void:
 			InputMap.action_add_event(a, event)
 			print("initializing remap of " + a + " to " + str(Messages.controller_rebinds[a][1]))
 			controller_action_dict[a].text = Messages.get_event_text(event)
+		for a in action_items_dict.keys():
+			if a not in Messages.rebinds:
+				var temp = InputMap.action_get_events(a)
+				for e in temp:
+					if e is InputEventJoypadButton:
+						modified = true
+						Messages.rebinds[a] = ["joypad_button", e.button_index, 0]
+						break
+					elif e is InputEventJoypadMotion:
+						modified = true
+						Messages.rebinds[a] = ["joypad_axis", e.axis, e.axis_value]
+						break
+		if modified:
+			file2 = FileAccess.open(filepath2, FileAccess.WRITE)
+			file2.store_var(Messages.rebinds)
+			file2.close()
+			
+	Messages.fix_replays()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -684,6 +716,7 @@ func on_keyboard_remapped(a, key):
 	write_file = FileAccess.open(filepath2, FileAccess.WRITE)
 	write_file.store_var(Messages.rebinds)
 	write_file.close()
+	Messages.set_action_lookup()
 	print("storing remap of " + a + " to " + str(key))
 
 func on_joypad_button_remapped(a, button):
@@ -691,6 +724,7 @@ func on_joypad_button_remapped(a, button):
 	write_file = FileAccess.open(filepath4, FileAccess.WRITE)
 	write_file.store_var(Messages.controller_rebinds)
 	write_file.close()
+	Messages.set_action_lookup()
 	print("storing remap of " + a + " to " + str(button))
 
 func on_joypad_axis_remapped(a, axis, value):
@@ -703,6 +737,7 @@ func on_joypad_axis_remapped(a, axis, value):
 	write_file = FileAccess.open(filepath4, FileAccess.WRITE)
 	write_file.store_var(Messages.controller_rebinds)
 	write_file.close()
+	Messages.set_action_lookup()
 	print("storing remap of " + a + " to " + str(axis))
 
 func on_reset_controls():
@@ -738,6 +773,7 @@ func on_reset_controls():
 	
 	Messages.controller_rebinds = control_scheme_2
 	Messages.rebinds = control_scheme
+	Messages.set_action_lookup()
 
 func on_settings():
 	if settingsWindow.visible:

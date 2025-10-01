@@ -134,7 +134,11 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and can_move:
-		movement_state_machine.process_input(event)
+		if replay:
+			if event.device == -5:
+				movement_state_machine.process_input(event)
+		else:
+			movement_state_machine.process_input(event)
 		#gun_state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:

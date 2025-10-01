@@ -44,6 +44,7 @@ signal ViewBestReplay()
 var rebinds = {}
 var replays = {}
 var controller_rebinds = {}
+var action_lookup = {}
 var max_levels = 143
 var filepath = "user://save_data.dat"
 var replay_filepath = "user://replays.dat"
@@ -144,6 +145,23 @@ var rank_changes = [1, 1.25, 2, 3, 10]
 var rank_assn = ["S", "A", "B", "C", "D", "F", "No Rank Achieved"]
 
 var rank_color = {"S": "c687f7", "A": "7bf7f6", "B": "d2d2d2", "C": "e8b904", "D": "9e9ea8", "F": "c98645", "None": "ffffff"}
+
+var action_list = [
+	"move_left", 
+	"move_right",
+	"move_up",
+	"move_down",
+	"jump",
+	"dash",
+	"action",
+	"freeze",
+	"throw",
+	"shoot",
+	"switch",
+	"pivot",
+	"settings",
+	"restart"
+]
 
 const jump_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/3. Movement/Jump_18.wav")
 const dash_sound = preload("res://src/assets/HALFTONE SFX Pack LITE/Gameplay/3. Movement/Jump_4.wav")
@@ -457,3 +475,86 @@ func world_loaded(world_number):
 
 func _on_music_finished():
 	music.play()
+
+func convert_replays():
+	var modified = false
+	for r in replays:
+		var action_count = 0
+		var replay_actions = replays[r][0]
+		var replace = true
+		var new_replay_actions = []
+		while action_count < replay_actions.size():
+			var converted = []
+			var stored_event = replay_actions[action_count][1]
+			var strength = 0
+			var action_time = replay_actions[action_count][0]
+			if stored_event[0] == "keyboard":
+				if stored_event[2]:
+					strength = 1
+				if stored_event[1] in Messages.action_lookup["keyboard"]:
+					converted = [Messages.action_lookup["keyboard"][stored_event[1]], stored_event[2], strength]
+			elif stored_event[0] == "joypad_button":
+				if stored_event[2]:
+					strength = 1
+				if stored_event[1] in Messages.action_lookup["joypad_button"]:
+					converted = [Messages.action_lookup["joypad_button"][stored_event[1]], stored_event[2], strength]
+			elif stored_event[0] == "joypad_axis":
+				var pressed = true
+				if abs(stored_event[2]) < 0.2:
+					pressed = false
+				var axis = stored_event[1]
+				if stored_event[2] < 0:
+					axis = stored_event[1] + 10
+				if axis in Messages.action_lookup["joypad_axis"]:
+					converted = [Messages.action_lookup["joypad_axis"][axis], pressed, stored_event[2]]				
+			else:
+				replace = false
+				break
+			if converted.size() != 0:
+				new_replay_actions.append([action_time, converted])
+			action_count += 1
+		if replace:
+			modified = true
+			print("replacing replay %s" % r)
+			replays[r][0] = new_replay_actions
+			
+	if modified:
+		var file3 = FileAccess.open(replay_filepath, FileAccess.WRITE)
+		file3.store_var(replays)
+		file3.close()
+	
+func set_action_lookup():
+	action_lookup["keyboard"] = {}
+	action_lookup["joypad_button"] = {}
+	action_lookup["joypad_axis"] = {}
+	print("keyboard rebinds")
+	for action in rebinds:
+		var data = rebinds[action]
+		print(data)
+		action_lookup[data[0]][data[1]] = action
+	print("\ncontroller rebinds")
+	for action in controller_rebinds:
+		var data = controller_rebinds[action]
+		print(data)
+		var axis = data[1]
+		if data[0] == "joypad_axis":
+			if data[2] < 0:
+				axis = data[1] + 10
+			action_lookup[data[0]][axis] = action
+		else:
+			action_lookup[data[0]][data[1]] = action
+
+func fix_replays():
+	set_action_lookup()
+	convert_replays()
+
+func clear_emulated_inputs():
+	for a in action_list:
+		if a == "restart":
+			continue
+		print("clearing emulated %s" % a)
+		var e = InputEventAction.new()
+		e.pressed = false
+		e.action = a
+		e.device = -5
+		Input.parse_input_event(e)
