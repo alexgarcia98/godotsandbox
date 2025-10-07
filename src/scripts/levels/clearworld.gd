@@ -26,6 +26,16 @@ func _ready() -> void:
 		else:
 			next.disabled = false
 			next.grab_focus.call_deferred()
+	elif world_number == 7:
+		next.disabled = true
+		stage_select.grab_focus.call_deferred()
+	elif world_number == 3:
+		if Messages.unlocked_levels[Messages.worldNames[7]] == 0:
+			next.disabled = true
+			stage_select.grab_focus.call_deferred()
+		else:
+			next.disabled = false
+			next.grab_focus.call_deferred()
 	else:
 		next.disabled = false
 		next.grab_focus.call_deferred()

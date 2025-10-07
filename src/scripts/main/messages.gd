@@ -704,7 +704,7 @@ func get_next_level(current_index):
 		if next_world == 12:
 			return max_levels + 1
 		if next_world == -1:
-			return -1
+			return 144
 	return next_world * 12
 
 func get_next_world(current_index):
