@@ -210,6 +210,8 @@ func on_next_level() -> void:
 
 func on_next_world() -> void:
 	var index = Messages.get_next_world(current_index)
+	if world_clear_active:
+		world_clear_active = false
 	load_level(index)
 
 func on_restart() -> void:
