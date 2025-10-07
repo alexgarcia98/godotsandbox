@@ -23,6 +23,7 @@ signal BeginLevel(level)
 # UI Interactions
 signal PreviousLevel()
 signal NextLevel()
+signal NextWorld()
 signal Restart()
 signal ResetTimes()
 signal ResetLevelTime(level)
@@ -50,7 +51,21 @@ var filepath = "user://save_data.dat"
 var replay_filepath = "user://replays.dat"
 var saved_times = []
 
-var levels_unlocked: int = 1
+var unlocked_levels = {
+	"Getting Started": 1,
+	"Spo-cha": 0,
+	"Thread the Needle": 0,
+	"Mirror": 0,
+	"The Movement": 0,
+	"Retro Games": 0,
+	"Shooting Practice": 0,
+	"Helping Hand": 0,
+	"X-Ray": 0,
+	"Around the World": 0,
+	"Foodieland": 0,
+	"Endgame": 0,
+}
+
 var levels_unlocked_filepath = "user://levels_unlocked.dat"
 
 var control_names = {
@@ -70,12 +85,12 @@ var control_names = {
 var worldNames = [
 	"Getting Started",
 	"Mirror",
-	"Around the World",
 	"The Movement",
-	"Foodieland",
-	"Shooting Practice",
+	"Around the World",
 	"Spo-cha",
+	"Shooting Practice",
 	"X-Ray",
+	"Foodieland",
 	"Retro Games",
 	"Helping Hand",
 	"Thread the Needle",
@@ -116,22 +131,22 @@ var levelInfo = {
 var worldLevels = {
 	"Getting Started": ["Move", "Jump", "Dash", "Walls", "Buttons", "Switch", 
 		"Levers", "Shooting", "Danger", "Throwing", "Freeze", "Advance"],
-	"Spo-cha": ["Long Jump", "High Jump", "Hurdles", "Shotput", "Pole Vault", "100 Meter Dash", 
-		"Archery", "Basketball", "Baseball", "Golf", "Football", "Soccer"],
-	"Thread the Needle": ["One-Way Street", "Two-Way Street", "Double Dash", "Waves", "Simon the Digger", "The Big One", 
-		"Tight Squeeze", "Trees", "Popo and Nana", "Parting Shot", "Good Luck", "Exam-E"],
-	"Mirror": ["Reunion", "Meetup", "Small Jumps", "Big Jumps", "Twin Peaks", "Summit", 
-		"Drop Chute", "Airkick Turn", "Escalator", "U-Turn", "Big Dogs", "Exam-D"],
-	"The Movement": ["Uber", "Elevator", "Timed Doors", "My Back!", "Split Ascent", "Floaters", 
-		"Not Flappy Bird", "Quick Gap", "The Walls Are Moving!", "Chaos", "The Wave", "Enjoy the Ride"],
-	"Retro Games": ["Pong", "Space Invaders", "Pac-Man", "Donkey Kong", "Bomberman", "Tetris", 
-		"Super Mario Bros.", "Mega Man 2", "Street Fighter 2", "Sonic the Hedgehog 2", "Doom", "Pokemon Red"],
-	"Shooting Practice": ["Break the Targets!!", "Moving Shot", "Shoot the Gap", "Precision Shooting", "Drop Shot", "It's the Breakout System", 
-		"Rapunzel", "Moving Targets", "Shooting Blind", "Target Smash! Lv.1", "Fox Target Test", "Shoot Your Shot"],
-	"Helping Hand": ["Mirror?", "Diving Partners", "Altergate", "Rescue the Princess", "Heads Up", "Watch Your Feet!", 
-		"Scaffolds", "I'll Go First", "Lights Out", "Jailbreak", "Wall Break", "Escape"],
-	"X-Ray": ["Walking on Air", "Invisible", "Also Not Flappy Bird", "Potholes", "Clear Shot", "Mind the Gap",
-		"Walls?", "3hai", "Firewall", "Black Mold", "Muscle Memory", "Find the Cheese"],
+	"Spo-cha": ["Long Jump", "High Jump", "Hurdles", "Basketball", "Football", "Soccer",
+		"Archery", "Baseball", "Golf", "Shotput", "Pole Vault", "100 Meter Dash"],
+	"Thread the Needle": ["One-Way Street", "Two-Way Street", "Double Dash", "Waves", "Trees", "Simon the Digger",  
+		"The Big One", "Tight Squeeze",  "Popo and Nana", "Parting Shot", "Good Luck", "Exam-E"],
+	"Mirror": ["Reunion", "Meetup", "Small Jumps", "Drop Chute","Twin Peaks", "Summit",
+		"Big Jumps", "Airkick Turn", "Escalator", "Big Dogs", "U-Turn", "Exam-D"],
+	"The Movement": ["Uber", "Elevator", "Floaters", "Not Flappy Bird", "The Wave", "Enjoy the Ride",
+		"Timed Doors", "Split Ascent", "My Back!", "Quick Gap", "The Walls Are Moving!", "Chaos"],
+	"Retro Games": ["Pong", "Space Invaders", "Super Mario Bros.", "Street Fighter 2", "Sonic the Hedgehog 2", "Pokemon Red",
+		"Pac-Man", "Donkey Kong", "Bomberman", "Tetris", "Mega Man 2", "Doom"],
+	"Shooting Practice": ["Break the Targets!!", "Moving Shot", "Rapunzel", "Shooting Blind", "It's the Breakout System", "Target Smash! Lv.1", 
+		"Shoot the Gap", "Moving Targets", "Drop Shot", "Precision Shooting", "Fox Target Test", "Shoot Your Shot"],
+	"Helping Hand": ["Mirror?", "Diving Partners", "Altergate", "Heads Up", "Watch Your Feet!", "Scaffolds", 
+		"Rescue the Princess", "I'll Go First", "Lights Out", "Jailbreak", "Wall Break", "Escape"],
+	"X-Ray": ["Walking on Air", "Invisible", "Also Not Flappy Bird", "Potholes", "Mind the Gap", "Walls?", 
+		"3hai", "Firewall", "Clear Shot", "Black Mold", "Muscle Memory", "Find the Cheese"],
 	"Around the World": ["Golden Gate Bridge", "Mt. Fuji", "The Pyramids of Giza", "Christ the Redeemer", "Eiffel Tower", "Sydney Opera House", 
 		"Taj Mahal", "Stonehenge", "Leaning Tower of Pisa", "The Colosseum", "Great Wall of China", "Earth"],
 	"Foodieland": ["Dim Sum", "Jamón", "Samosas", "Sushi", "Tacos", "Spaghetti",
@@ -237,14 +252,33 @@ func _ready() -> void:
 		var err = FileAccess.get_open_error()
 		if err == ERR_FILE_NOT_FOUND:
 			# create new save data
+			print("lvl: new file")
 			file2 = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
-			var unlocked = 1
-			file2.store_var(unlocked)
+			file2.store_var(unlocked_levels)
+			#file2.store_var(126)
 			file2.close()
-			levels_unlocked = unlocked
 	else:
-		# load levels unlocked
-		levels_unlocked = file2.get_var()
+		print("lvl: existing file")
+		var temp_unlock = file2.get_var()
+		if typeof(temp_unlock) == TYPE_INT:
+			print("lvl: convert file")
+			# need to convert to new format
+			for world in worldNames:
+				if temp_unlock > 12:
+					unlocked_levels[world] = 12
+				else:
+					unlocked_levels[world] = temp_unlock
+				temp_unlock = temp_unlock - 12
+				if temp_unlock <= 0:
+					break
+			file2 = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
+			file2.store_var(unlocked_levels)
+		else:
+			print("lvl: %s" % typeof(temp_unlock))
+			print("lvl: loading file")
+			# load levels unlocked
+			unlocked_levels = temp_unlock
+			print("lvl: %s" % unlocked_levels)
 		file2.close()
 		
 	var file3 = FileAccess.open(replay_filepath, FileAccess.READ)
@@ -264,23 +298,91 @@ func _ready() -> void:
 	
 	current_song_index = -2
 
-func unlock_next_level(current_index):
-	if (current_index + 2) > levels_unlocked:
-		levels_unlocked = min(current_index + 2, max_levels + 1)
+func unlock_next_level(current_index):	
+	var world_index = current_index / 12
+	var level_index = current_index % 12
+	var next_world = 12
+	var bonus_world = -1
+	var write_data = false
+	if level_index < 5:
+		if (level_index + 1) == unlocked_levels[worldNames[world_index]]:
+			unlocked_levels[worldNames[world_index]] += 1
+			write_data = true
+	elif level_index == 5:
+		if world_index == 2:
+			next_world = 4
+			bonus_world = 3
+		elif world_index == 3:
+			next_world = 12
+		elif world_index == 6:
+			next_world = 8
+			bonus_world = 7
+		elif world_index == 7:
+			next_world = 12
+		elif world_index == 10:
+			next_world = 12
+		else:
+			next_world = world_index + 1
+		if (level_index + 1) == unlocked_levels[worldNames[world_index]]:
+			unlocked_levels[worldNames[world_index]] += 1
+			write_data = true
+		if next_world != 12:
+			if unlocked_levels[worldNames[next_world]] == 0:
+				unlocked_levels[worldNames[next_world]] = 1
+				write_data = true
+		if bonus_world != -1:
+			if unlocked_levels[worldNames[bonus_world]] == 0:
+				unlocked_levels[worldNames[bonus_world]] = 1
+				write_data = true
+	elif level_index < 11:
+		if (level_index + 1) == unlocked_levels[worldNames[world_index]]:
+			unlocked_levels[worldNames[world_index]] += 1
+			write_data = true
+	else:
+		if world_index == 2:
+			next_world = 4
+		elif world_index == 3:
+			next_world = 12
+		elif world_index == 6:
+			next_world = 8
+		elif world_index == 7:
+			next_world = 12
+		elif world_index == 10:
+			next_world = 12
+		else:
+			next_world = world_index + 1
+		if next_world != 12:
+			if unlocked_levels[worldNames[next_world]] == 0:
+				unlocked_levels[worldNames[next_world]] = 1
+				write_data = true
+		# check to unlock final world
+		var unlock = true
+		for i in range(132):
+			if saved_times[i] >= 5999999:
+				unlock = false
+				break
+		if unlock:
+			if unlocked_levels[worldNames[11]] == 0:
+				unlocked_levels[worldNames[11]] = 1
+				write_data = true
+	if write_data == true:
 		var write_file = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
-		write_file.store_var(levels_unlocked)
+		write_file.store_var(unlocked_levels)
 		write_file.close()
 
 func unlock_levels():
-	levels_unlocked = max_levels + 1
+	for world in worldNames:
+		unlocked_levels[world] = 12
 	var write_file = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
-	write_file.store_var(levels_unlocked)
+	write_file.store_var(unlocked_levels)
 	write_file.close()
 
 func lock_levels():
-	levels_unlocked = 1
+	for world in worldNames:
+		unlocked_levels[world] = 0
+	unlocked_levels[worldNames[0]] = 1
 	var write_file = FileAccess.open(levels_unlocked_filepath, FileAccess.WRITE)
-	write_file.store_var(levels_unlocked)
+	write_file.store_var(unlocked_levels)
 	write_file.close()
 
 func get_save_index(current_index) -> int:
@@ -558,3 +660,66 @@ func clear_emulated_inputs():
 		e.action = a
 		e.device = -5
 		Input.parse_input_event(e)
+
+func is_next_level_unlocked(current_index):
+	var world_index = current_index / 12
+	var level_index = current_index % 12
+	if level_index < 11:
+		if (level_index + 1) < unlocked_levels[worldNames[world_index]]:
+			return true
+		else:
+			return false
+	else:
+		var next_world = world_index + 1
+		if world_index == 2:
+			next_world = 4
+		elif world_index == 3:
+			next_world = 7
+		elif world_index == 6:
+			next_world = 8
+		elif world_index == 7:
+			next_world = 12
+		if next_world == 12:
+			return false
+		if unlocked_levels[worldNames[next_world]] > 0:
+			return true
+	return false
+
+func get_next_level(current_index):
+	var world_index = current_index / 12
+	var level_index = current_index % 12
+	var next_world = 0
+	if level_index < 11:
+		return current_index + 1
+	else:
+		next_world = world_index + 1
+		if world_index == 2:
+			next_world = 4
+		elif world_index == 3:
+			next_world = 7
+		elif world_index == 6:
+			next_world = 8
+		elif world_index == 7:
+			next_world = -1
+		if next_world == 12:
+			return max_levels + 1
+		if next_world == -1:
+			return -1
+	return next_world * 12
+
+func get_next_world(current_index):
+	var world_index = current_index / 12
+	var next_world = world_index + 1
+	if world_index == 2:
+		next_world = 4
+	elif world_index == 3:
+		next_world = 7
+	elif world_index == 6:
+		next_world = 8
+	elif world_index == 7:
+		next_world = -1
+	if next_world == 12:
+		return max_levels + 1
+	if next_world == -1:
+		return -1
+	return next_world * 12

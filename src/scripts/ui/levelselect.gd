@@ -5,39 +5,42 @@ extends Control
 @onready var select_level: Label = $WorldSelect/VBoxContainer/MarginContainer3/MarginContainer2/SelectLevel
 
 @onready var level_1: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level1/Level1
-@onready var level_2: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2/Level2
-@onready var level_3: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3/Level3
 @onready var level_4: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level4/Level4
+@onready var level_7: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level7/Level7
+@onready var level_10: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level10/Level10
+@onready var level_2: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level2/Level2
 @onready var level_5: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level5/Level5
-@onready var level_6: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6/Level6
-@onready var level_7: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7/Level7
 @onready var level_8: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level8/Level8
+@onready var level_11: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level11/Level11
+@onready var level_3: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level3/Level3
+@onready var level_6: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level6/Level6
 @onready var level_9: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level9/Level9
-@onready var level_10: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10/Level10
-@onready var level_11: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/Level11
 @onready var level_12: Button = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12/Level12
 
 @onready var rank_1: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level1/MarginContainer/Rank1
-@onready var rank_2: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2/MarginContainer/Rank2
-@onready var rank_3: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3/MarginContainer/Rank3
 @onready var rank_4: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level4/MarginContainer/Rank4
+@onready var rank_7: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level7/MarginContainer/Rank7
+@onready var rank_10: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level10/MarginContainer/Rank10
+@onready var rank_2: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level2/MarginContainer/Rank2
 @onready var rank_5: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level5/MarginContainer/Rank5
-@onready var rank_6: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6/MarginContainer/Rank6
-@onready var rank_7: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7/MarginContainer/Rank7
 @onready var rank_8: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level8/MarginContainer/Rank8
+@onready var rank_11: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level11/MarginContainer/Rank11
+@onready var rank_3: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level3/MarginContainer/Rank3
+@onready var rank_6: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level6/MarginContainer/Rank6
 @onready var rank_9: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level9/MarginContainer/Rank9
-@onready var rank_10: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10/MarginContainer/Rank10
-@onready var rank_11: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/MarginContainer/Rank11
 @onready var rank_12: Label = $WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level12/MarginContainer/Rank12
 
+
 @export var world_level: int = 0
+
+@onready var blue_background: ColorRect = $WorldSelect/VBoxContainer/MarginContainer/HBoxContainer/background
+@onready var red_background: ColorRect = $WorldSelect/VBoxContainer/MarginContainer/HBoxContainer/background2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 	# init button visibility
 	var mainNode = get_parent()
-	var levelCount = min(Messages.levels_unlocked, Messages.max_levels + 1)
 	
 	var levelList = [
 		level_1, 
@@ -69,15 +72,26 @@ func _ready() -> void:
 		rank_12,
 	]
 	
+	select_level.text = Messages.worldNames[world_level]
+	
+	blue_background.visible = true
+	red_background.visible = true
+	
+	if world_level == 0 or world_level == 3 or world_level == 7:
+		red_background.visible = false
+	elif world_level == 11:
+		blue_background.visible = false
+	
 	for i in range(levelList.size()):
 		levelList[i].level = (world_level * 12) + i
 	
 	var max_level = level_12.level + 1
+	var levelCount = Messages.unlocked_levels[Messages.worldNames[world_level]]
 	print("max_level: " + str(max_level))
 	print("levelCount: " + str(levelCount))
-	if levelCount < max_level:
-		var start = levelCount % 12
-		for i in range(start, levelList.size()):
+	
+	if levelCount < levelList.size():
+		for i in range(levelCount, levelList.size()):
 			levelList[i].disabled = true
 			
 	for i in range(max_level - 13, max_level):
@@ -90,10 +104,7 @@ func _ready() -> void:
 			level_rank = ""
 		rank.text = level_rank
 		level.text = Messages.worldLevels[worldName][i % 12]
-	
-	var worldIndex = level_1.level / 12
-	select_level.text = Messages.worldNames[worldIndex]
-	
+
 	level_1.grab_focus.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

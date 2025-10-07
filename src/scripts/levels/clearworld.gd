@@ -19,7 +19,16 @@ func _ready() -> void:
 	if rank_text != "":
 		clear_rank.text = "World Rank: " + rank_text
 	
-	next.grab_focus.call_deferred()
+	if world_number == 10:
+		if Messages.unlocked_levels[Messages.worldNames[11]] == 0:
+			next.disabled = true
+			stage_select.grab_focus.call_deferred()
+		else:
+			next.disabled = false
+			next.grab_focus.call_deferred()
+	else:
+		next.disabled = false
+		next.grab_focus.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -390,11 +390,10 @@ func _on_next_level_pressed() -> void:
 	Messages.audio.play()
 	next_level.release_focus()
 	if not (level_ended):
-		if current_index < Messages.levels_unlocked:
-			settingsWindow.visible = false
-			dimmer.visible = false
-			exit_settings.release_focus()
-			Messages.NextLevel.emit()
+		settingsWindow.visible = false
+		dimmer.visible = false
+		exit_settings.release_focus()
+		Messages.NextLevel.emit()
 
 func _on_restart_pressed() -> void:
 	Messages.audio.stream = Messages.progress_button_sound
@@ -667,7 +666,7 @@ func on_level_started(index):
 	else:
 		previous_level.disabled = false
 		previous_level_button.disabled = false
-	if (current_index + 1) < Messages.levels_unlocked:
+	if Messages.is_next_level_unlocked(current_index):
 		next_level.disabled = false
 		next_level_button.disabled = false
 	else:
@@ -693,7 +692,7 @@ func on_level_ended():
 	elif level_time_ms < Messages.replays[current_index][2]:
 		if level_time_ms < 60000:
 			Messages.StoreReplay.emit()
-	if (current_index + 1) < Messages.levels_unlocked:
+	if Messages.is_next_level_unlocked(current_index):
 		next_level.disabled = false
 		next_level_button.disabled = false
 	else:

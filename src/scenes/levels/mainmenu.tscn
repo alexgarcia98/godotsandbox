@@ -620,7 +620,7 @@ focus_neighbor_top = NodePath("../../../../MarginContainer2/MarginContainer/Exit
 focus_neighbor_right = NodePath(".")
 theme_override_fonts/font = ExtResource("4_o8n7i")
 theme_override_font_sizes/font_size = 16
-text = "Export Scores"
+text = "Export to Clipboard"
 
 [node name="MarginContainer" type="MarginContainer" parent="AllUI/RecordsWindow/MarginContainer/VBoxContainer"]
 layout_mode = 2

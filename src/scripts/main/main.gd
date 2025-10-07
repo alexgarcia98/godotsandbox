@@ -64,6 +64,7 @@ func _ready() -> void:
 	Messages.connect("EndGame", on_end_game)
 	Messages.connect("PreviousLevel", on_previous_level)
 	Messages.connect("NextLevel", on_next_level)
+	Messages.connect("NextWorld", on_next_world)
 	Messages.connect("Restart", on_restart)
 	Messages.connect("MainMenu", on_main_menu)
 	Messages.connect("WorldSelect", on_world_select)
@@ -183,18 +184,33 @@ func on_main_menu():
 	Messages.menu_music()
 
 func on_next_level() -> void:
-	var index = (current_index + 1) % (Messages.max_levels + 1)
-	if (current_index + 1) % 12 == 0:
-		if world_clear_active:
-			world_clear_active = false
-			if current_index == Messages.max_levels:
-				clear_screen()
+	var index = Messages.get_next_level(current_index)
+	var world_index = current_index / 12
+	if index % 6 == 0:
+		if index % 12 == 0:
+			if world_clear_active:
+				world_clear_active = false
+				if current_index == Messages.max_levels:
+					clear_screen()
+				else:
+					load_level(index)
 			else:
-				load_level(index)
+				world_clear(current_index / 12)
 		else:
-			world_clear(current_index / 12)
+			if world_clear_active:
+				world_clear_active = false
+				load_level(index)
+			else:
+				if world_index == 0 or world_index == 3 or world_index == 7 or world_index == 11:
+					load_level(index)
+				else:
+					easy_world_clear(current_index / 12)
 	else:
 		load_level(index)
+
+func on_next_world() -> void:
+	var index = Messages.get_next_world(current_index)
+	load_level(index)
 
 func on_restart() -> void:
 	var level_index = Messages.get_save_index(current_index)
@@ -339,7 +355,25 @@ func world_clear(world_index):
 	current = new_level.instantiate()
 	current.world_number = world_index
 	add_child(current)
-	
+
+func easy_world_clear(world_index):
+	world_clear_active = true
+	if current:
+		current.queue_free()
+	var new_level = load("res://src/scenes/levels/clearworldeasy.tscn")
+	ui.visible = false
+	dimmer.visible = false
+	level_start.visible = false
+	level_end.visible = false
+	restart_valid = false
+	settings_valid = false
+	replay_valid = false
+	replay_active = false
+	recording_active = false
+	current = new_level.instantiate()
+	current.world_number = world_index
+	add_child(current)
+
 func on_load_level(index):
 	load_level(index)
 	

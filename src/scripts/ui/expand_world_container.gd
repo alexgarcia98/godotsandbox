@@ -3,8 +3,6 @@ extends MarginContainer
 class_name ExpandRecordContainer
 @export
 var world_number: int
-@export
-var levels_unlocked: int
 
 var world_levels : VBoxContainer
 var expand_world_button_1 : Button
@@ -13,11 +11,7 @@ var expand_world_button_2 : Button
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var font = preload("res://src/assets/fonts/PixelOperator8.ttf")
-	var irange
-	if (((world_number + 1) * 12) <= levels_unlocked):
-		irange = 12
-	else:
-		irange = levels_unlocked % 12
+	var irange = Messages.unlocked_levels[Messages.worldNames[world_number]]
 	
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	size_flags_vertical = Control.SIZE_SHRINK_CENTER

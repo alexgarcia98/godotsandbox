@@ -24,6 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="WorldSelect"]
+visible = false
 layout_mode = 2
 color = Color(0, 0, 1, 1)
 
@@ -71,9 +72,19 @@ text = "Back"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="background" type="ColorRect" parent="WorldSelect/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="background" type="ColorRect" parent="WorldSelect/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 color = Color(0.0784314, 0.596078, 0.862745, 1)
+
+[node name="background2" type="ColorRect" parent="WorldSelect/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.891144, 0.359506, 0.35749, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -128,82 +139,6 @@ text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Level2" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Level2" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_tw266")
-theme_override_font_sizes/font_size = 24
-text = "2"
-autowrap_mode = 3
-script = ExtResource("4_aq5mt")
-level = 1
-metadata/_custom_type_script = "uid://dte37v1c8txj8"
-
-[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Rank2" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level2/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.482353, 0.968627, 0.964706, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_12hc3")
-theme_override_font_sizes/font_size = 24
-text = "A"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Level3" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Level3" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_tw266")
-theme_override_font_sizes/font_size = 24
-text = "3"
-autowrap_mode = 3
-script = ExtResource("4_aq5mt")
-level = 2
-metadata/_custom_type_script = "uid://dte37v1c8txj8"
-
-[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Rank3" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level3/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_12hc3")
-theme_override_font_sizes/font_size = 24
-text = "B"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Level4" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -233,6 +168,82 @@ size_flags_vertical = 0
 [node name="Rank4" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level4/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.482353, 0.968627, 0.964706, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level7" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Level7" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level7"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_tw266")
+theme_override_font_sizes/font_size = 24
+text = "7"
+autowrap_mode = 3
+script = ExtResource("4_aq5mt")
+level = 6
+metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level7"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank7" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level7/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "B"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level10" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Level10" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level10"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_tw266")
+theme_override_font_sizes/font_size = 24
+text = "10"
+autowrap_mode = 3
+script = ExtResource("4_aq5mt")
+level = 9
+metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level10"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank10" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Level10/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.909804, 0.72549, 0.0156863, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -246,6 +257,44 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
+
+[node name="Level2" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Level2" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level2"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_tw266")
+theme_override_font_sizes/font_size = 24
+text = "2"
+autowrap_mode = 3
+script = ExtResource("4_aq5mt")
+level = 1
+metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level2"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank2" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.619608, 0.619608, 0.658824, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level5" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -276,88 +325,12 @@ size_flags_vertical = 0
 [node name="Rank5" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level5/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.619608, 0.619608, 0.658824, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_12hc3")
-theme_override_font_sizes/font_size = 24
-text = "D"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Level6" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Level6" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_tw266")
-theme_override_font_sizes/font_size = 24
-text = "6"
-autowrap_mode = 3
-script = ExtResource("4_aq5mt")
-level = 5
-metadata/_custom_type_script = "uid://dte37v1c8txj8"
-
-[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Rank6" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level6/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.788235, 0.52549, 0.270588, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_12hc3")
 theme_override_font_sizes/font_size = 24
 text = "F"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Level7" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Level7" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_tw266")
-theme_override_font_sizes/font_size = 24
-text = "7"
-autowrap_mode = 3
-script = ExtResource("4_aq5mt")
-level = 6
-metadata/_custom_type_script = "uid://dte37v1c8txj8"
-
-[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Rank7" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level7/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_12hc3")
-theme_override_font_sizes/font_size = 24
-text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -399,10 +372,126 @@ text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Level11" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Level11" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level11"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_tw266")
+theme_override_font_sizes/font_size = 24
+text = "11"
+autowrap_mode = 3
+script = ExtResource("4_aq5mt")
+level = 10
+metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level11"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank11" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/Level11/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
+
+[node name="Level3" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Level3" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level3"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_tw266")
+theme_override_font_sizes/font_size = 24
+text = "3"
+autowrap_mode = 3
+script = ExtResource("4_aq5mt")
+level = 2
+metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level3"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank3" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level3/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level6" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Level6" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level6"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_tw266")
+theme_override_font_sizes/font_size = 24
+text = "StonehengE
+Stonehenge
+Stonehenge"
+autowrap_mode = 3
+script = ExtResource("4_aq5mt")
+level = 5
+metadata/_custom_type_script = "uid://dte37v1c8txj8"
+
+[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level6"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rank6" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level6/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_12hc3")
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level9" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -418,7 +507,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_tw266")
 theme_override_font_sizes/font_size = 24
-text = "9"
+text = "It's The Breakout System!"
 autowrap_mode = 3
 script = ExtResource("4_aq5mt")
 level = 8
@@ -431,84 +520,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="Rank9" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level9/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_12hc3")
-theme_override_font_sizes/font_size = 24
-text = "S"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Level10" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Level10" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_tw266")
-theme_override_font_sizes/font_size = 24
-text = "StonehengE
-Stonehenge
-Stonehenge"
-autowrap_mode = 3
-script = ExtResource("4_aq5mt")
-level = 9
-metadata/_custom_type_script = "uid://dte37v1c8txj8"
-
-[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Rank10" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level10/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_12hc3")
-theme_override_font_sizes/font_size = 24
-text = "S"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Level11" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Level11" type="Button" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_tw266")
-theme_override_font_sizes/font_size = 24
-text = "It's The Breakout System!"
-autowrap_mode = 3
-script = ExtResource("4_aq5mt")
-level = 10
-metadata/_custom_type_script = "uid://dte37v1c8txj8"
-
-[node name="MarginContainer" type="MarginContainer" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Rank11" type="Label" parent="WorldSelect/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer3/Level11/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0, 0, 1)

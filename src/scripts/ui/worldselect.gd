@@ -33,8 +33,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 	# init button visibility
 	var mainNode = get_parent()
-	var levelCount = min(Messages.levels_unlocked, Messages.max_levels + 1)
-	var worldCount = (levelCount / 12) + 1
 	
 	var worldList = [
 		world_1, 
@@ -65,12 +63,18 @@ func _ready() -> void:
 		rank_11,
 		rank_12
 	]
-	
-	for i in range(worldCount, worldList.size()):
-		worldList[i].disabled = true
 		
 	for i in range(worldList.size()):
-		worldList[i].text = Messages.worldNames[i]
+		if i == 3:
+			worldList[i].text = "Bonus 1:\n" + Messages.worldNames[i]
+		elif i == 7:
+			worldList[i].text = "Bonus 2:\n" + Messages.worldNames[i]
+		else:
+			worldList[i].text = Messages.worldNames[i]
+		if Messages.unlocked_levels[Messages.worldNames[i]] == 0:
+			worldList[i].disabled = true
+			
+		
 	
 	for i in range(worldList.size()):
 		var world_rank = Messages.get_world_rank(i)
