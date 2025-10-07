@@ -8,13 +8,18 @@ extends TileMapLayer
 @onready var debug_window: Control = $AllUI/DebugWindow
 @onready var records_window: Control = $AllUI/RecordsWindow
 @onready var help_text: Label = $AllUI/DebugWindow/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
-@onready var reset_records: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/ResetRecords
-@onready var lock_levels: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/LockLevels
-@onready var reset_controls: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls
-@onready var unlock_levels: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/UnlockLevels
 @onready var level_records: VBoxContainer = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/PanelContainer2/ScrollContainer/LevelRecords
 @onready var total_high_score: Label = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/TotalHighScore
 @onready var export: Button = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/Export
+
+@onready var unlock_levels: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/UnlockLevels
+@onready var lock_levels: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer/LockLevels
+@onready var reset_records: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetRecords
+@onready var reset_controls: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls
+@onready var import_save: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer3/ImportSave
+@onready var export_save: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer3/ExportSave
+@onready var file_dialog: FileDialog = $AllUI/DebugWindow/FileDialog
+@onready var file_dialog_2: FileDialog = $AllUI/DebugWindow/FileDialog2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,7 +29,12 @@ func _ready() -> void:
 	records_window.visible = false
 	help_text.text = ""
 	populate_records()
+	set_up_file_dialog()
 	play.grab_focus.call_deferred()
+	Messages.connect("ImportSuccess", on_import_success)
+	Messages.connect("ImportFailure", on_import_failure)
+	Messages.connect("ExportSuccess", on_export_success)
+	Messages.connect("ExportFailure", on_export_failure)
 
 func populate_records():
 	var mainScene = get_parent()
@@ -56,6 +66,17 @@ func populate_records():
 		]
 	else:
 		total_high_score.text = "\nClear all available levels to obtain a total high score!\n"
+
+func set_up_file_dialog():
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.filters = ["*.dat ; Save Data File"]
+	file_dialog.access = FileDialog.ACCESS_FILESYSTEM
+	file_dialog.title = "Import Save Data"
+	file_dialog_2.file_mode = FileDialog.FILE_MODE_SAVE_FILE
+	file_dialog_2.filters = ["*.dat ; Save Data File"]
+	file_dialog_2.access = FileDialog.ACCESS_FILESYSTEM
+	file_dialog_2.title = "Export Save Data"
+	file_dialog_2.current_path = "file://"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -126,6 +147,29 @@ func _on_lock_levels_pressed() -> void:
 	help_text.text = "Level unlocks have been reset"
 	populate_records()
 
+func _on_import_save_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
+	file_dialog.popup_centered()
+
+func _on_export_save_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
+	file_dialog_2.current_file = "save_backup_%s.dat" % int(floor(Time.get_unix_time_from_system()))
+	file_dialog_2.popup_centered()
+
+func on_import_success():
+	help_text.text = "Save data successfully imported"
+	
+func on_import_failure():
+	help_text.text = "Save data import failed"
+	
+func on_export_success():
+	help_text.text = "Save data successfully exported"
+	
+func on_export_failure():
+	help_text.text = "Save data export failed"
+
 func _on_unlock_levels_mouse_entered() -> void:
 	help_text.text = "Make all levels available to play"
 
@@ -184,6 +228,30 @@ func _on_exit_debug_mouse_entered() -> void:
 	help_text.text = "Close debug menu"
 
 func _on_exit_debug_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_import_save_focus_entered() -> void:
+	help_text.text = "Import local save data file"
+
+func _on_import_save_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_import_save_mouse_entered() -> void:
+	help_text.text = "Import local save data file"
+
+func _on_import_save_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_export_save_focus_entered() -> void:
+	help_text.text = "Download save data file"
+
+func _on_export_save_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_export_save_mouse_entered() -> void:
+	help_text.text = "Download save data file"
+
+func _on_export_save_mouse_exited() -> void:
 	help_text.text = ""
 
 func _on_export_pressed() -> void:
@@ -269,3 +337,9 @@ func _on_exit_records_pressed() -> void:
 	dimmer.visible = false
 	records_window.visible = false
 	records.grab_focus.call_deferred()
+
+func _on_file_dialog_file_selected(fpath: String) -> void:
+	Messages.import_save(fpath)
+
+func _on_file_dialog_2_file_selected(fpath: String) -> void:
+	Messages.export_save(fpath)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cy3l1s1hp2ey5"]
+[gd_scene load_steps=32 format=4 uid="uid://cy3l1s1hp2ey5"]
 
 [ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="1_0bnbq"]
 [ext_resource type="PackedScene" uid="uid://1v8di1d2m1yx" path="res://src/scenes/objects/green_key.tscn" id="2_ncelh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://di4b3fet5cvsw" path="res://src/scenes/player/redplayer.tscn" id="6_r146g"]
 [ext_resource type="PackedScene" uid="uid://bgmq4knhxggl2" path="res://src/scenes/player/greenplayer.tscn" id="7_k3iab"]
 [ext_resource type="PackedScene" uid="uid://c1g373dwb1wom" path="res://src/scenes/objects/dkbarrel.tscn" id="8_ncelh"]
+[ext_resource type="PackedScene" uid="uid://c8asxp5v2r1hw" path="res://src/scenes/objects/checkpoint.tscn" id="9_e4xnd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_0bnbq")
@@ -634,3 +635,33 @@ position = Vector2(-248, -104)
 libraries = {
 &"": SubResource("AnimationLibrary_r146g")
 }
+
+[node name="Checkpoint" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(440, 192)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(392, 160)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(-440, 128)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(-392, 96)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(440, 64)
+
+[node name="Checkpoint6" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(392, 32)
+
+[node name="Checkpoint7" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(-440, 0)
+
+[node name="Checkpoint8" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(-392, -32)
+
+[node name="Checkpoint9" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(440, -64)
+
+[node name="Checkpoint10" parent="." instance=ExtResource("9_e4xnd")]
+position = Vector2(392, -96)

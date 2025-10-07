@@ -79,9 +79,9 @@ func _ready() -> void:
 	for i in range(worldList.size()):
 		var world_rank = Messages.get_world_rank(i)
 		var rank = rankList[i]
-		rank.set("theme_override_colors/font_color", Color(Messages.get_rank_color(world_rank)))
 		if world_rank == "None":
 			world_rank = ""
+		rank.set("theme_override_colors/font_color", Color(Messages.get_rank_color(world_rank)))
 		rank.text = world_rank
 	
 	world_1.grab_focus.call_deferred()

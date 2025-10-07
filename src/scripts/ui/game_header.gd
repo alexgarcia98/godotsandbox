@@ -155,6 +155,7 @@ func _ready() -> void:
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("Settings", on_settings)
 	Messages.connect("EndReplay", on_replay_ended)
+	Messages.connect("UpdateVolume", on_update_volume)
 	main_scene = get_parent()
 	max_levels = Messages.max_levels
 	
@@ -168,21 +169,22 @@ func _ready() -> void:
 		var err = FileAccess.get_open_error()
 		if err == ERR_FILE_NOT_FOUND:
 			volume_file = FileAccess.open(filepath3, FileAccess.WRITE)
-			var volume = []
-			volume.append(db_to_linear(0))
-			volume.append(db_to_linear(0))
-			volume.append(db_to_linear(-12))
-			volume_file.store_var(volume)
+			Messages.volume = []
+			Messages.volume.append(db_to_linear(0))
+			Messages.volume.append(db_to_linear(0))
+			Messages.volume.append(db_to_linear(-12))
+			volume_file.store_var(Messages.volume)
 			volume_file.close()
-			master_volume.value = volume[0]
-			music_volume.value = volume[1]
-			sfx_volume.value = volume[2]
+			master_volume.value = Messages.volume[0]
+			music_volume.value = Messages.volume[1]
+			sfx_volume.value = Messages.volume[2]
 	else:
 		var volume = volume_file.get_var()
 		volume_file.close()
 		master_volume.value = volume[0]
 		music_volume.value = volume[1]
 		sfx_volume.value = volume[2]
+		Messages.volume = volume
 	
 	help_text.text = ""
 	
@@ -784,10 +786,12 @@ func _on_master_volume_value_changed(value: float) -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_linear(master_bus_index, value)
 	var file3 = FileAccess.open(filepath3, FileAccess.READ)
+	Messages.volume[0] = value
 
 func _on_music_volume_value_changed(value: float) -> void:
 	var music_bus_index = AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_volume_linear(music_bus_index, value)
+	Messages.volume[1] = value
 
 func _on_sfx_volume_value_changed(value: float) -> void:
 	var sfx_bus_index = AudioServer.get_bus_index("SFX")
@@ -796,6 +800,19 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(movement_bus_index, value)
 	var ui_bus_index = AudioServer.get_bus_index("UI")
 	AudioServer.set_bus_volume_linear(ui_bus_index, value)
+	Messages.volume[2] = value
+
+func on_update_volume(values):
+	var master_bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_linear(master_bus_index, values[0])
+	var music_bus_index = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_linear(music_bus_index, values[1])
+	var sfx_bus_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_linear(sfx_bus_index, values[2])
+	var movement_bus_index = AudioServer.get_bus_index("Movement")
+	AudioServer.set_bus_volume_linear(movement_bus_index, values[2])
+	var ui_bus_index = AudioServer.get_bus_index("UI")
+	AudioServer.set_bus_volume_linear(ui_bus_index, values[2])
 
 func _on_keyboard_inputs_pressed() -> void:
 	keyboard_remaps.show()

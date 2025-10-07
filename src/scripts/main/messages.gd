@@ -15,6 +15,7 @@ signal JoypadAxisRemapped(action, button, value)
 signal EndGame()
 signal ShotFired(emitter)
 signal TargetHit()
+signal LightsSwitched(pair)
 
 signal LevelEnded()
 signal LevelStarted(level)
@@ -41,15 +42,29 @@ signal RemapInactive()
 signal EndReplay(end_time)
 signal StoreReplay()
 signal ViewBestReplay()
+signal ImportSuccess()
+signal ImportFailure()
+signal ExportSuccess()
+signal ExportFailure()
+signal UpdateVolume(values)
 
 var rebinds = {}
 var replays = {}
 var controller_rebinds = {}
 var action_lookup = {}
+var volume = [0, 0, 0]
 var max_levels = 143
 var filepath = "user://save_data.dat"
 var replay_filepath = "user://replays.dat"
-var saved_times = []
+var keyboard_filepath = "user://controls.dat"
+var controller_filepath = "user://controller.dat"
+var volume_filepath = "user://volume.dat"
+var levels_unlocked_filepath = "user://levels_unlocked.dat"
+
+var save_fields = ["times", "replays", "keyboard", "controller", "volume", "unlocked"]
+var save_filepaths = []
+
+var saved_times = {}
 
 var unlocked_levels = {
 	"Getting Started": 1,
@@ -65,8 +80,6 @@ var unlocked_levels = {
 	"Foodieland": 0,
 	"Endgame": 0,
 }
-
-var levels_unlocked_filepath = "user://levels_unlocked.dat"
 
 var control_names = {
 	"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value -1.00": "Left Stick Left",
@@ -159,7 +172,7 @@ var rank_changes = [1, 1.25, 2, 3, 10]
 
 var rank_assn = ["S", "A", "B", "C", "D", "F", "No Rank Achieved"]
 
-var rank_color = {"S": "c687f7", "A": "7bf7f6", "B": "d2d2d2", "C": "e8b904", "D": "9e9ea8", "F": "c98645", "None": "ffffff"}
+var rank_color = {"S": "c687f7", "A": "7bf7f6", "B": "d2d2d2", "C": "e8b904", "D": "9e9ea8", "F": "c98645", "None": "ffffff", "": "ffffff"}
 
 var action_list = [
 	"move_left", 
@@ -297,6 +310,15 @@ func _ready() -> void:
 		file3.close()
 	
 	current_song_index = -2
+	
+	save_filepaths = {
+		"times": filepath, 
+		"replays": replay_filepath, 
+		"keyboard": keyboard_filepath, 
+		"controller": controller_filepath, 
+		"volume": volume_filepath, 
+		"unlocked": levels_unlocked_filepath
+	}
 
 func unlock_next_level(current_index):	
 	var world_index = current_index / 12
@@ -490,11 +512,16 @@ func get_world_rank(world_number):
 	
 	if cleared:
 		if rank == "S" and not all_s:
+			print("gwr: x1")
 			return "A"
 		else:
+			print("gwr: x2")
 			return rank
 	else:
+		print("gwr: x3")
 		return ""
+	print("gwr: x4")
+	return ""
 
 func reset_level_time(index):
 	var save_index = get_save_index(index)
@@ -723,3 +750,46 @@ func get_next_world(current_index):
 	if next_world == -1:
 		return -1
 	return next_world * 12
+
+func import_save(fpath):
+	var file = FileAccess.open(fpath, FileAccess.READ)
+	var all_data = file.get_var()
+	if typeof(all_data) != TYPE_DICTIONARY:
+		print("import save: x1")
+		emit_signal("ImportFailure")
+		return
+	for field in save_fields:
+		if field not in all_data:
+			print("import save: x2")
+			emit_signal("ImportFailure")
+			return
+	for field in save_fields:
+		if field == "times":
+			saved_times = all_data[field]
+		elif field == "replays":
+			replays = all_data[field]
+		elif field == "keyboard":
+			rebinds = all_data[field]
+		elif field == "controller":
+			controller_rebinds = all_data[field]
+		elif field == "unlocked":
+			unlocked_levels = all_data[field]
+		elif field == "volume":
+			volume = all_data[field]
+			UpdateVolume.emit(volume)
+		var f2 = save_filepaths[field]
+		var file2 = FileAccess.open(f2, FileAccess.WRITE)
+		file2.store_var(all_data[field])
+		file2.close()
+
+func export_save(fpath):
+	var all_data = {}
+	all_data["times"] = saved_times
+	all_data["replays"] = replays
+	all_data["keyboard"] = rebinds
+	all_data["controller"] = controller_rebinds
+	all_data["unlocked"] = unlocked_levels
+	all_data["volume"] = volume
+	var file = FileAccess.open(fpath, FileAccess.WRITE)
+	file.store_var(all_data)
+	file.close()
