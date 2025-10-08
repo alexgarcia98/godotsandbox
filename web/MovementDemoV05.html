@@ -92,7 +92,23 @@ body {
 		</style>
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="MovementDemoV05.icon.png" />
 <link rel="apple-touch-icon" href="MovementDemoV05.apple-touch-icon.png"/>
+<script>
+function getFile(callback){
+	window.input = document.createElement('input');
+	input.type = 'file';
 
+	input.onchange = e => {
+		var file = e.target.files[0];
+
+		var reader = new FileReader();
+		reader.readAsText(file, 'UTF-8');
+
+		reader.onload = readerEvent => {
+			callback(readerEvent.target.result);
+		}
+	}
+}
+</script>
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -111,7 +127,7 @@ body {
 
 		<script src="MovementDemoV05.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"MovementDemoV05","experimentalVK":false,"fileSizes":{"MovementDemoV05.pck":61597744,"MovementDemoV05.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"MovementDemoV05","experimentalVK":false,"fileSizes":{"MovementDemoV05.pck":61599280,"MovementDemoV05.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

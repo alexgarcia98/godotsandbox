@@ -150,19 +150,25 @@ func _on_lock_levels_pressed() -> void:
 func _on_import_save_pressed() -> void:
 	Messages.audio.stream = Messages.high_button_sound
 	Messages.audio.play()
-	file_dialog.popup_centered()
+	if OS.has_feature("web"):
+		Messages.import_save_web()
+	else:
+		file_dialog.popup_centered()
 
 func _on_export_save_pressed() -> void:
 	Messages.audio.stream = Messages.high_button_sound
 	Messages.audio.play()
-	file_dialog_2.current_file = "save_backup_%s.dat" % int(floor(Time.get_unix_time_from_system()))
-	file_dialog_2.popup_centered()
+	if OS.has_feature("web"):
+		Messages.export_save_web("save_backup_%s.dat" % int(floor(Time.get_unix_time_from_system())))
+	else:
+		file_dialog_2.current_file = "save_backup_%s.dat" % int(floor(Time.get_unix_time_from_system()))
+		file_dialog_2.popup_centered()
 
 func on_import_success():
 	help_text.text = "Save data successfully imported"
 	
 func on_import_failure():
-	help_text.text = "Save data import failed"
+	help_text.text = "Save data import failed: Invalid File"
 	
 func on_export_success():
 	help_text.text = "Save data successfully exported"

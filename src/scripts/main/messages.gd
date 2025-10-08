@@ -319,6 +319,10 @@ func _ready() -> void:
 		"volume": volume_filepath, 
 		"unlocked": levels_unlocked_filepath
 	}
+	
+	if OS.has_feature("web"):
+		var window = JavaScriptBridge.get_interface("window")
+		window.getFile(fileLoadCallback)
 
 func unlock_next_level(current_index):	
 	var world_index = current_index / 12
@@ -512,15 +516,11 @@ func get_world_rank(world_number):
 	
 	if cleared:
 		if rank == "S" and not all_s:
-			print("gwr: x1")
 			return "A"
 		else:
-			print("gwr: x2")
 			return rank
 	else:
-		print("gwr: x3")
 		return ""
-	print("gwr: x4")
 	return ""
 
 func reset_level_time(index):
@@ -752,8 +752,8 @@ func get_next_world(current_index):
 	return next_world * 12
 
 func import_save(fpath):
-	var file = FileAccess.open(fpath, FileAccess.READ)
-	var all_data = file.get_var()
+	var encoded = FileAccess.get_file_as_string(fpath)
+	var all_data = Marshalls.base64_to_variant(encoded)
 	if typeof(all_data) != TYPE_DICTIONARY:
 		print("import save: x1")
 		emit_signal("ImportFailure")
@@ -784,12 +784,64 @@ func import_save(fpath):
 
 func export_save(fpath):
 	var all_data = {}
+	all_data["web"] = false
 	all_data["times"] = saved_times
 	all_data["replays"] = replays
 	all_data["keyboard"] = rebinds
 	all_data["controller"] = controller_rebinds
 	all_data["unlocked"] = unlocked_levels
 	all_data["volume"] = volume
+	var converted = Marshalls.variant_to_base64(all_data)
 	var file = FileAccess.open(fpath, FileAccess.WRITE)
-	file.store_var(all_data)
+	file.store_string(converted)
 	file.close()
+
+func export_save_web(fpath):
+	var all_data = {}
+	all_data["web"] = true
+	all_data["times"] = saved_times
+	all_data["replays"] = replays
+	all_data["keyboard"] = rebinds
+	all_data["controller"] = controller_rebinds
+	all_data["unlocked"] = unlocked_levels
+	all_data["volume"] = volume
+	var converted = Marshalls.variant_to_base64(all_data)
+	print(converted)
+	JavaScriptBridge.download_buffer(converted.to_utf8_buffer(), fpath)
+
+var fileLoadCallback = JavaScriptBridge.create_callback(FileParser)
+
+func import_save_web():
+	var window = JavaScriptBridge.get_interface("window")
+	window.input.click()
+
+func FileParser(args):
+	var encoded = args[0]
+	var all_data = Marshalls.base64_to_variant(encoded)
+	if typeof(all_data) != TYPE_DICTIONARY:
+		print("import save: x1")
+		emit_signal("ImportFailure")
+		return
+	for field in save_fields:
+		if field not in all_data:
+			print("import save: x2")
+			emit_signal("ImportFailure")
+			return
+	for field in save_fields:
+		if field == "times":
+			saved_times = all_data[field]
+		elif field == "replays":
+			replays = all_data[field]
+		elif field == "keyboard":
+			rebinds = all_data[field]
+		elif field == "controller":
+			controller_rebinds = all_data[field]
+		elif field == "unlocked":
+			unlocked_levels = all_data[field]
+		elif field == "volume":
+			volume = all_data[field]
+			UpdateVolume.emit(volume)
+		var f2 = save_filepaths[field]
+		var file2 = FileAccess.open(f2, FileAccess.WRITE)
+		file2.store_var(all_data[field])
+		file2.close()
