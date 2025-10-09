@@ -349,6 +349,12 @@ tile_map_data = PackedByteArray("AADk//b/AAAAAAkAAADk//f/AAAAAAkAAADk//j/AAAAAAk
 tile_set = SubResource("TileSet_cfd6o")
 collision_enabled = false
 
+[node name="sky2" type="TileMapLayer" parent="."]
+show_behind_parent = true
+tile_map_data = PackedByteArray("AAAYAAoAAAABAA8AAAAYAAsAAAABAA8AAAAYAAwAAAABAA8AAAAZAAoAAAABAA8AAAAZAAsAAAABAA8AAAAZAAwAAAABAA8AAAAaAAoAAAABAA8AAAAaAAsAAAABAA8AAAAaAAwAAAABAA8AAAAbAAoAAAABAA8AAAAbAAsAAAABAA8AAAAbAAwAAAABAA8AAAA=")
+tile_set = SubResource("TileSet_cfd6o")
+collision_enabled = false
+
 [node name="towerdiagonal" type="TileMapLayer" parent="."]
 show_behind_parent = true
 position = Vector2(-24, 16)

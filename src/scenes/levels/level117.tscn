@@ -349,6 +349,12 @@ tile_map_data = PackedByteArray("AADk//b/AAAAAAkAAADk//f/AAAAAAkAAADk//j/AAAAAAk
 tile_set = SubResource("TileSet_cfd6o")
 collision_enabled = false
 
+[node name="sky2" type="TileMapLayer" parent="."]
+show_behind_parent = true
+tile_map_data = PackedByteArray("AAAYAAcAAAABAA8AAAAYAAgAAAABAA8AAAAYAAkAAAABAA8AAAAZAAcAAAABAA8AAAAZAAgAAAABAA8AAAAZAAkAAAABAA8AAAAaAAcAAAABAA8AAAAaAAgAAAABAA8AAAAaAAkAAAABAA8AAAAbAAcAAAABAA8AAAAbAAgAAAABAA8AAAAbAAkAAAABAA8AAAA=")
+tile_set = SubResource("TileSet_cfd6o")
+collision_enabled = false
+
 [node name="grass" type="TileMapLayer" parent="."]
 modulate = Color(0.4, 0.611765, 0.156863, 1)
 show_behind_parent = true
