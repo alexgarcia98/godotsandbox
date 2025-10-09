@@ -319,7 +319,7 @@ func _on_export_pressed() -> void:
 		
 	record_text += "\n"
 	
-	for i in range(Messages.max_levels):
+	for i in range(Messages.max_levels + 1):
 		var worldName = Messages.worldNames[i / 12]
 		if Messages.unlocked_levels[worldName] == 0:
 			continue
