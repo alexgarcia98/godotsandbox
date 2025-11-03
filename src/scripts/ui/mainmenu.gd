@@ -1,12 +1,12 @@
 extends TileMapLayer
 
 @onready var play: Button = $AllUI/UI/MarginContainer/HBoxContainer/Play
-@onready var exit: Button = $AllUI/UI/MarginContainer/HBoxContainer/Exit
 @onready var records: Button = $AllUI/UI/MarginContainer/HBoxContainer/Records
 @onready var debug: Button = $AllUI/UI/MarginContainer/HBoxContainer/Debug
 @onready var dimmer: ColorRect = $Dimmer
 @onready var debug_window: Control = $AllUI/DebugWindow
 @onready var records_window: Control = $AllUI/RecordsWindow
+@onready var help_window: Control = $AllUI/HelpWindow
 @onready var help_text: Label = $AllUI/DebugWindow/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
 @onready var level_records: VBoxContainer = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/PanelContainer2/ScrollContainer/LevelRecords
 @onready var total_high_score: Label = $AllUI/RecordsWindow/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/TotalHighScore
@@ -20,6 +20,12 @@ extends TileMapLayer
 @onready var export_save: Button = $AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer3/ExportSave
 @onready var file_dialog: FileDialog = $AllUI/DebugWindow/FileDialog
 @onready var file_dialog_2: FileDialog = $AllUI/DebugWindow/FileDialog2
+@onready var basics_button: Button = $AllUI/HelpWindow/MarginContainer/VBoxContainer/HBoxContainer4/Basics
+@onready var basics: MarginContainer = $AllUI/HelpWindow/MarginContainer/VBoxContainer/Basics
+@onready var mechanics: MarginContainer = $AllUI/HelpWindow/MarginContainer/VBoxContainer/Mechanics
+@onready var interaction: MarginContainer = $AllUI/HelpWindow/MarginContainer/VBoxContainer/Interaction
+@onready var other: MarginContainer = $AllUI/HelpWindow/MarginContainer/VBoxContainer/Other
+@onready var how_to_play: Button = $AllUI/UI/MarginContainer/HBoxContainer/HowToPlay
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +33,7 @@ func _ready() -> void:
 	dimmer.self_modulate.a = 0.5
 	debug_window.visible = false
 	records_window.visible = false
+	help_window.visible = false
 	help_text.text = ""
 	populate_records()
 	set_up_file_dialog()
@@ -91,6 +98,17 @@ func _on_exit_pressed() -> void:
 	Messages.audio.stream = Messages.return_button_sound
 	Messages.audio.play()
 	Messages.emit_signal("EndGame")
+
+func _on_how_to_play_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
+	dimmer.visible = true
+	help_window.visible = true
+	basics.visible = true
+	mechanics.visible = false
+	interaction.visible = false
+	other.visible = false
+	basics_button.grab_focus.call_deferred()
 
 func _on_reset_times_pressed() -> void:
 	Messages.emit_signal("ResetTimes")
@@ -349,3 +367,35 @@ func _on_file_dialog_file_selected(fpath: String) -> void:
 
 func _on_file_dialog_2_file_selected(fpath: String) -> void:
 	Messages.export_save(fpath)
+
+
+func _on_basics_pressed() -> void:
+	basics.visible = true
+	mechanics.visible = false
+	interaction.visible = false
+	other.visible = false
+
+func _on_mechanics_pressed() -> void:
+	basics.visible = false
+	mechanics.visible = true
+	interaction.visible = false
+	other.visible = false
+
+func _on_interactables_pressed() -> void:
+	basics.visible = false
+	mechanics.visible = false
+	interaction.visible = true
+	other.visible = false
+
+func _on_other_pressed() -> void:
+	basics.visible = false
+	mechanics.visible = false
+	interaction.visible = false
+	other.visible = true
+
+func _on_exit_help_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
+	dimmer.visible = false
+	help_window.visible = false
+	how_to_play.grab_focus.call_deferred()

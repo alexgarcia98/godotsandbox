@@ -241,7 +241,6 @@ text = "Restart"
 
 [node name="Help" type="Control" parent="."]
 auto_translate_mode = 1
-visible = false
 z_index = 50
 layout_mode = 1
 anchors_preset = 15
