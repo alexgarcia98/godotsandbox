@@ -509,7 +509,6 @@ tile_set = SubResource("TileSet_cfd6o")
 collision_enabled = false
 
 [node name="TileMapLayer7" type="TileMapLayer" parent="."]
-modulate = Color(1, 1, 1, 0.501961)
 show_behind_parent = true
 tile_map_data = PackedByteArray("AADk/woAAAABAA8AAADk/wsAAAABAA8AAADk/wwAAAABAA8AAADl/woAAAABAA8AAADl/wsAAAABAA8AAADl/wwAAAABAA8AAAAaAAoAAAABAA8AAAAaAAsAAAABAA8AAAAaAAwAAAABAA8AAAAbAAoAAAABAA8AAAAbAAsAAAABAA8AAAAbAAwAAAABAA8AAAA=")
 tile_set = SubResource("TileSet_cfd6o")

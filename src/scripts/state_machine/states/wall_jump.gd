@@ -11,6 +11,8 @@ var move_state: State
 @export
 var airdash_state: State
 @export
+var air_pivot_state: State
+@export
 var interact_state: State
 @export
 var throw_state: State
@@ -56,6 +58,9 @@ func process_input(event: InputEvent) -> State:
 				return throw_state
 			else:
 				return thrown_state
+	if Input.is_action_just_pressed('pivot'):
+		if parent.air_reverse_remaining > 0:
+			return air_pivot_state
 	return null
 
 func process_physics(delta: float) -> State:

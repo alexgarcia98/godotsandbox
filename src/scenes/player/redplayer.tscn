@@ -751,13 +751,14 @@ fall_state = NodePath("../fall")
 ledge_state = NodePath("../ledge")
 animation_name = "wall_cling"
 
-[node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "wall_cling_state")]
+[node name="wall_jump" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "idle_state", "move_state", "airdash_state", "air_pivot_state", "interact_state", "throw_state", "thrown_state", "frozen_state", "wall_cling_state")]
 script = ExtResource("55_3uvft")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 airdash_state = NodePath("../airdash")
+air_pivot_state = NodePath("../air_pivot")
 interact_state = NodePath("../interact")
 throw_state = NodePath("../throw")
 thrown_state = NodePath("../thrown")

@@ -95,11 +95,19 @@ var currently_flipped = false
 var replay = false
 
 func _ready() -> void:
+	#print("%s: x0" % name)
+	#print("%s: is_flipped: %s" % [name, is_flipped])
+	#print("%s: last_facing: %s" % [name, last_facing])
+	#print("%s: currently_flipped: %s" % [name, currently_flipped])
 	movement_state_machine.init(self, movement_animations, player_move_component)
 	#gun_state_machine.init(self, gun_animations, player_move_component)
-	last_valid = position
-	last_facing = is_flipped
-	currently_flipped = is_flipped
+	#last_valid = position
+	#last_facing = is_flipped
+	#currently_flipped = is_flipped
+	#print("%s: x1" % name)
+	#print("%s: is_flipped: %s" % [name, is_flipped])
+	#print("%s: last_facing: %s" % [name, last_facing])
+	#print("%s: currently_flipped: %s" % [name, currently_flipped])
 	can_die = true
 	jump_released = true
 	freeze_released = true
@@ -237,6 +245,17 @@ func on_key_obtained(key_name):
 
 func on_begin_level(_index):
 	can_move = true
+	print("%s: x0" % name)
+	print("%s: is_flipped: %s" % [name, is_flipped])
+	print("%s: last_facing: %s" % [name, last_facing])
+	print("%s: currently_flipped: %s" % [name, currently_flipped])
+	last_valid = position
+	last_facing = currently_flipped
+	print("%s: x1" % name)
+	print("%s: is_flipped: %s" % [name, is_flipped])
+	print("%s: last_facing: %s" % [name, last_facing])
+	print("%s: currently_flipped: %s" % [name, currently_flipped])
+	
 
 func on_level_started(_index):
 	can_move = false
@@ -268,6 +287,8 @@ func on_set_player_respawn(set_position):
 			if (not gate_down_1.is_colliding()) and (not gate_down_2.is_colliding()): # check for temporary platforms
 				if (not floor.is_colliding()): # check for being inside real floor
 					last_valid = set_position
+					print("%s: x2" % name)
+					print("%s: currently_flipped: %s" % [name, currently_flipped])
 					last_facing = currently_flipped
 					print("%s: setting respawn at %s" % [name, last_valid])
 				else:

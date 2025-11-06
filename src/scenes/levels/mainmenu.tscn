@@ -365,12 +365,12 @@ region = Rect2(10, 128, 12, 96)
 atlas = ExtResource("8_212hu")
 region = Rect2(10, 128, 12, 96)
 
-[sub_resource type="Gradient" id="Gradient_app8q"]
+[sub_resource type="Gradient" id="Gradient_8ely2"]
 offsets = PackedFloat32Array(0.00649351)
 colors = PackedColorArray(0.501961, 0, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_32356"]
-gradient = SubResource("Gradient_app8q")
+gradient = SubResource("Gradient_8ely2")
 width = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_212hu"]
@@ -609,6 +609,12 @@ size_flags_horizontal = 3
 focus_neighbor_right = NodePath(".")
 theme_override_fonts/font = ExtResource("2_d01pi")
 text = "Reset Records"
+
+[node name="ResetReplays" type="Button" parent="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_d01pi")
+text = "Reset Replays"
 
 [node name="ResetControls" type="Button" parent="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -1952,6 +1958,11 @@ layout_mode = 2
 [connection signal="mouse_entered" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetRecords" to="." method="_on_reset_records_mouse_entered"]
 [connection signal="mouse_exited" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetRecords" to="." method="_on_reset_records_mouse_exited"]
 [connection signal="pressed" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetRecords" to="." method="_on_reset_records_pressed"]
+[connection signal="focus_entered" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetReplays" to="." method="_on_reset_replays_focus_entered"]
+[connection signal="focus_exited" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetReplays" to="." method="_on_reset_replays_focus_exited"]
+[connection signal="mouse_entered" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetReplays" to="." method="_on_reset_replays_mouse_entered"]
+[connection signal="mouse_exited" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetReplays" to="." method="_on_reset_replays_mouse_exited"]
+[connection signal="pressed" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetReplays" to="." method="_on_reset_replays_pressed"]
 [connection signal="focus_entered" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls" to="." method="_on_reset_controls_focus_entered"]
 [connection signal="focus_exited" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls" to="." method="_on_reset_controls_focus_exited"]
 [connection signal="mouse_entered" from="AllUI/DebugWindow/MarginContainer/VBoxContainer/HBoxContainer2/ResetControls" to="." method="_on_reset_controls_mouse_entered"]

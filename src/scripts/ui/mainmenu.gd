@@ -151,7 +151,13 @@ func _on_reset_records_pressed() -> void:
 	Messages.audio.play()
 	Messages.emit_signal("ResetTimes")
 	help_text.text = "All best times have been cleared"
-	
+
+func _on_reset_replays_pressed() -> void:
+	Messages.audio.stream = Messages.high_button_sound
+	Messages.audio.play()
+	Messages.clear_replays()
+	help_text.text = "All replays have been cleared"
+
 func _on_reset_controls_pressed() -> void:
 	Messages.audio.stream = Messages.high_button_sound
 	Messages.audio.play()
@@ -228,6 +234,18 @@ func _on_reset_records_focus_entered() -> void:
 	help_text.text = "Clear best times for ALL levels"
 
 func _on_reset_records_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_reset_replays_focus_entered() -> void:
+	help_text.text = "Clear saved replays for ALL levels"
+
+func _on_reset_replays_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_reset_replays_mouse_entered() -> void:
+	help_text.text = "Clear saved replays for ALL levels"
+
+func _on_reset_replays_mouse_exited() -> void:
 	help_text.text = ""
 
 func _on_lock_levels_focus_entered() -> void:

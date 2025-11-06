@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://db50rk53od7nn"]
+[gd_scene load_steps=35 format=3 uid="uid://db50rk53od7nn"]
 
 [ext_resource type="FontFile" uid="uid://cthqylx1gfhbx" path="res://src/assets/fonts/PixelOperator8.ttf" id="1_fgclx"]
 [ext_resource type="Script" uid="uid://bp3jfwry86pgd" path="res://src/scripts/ui/game_header.gd" id="1_xksxl"]
 [ext_resource type="FontFile" uid="uid://qo7snklcg7f2" path="res://src/assets/fonts/PixelOperator8-Bold.ttf" id="3_lq4n0"]
 [ext_resource type="Script" uid="uid://oaxgo0r47f3y" path="res://src/scripts/ui/remap_button.gd" id="3_v8pfy"]
+[ext_resource type="Texture2D" uid="uid://b1336rkyufjar" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Male/Character 1/Clothes 1/Character1M_1_idle_0.png" id="5_xif52"]
+[ext_resource type="Texture2D" uid="uid://cbvgx5ayysofk" path="res://src/assets/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 1/Clothes 2/Character1F_2_idle_0.png" id="6_f42kt"]
+[ext_resource type="Texture2D" uid="uid://cvbh1blhuqncm" path="res://src/assets/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects6.png" id="7_iixel"]
+[ext_resource type="Texture2D" uid="uid://qx1tkhutd2f5" path="res://src/assets/craftpix-net-141897-free-prototype-2d-platformer-32x32-pixel-tileset/5 Objects/Objects1.png" id="8_e26rw"]
+[ext_resource type="Texture2D" uid="uid://ot7ruu7n6j4x" path="res://src/assets/sprites/world_tileset.png" id="9_fsa0c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gebrm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -36,6 +41,91 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mt57r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwgsv"]
+atlas = ExtResource("7_iixel")
+region = Rect2(419, 15, 26, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je255"]
+atlas = ExtResource("8_e26rw")
+region = Rect2(419, 15, 26, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg5sa"]
+atlas = ExtResource("9_fsa0c")
+region = Rect2(128, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l15l"]
+atlas = ExtResource("9_fsa0c")
+region = Rect2(128, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mtyi"]
+atlas = ExtResource("9_fsa0c")
+region = Rect2(128, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v120c"]
+atlas = ExtResource("7_iixel")
+region = Rect2(266, 8, 44, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd4w2"]
+atlas = ExtResource("8_e26rw")
+region = Rect2(266, 8, 44, 96)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeda6"]
+border_width_left = 2
+border_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k35sg"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_top = 2
+border_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1064f"]
+atlas = ExtResource("7_iixel")
+region = Rect2(10, 128, 12, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6vlw"]
+atlas = ExtResource("8_e26rw")
+region = Rect2(10, 128, 12, 96)
+
+[sub_resource type="Gradient" id="Gradient_app8q"]
+offsets = PackedFloat32Array(0.00649351)
+colors = PackedColorArray(0.501961, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iwyqe"]
+gradient = SubResource("Gradient_app8q")
+width = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fks3f"]
+atlas = ExtResource("7_iixel")
+region = Rect2(96, 274, 6, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kebve"]
+atlas = ExtResource("8_e26rw")
+region = Rect2(96, 274, 6, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68eqa"]
+atlas = ExtResource("7_iixel")
+region = Rect2(320, 262, 6, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odq6n"]
+atlas = ExtResource("8_e26rw")
+region = Rect2(320, 262, 6, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlgc1"]
+atlas = ExtResource("7_iixel")
+region = Rect2(450, 128, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv4ok"]
+atlas = ExtResource("8_e26rw")
+region = Rect2(450, 128, 28, 32)
 
 [node name="UI" type="Control"]
 z_index = 50
@@ -241,6 +331,7 @@ text = "Restart"
 
 [node name="Help" type="Control" parent="."]
 auto_translate_mode = 1
+visible = false
 z_index = 50
 layout_mode = 1
 anchors_preset = 15
@@ -1323,7 +1414,6 @@ controller = true
 metadata/_custom_type_script = "uid://oaxgo0r47f3y"
 
 [node name="Settings" type="Control" parent="."]
-visible = false
 z_index = 50
 layout_mode = 1
 anchors_preset = 15
@@ -1594,6 +1684,15 @@ theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
 text = "Clear Time"
 
+[node name="ClearReplay" type="Button" parent="Settings/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_top = NodePath(".")
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Clear Replay"
+
 [node name="ViewReplay" type="Button" parent="Settings/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1664,6 +1763,14 @@ theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
 text = "Title"
 
+[node name="Help" type="Button" parent="Settings/MarginContainer/VBoxContainer/Navigation"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Help"
+
 [node name="Exit" type="Button" parent="Settings/MarginContainer/VBoxContainer/Navigation"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1671,6 +1778,1099 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_fgclx")
 theme_override_font_sizes/font_size = 16
 text = "Exit Game"
+
+[node name="GameGuide" type="Control" parent="."]
+visible = false
+z_index = 50
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameGuide"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 64
+
+[node name="ColorRect" type="ColorRect" parent="GameGuide/MarginContainer2"]
+layout_mode = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="ExitGameGuide" type="Button" parent="GameGuide/MarginContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+theme_override_fonts/font = ExtResource("3_lq4n0")
+theme_override_font_sizes/font_size = 16
+text = "X"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 96
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Basics" type="Button" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+theme_override_fonts/font = ExtResource("3_lq4n0")
+text = "Basics"
+
+[node name="Mechanics" type="Button" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+theme_override_fonts/font = ExtResource("3_lq4n0")
+text = "Mechanics"
+
+[node name="Interactables" type="Button" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+theme_override_fonts/font = ExtResource("3_lq4n0")
+text = "Interaction"
+
+[node name="Other" type="Button" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+theme_override_fonts/font = ExtResource("3_lq4n0")
+text = "Other"
+
+[node name="Basics" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 325)
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Control both characters using the same inputs"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_xif52")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_f42kt")
+stretch_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Characters interact with objects matching their color"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_xif52")
+stretch_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_rwgsv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_f42kt")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_je255")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer3" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Avoid mushrooms that don't match your color!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_lg5sa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect6" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_3l15l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect7" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_1mtyi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Collect keys to unlock their corresponding doors"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_rwgsv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_v120c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_je255")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_yd4w2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Enter matching doors to clear the level"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_xif52")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_v120c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_f42kt")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_yd4w2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Mechanics" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 325)
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="PanelContainer2" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Synchronized Actions"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_aeda6")
+
+[node name="Label2" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+text = "Desynchronized Actions"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="HSeparator6" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label15" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Left: Moves the characters left."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label6" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Right: Moves the characters right."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label2" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Up: Moves characters forward and enters doors."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Down: Moves characters backwards and exits doors."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label4" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Up/Down do not change the direction a character is facing."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label7" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Dash: Fixed-length grounded and aerial movement."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label8" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "You can dash once in the air before landing."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label5" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Jump: Moves characters upwards."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label9" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "You can jump once in the air before landing."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator5" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label14" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Pivot: Makes both characters switch their current facing direction. You can pivot once in the air before landing."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label11" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Dash, jump, or hold a direction towards a wall to cling."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label10" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Press Jump to jump off of a wall while clinging."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label12" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Press Dash to release characters from a wall."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label13" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Clinging to a wall will replenish your aerial dash."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_aeda6")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="HSeparator6" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label6" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "The primary character performs Desynchronized Actions. The primary character has an indicator above their head."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator7" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label15" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Switch: Toggles the primary character."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label2" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Interact: Toggle the state of an interactable object next to the character if their colors match. Interactable objects include buttons, levers, and targets."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label4" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Shoot: Toggle the state of an interactable object if their colors match. Shooting consumes ammo. Each character has a limited amount per level. View current ammo count at the top of the level."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label5" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Throw: Primary character launches the other character into the air. Characters need to be nearby for this to work."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator5" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label11" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Freeze: Freezes the primary character to their current position. If already frozen, press Freeze to unfreeze the character. You can stand on a frozen character."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Interaction" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 325)
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Gates can be opened and closed using interactables"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_1064f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_c6vlw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_iwyqe")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Buttons toggle a single gate matching its color"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_fks3f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_1064f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect6" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_kebve")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect7" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_c6vlw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Levers toggle all gates matching their color"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_68eqa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_1064f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect8" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_odq6n")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect7" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_c6vlw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 16
+text = "Break all targets to open special purple gates"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_mlgc1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_fv4ok")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_iwyqe")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Other" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 325)
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="PanelContainer2" type="PanelContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt57r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Label" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "This game has built in controller support. To test  if your controller is supported, search \"html5 controller test\" on a web browser. If the inputs show up and work as expected, it should work for this game."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator6" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label2" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Control Remapping: While in game, press Settings -> Controls. Click on Keyboard Inputs / Controller Inputs to switch the device to remap. Click on an input field and then a key/button to remap inputs."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator7" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label3" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Replays: You can view a replay of a level that you just completed if it was cleared in under 1 minute. If this is your best clear time, the replay will be saved and you can view it again later. Any previously saved replays will be deleted when achieving a new clear time. To view a saved replay, select a level and click \"View Best Replay\"."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator8" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label4" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Records: You can view a list of your best times under \"RECORDS\" on the title screen. Your total clear time, world clear times, and individual level clear times are visible here. Click \"Export to Clipboard\" for a sharable text paste of your records to share with your friends."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator9" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label5" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "Save Data: Save data should be saved in your browser as you play. If you would like to transfer your data to a different browser or create a backup of your data, go to the title screen and click \"EXTRAS\" -> \"Export Save Data\". Import this save data into a game by clicking \"EXTRAS\" -> \"Import Save Data\"."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator10" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label6" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "You can navigate menus with WASD/Arrow Keys and confirm with Enter/Space. There are similar actions available on controller."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator11" type="HSeparator" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_k35sg")
+
+[node name="Label7" type="Label" parent="GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_fgclx")
+theme_override_font_sizes/font_size = 8
+text = "There are remappable hotkeys for both \"Settings\" and \"Restart\"."
+vertical_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="FullUIContainer/UIMargins/Elements/Left/VBoxContainer/HBoxContainer/Levels/LevelNavigator/PreviousLevel" to="." method="_on_previous_level_pressed"]
 [connection signal="pressed" from="FullUIContainer/UIMargins/Elements/Left/VBoxContainer/HBoxContainer/Levels/LevelNavigator/NextLevel" to="." method="_on_next_level_pressed"]
@@ -1692,6 +2892,11 @@ text = "Exit Game"
 [connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes" to="." method="_on_reset_times_mouse_entered"]
 [connection signal="mouse_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes" to="." method="_on_reset_times_mouse_exited"]
 [connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ResetTimes" to="." method="_on_reset_times_pressed"]
+[connection signal="focus_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ClearReplay" to="." method="_on_clear_replay_focus_entered"]
+[connection signal="focus_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ClearReplay" to="." method="_on_clear_replay_focus_exited"]
+[connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ClearReplay" to="." method="_on_clear_replay_mouse_entered"]
+[connection signal="mouse_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ClearReplay" to="." method="_on_clear_replay_mouse_exited"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ClearReplay" to="." method="_on_clear_replay_pressed"]
 [connection signal="focus_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_focus_entered"]
 [connection signal="focus_exited" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_focus_exited"]
 [connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay" to="." method="_on_view_replay_mouse_entered"]
@@ -1727,8 +2932,18 @@ text = "Exit Game"
 [connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/Navigation/Title" to="." method="_on_title_mouse_entered"]
 [connection signal="mouse_exited" from="Settings/MarginContainer/VBoxContainer/Navigation/Title" to="." method="_on_title_mouse_exited"]
 [connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/Navigation/Title" to="." method="_on_title_pressed"]
+[connection signal="focus_entered" from="Settings/MarginContainer/VBoxContainer/Navigation/Help" to="." method="_on_help_focus_entered"]
+[connection signal="focus_exited" from="Settings/MarginContainer/VBoxContainer/Navigation/Help" to="." method="_on_help_focus_exited"]
+[connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/Navigation/Help" to="." method="_on_help_mouse_entered"]
+[connection signal="mouse_exited" from="Settings/MarginContainer/VBoxContainer/Navigation/Help" to="." method="_on_help_mouse_exited"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/Navigation/Help" to="." method="_on_help_pressed"]
 [connection signal="focus_entered" from="Settings/MarginContainer/VBoxContainer/Navigation/Exit" to="." method="_on_exit_focus_entered"]
 [connection signal="focus_exited" from="Settings/MarginContainer/VBoxContainer/Navigation/Exit" to="." method="_on_exit_focus_exited"]
 [connection signal="mouse_entered" from="Settings/MarginContainer/VBoxContainer/Navigation/Exit" to="." method="_on_exit_mouse_entered"]
 [connection signal="mouse_exited" from="Settings/MarginContainer/VBoxContainer/Navigation/Exit" to="." method="_on_exit_mouse_exited"]
 [connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/Navigation/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="GameGuide/MarginContainer2/MarginContainer/ExitGameGuide" to="." method="_on_exit_game_guide_pressed"]
+[connection signal="pressed" from="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Basics" to="." method="_on_basics_pressed"]
+[connection signal="pressed" from="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Mechanics" to="." method="_on_mechanics_pressed"]
+[connection signal="pressed" from="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Interactables" to="." method="_on_interactables_pressed"]
+[connection signal="pressed" from="GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Other" to="." method="_on_other_pressed"]

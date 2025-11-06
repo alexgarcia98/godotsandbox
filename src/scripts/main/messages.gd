@@ -41,6 +41,7 @@ signal RemapActive()
 signal RemapInactive()
 signal EndReplay(end_time)
 signal StoreReplay()
+signal ClearReplay()
 signal ViewBestReplay()
 signal ImportSuccess()
 signal ImportFailure()
@@ -547,6 +548,13 @@ func reset_all_level_times():
 	file.close()
 	saved_times = times
 
+func clear_replays():
+	var file3 = FileAccess.open(replay_filepath, FileAccess.WRITE)
+	var empty_replays = {}
+	file3.store_var(empty_replays)
+	file3.close()
+	replays = empty_replays
+
 func get_event_text(event):
 	var text_event = event.as_text()
 	if text_event.ends_with(" (Physical)"):
@@ -583,6 +591,12 @@ func store_replay(actions, positions, time, level):
 	replays[level].append(actions)
 	replays[level].append(positions)
 	replays[level].append(time)
+	var write_file = FileAccess.open(replay_filepath, FileAccess.WRITE)
+	write_file.store_var(replays)
+	write_file.close()
+
+func clear_replay(level):
+	replays.erase(level)
 	var write_file = FileAccess.open(replay_filepath, FileAccess.WRITE)
 	write_file.store_var(replays)
 	write_file.close()

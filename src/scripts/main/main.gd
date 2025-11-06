@@ -81,6 +81,7 @@ func _ready() -> void:
 	Messages.connect("RemapActive", on_remap_active)
 	Messages.connect("RemapInactive", on_remap_inactive)
 	Messages.connect("StoreReplay", on_store_replay)
+	Messages.connect("ClearReplay", on_clear_replay)
 	Messages.connect("ViewBestReplay", _on_view_best_replay_pressed)
 	
 	dimmer.visible = false
@@ -125,7 +126,7 @@ func load_level(index):
 	send_end_replay = false
 	replay_actions = []
 	replay_positions = []
-	if current_index in Messages.replays:
+	if level_index in Messages.replays:
 		view_best_replay.disabled = false
 	else:
 		view_best_replay.disabled = true
@@ -429,13 +430,14 @@ func _on_view_replay_pressed() -> void:
 	on_replay()
 
 func _on_view_best_replay_pressed() -> void:
-	replay_actions = Messages.replays[current_index][0]
-	replay_positions = Messages.replays[current_index][1]
+	var level_index = Messages.get_save_index(current_index)
+	replay_actions = Messages.replays[level_index][0]
+	replay_positions = Messages.replays[level_index][1]
 	red_end_pos = current.get_node("objects").get_node("red_door").global_position
 	red_end_pos.y += 8
 	green_end_pos = current.get_node("objects").get_node("green_door").global_position
 	green_end_pos.y += 8
-	replay_end_time = Messages.replays[current_index][2]
+	replay_end_time = Messages.replays[level_index][2]
 	on_replay()
 
 func on_stop_movement():
@@ -485,7 +487,12 @@ func on_remap_inactive():
 	#level_start_ms = Time.get_ticks_msec()
 
 func on_store_replay():
-	Messages.store_replay(replay_actions, replay_positions, ui.level_time_ms, current_index)
+	var level_index = Messages.get_save_index(current_index)
+	Messages.store_replay(replay_actions, replay_positions, ui.level_time_ms, level_index)
+
+func on_clear_replay():
+	var level_index = Messages.get_save_index(current_index)
+	Messages.clear_replay(level_index)
 
 func on_replay():
 	var level_index = Messages.get_save_index(current_index)

@@ -16,6 +16,7 @@ extends Control
 @onready var dimmer: ColorRect = $Dimmer
 @onready var exit_help: Button = $Help/MarginContainer2/MarginContainer/ExitHelp
 @onready var exit_settings: Button = $Settings/MarginContainer2/MarginContainer/ExitSettings
+@onready var game_guide: Control = $GameGuide
 
 # settings menu
 @onready var help_text: Label = $Settings/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/HelpText
@@ -32,6 +33,15 @@ extends Control
 @onready var restart_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/RestartButton
 @onready var next_level_button: Button = $Settings/MarginContainer/VBoxContainer/Navigation2/NextLevelButton
 @onready var view_replay: Button = $Settings/MarginContainer/VBoxContainer/HBoxContainer/ViewReplay
+@onready var basics: MarginContainer = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/Basics
+@onready var mechanics: MarginContainer = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/Mechanics
+@onready var interaction: MarginContainer = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/Interaction
+@onready var other: MarginContainer = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/Other
+
+@onready var basics_button: Button = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Basics
+@onready var mechanics_button: Button = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Mechanics
+@onready var interactables_button: Button = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Interactables
+@onready var other_button: Button = $GameGuide/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer4/Other
 
 # button remaps
 @onready var move_left: RemapButton = $Help/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/move_left
@@ -155,6 +165,7 @@ func _ready() -> void:
 	Messages.connect("BeginLevel", on_begin_level)
 	Messages.connect("Settings", on_settings)
 	Messages.connect("EndReplay", on_replay_ended)
+	Messages.connect("ClearReplay", on_clear_replay)
 	Messages.connect("UpdateVolume", on_update_volume)
 	main_scene = get_parent()
 	max_levels = Messages.max_levels
@@ -162,6 +173,7 @@ func _ready() -> void:
 	dimmer.visible = false
 	help.visible = false
 	settingsWindow.visible = false
+	game_guide.visible = false
 	
 	# check if volume settings exist
 	volume_file = FileAccess.open(filepath3, FileAccess.READ)
@@ -465,6 +477,7 @@ func _on_stage_select_pressed() -> void:
 	Messages.audio.play()
 	help.visible = false
 	settingsWindow.visible = false
+	game_guide.visible = false
 	dimmer.visible = false
 	Messages.emit_signal("WorldSelect")
 
@@ -481,6 +494,7 @@ func _on_exit_pressed() -> void:
 	Messages.audio.play()
 	help.visible = false
 	settingsWindow.visible = false
+	game_guide.visible = false
 	dimmer.visible = false
 	Messages.emit_signal("EndGame")
 
@@ -615,6 +629,30 @@ func _on_exit_focus_entered() -> void:
 func _on_exit_focus_exited() -> void:
 	help_text.text = ""
 
+func _on_clear_replay_focus_entered() -> void:
+	help_text.text = "Clear best saved replay for the current level"
+
+func _on_clear_replay_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_clear_replay_mouse_entered() -> void:
+	help_text.text = "Clear best saved replay for the current level"
+
+func _on_clear_replay_mouse_exited() -> void:
+	help_text.text = ""
+
+func _on_help_focus_entered() -> void:
+	help_text.text = "Display Game Guide"
+
+func _on_help_focus_exited() -> void:
+	help_text.text = ""
+
+func _on_help_mouse_entered() -> void:
+	help_text.text = "Display Game Guide"
+
+func _on_help_mouse_exited() -> void:
+	help_text.text = ""
+
 # incoming signal handlers
 
 func on_player_died(player_name) -> void:
@@ -674,12 +712,14 @@ func on_level_started(index):
 	else:
 		next_level.disabled = true
 		next_level_button.disabled = true
-	if current_index not in Messages.replays:
+	var level_index = Messages.get_save_index(current_index)
+	if level_index not in Messages.replays:
 		view_replay.disabled = true
 	else:
 		view_replay.disabled = false
 	
 func on_level_ended():
+	var level_index = Messages.get_save_index(current_index)
 	level_ended = true
 	current_time = Time.get_ticks_msec()
 	level_time_ms = current_time - level_start_time
@@ -688,10 +728,10 @@ func on_level_ended():
 	var best_time = Messages.get_readable_stored_level_time(current_index)
 	personal_best.text = "Best: " + best_time
 	Messages.unlock_next_level(current_index)
-	if current_index not in Messages.replays:
+	if level_index not in Messages.replays:
 		if level_time_ms < 60000:
 			Messages.StoreReplay.emit()
-	elif level_time_ms < Messages.replays[current_index][2]:
+	elif level_time_ms < Messages.replays[level_index][2]:
 		if level_time_ms < 60000:
 			Messages.StoreReplay.emit()
 	if Messages.is_next_level_unlocked(current_index):
@@ -700,7 +740,7 @@ func on_level_ended():
 	else:
 		next_level.disabled = true
 		next_level_button.disabled = true
-	if current_index not in Messages.replays:
+	if level_index not in Messages.replays:
 		view_replay.disabled = true
 	else:
 		view_replay.disabled = false
@@ -814,6 +854,9 @@ func on_update_volume(values):
 	var ui_bus_index = AudioServer.get_bus_index("UI")
 	AudioServer.set_bus_volume_linear(ui_bus_index, values[2])
 
+func on_clear_replay():
+	view_replay.disabled = true
+
 func _on_keyboard_inputs_pressed() -> void:
 	keyboard_remaps.show()
 	controller_remaps.hide()
@@ -821,3 +864,44 @@ func _on_keyboard_inputs_pressed() -> void:
 func _on_controller_inputs_pressed() -> void:
 	keyboard_remaps.hide()
 	controller_remaps.show()
+
+func _on_exit_game_guide_pressed() -> void:
+	Messages.audio.stream = Messages.return_button_sound
+	Messages.audio.play()
+	game_guide.visible = false
+	settingsWindow.visible = true
+	exit_settings.grab_focus.call_deferred()
+
+func _on_basics_pressed() -> void:
+	basics.visible = true
+	mechanics.visible = false
+	interaction.visible = false
+	other.visible = false
+
+func _on_mechanics_pressed() -> void:
+	basics.visible = false
+	mechanics.visible = true
+	interaction.visible = false
+	other.visible = false
+
+func _on_interactables_pressed() -> void:
+	basics.visible = false
+	mechanics.visible = false
+	interaction.visible = true
+	other.visible = false
+
+func _on_other_pressed() -> void:
+	basics.visible = false
+	mechanics.visible = false
+	interaction.visible = false
+	other.visible = true
+
+func _on_help_pressed() -> void:
+	Messages.audio.stream = Messages.stage_select_pressed_sound
+	Messages.audio.play()
+	game_guide.visible = true
+	settingsWindow.visible = false
+	basics_button.grab_focus.call_deferred()
+
+func _on_clear_replay_pressed() -> void:
+	Messages.ClearReplay.emit()
