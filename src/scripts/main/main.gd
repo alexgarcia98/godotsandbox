@@ -570,12 +570,13 @@ func _process(delta: float) -> void:
 		if current_time > next_action_time:
 			var input_event = InputEventAction.new()
 			var stored_event = replay_actions[action_count][1]
-			input_event.action = stored_event[0]
-			input_event.pressed = stored_event[1]
-			input_event.strength = stored_event[2]
-			input_event.device = -5
-			print("event: %s" % input_event)
-			Input.parse_input_event(input_event)
+			if stored_event:
+				input_event.action = stored_event[0]
+				input_event.pressed = stored_event[1]
+				input_event.strength = stored_event[2]
+				input_event.device = -5
+				print("event: %s" % input_event)
+				Input.parse_input_event(input_event)
 			#red_player.movement_state_machine.process_input(input_event)
 			#green_player.movement_state_machine.process_input(input_event)
 			#print(input_event)
